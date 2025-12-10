@@ -1,0 +1,34 @@
+{
+  "B.Tech-Computer Science & Engineering": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "360 seats",
+    "placement": {
+      "placement_offered":"640",
+      "highest_package": "40 LPA",
+      "average_package": "5.68 LPA",
+      "top_recruiters": [
+        "Capgemini",
+        "Carelon",
+        "Innovate",
+        "Microsoft",
+        "Conduent",
+        "Bosch"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Identify, analyze real world problems and design their ethical solutions using artificial intelligence, robotics, virtual/augmented reality, data analytics, block chain technology, and cloud computing.",
+      "PSO2: Design and develop the hardware sensor devices and related interfacing software systems for solving complex engineering problems.",
+      "PSO3: Understand inter-disciplinary computing techniques and to apply them in the design of advanced computing.",
+      "PSO4: Conduct investigation of complex problems with the help of technical, managerial, leadership qualities, and modern engineering tools provided by industry-sponsored laboratories."
+    ],
+    "career_opportunities": [
+      "Mobile App Developer",
+      "Software Developer/Engineer",
+      "Systems Architect/Engineer",
+      "Cloud Solutions Architect",
+      "Network Administrator/Engineer"
+    ],
+    "mode": "Full-time"
+  }
+}

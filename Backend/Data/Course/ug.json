@@ -1,0 +1,483 @@
+{
+  "B.Tech-Computer Science & Engineering": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "360 seats",
+    "placement": {
+      "placement_offered":"640",
+      "highest_package": "40 LPA",
+      "average_package": "5.68 LPA",
+      "top_recruiters": [
+        "Capgemini",
+        "Carelon",
+        "Innovate",
+        "Microsoft",
+        "Conduent",
+        "Bosch"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Identify, analyze real world problems and design their ethical solutions using artificial intelligence, robotics, virtual/augmented reality, data analytics, block chain technology, and cloud computing.",
+      "PSO2: Design and develop the hardware sensor devices and related interfacing software systems for solving complex engineering problems.",
+      "PSO3: Understand inter-disciplinary computing techniques and to apply them in the design of advanced computing.",
+      "PSO4: Conduct investigation of complex problems with the help of technical, managerial, leadership qualities, and modern engineering tools provided by industry-sponsored laboratories."
+    ],
+    "career_opportunities": [
+      "Mobile App Developer",
+      "Software Developer/Engineer",
+      "Systems Architect/Engineer",
+      "Cloud Solutions Architect",
+      "Network Administrator/Engineer"
+    ],
+    "mode": "Full-time"
+  },
+  "B.Tech-Computer Science & Engineering (Regional)": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "60 seats",
+    "placement": {
+      "placement_offered":"640",
+      "highest_package": "40 LPA",
+      "average_package": "5.68 LPA",
+      "top_recruiters": [
+        "Capgemini",
+        "Carelon",
+        "Innovate",
+        "Microsoft",
+        "Conduent",
+        "Bosch"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Identify, analyze real world problems and design their ethical solutions using artificial intelligence, robotics, virtual/augmented reality, data analytics, block chain technology, and cloud computing.",
+      "PSO2: Design and develop the hardware sensor devices and related interfacing software systems for solving complex engineering problems.",
+      "PSO3: Understand inter-disciplinary computing techniques and to apply them in the design of advanced computing.",
+      "PSO4: Conduct investigation of complex problems with the help of technical, managerial, leadership qualities, and modern engineering tools provided by industry-sponsored laboratories."
+    ],
+    "career_opportunities": [
+      "Mobile App Developer",
+      "Software Developer/Engineer",
+      "Systems Architect/Engineer",
+      "Cloud Solutions Architect",
+      "Network Administrator/Engineer"
+    ],
+    "mode": "Full-time"
+  },
+  "B.Tech-Computer Science": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "180 seats",
+    "placement": {
+      "placement_offered":"61",
+      "highest_package": "23.50 LPA",
+      "average_package": "5.74 LPA",
+      "top_recruiters": [
+        "Intel",
+        "Tech Mahindra",
+        "Adobe",
+        "LTI(Larsen & Toubro Infotech)"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Apply suitable techniques, modern tools to solve complex engineering problems in the field of computer science.",
+      "PSO2: Design and optimize, ethical and innovative solutions for the betterment of the society.",
+      "PSO3: Work as an individual or lead in a team with good communication and engage in life-long learning."
+    ],
+    "career_opportunities": [
+      "Cloud Support Engineer",
+      "Cloud Engineer",
+      "Cloud Analyst",
+      "Cloud Solutions Architect",
+      "Cloud Developer"
+    ],
+    "mode": "Full-time"
+  },
+  "B.Tech-Information Technology": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "240 seats",
+    "placement": {
+      "placement_offered":"351",
+      "highest_package": "26.50 LPA",
+      "average_package": "5.26 LPA",
+      "top_recruiters": [
+        "HCLTech",
+        "IBM",
+        "Infosys",
+        "Wipro"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Work as a software engineer in different dimensions of information technology to provide solutions to real-world and industrial problems in an eco-friendly manner.",
+      "PSO2: Apply knowledge of core subjects with multi-disciplinary and modern computing techniques to solve complex IT problems.",
+      "PSO3: Establish a successful and innovative career by practicing lifelong learning and communicating in a team or as an individual to manage projects with ethical concerns."
+    ],
+    "career_opportunities": [
+      "Mobile App Developer",
+      "Software Developer/Engineer",
+      "Systems Architect/Engineer",
+      "Cloud Solutions Architect",
+      "Network Administrator/Engineer"
+    ],
+    "mode": "Full-time"
+  },
+   "B.Tech-Electronics & Communication Engineering": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "120 seats",
+    "placement": {
+      "placement_offered":"331",
+      "highest_package": "10 LPA",
+      "average_package": "4.68 LPA",
+      "top_recruiters": [
+        "ApMoSys",
+        "TCS",
+        "Adobe",
+        "EdiGlobe"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: To Design an implement products using the cutting-edge Software and Hardware tools in electronics and communication engineering to satisfy the customer need.",
+      "PSO2: To analyse and developed solution for the real time problem and to apply the knowledge for innovative ideas and solutions in Telecommunications, Wireless Networking, Embedded systems, and VLSI.",
+      "PSO3: To demonstrate the technical skills, professional competence entrepreneurial attitude and deliver innovative solution to solve the society."
+    ],
+    "career_opportunities": [
+      "Blockchain Developer",
+      "Data Analyst",
+      "Full Stack Developer",
+      "Database Administrator"
+    ],
+    "mode": "Full-time"
+  },
+   "B.Tech. in Electronics Engineering (VLSI Design and technology)": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "60 seats",
+    "placement": {
+      "placement_offered":"331",
+      "highest_package": "10 LPA",
+      "average_package": "4.68 LPA",
+      "top_recruiters": [
+        "ApMoSys",
+        "TCS",
+        "Adobe",
+        "EdiGlobe"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: To Design an implement products using the cutting-edge Software and Hardware tools in electronics and communication engineering to satisfy the customer need.",
+      "PSO2: To analyse and developed solution for the real time problem and to apply the knowledge for innovative ideas and solutions in Telecommunications, Wireless Networking, Embedded systems, and VLSI.",
+      "PSO3: To demonstrate the technical skills, professional competence entrepreneurial attitude and deliver innovative solution to solve the society."
+    ],
+    "career_opportunities": [
+      "VLSI Design Engineer",
+      "ASIC/FPGA Design Engineer",
+      "Verification Engineer",
+      "Physical Design Engineer",
+      "System-on-Chip (SoC) Architect"
+    ],
+    "mode": "Full-time"
+  },
+   "B.Tech-Mechanical Engineering": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "60 seats",
+    "placement": {
+      "placement_offered":"78",
+      "highest_package": "10 LPA",
+      "average_package": "4.08 LPA",
+      "top_recruiters": [
+        "Capegemini",
+        "AutoDesk",
+        "Genpact",
+        "Cognizant"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Apply, analyze, design, and solve the complex problem related to Mechanical Engineering.",
+      "PSO2: Implement the use of software, latest equipment, and scientific concepts for the betterment of the society in professional and ethical manner.",
+      "PSO3: To present their technical ideas, execute various projects, and learn the upcoming interdisciplinary technology."
+    ],
+    "career_opportunities": [
+      "Design Engineer",
+      "Maintenance Engineer",
+      "Quality Engineer",
+      "Aerospace Engineer",
+      "HVAC Engineer"
+    ],
+    "mode": "Full-time"
+  },
+   "B.Tech-Biotechnology": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "60 seats",
+    "placement": {
+      "placement_offered":"82",
+      "highest_package": "9 LPA",
+      "average_package": "4.56 LPA",
+      "top_recruiters": [
+        "Apelo",
+        "Medtronic",
+        "BioSciences",
+        "Doctor Alliance"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: To apply knowledge of basic sciences and biotechnological techniques to modify living organisms.",
+      "PSO2: To design, optimize, analyze & scale up bio-processes to develop useful products with societal consideration.",
+      "PSO3: To generate, analyze & interpret biological data using insilico & other relevant approaches."
+    ],
+    "career_opportunities": [
+      "Pharmaceutical Industry",
+      "Bioprocess and Fermentation Industry",
+      "Biochemical Industries",
+      "Teaching and Research",
+      "Vaccine Technology"
+    ],
+    "mode": "Full-time"
+  },
+   "B.Tech-CSE (Data Science)": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "240 seats",
+    "placement": {
+      "placement_offered":"171",
+      "highest_package": "23.50 LPA",
+      "average_package": "5.75 LPA",
+      "top_recruiters": [
+        "Deloitte",
+        "Genpact",
+        "Fractal",
+        "Tiger Analytics"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Analyse, design and develop solutions by applying fundamental concepts of Data Science.",
+      "PSO2: Apply technical knowledge while using modern tools and technologies for solving complex problems.",
+      "PSO3: Collaborate different fields of science and technology with right attitude, to work as an individual or as a team, and demonstrating professional ethics for the well-being of the society."
+    ],
+    "career_opportunities": [
+      "Blockchain Developer",
+      "Data Analyst",
+      "Full Stack Developer",
+      "Database Administrator"
+    ],
+    "mode": "Full-time"
+  },
+  "B.Tech-CSE (Artificial Intelligence and Machine Learning)": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "240 seats",
+    "placement": {
+      "placement_offered":"147",
+      "highest_package": "23.50 LPA",
+      "average_package": "5.37 LPA",
+      "top_recruiters": [
+        "Q3 Technologies",
+        "QBurst",
+        "W3villa"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Design innovative intelligent systems for the welfare of the people using machine learning and its applications.",
+      "PSO2: Demonstrate ethical, professional and team-oriented skills while providing innovative solutions in Artificial Intelligence and Machine Learning for life-long learning."
+    ],
+    "career_opportunities": [
+      "Entrepreneurship",
+      "Industry-Specific Expertise",
+      "Academic or Research Roles",
+      "Executive Leadership"
+    ],
+    "mode": "Full-time"
+  },
+     "B.Tech-CSE (Cyber-Security)": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "120 seats",
+    "placement": {
+      "placement_offered":"2700+",
+      "highest_package": "39.06 LPA",
+      "average_package": "6 LPA",
+      "top_recruiters": [
+        "Microsoft",
+        "Goldman Sachs",
+        "ZScaler",
+        "AutoDesk"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: The ability to create secure applications, systems, and networks.",
+      "PSO2:  The ability to master the concepts and theories to navigate policy changes impacting computer security and develop cross-disciplinary strategy to tackle the complex challenges involved in keeping our digital information safe.",
+      "PSO3: The ability to conduct investigation of complex security problems and tackle the technical, regulatory and business challenges of cyber security ethically."
+    ],
+    "career_opportunities": [
+      "Mobile App Developer",
+      "Software Developer/Engineer",
+      "Systems Architect/Engineer",
+      "Cloud Solutions Architect",
+      "Network Administrator/Engineer"
+    ],
+    "mode": "Full-time"
+  },
+     "B.Tech-Computer Science & Business Systems": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "60 seats",
+    "placement": {
+      "placement_offered":"26",
+      "highest_package": "9 LPA",
+      "average_package": "5.4 LPA",
+      "top_recruiters": [
+        "Capegemini",
+        "Sonata",
+        "Biral Soft",
+        "TCS"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Apply technical and business knowledge to solve complex problems and face current business challenges.",
+      "PSO2: Explore modern tools and technologies and apply the knowledge to design and develop solutions for betterment of the society.",
+      "PSO3: Work innovatively and communicate effectively with professionals worldwide and pursue lifelong learning to add value to society and environment."
+    ],
+    "career_opportunities": [
+      "Big Data Engineer",
+      "E-commerce Specialist",
+      "Product Manager",
+      "Database Administrator"
+    ],
+    "mode": "Full-time"
+  },
+     "B.Tech-CSE (Internet of Things)": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "120 seats",
+    "placement": {
+      "placement_offered":"28",
+      "highest_package": "19.50 LPA",
+      "average_package": "5.53 LPA",
+      "top_recruiters": [
+        "Coforge",
+        "Cognizant",
+        "Hexaware",
+        "LTIMindtree"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Apply concept of IoT to solve real world problems for societal wellbeing by leveraging latest tools.",
+      "PSO2: Work as an individual or lead as a team with good communication and engage in life-long learning.",
+      "PSO3: Apply ethical principles as a successful professional, entrepreneur, and pursue higher education."
+    ],
+    "career_opportunities": [
+      "IOT Engineer",
+      "Data Analyst",
+      "Full Stack Developer",
+      "Database Administrator"
+    ],
+    "mode": "Full-time"
+  },
+     "B.Tech-CSE (Artificial Intelligence)": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "180 seats",
+    "placement": {
+      "placement_offered":"122",
+      "highest_package": "19.50 LPA",
+      "average_package": "5.37 LPA",
+      "top_recruiters": [
+        "Oracle Academy",
+        "CYIENT"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Apply Artificial Intelligence and its applications to design intelligent systems for the betterment of society.",
+      "PSO2: Develop AI-based innovative solutions demonstrating research, entrepreneurship, professional ethics, and communication skills.",
+      "PSO3: Demonstrate competency in AI by working in a team and engaging in life-long learning."
+    ],
+    "career_opportunities": [
+      "Mobile App Developer",
+      "Software Developer/Engineer",
+      "Systems Architect/Engineer",
+      "Cloud Solutions Architect",
+      "Network Administrator/Engineer"
+    ],
+    "mode": "Full-time"
+  },
+  "B.Tech-Mathematics and Computing": {
+    "duration": "4 years (8 semesters)",
+    "fees": "",
+    "seats": "60 seats",
+    "placement": {
+      "placement_offered":"Recently introduced",
+      "highest_package": "NA",
+      "average_package": "NA",
+      "top_recruiters": [
+       "NA"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Mathematical and Computational Proficiency Graduates will be able to apply foundational and advanced knowledge of mathematics, statistics, and algorithmic thinking to analyze and solve real-world problems using computational techniques.",
+      "PSO2: Specialized Competency in Quantum and Emerging Technologies Graduates will be able to design, simulate, and implement solutions using quantum computing, data science, and AI tools, demonstrating the ability to adapt and innovate in emerging technology domains."
+    ],
+    "career_opportunities": [
+      "Mobile App Developer",
+      "Software Developer/Engineer",
+      "Systems Architect/Engineer",
+      "Cloud Solutions Architect",
+      "Network Administrator/Engineer"
+    ],
+    "mode": "Full-time"
+  },
+  "BBA - Bachelor of Business Administration": {
+    "duration": "3 years (6 semesters)",
+    "fees": "",
+    "seats": "120 seats",
+    "placement": {
+      "placement_offered":"493",
+      "highest_package": "10 LPA",
+      "average_package": "4.09 LPA",
+      "top_recruiters": [
+        "upGrad",
+        "Asian Piants",
+        "Cloud Analogy"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Foster analytical and critical thinking abilities for data-based decision making.",
+      "PSO2: Ability to develop value-based leadership ability.",
+      "PSO3: Ability to understand, analyze and communicate global, economic, legal, and ethical aspects of business."
+    ],
+    "career_opportunities": [
+      "Marketing & Sales",
+      "Logistics & Supply Chain Management",
+      "Business Analytics"
+    ],
+    "mode": "Full-time"
+  },
+  "Bachelor of Computer Applications": {
+    "duration": "3 years (6 semesters)",
+    "fees": "",
+    "seats": "120 seats",
+    "placement": {
+      "placement_offered":"180",
+      "highest_package": "10 LPA",
+      "average_package": "4.49 LPA",
+      "top_recruiters": [
+        "RR Consulting",
+        "BABA Group"
+      ]
+    },
+    "course_specific_outcomes": [
+      "PSO1: Demonstrate knowledge and understanding of the computing and management principles and apply these to one’s work, as a member and leader in a team, to manage projects and in multidisciplinary environments.",
+      "PSO2: Communicate effectively with the computing community and with society at large, about complex computing activities by being able to comprehend and write effective reports, design documentation, make effective presentations, and give and understand clear instructions.",
+      "PSO3: Function effectively as an individual and as a member or leader in diverse teams and multidisciplinary environments."
+    ],
+    "career_opportunities": [
+      "Fundamentals of Digital Marketing and Analytics",
+      "CRM Administration",
+      "Search Engine Optimization",
+      "Software Quality & Testing",
+      "Administrating cloud and App using Salesforce"
+    ],
+    "mode": "Full-time"
+  }
+}

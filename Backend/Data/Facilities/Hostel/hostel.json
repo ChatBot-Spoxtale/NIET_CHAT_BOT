@@ -1,0 +1,78 @@
+{
+    "Hostel_Facilities":{
+        "Hostel_Detail":[
+            "The hostel provides the students with an atmosphere much like a home away from home.",
+            "Five hostels for boys and two for girls on the campus offer well-ventilated, comfortable rooms.",
+            "Our hostel has its own mess, which is managed and run by the students themselves on co-operative basis",
+            "Rooms are available on multi sharing basis.",
+            "ibrary and internet facility is also provided to hostel students after college time.",
+            "Medical facility is also provided to the students all the time.",
+            "24 hours RO water supply and power backup is available in hostel.",
+            "Security guards are posted at the gate of hostels day and night.",
+            "Canteen, Medical Aid, Xerox, Stationary facility etc are also available for the students.",
+            "Keeping in mind the different tastes of the students, the mess provides them with healthy and tasty food."
+        ],
+        "Hostel Management":[
+            "The officers constitute the Hostel Management: Director, Chief Warden, Faculty Wardens, Resident Wardens, Care Taker",
+            "A Resident warden who resides in the hostel manages each hostel",
+            "The diners of mess may be drawn from different hostels. A Warden administers each mess.",
+            "The students can approach any of the above officers for help, guidance and grievance redressal.",
+            "Representations to higher officers must be forwarded through proper channel."
+        ],
+        "Accommodation":{
+            "Type of Rooms":[
+                "Two Seater",
+                "Two Seater (Air Cooled)",
+                "Two Seater with attached bathroom",
+                "Three Seater",
+                "Three Seater (Air Cooled)",
+                "Three Seater with attached bathroom",
+                "Four Seater"
+            ]
+        },
+        "Hostel_Wardens":[
+            "Mr. Rakesh Kumar Singh Chief Warden (Plot 19)",
+            "Mr. Vikrant Malik Faculty Warden",
+            "Mr. Brijesh Tripathi Resident Warden Boys Hostel",
+            "Mr. Adesh Kumar Resident Warden Boys Hostel",
+            "Ms. Ranjana Singh Resident Girls hostel Warden",
+            "Ms. Sanjaylata Tiwari Resident Girls hostel Warden"
+        ],
+        "Facilities_NIET_Hostels":[
+            "Cameras in Hostels",
+            "State of Art Gymnasium",
+            "Cooperative Mess",
+            "Wi-fi Enabled Hostel",
+            "Medical Facility",
+            "Hot and Cold Water Supply",
+            "Security",
+            "Library and Study Room",
+            "24 Hour Power Backup",
+            "RO Drinking Water Supply",
+            "Common Room",
+            "Indoor and outdoor Games",
+            "Guest Rooms",
+            "Smart Laundry",
+            "Pest Control"
+        ],
+        "Medical_Facility":{
+            "For_Plot_No-19":[
+                "Dr. Ravi Sharma, MBBS (Physician)",
+                "B.Pharma Block",
+                "Timings-(05:00 to 06:00)"
+            ],
+            "For_Plot_No-14":[
+                "Dr. Ravi Sharma, MBBS (Physician)",
+                "Chief Warden Office",
+                "Timings-(06:00 to 07:00)"
+            ]
+        },
+        "Rule_Reimbursement":[
+            "Maximum of Rs 3000/- (Three Thousand only) in a month of OPD consultancy + medicine bills etc. can be reimbursed to the students.",
+            "In case of causality/hospitalization, a maximum of Rs 20,000/- (Twenty Thousand only) can be reimbursed to the students.",
+            "To reimburse the medical bills, students should submit original bills along with prescription report to the Chief Warden/Warden within three days of his/her visit to doctor/hospitalization.",
+            "All the bills should be made in favor of concerned students.",
+            "Student should follow the above set of rules for medical refund and submit the application of refund in the Chief Warden office between 05:00pm to 06:00pm."
+        ]
+    }
+}

@@ -1,0 +1,119 @@
+Hostel_Facilities:
+  Hostel_Detail:
+    0:
+      The hostel provides the students with an atmosphere much like a home away from home.
+    1:
+      Five hostels for boys and two for girls on the campus offer well-ventilated, comfortable rooms.
+    2:
+      Our hostel has its own mess, which is managed and run by the students themselves on co-operative basis
+    3:
+      Rooms are available on multi sharing basis.
+    4:
+      ibrary and internet facility is also provided to hostel students after college time.
+    5:
+      Medical facility is also provided to the students all the time.
+    6:
+      24 hours RO water supply and power backup is available in hostel.
+    7:
+      Security guards are posted at the gate of hostels day and night.
+    8:
+      Canteen, Medical Aid, Xerox, Stationary facility etc are also available for the students.
+    9:
+      Keeping in mind the different tastes of the students, the mess provides them with healthy and tasty food.
+  Hostel Management:
+    0:
+      The officers constitute the Hostel Management: Director, Chief Warden, Faculty Wardens, Resident Wardens, Care Taker
+    1:
+      A Resident warden who resides in the hostel manages each hostel
+    2:
+      The diners of mess may be drawn from different hostels. A Warden administers each mess.
+    3:
+      The students can approach any of the above officers for help, guidance and grievance redressal.
+    4:
+      Representations to higher officers must be forwarded through proper channel.
+  Accommodation:
+    Type of Rooms:
+      0:
+        Two Seater
+      1:
+        Two Seater (Air Cooled)
+      2:
+        Two Seater with attached bathroom
+      3:
+        Three Seater
+      4:
+        Three Seater (Air Cooled)
+      5:
+        Three Seater with attached bathroom
+      6:
+        Four Seater
+  Hostel_Wardens:
+    0:
+      Mr. Rakesh Kumar Singh Chief Warden (Plot 19)
+    1:
+      Mr. Vikrant Malik Faculty Warden
+    2:
+      Mr. Brijesh Tripathi Resident Warden Boys Hostel
+    3:
+      Mr. Adesh Kumar Resident Warden Boys Hostel
+    4:
+      Ms. Ranjana Singh Resident Girls hostel Warden
+    5:
+      Ms. Sanjaylata Tiwari Resident Girls hostel Warden
+  Facilities_NIET_Hostels:
+    0:
+      Cameras in Hostels
+    1:
+      State of Art Gymnasium
+    2:
+      Cooperative Mess
+    3:
+      Wi-fi Enabled Hostel
+    4:
+      Medical Facility
+    5:
+      Hot and Cold Water Supply
+    6:
+      Security
+    7:
+      Library and Study Room
+    8:
+      24 Hour Power Backup
+    9:
+      RO Drinking Water Supply
+    10:
+      Common Room
+    11:
+      Indoor and outdoor Games
+    12:
+      Guest Rooms
+    13:
+      Smart Laundry
+    14:
+      Pest Control
+  Medical_Facility:
+    For_Plot_No-19:
+      0:
+        Dr. Ravi Sharma, MBBS (Physician)
+      1:
+        B.Pharma Block
+      2:
+        Timings-(05:00 to 06:00)
+    For_Plot_No-14:
+      0:
+        Dr. Ravi Sharma, MBBS (Physician)
+      1:
+        Chief Warden Office
+      2:
+        Timings-(06:00 to 07:00)
+  Rule_Reimbursement:
+    0:
+      Maximum of Rs 3000/- (Three Thousand only) in a month of OPD consultancy + medicine bills etc. can be reimbursed to the students.
+    1:
+      In case of causality/hospitalization, a maximum of Rs 20,000/- (Twenty Thousand only) can be reimbursed to the students.
+    2:
+      To reimburse the medical bills, students should submit original bills along with prescription report to the Chief Warden/Warden within three days of his/her visit to doctor/hospitalization.
+    3:
+      All the bills should be made in favor of concerned students.
+    4:
+      Student should follow the above set of rules for medical refund and submit the application of refund in the Chief Warden office between 05:00pm to 06:00pm.

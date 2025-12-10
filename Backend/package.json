@@ -1,0 +1,30 @@
+{
+  "name": "niet_chatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@toon-format/cli": "^2.1.0",
+    "child_process": "^1.0.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "node": "^20.19.6",
+    "nodemon": "^3.1.11",
+    "openai": "^6.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svaadityakuamr8130-sys/NIET_CHATBOT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svaadityakuamr8130-sys/NIET_CHATBOT/issues"
+  },
+  "homepage": "https://github.com/svaadityakuamr8130-sys/NIET_CHATBOT#readme"
+}
