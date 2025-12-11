@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --raspberry:#e2111f;
+  --raspberry-dark:#551023;
+}
+html,body,#root{height:100%}
+body{@apply bg-gray-50 font-sans;}
