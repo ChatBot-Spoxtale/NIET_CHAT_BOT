@@ -1,0 +1,125 @@
+Infrastructure_facilities:
+  Auditorium / Seminar Hall:
+    0:
+      NIET has a well-designed auditorium where many students take the center stage and showcase their scholastic and cultural talents.
+    1:
+      The auditorium provides students a platform to engage in various extra-curricular activities and build their personalities.
+  Conference_room:
+    Overview:
+      State-of-the-art conference rooms ideal for academic and corporate events.
+    Technology:
+      0:
+        HD projectors
+      1:
+        Sound systems
+      2:
+        Interactive display screens
+      3:
+        Advanced audiovisual equipment
+    Seating:
+      Flexible seating arrangements suitable for small teams to large gatherings.
+    Environment:
+      Modern design, natural light, ergonomic furniture.
+    Accessibility:
+      Located in Greater Noida with ample parking and public transport access.
+    Support:
+      Dedicated team for technical assistance and event coordination.
+  Recording_room:
+    Overview:
+      NIET provides state-of-the-art recording room facilities to support audio production.
+    Acoustics:
+      Rooms are acoustically engineered to reduce noise, control reflections, and produce distortion-free recordings.
+    Equipment:
+      0:
+        Professional microphones
+      1:
+        Audio interfaces
+      2:
+        Monitoring systems
+      3:
+        Industry-standard recording tools
+    Flexibility:
+      Supports solo vocals, instruments, podcasting, full band recordings, and voiceovers with customizable setups.
+    Environment:
+      Comfortable, creative, and inspiring space designed for collaboration and long recording sessions.
+    Benefits:
+      Enables high-fidelity recordings, encourages innovation, and helps users create industry-quality audio content.
+  Transport_service:
+    Overview:
+      NIET provides efficient and safe transportation facilities for students and staff.
+    Fleet:
+      Well-maintained buses with modern amenities.
+    Routes:
+      Covers major residential and transport hubs across Delhi NCR.
+    Schedule:
+      Timings aligned with academic and administrative needs, including early morning and late evening hours.
+    Safety:
+      0:
+        Trained drivers
+      1:
+        Strict safety protocols
+      2:
+        GPS-enabled buses for real-time tracking
+    Comfort:
+      Comfortable seating and clean, well-ventilated buses.
+    Benefits:
+      Ensures convenient, safe, and reliable commuting for students and staff.
+  Innovation_Labs:
+    0:
+      27+ innovation labs
+    1:
+       Our Laboratory Program lays the very foundation of the programming skills for the students from every engineering stream
+    2:
+      These laboratories are the ideal destinations for active learning.
+    3:
+       Students learn in a real world environment, function as team members, discuss the planning of experiments
+    4:
+      Mercedes Benz, AICTE IDEA Lab, PTC Centre of Excellence, Mobile App Developement, Cisco Networking Academy...
+  Laboratories:
+    0:
+      NIET believes in acing the practicality along with the theoretical expertise.
+    1:
+      The laboratories we possess, aren’t just for conducting chemical experiments
+  Library:
+    0:
+      The libraries at NIET occupy over 14,000 square feet area
+    1:
+      Provide students access to a vast repository of resources, including books and periodicals.
+  Classrooms:
+    0:
+      150+ Classrooms available in college
+    1:
+      The classrooms have ergonomically designed furniture, seamless Wi-Fi connectivity
+    2:
+      Climate controlling systems, aesthetic lighting, and visually pleasing interiors that make the environment of the classroom more conducive towards learning.
+    3:
+      The classrooms are well-equipped with projectors, computers, high-tech sound systems, OHPs and other kinds of audio-visual tools.
+  Sports:
+    0:
+      At NIET, students develop leadership and team skills, while pursuing their interests through diverse organizations.
+    1:
+       From cricket to basketball, athletics to yoga - students can stay fit in any way they choose.
+    2:
+      NIET recently started the Marathon Club where students and other citizens of Greater Noida actively participate.
+  GYM:
+    Equipment:
+      0:
+        25+ GYM Equipments available in college GYM
+      1:
+        Our gym is spacious, well-ventilated, and maintained to the highest standards of cleanliness and hygiene.
+      2:
+        Trained fitness instructors are available to provide guidance, support, and personalized workout plans
+    Culture_Wellness:
+      0:
+        NIET's gym facilities play a crucial role in promoting a culture of wellness on campus.
+      1:
+        By encouraging students to prioritize their health and fitness, we instill values of discipline, self-care, and resilience—qualities that are essential for success not only in academics but also in life.
+      2:
+        The gym serves as a hub for social interaction and community building
+    Accessibility:
+      0:
+        NIET is committed to ensuring that our gym facilities are accessible and inclusive for all.
+      1:
+         We strive to accommodate individuals with varying abilities and preferences, offering adaptive equipment and modifying workouts
+      2:
+        Our gym facilities embody this philosophy, providing students with the resources, support, and encouragement they need to thrive both inside and outside the classroom.

@@ -1,0 +1,41 @@
+Admission_through:
+  UPCET_Counseling or JEE mains:
+    Admission_First_Year_Btech:
+      0:
+        The candidate must have passed the intermediate examination of U.P. Board
+      1:
+        10+2 level examination from any recognized board/university
+      2:
+        Securing minimum 45% (40% for SC/ST) marks in total of required subject combination
+    Admission_First_Year_B.Pharm:
+      0:
+        Candidate must have passed (with/without grace) intermediate examination of U.P. Board
+      1:
+        10+2 level examination or its equivalent with Physics and Chemistry
+      2:
+        compulsory subjects along with Mathematics/ Biology subjects.
+    Admission_First_Year_MCA:
+      0:
+        The candidate must have passed three years degree course from any recognized University;
+      1:
+        securing a minimum 50% (45% for SC/ST) marks in aggregate.
+      2:
+        The candidate must have a minimum 50% (45% for SC/ST) marks in mathematics at 10 + 2 level or bachelor’s degree level.
+    Admission_First_Year_MBA:
+      0:
+        The candidate must have passed three years of degree course from any recognized University;
+      1:
+        securing a minimum 45% (40% for SC/ST) marks in aggregate.
+    Admission_Lateral_Entry_Btech:
+      0:
+        The candidate must have passed three years of Diploma in Engineering
+      1:
+        securing a minimum 45% (40% for SC/ST) marks in mathematics.
+    Admission_Lateral_Entry_B.Pharam:
+      0:
+        The candidate must have passed three years of Diploma in Pharmacy
+    Other_Process:
+      0:
+        The admission of NRI and Kashmiri migrants will be according to the norms laid down by the Govt of UP/AICTE
+      1:
+        This admission test is open only for candidates who have passed the qualifying examination from any institution located in U.P and the parents, father/mother of the students must be domiciles of U.P

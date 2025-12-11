@@ -15,6 +15,9 @@ const geminiModel =
         model: "gemini-flash-latest",
     });
 
+const embeddingModel = genAI.getGenerativeModel({
+  model: "embedding-001"
+});
 
 const generate = async (prompt) => {
     try {
@@ -32,4 +35,4 @@ const generate = async (prompt) => {
     }
 };
 
-module.exports = { generate, geminiModel };
+module.exports = { generate, geminiModel,embeddingModel };

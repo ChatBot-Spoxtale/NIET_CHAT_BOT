@@ -1,0 +1,36 @@
+Admission_through:
+  Direct_Admission:
+    Fifteen percent (15%) of the approved:
+      0:
+        Intake of a course is filled under this category as per the Govt. of U.P. and AKTU guidelines
+      1:
+        There is usually a great rush for management quota seats.
+      2:
+        The students need to register themselves early to establish priority.
+    For admission to B. Tech courses:
+      0:
+        The candidate must have passed the intermediate examination or equivalent (10+2) with required subject combination
+      1:
+        The admission criteria is defined by the college admission policy.
+    For admission to the first year of MCA (2 years):
+      0:
+        A candidate must have passed a bachelor’s degree course of three years minimum duration from any recognized Indian university or its equivalent.
+      1:
+         Candidate must have passed Mathematics at 10+2 level
+      2:
+        graduation level and the admission criteria are defined by the college admission policy.
+    For admission to MBA course:
+      0:
+        The minimum qualification required is three years of bachelor’s degree in any discipline
+      1:
+        the admission criteria are defined by college admission policy.
+    For admission to PGDM course:
+      0:
+        Other criteria defined by the AICTE and affiliating University In PGDM Other criteria defined by the AICTE
+    For admission to M. Tech course:
+      0:
+        The minimum qualification required is a bachelor’s degree in a relevant discipline.
+      1:
+        MCA is also eligible for the admission to M. Tech (Computer Science & Engineering)
+      2:
+        The admission criteria are defined by the college admission policy.

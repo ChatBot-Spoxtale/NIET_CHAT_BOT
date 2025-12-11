@@ -16,5 +16,4 @@ User query: """${userQuery}"""
   return text;
 }
 
-
-translateToEnglish("niet me barbadi hai ??");
+module.exports={translateToEnglish};
