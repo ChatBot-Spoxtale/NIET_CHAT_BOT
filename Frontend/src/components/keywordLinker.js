@@ -1,15 +1,17 @@
 export const keywordMap = {
-  admission: 'https://www.niet.co.in/admissions/',
-  admissions: 'https://www.niet.co.in/admissions/',
+  admission: 'https://applynow.niet.co.in/',
+  admissions: 'https://applynow.niet.co.in/',
   fee: 'https://www.niet.co.in/fees/',
   fees: 'https://www.niet.co.in/fees/',
-  contact: 'https://www.niet.co.in/contact/',
   course: 'https://www.niet.co.in/courses/',
   courses: 'https://www.niet.co.in/courses/',
-  ai: 'https://www.niet.co.in/courses/ai-ml/',
-  aiml: 'https://www.niet.co.in/courses/ai-ml/',
-  hostel: 'https://www.niet.co.in/facilities/hostel/',
-  placement: 'https://www.niet.co.in/placements/'
+  cse: 'https://www.niet.co.in/course/b-tech-in-cse',
+  cse_r: 'https://www.niet.co.in/course/b-tech-in-cse-regional',
+  ds: 'https://www.niet.co.in/course/b-tech-in-cse-data-science',
+  ece: 'https://www.niet.co.in/course/btech-ece',
+  ai: 'https://www.niet.co.in/course/btech-in-cse-artificial-intelligence',
+  aiml: 'https://www.niet.co.in/course/btech-aiml',
+  placement: 'https://www.niet.co.in/placement/placement-records'
 };
 
 export function findLinkForText(text) {
