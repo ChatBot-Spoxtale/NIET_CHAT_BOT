@@ -87,42 +87,29 @@ export default function NIETChatbotMessages({ onSend, initialMessages = [] }) {
     setTyping(true);
 
     try {
-      const res = await fetch('/chatBot/message', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: newText, sessionId }),
-      });
+      const res = await fetch('http://localhost:8000/chat', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    question: newText, 
+  }),
+});
 
-      if (!res.ok) {
-        const bodyText = await res.text().catch(() => '[unreadable body]');
-        throw new Error(`Server error ${res.status}: ${bodyText}`);
-      }
+if (!res.ok) {
+  const bodyText = await res.text().catch(() => '[unreadable body]');
+  throw new Error(`Server error ${res.status}: ${bodyText}`);
+}
 
-      const contentType = (res.headers.get('content-type') || '').toLowerCase();
+const data = await res.json();
 
-      let botTexts = [];
+let botTexts = [];
+if (data.answer) {
+  botTexts.push(data.answer);
+}
 
-      if (contentType.includes('application/json')) {
-        const data = await res.json();
-        if (data.reply) botTexts.push(data.reply);
-        if (Array.isArray(data.replies)) botTexts.push(...data.replies);
-        if (data.text) botTexts.push(data.text);
-      } else {
-        const txt = await res.text();
-        try {
-          const maybeJson = JSON.parse(txt);
-          if (maybeJson) {
-            if (maybeJson.reply) botTexts.push(maybeJson.reply);
-            if (Array.isArray(maybeJson.replies)) botTexts.push(...maybeJson.replies);
-            if (maybeJson.text) botTexts.push(maybeJson.text);
-          }
-        } catch {
-          const parsed = parseRepliesFromText(txt);
-          botTexts.push(...parsed);
-        }
-      }
-
-      if (botTexts.length === 0) botTexts.push('Sorry, I could not generate a reply.');
+if (botTexts.length === 0) {
+  botTexts.push('Sorry, I could not generate a reply.');
+}
 
       const elapsed = Date.now() - typingStart;
       if (elapsed < minTyping) {
