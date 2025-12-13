@@ -21,7 +21,6 @@ tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
 model = BertModel.from_pretrained(MODEL_NAME)
 model.eval()
 
-# ---------------- Embedding utils ---------------- #
 
 def mean_pooling(output, mask):
     token_embeddings = output.last_hidden_state
@@ -43,7 +42,6 @@ def embed_text(text: str):
     emb /= np.linalg.norm(emb, axis=1, keepdims=True)
     return emb[0].astype("float32")
 
-# ---------------- SMART CHUNKING ---------------- #
 
 def build_chunks(data):
     chunks = []
@@ -74,7 +72,6 @@ def build_chunks(data):
 
     return chunks
 
-
 # ---------------- MAIN ---------------- #
 
 def main():
@@ -82,9 +79,6 @@ def main():
         data = json.load(f)
 
     chunks = build_chunks(data)
-
-    print(f"✅ Built {len(chunks)} semantic chunks")
-
     dim = 768
     index = faiss.IndexFlatIP(dim)
     metadata = []
@@ -100,8 +94,6 @@ def main():
     faiss.write_index(index, str(INDEX_PATH))
     with open(META_PATH, "w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=2)
-
-    print("🎉 BERT FAISS index built with high-quality chunks")
-
+        
 if __name__ == "__main__":
     main()

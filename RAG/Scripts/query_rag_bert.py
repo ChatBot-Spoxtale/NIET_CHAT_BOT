@@ -6,7 +6,18 @@ import faiss
 from pathlib import Path
 from transformers import BertTokenizer, BertModel
 
-# ---------- PATHS ----------
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT))
+
+from translator_gemini import normalize_query
+
+
+
+from translator_gemini import normalize_query
+
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_DIR = ROOT / "index_store"
 INDEX_PATH = INDEX_DIR / "faiss_index.bin"
@@ -15,16 +26,14 @@ META_PATH = INDEX_DIR / "metadata.json"
 # ---------- CONFIG ----------
 MODEL_NAME = "bert-base-uncased"
 MAX_LEN = 256
-TOP_K = 8
-SCORE_THRESHOLD = 0.60
+SCORE_THRESHOLD = 0.75   # confidence filter
 
 # ---------- LOAD ----------
 tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
 model = BertModel.from_pretrained(MODEL_NAME)
 model.eval()
 
-index = faiss.read_index(str(INDEX_PATH))
-metadata = json.loads(META_PATH.read_text(encoding="utf-8"))
+# ---------------- Embedding utils ---------------- #
 
 # ---------- EMBEDDING ----------
 def mean_pooling(output, mask):
@@ -47,101 +56,59 @@ def embed_query(text):
     emb /= np.linalg.norm(emb, axis=1, keepdims=True)
     return emb.astype("float32")
 
-# ---------- NORMALIZATION ----------
-def normalize(text):
-    return (
-        text.lower()
-        .replace("&", "and")
-        .replace("-", " ")
-        .replace(".", "")
-        .replace("(", "")
-        .replace(")", "")
-        .strip()
-    )
+# ---------------- Answer cleaning ---------------- #
 
-# ---------- DEGREE DETECTION ----------
-def detect_degree(query):
-    q = query.lower()
-    if "btech" in q or "b.tech" in q:
-        return "b.tech"
-    if "mtech" in q or "m.tech" in q:
-        return "m.tech"
-    if "mba" in q:
-        return "mba"
-    if "mca" in q:
-        return "mca"
-    if "bca" in q:
-        return "bca"
-    if "bba" in q:
-        return "bba"
-    return None
+def clean_answer(text):
+    """
+    Remove headings and return bullet content only
+    """
+    lines = text.split("\n")
+    bullets = [l.replace("- ", "").strip() for l in lines if l.strip().startswith("-")]
 
-def extract_duration(text):
-    m = re.search(r"duration:\s*([\d]+)\s*year", text, re.I)
-    if m:
-        return f"{m.group(1)} years"
-    return None
+    if bullets:
+        return " ".join(bullets)
+    return text.strip()
 
-def answer_question(user_query: str):
-    query_vec = embed_query(user_query)
-    D, I = index.search(query_vec, TOP_K)
+# ---------------- MAIN ---------------- #
 
-    degree = detect_degree(user_query)
-    q_norm = normalize(user_query)
+def main():
+    index = faiss.read_index(str(INDEX_PATH))
+    with open(META_PATH, "r", encoding="utf-8") as f:
+        meta = json.load(f)
 
-    best_match = None
-
-    for score, idx in zip(D[0], I[0]):
-        if score < SCORE_THRESHOLD:
-            continue
-
-        text = metadata[idx]["text"]
-        text_lower = text.lower()
-
-        if "working professionals" in text_lower and "working" not in user_query.lower():
-            continue
-        if "international" in text_lower and "international" not in user_query.lower():
-            continue
-        if "regional" in text_lower and "regional" not in user_query.lower():
-            continue
-
-        if degree and degree not in text_lower:
-            continue
-
-        title = text.split("\n")[0]
-        if normalize(title) in q_norm or q_norm in normalize(title):
-            best_match = text
+    while True:
+        raw_q = input("\nAsk question (or exit): ")
+        if raw_q.lower() == "exit":
             break
 
-        if not best_match:
-            best_match = text
+        # 🔁 Gemini query normalization
+        try:
+            normalized_q = normalize_query(raw_q)
+            print("🔁 Normalized Query:", normalized_q)
+        except Exception as e:
+            print("⚠️ Translator failed, using original query")
+            normalized_q = raw_q
 
-    if not best_match:
-        return "I don't know."
+        # 🔍 Retrieval
+        q_emb = embed_query(normalized_q)
+        D, I = index.search(q_emb, TOP_K)
 
-    if "duration" in user_query.lower():
-        duration = extract_duration(best_match)
-        if duration:
-            course = best_match.split("\n")[0].replace("Course Name:", "").strip()
-            return f"The duration of {course} is {duration}."
-        return "Duration information is not available for this course."
+        best_score = float(D[0][0])
+        best_idx = int(I[0][0])
 
-    if "seat" in user_query.lower():
-        m = re.search(r"seats:\s*(\d+)", best_match, re.I)
-        if m:
-            return f"The course has {m.group(1)} seats available."
-        return "Seat information is not available."
+        print("🔍 Match Score:", round(best_score, 3))
 
-    if "mode" in user_query.lower():
-        m = re.search(r"mode:\s*(.+)", best_match, re.I)
-        if m:
-            return f"The mode of the course is {m.group(1).strip()}."
-        return "Mode information is not available."
+        if best_score < SCORE_THRESHOLD:
+            print(" FINAL ANSWER:\nI don't know")
+            print("-" * 60)
+            continue
 
-    if "facility" in user_query.lower() or "hostel" in user_query.lower():
-        return best_match.replace("Facility Name:", "").strip()
+        best_text = meta[best_idx]["text"]
+        answer = clean_answer(best_text)
 
-    return best_match.strip()
+        print("FINAL ANSWER:\n")
+        print(answer)
+        print("-" * 60)
 
 if __name__ == "__main__":
     while True:
