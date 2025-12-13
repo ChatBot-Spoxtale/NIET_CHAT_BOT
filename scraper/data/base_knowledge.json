@@ -1,0 +1,418 @@
+{
+  "courses": {
+    "bachelor_of_computer_applications": {
+      "type": "course",
+      "course_name": "Bachelor of Computer Applications",
+      "duration": "3 year",
+      "mode": "Full Time",
+      "seats": "120",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/bca"
+    },
+    "mba-(innovation,_entrepreneurship_&_venture_development)": {
+      "type": "course",
+      "course_name": "MBA-(Innovation, Entrepreneurship & Venture Development)",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "30",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mba-innovation-entrepreneurship-venture-development"
+    },
+    "master_of_computer_applications_(integrated)": {
+      "type": "course",
+      "course_name": "Master of Computer Applications (Integrated)",
+      "duration": "5 year",
+      "mode": "Full Time",
+      "seats": "60",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/bca-mca-integrated"
+    },
+    "m.tech-mechanical_engineering": {
+      "type": "course",
+      "course_name": "M.Tech-Mechanical Engineering",
+      "duration": "2 Year",
+      "mode": "Full Time",
+      "seats": "24",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/m-tech-in-me"
+    },
+    "master_of_integrated_technology_in_computer_science_and_engineering": {
+      "type": "course",
+      "course_name": "Master of Integrated Technology in Computer Science and Engineering",
+      "duration": "5 year",
+      "mode": "Full Time",
+      "seats": "10",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-mtech-integrated"
+    },
+    "mba_(marketing_and_finance)": {
+      "type": "course",
+      "course_name": "MBA (Marketing and Finance)",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "300",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mba-marketing-and-finance"
+    },
+    "b._tech_cse_(cyber-security)": {
+      "type": "course",
+      "course_name": "B. Tech CSE (Cyber-Security)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "120",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-in-cse-cyber-security"
+    },
+    "m.tech-biotechnology": {
+      "type": "course",
+      "course_name": "M.Tech-Biotechnology",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "18",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mtech-biotechnology"
+    },
+    "b.tech_-_electronics_&_communication_engineering": {
+      "type": "course",
+      "course_name": "B.Tech - Electronics & Communication Engineering",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "120",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-ece"
+    },
+    "b.tech-computer_science": {
+      "type": "course",
+      "course_name": "B.Tech-Computer Science",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "180",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-cs"
+    },
+    "m._tech_in_vlsi_design": {
+      "type": "course",
+      "course_name": "M. Tech in VLSI Design",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "09",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mtech-in-electronics-communication-engineering-vlsi-design"
+    },
+    "bba_-_bachelor_of_business_administration": {
+      "type": "course",
+      "course_name": "BBA - Bachelor of Business Administration",
+      "duration": "3 year",
+      "mode": "Full Time",
+      "seats": "120",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/bba"
+    },
+    "b.tech._in_electronics_engineering_(vlsi_design_and_technology)": {
+      "type": "course",
+      "course_name": "B.Tech. in Electronics Engineering (VLSI Design and technology)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "60",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-in-vlsi"
+    },
+    "b.tech_cse_(artificial_intelligence_and_machine_learning/international_twinning)": {
+      "type": "course",
+      "course_name": "B.Tech CSE (Artificial Intelligence and Machine Learning/International Twinning)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "180",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-cse-artificial-intelligence-and-machine-learning-international-twinning"
+    },
+    "b.tech-cse_(artificial_intelligence)": {
+      "type": "course",
+      "course_name": "B.Tech-CSE (Artificial Intelligence)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "180",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-in-cse-artificial-intelligence"
+    },
+    "b.tech-mathematics_and_computing": {
+      "type": "course",
+      "course_name": "B.Tech-Mathematics and Computing",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "60",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mathematics-and-computing"
+    },
+    "b.tech-cse_(data_science)": {
+      "type": "course",
+      "course_name": "B.Tech-CSE (Data Science)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "240",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-in-cse-data-science"
+    },
+    "center_for_global_engagement": {
+      "type": "course",
+      "course_name": "Center for Global Engagement",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/international-twinning-program"
+    },
+    "b.tech-computer_science_&_engineering_(regional)": {
+      "type": "course",
+      "course_name": "B.Tech-Computer Science & Engineering (Regional)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "60",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-in-cse-regional"
+    },
+    "m.tech_-_mechanical_engineering_(working_professionals)": {
+      "type": "course",
+      "course_name": "M.Tech - Mechanical Engineering (Working Professionals)",
+      "duration": "2 Year",
+      "mode": "Full Time",
+      "seats": "15",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mtech-mechanical-engineering-working-professionals"
+    },
+    "m.tech_-_computer_science_&_engineering_(working_professionals)": {
+      "type": "course",
+      "course_name": "M.Tech - Computer Science & Engineering (Working Professionals)",
+      "duration": "",
+      "mode": "Full Time",
+      "seats": "",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mtech-computer-science-engineering-working-professionals"
+    },
+    "b.tech-biotechnology": {
+      "type": "course",
+      "course_name": "B.Tech-Biotechnology",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "60",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-biotechnology"
+    },
+    "minor_degree_in_aiml": {
+      "type": "course",
+      "course_name": "Minor Degree in AIML",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "180",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/minor-degree-in-aiml"
+    },
+    "b.tech-mechanical_engineering": {
+      "type": "course",
+      "course_name": "B.Tech-Mechanical Engineering",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "60",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-in-me"
+    },
+    "bba_+_mba_(integrated)": {
+      "type": "course",
+      "course_name": "BBA + MBA (Integrated)",
+      "duration": "5 year",
+      "mode": "Full Time",
+      "seats": "60",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/bba-mba-integrated"
+    },
+    "master_of_computer_applications": {
+      "type": "course",
+      "course_name": "Master of Computer Applications",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "420",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mca"
+    },
+    "b.tech-electronics_&_communication_engineering_(working_professionals)": {
+      "type": "course",
+      "course_name": "B.Tech-Electronics & Communication Engineering (Working Professionals)",
+      "duration": "3 year",
+      "mode": "Full Time",
+      "seats": "30",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-electronics-communication-engineering-working-professionals"
+    },
+    "b.tech_cse_(artificial_intelligence/international_twinning)": {
+      "type": "course",
+      "course_name": "B.Tech CSE (Artificial Intelligence/International Twinning)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "180",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-cse-artificial-intelligence-international-twinning"
+    },
+    "b.tech-information_technology": {
+      "type": "course",
+      "course_name": "B.Tech-Information Technology",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "240",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-in-it"
+    },
+    "m.tech-artificial_intelligence": {
+      "type": "course",
+      "course_name": "M.Tech-Artificial Intelligence",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "30",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mtech-ai"
+    },
+    "b.tech_information_technology_(international_twinning_program)": {
+      "type": "course",
+      "course_name": "B.Tech Information Technology (International Twinning Program)",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-information-technology-international-twinning-program"
+    },
+    "mba_-_master_of_business_administration": {
+      "type": "course",
+      "course_name": "MBA - Master of Business Administration",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "300",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mba"
+    },
+    "b.tech-cse_(artificial_intelligence_and_machine_learning)": {
+      "type": "course",
+      "course_name": "B.Tech-CSE (Artificial Intelligence and Machine Learning)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "240",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-aiml"
+    },
+    "b.tech_computer_science_&_engineering_(international_twinning_program)": {
+      "type": "course",
+      "course_name": "B.Tech Computer Science & Engineering (International Twinning Program)",
+      "duration": "",
+      "mode": "Full Time",
+      "seats": "",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-computer-science-engineering-international-twinning-program"
+    },
+    "b.tech_-_mechanical_engineering_(working_professionals)": {
+      "type": "course",
+      "course_name": "B.Tech - Mechanical Engineering (Working Professionals)",
+      "duration": "",
+      "mode": "Full Time",
+      "seats": "30",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-mechanical-engineering-working-professionals"
+    },
+    "b._tech_in_computer_science_&_business_systems": {
+      "type": "course",
+      "course_name": "B. Tech in Computer Science & Business Systems",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "60",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-in-csbs"
+    },
+    "b.tech_-_computer_science_&_engineering_(working_professionals)": {
+      "type": "course",
+      "course_name": "B.Tech - Computer Science & Engineering (Working Professionals)",
+      "duration": "",
+      "mode": "Full Time",
+      "seats": "",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-computer-science-engineering-working-professionals"
+    },
+    "b.tech-computer_science_&_engineering": {
+      "type": "course",
+      "course_name": "B.Tech-Computer Science & Engineering",
+      "duration": "4 year",
+      "mode": "Full Time",
+      "seats": "360",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/b-tech-in-cse"
+    },
+    "b.tech-cse_(internet_of_things)": {
+      "type": "course",
+      "course_name": "B.Tech-CSE (Internet of Things)",
+      "duration": "4 Year",
+      "mode": "Full Time",
+      "seats": "120",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/btech-iot"
+    },
+    "m.tech-electronics_&_communication_engineering_(working_professionals)": {
+      "type": "course",
+      "course_name": "M.Tech-Electronics & Communication Engineering (Working Professionals)",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "15",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/mtech-electronics-communication-engineering-working-professionals"
+    },
+    "m.tech-computer_science_&_engineering": {
+      "type": "course",
+      "course_name": "M.Tech-Computer Science & Engineering",
+      "duration": "2 year",
+      "mode": "Full Time",
+      "seats": "12",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/m-tech-in-cse"
+    },
+    "advanced_diploma_in_automotive_mechatronics_(adam)": {
+      "type": "course",
+      "course_name": "Advanced Diploma in Automotive Mechatronics (ADAM)",
+      "duration": "1 Year",
+      "mode": "Full Time",
+      "seats": "20",
+      "why_choose": "",
+      "source_url": "https://www.niet.co.in/course/advance-diploma-in-automotive-mechatronics-adam"
+    }
+  },
+  "facilities": {
+    "infrastructure": {
+      "facility_name": "404 Error",
+      "summary": "Copyright 2025 NIET - All Rights Reserved",
+      "features": [
+        "Overview",
+        "NIET Advisory Board",
+        "Organogram",
+        "Leader's Talk",
+        "Message from Chairperson",
+        "Message from Managing Director",
+        "Message from AMD",
+        "Message from Director",
+        "Message from Director Academics",
+        "Overview"
+      ],
+      "source_url": "https://www.niet.co.in/campus-facilities/infrastructure"
+    },
+    "hostel": {
+      "facility_name": "404 Error",
+      "summary": "Copyright 2025 NIET - All Rights Reserved",
+      "features": [
+        "Overview",
+        "NIET Advisory Board",
+        "Organogram",
+        "Leader's Talk",
+        "Message from Chairperson",
+        "Message from Managing Director",
+        "Message from AMD",
+        "Message from Director",
+        "Message from Director Academics",
+        "Overview"
+      ],
+      "source_url": "https://www.niet.co.in/campus-facilities/hostel"
+    }
+  }
+}
