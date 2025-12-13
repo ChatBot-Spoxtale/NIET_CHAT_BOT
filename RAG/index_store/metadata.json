@@ -1,26 +1,179 @@
 [
   {
     "id": "chunk_0",
-    "text": "Admission_through \u2192 Direct_Admission \u2192 Fifteen percent (15%) of the approved\n- Intake of a course is filled under this category as per the Govt. of U.P. and AKTU guidelines\n- There is usually a great rush for management quota seats.\n- The students need to register themselves early to establish priority."
+    "text": "Course Name: Bachelor of Computer Applications\n        Duration: 3 year\n        Mode: Full Time\n        Seats: 120"
   },
   {
     "id": "chunk_1",
-    "text": "Admission_through \u2192 Direct_Admission \u2192 For admission to B. Tech courses\n- The candidate must have passed the intermediate examination or equivalent (10+2) with required subject combination\n- The admission criteria is defined by the college admission policy."
+    "text": "Course Name: MBA-(Innovation, Entrepreneurship & Venture Development)\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 30"
   },
   {
     "id": "chunk_2",
-    "text": "Admission_through \u2192 Direct_Admission \u2192 For admission to the first year of MCA (2 years)\n- A candidate must have passed a bachelor\u2019s degree course of three years minimum duration from any recognized Indian university or its equivalent.\n-  Candidate must have passed Mathematics at 10+2 level\n- graduation level and the admission criteria are defined by the college admission policy."
+    "text": "Course Name: Master of Computer Applications (Integrated)\n        Duration: 5 year\n        Mode: Full Time\n        Seats: 60"
   },
   {
     "id": "chunk_3",
-    "text": "Admission_through \u2192 Direct_Admission \u2192 For admission to MBA course\n- The minimum qualification required is three years of bachelor\u2019s degree in any discipline\n- the admission criteria are defined by college admission policy."
+    "text": "Course Name: M.Tech-Mechanical Engineering\n        Duration: 2 Year\n        Mode: Full Time\n        Seats: 24"
   },
   {
     "id": "chunk_4",
-    "text": "Admission_through \u2192 Direct_Admission \u2192 For admission to PGDM course\n- Other criteria defined by the AICTE and affiliating University In PGDM Other criteria defined by the AICTE"
+    "text": "Course Name: Master of Integrated Technology in Computer Science and Engineering\n        Duration: 5 year\n        Mode: Full Time\n        Seats: 10"
   },
   {
     "id": "chunk_5",
-    "text": "Admission_through \u2192 Direct_Admission \u2192 For admission to M. Tech course\n- The minimum qualification required is a bachelor\u2019s degree in a relevant discipline.\n- MCA is also eligible for the admission to M. Tech (Computer Science & Engineering)\n- The admission criteria are defined by the college admission policy."
+    "text": "Course Name: MBA (Marketing and Finance)\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 300       \n   source_url: https://www.niet.co.in/course/mba-innovation-entrepreneurship-venture-development"
+
+  },
+  {
+    "id": "chunk_6",
+    "text": "Course Name: B. Tech CSE (Cyber-Security)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 120"
+  },
+  {
+    "id": "chunk_7",
+    "text": "Course Name: M.Tech-Biotechnology\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 18"
+  },
+  {
+    "id": "chunk_8",
+    "text": "Course Name: B.Tech - Electronics & Communication Engineering\n        Duration: 4 year\n        Mode: Full Time\n        Seats: 120"
+  },
+  {
+    "id": "chunk_9",
+    "text": "Course Name: B.Tech-Computer Science\n        Duration: 4 year\n        Mode: Full Time\n        Seats: 180"
+  },
+  {
+    "id": "chunk_10",
+    "text": "Course Name: M. Tech in VLSI Design\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 09"
+  },
+  {
+    "id": "chunk_11",
+    "text": "Course Name: BBA - Bachelor of Business Administration\n        Duration: 3 year\n        Mode: Full Time\n        Seats: 120"
+  },
+  {
+    "id": "chunk_12",
+    "text": "Course Name: B.Tech. in Electronics Engineering (VLSI Design and technology)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 60"
+  },
+  {
+    "id": "chunk_13",
+    "text": "Course Name: B.Tech CSE (Artificial Intelligence and Machine Learning/International Twinning)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 180"
+  },
+  {
+    "id": "chunk_14",
+    "text": "Course Name: B.Tech-CSE (Artificial Intelligence)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 180"
+  },
+  {
+    "id": "chunk_15",
+    "text": "Course Name: B.Tech-Mathematics and Computing\n        Duration: 4 year\n        Mode: Full Time\n        Seats: 60"
+  },
+  {
+    "id": "chunk_16",
+    "text": "Course Name: B.Tech-CSE (Data Science)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 240"
+  },
+  {
+    "id": "chunk_17",
+    "text": "Course Name: Center for Global Engagement\n        Duration: 4 year\n        Mode: Full Time\n        Seats:"
+  },
+  {
+    "id": "chunk_18",
+    "text": "Course Name: B.Tech-Computer Science & Engineering (Regional)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 60"
+  },
+  {
+    "id": "chunk_19",
+    "text": "Course Name: M.Tech - Mechanical Engineering (Working Professionals)\n        Duration: 2 Year\n        Mode: Full Time\n        Seats: 15"
+  },
+  {
+    "id": "chunk_20",
+    "text": "Course Name: M.Tech - Computer Science & Engineering (Working Professionals)\n        Duration: \n        Mode: Full Time\n        Seats:"
+  },
+  {
+    "id": "chunk_21",
+    "text": "Course Name: B.Tech-Biotechnology\n        Duration: 4 year\n        Mode: Full Time\n        Seats: 60"
+  },
+  {
+    "id": "chunk_22",
+    "text": "Course Name: Minor Degree in AIML\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 180"
+  },
+  {
+    "id": "chunk_23",
+    "text": "Course Name: B.Tech-Mechanical Engineering\n        Duration: 4 year\n        Mode: Full Time\n        Seats: 60"
+  },
+  {
+    "id": "chunk_24",
+    "text": "Course Name: BBA + MBA (Integrated)\n        Duration: 5 year\n        Mode: Full Time\n        Seats: 60"
+  },
+  {
+    "id": "chunk_25",
+    "text": "Course Name: Master of Computer Applications\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 420"
+  },
+  {
+    "id": "chunk_26",
+    "text": "Course Name: B.Tech-Electronics & Communication Engineering (Working Professionals)\n        Duration: 3 year\n        Mode: Full Time\n        Seats: 30"
+  },
+  {
+    "id": "chunk_27",
+    "text": "Course Name: B.Tech CSE (Artificial Intelligence/International Twinning)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 180"
+  },
+  {
+    "id": "chunk_28",
+    "text": "Course Name: B.Tech-Information Technology\n        Duration: 4 year\n        Mode: Full Time\n        Seats: 240"
+  },
+  {
+    "id": "chunk_29",
+    "text": "Course Name: M.Tech-Artificial Intelligence\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 30"
+  },
+  {
+    "id": "chunk_30",
+    "text": "Course Name: B.Tech Information Technology (International Twinning Program)\n        Duration: 4 year\n        Mode: Full Time\n        Seats:"
+  },
+  {
+    "id": "chunk_31",
+    "text": "Course Name: MBA - Master of Business Administration\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 300"
+  },
+  {
+    "id": "chunk_32",
+    "text": "Course Name: B.Tech-CSE (Artificial Intelligence and Machine Learning)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 240"
+  },
+  {
+    "id": "chunk_33",
+    "text": "Course Name: B.Tech Computer Science & Engineering (International Twinning Program)\n        Duration: \n        Mode: Full Time\n        Seats:"
+  },
+  {
+    "id": "chunk_34",
+    "text": "Course Name: B.Tech - Mechanical Engineering (Working Professionals)\n        Duration: \n        Mode: Full Time\n        Seats: 30"
+  },
+  {
+    "id": "chunk_35",
+    "text": "Course Name: B. Tech in Computer Science & Business Systems\n        Duration: 4 year\n        Mode: Full Time\n        Seats: 60"
+  },
+  {
+    "id": "chunk_36",
+    "text": "Course Name: B.Tech - Computer Science & Engineering (Working Professionals)\n        Duration: \n        Mode: Full Time\n        Seats:"
+  },
+  {
+    "id": "chunk_37",
+    "text": "Course Name: B.Tech-Computer Science & Engineering\n        Duration: 4 year\n        Mode: Full Time\n        Seats: 360"
+  },
+  {
+    "id": "chunk_38",
+    "text": "Course Name: B.Tech-CSE (Internet of Things)\n        Duration: 4 Year\n        Mode: Full Time\n        Seats: 120"
+  },
+  {
+    "id": "chunk_39",
+    "text": "Course Name: M.Tech-Electronics & Communication Engineering (Working Professionals)\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 15"
+  },
+  {
+    "id": "chunk_40",
+    "text": "Course Name: M.Tech-Computer Science & Engineering\n        Duration: 2 year\n        Mode: Full Time\n        Seats: 12"
+  },
+  {
+    "id": "chunk_41",
+    "text": "Course Name: Advanced Diploma in Automotive Mechatronics (ADAM)\n        Duration: 1 Year\n        Mode: Full Time\n        Seats: 20"
+  },
+  {
+    "id": "chunk_42",
+    "text": "Facility Name: 404 Error\n        Summary: Copyright 2025 NIET - All Rights Reserved\n        Features:\n        - Overview\n- NIET Advisory Board\n- Organogram\n- Leader's Talk\n- Message from Chairperson\n- Message from Managing Director\n- Message from AMD\n- Message from Director\n- Message from Director Academics\n- Overview"
+  },
+  {
+    "id": "chunk_43",
+    "text": "Facility Name: 404 Error\n        Summary: Copyright 2025 NIET - All Rights Reserved\n        Features:\n        - Overview\n- NIET Advisory Board\n- Organogram\n- Leader's Talk\n- Message from Chairperson\n- Message from Managing Director\n- Message from AMD\n- Message from Director\n- Message from Director Academics\n- Overview"
   }
 ]

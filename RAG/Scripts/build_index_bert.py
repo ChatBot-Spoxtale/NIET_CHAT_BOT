@@ -7,7 +7,7 @@ from transformers import BertTokenizer, BertModel
 from tqdm import tqdm
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_PATH = ROOT / "data" / "direct.json"
+DATA_PATH = ROOT / "data" / "base_knowledge.json"
 INDEX_DIR = ROOT / "index_store"
 INDEX_DIR.mkdir(exist_ok=True)
 
@@ -46,28 +46,34 @@ def embed_text(text: str):
 # ---------------- SMART CHUNKING ---------------- #
 
 def build_chunks(data):
-    """
-    Converts structured JSON into meaningful chunks:
-    Heading + related bullet points
-    """
     chunks = []
 
-    def walk(obj, path=[]):
-        if isinstance(obj, dict):
-            for k, v in obj.items():
-                walk(v, path + [k])
+    # ---- COURSES ----
+    courses = data.get("courses", {})
+    for course_id, course in courses.items():
+        block = f"""
+        Course Name: {course.get("course_name", "")}
+        Duration: {course.get("duration", "")}
+        Mode: {course.get("mode", "")}
+        Seats: {course.get("seats", "")}
+        """
+        chunks.append(block.strip())
 
-        elif isinstance(obj, list):
-            title = " → ".join(path)
-            block = title + "\n"
-            for item in obj:
-                block += f"- {item}\n"
+    # ---- FACILITIES ----
+    facilities = data.get("facilities", {})
+    for fac_id, fac in facilities.items():
+        block = f"""
+        Facility Name: {fac.get("facility_name", "")}
+        Summary: {fac.get("summary", "")}
+        Features:
+        """
+        for feat in fac.get("features", []):
+            block += f"- {feat}\n"
 
-            if len(block) > 50:
-                chunks.append(block.strip())
+        chunks.append(block.strip())
 
-    walk(data)
     return chunks
+
 
 # ---------------- MAIN ---------------- #
 
