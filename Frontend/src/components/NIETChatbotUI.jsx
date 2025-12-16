@@ -43,8 +43,7 @@ export default function NIETChatbotUI({ isOpen, onToggle, children }) {
               </div>
             </div>
           </div>
-
-          {/* Body (messages + input) */}
+          
           <div className="h-full flex flex-col">{children}</div>
         </div>
       </div>
