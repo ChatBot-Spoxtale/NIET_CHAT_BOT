@@ -2,7 +2,6 @@ import json
 import re
 from pathlib import Path
 
-# ---------- PATH ----------
 BASE = Path(__file__).resolve().parents[1]
 KB = BASE / "index_store" / "metadata.json"
 
@@ -13,6 +12,9 @@ def norm(text: str):
     synonyms = {
         "classroom": "classrooms",
         "classrooms": "classrooms",
+        "Classrooms":"classrooms",
+        "Classroom Facilities":"classrooms",
+        "niet classrooms":"classrooms",
 
         "library": "library",
         "libraries": "library",
@@ -56,7 +58,6 @@ def extract_field(text, field):
 def parse_facility_chunk(chunk):
     text = chunk["text"]
 
-    # must be a facility chunk
     if not text.startswith("Facility:"):
         return None
 
@@ -82,7 +83,6 @@ def find_facility(chunks, query):
         if not parsed:
             continue
 
-        # match against facility name + category
         haystack = f"{parsed['facility']} {parsed['category']}"
 
         score = match_score(q_norm, haystack)
@@ -100,25 +100,26 @@ def facility_answer(user_query: str):
 
     if not result:
         return "Sorry, I could not find information about this facility."
-
     return (
-        f"Facility: {result['facility']}\n"
-        f"Category: {result['category']}\n\n"
-        f"{result['description']}"
+        # f"{result['facility']}\n"
+        # f"{result['category']}\n\n"
+        f"Yes, {result['description']}"
     )
 
 
 def demo_test():
     test_queries = [
-        "how was the transportation of NIET",
-        "is bus facility available",
-        "tell me about library",
-        "medical support in campus",
-        "admission help number",
-        "what labs are available",
-        "classroom facilities",
-        "tell me about hostel features of niet",
-        "what about the auditorium hall in niet"
+        # "how was the transportation of NIET",
+        # "is bus facility available",
+        # "tell me about library",
+        # "medical support in campus",
+        # "admission help number",
+        "is lab are available in niet",
+        # "classroom facilities",
+        # "Classroom",
+        # "tell me about hostel features of niet",
+        # "what about the auditorium hall in niet",
+        "what about niet classroom"
     ]
 
     for q in test_queries:
