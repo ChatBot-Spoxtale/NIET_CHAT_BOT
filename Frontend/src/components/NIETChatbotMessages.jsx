@@ -13,33 +13,62 @@ function delay(ms) {
 }
 
 const getCoursesByLevel = (level) => {
-  const courses = Object.values(baseKnowledge.courses || {});
+  const courses = Object.values(baseKnowledge.courses || {}).filter(
+    (c) => c && typeof c.course_name === "string"
+  );
 
   if (level === "UG") {
-    return courses.filter(
-      (c) =>
-        c.course_name.startsWith("B.") ||
-        c.course_name.startsWith("Bachelor")
-    );
+    return courses.filter((c) => {
+      const name = c.course_name.toLowerCase();
+      return (
+        name.startsWith("b") &&
+        !name.includes("international twinning") &&
+        !name.includes("twinning program")
+      );
+    });
   }
 
   if (level === "PG") {
-    return courses.filter(
-      (c) =>
-        c.course_name.startsWith("M.") ||
-        c.course_name.startsWith("Master") ||
-        c.course_name === "MBA"
-    );
+    return courses.filter((c) => {
+      const name = c.course_name.toLowerCase();
+      return name.startsWith("m");
+    });
   }
 
   if (level === "TWINNING") {
-    return courses.filter((c) =>
-      c.course_name.toLowerCase().includes("twinning")
-    );
+    return courses.filter((c) => {
+      const name = c.course_name.toLowerCase();
+      return (
+        name.includes("international twinning") ||
+        name.includes("twinning program")
+      );
+    });
   }
 
   return [];
 };
+
+
+function renderWithLinks(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+  return text.split(urlRegex).map((part, i) => {
+    if (part.match(urlRegex)) {
+      return (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline break-all"
+        >
+          {part}
+        </a>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
 
 export default function NIETChatbotMessages({ initialMessages = [] }) {
   const [messages, setMessages] = useState(() => {
@@ -116,6 +145,14 @@ export default function NIETChatbotMessages({ initialMessages = [] }) {
       ]);
     }
 
+    if (path.includes("Activities")) {
+      setOptions([
+        "Events",
+        "Club",
+      ]);
+      return;
+    }
+
     if (path.includes("UG")) {
       setOptions(getCoursesByLevel("UG").map((c) => c.course_name));
     }
@@ -123,9 +160,30 @@ export default function NIETChatbotMessages({ initialMessages = [] }) {
     if (path.includes("PG")) {
       setOptions(getCoursesByLevel("PG").map((c) => c.course_name));
     }
+
+     if (path.includes("TWINNING")) {
+      setOptions(getCoursesByLevel("TWINNING").map((c) => c.course_name));
+    }
+
+    if (path.includes("Placement Records")) {
+      setOptions([
+        "Undergraduate Programs",
+        "Postgraduate Programs",
+        "Twinning Programs",
+      ]);
+      return;
+    }
+
+    if (path.includes("About NIET")) {
+      setOptions([
+        "Institute",
+        "Research",
+        "Facilities",
+      ]);
+      return;
+    }
   };
 
-  /*OPTION HANDLER*/
   const handleOptionClick = (opt) => {
     pushUser(opt);
     setOptions([]);
@@ -140,40 +198,74 @@ export default function NIETChatbotMessages({ initialMessages = [] }) {
       return;
     }
 
+    if (opt === "About NIET") {
+      setBreadcrumb(["Home", "About NIET"]);
+      setOptions([
+        "Institute",
+        "Research",
+        "Facilities",
+      ]);
+      return;
+    }
+
+    if (opt === "Institute") {
+      pushBot(
+        `You selected ${opt}. What do you want to know about the ${opt} (overview, rankings, awards, or international_alliances.)`
+      );      
+
+      return;
+    }
+
+    
+    if (opt === "Research") {
+      pushBot(
+        `You selected ${opt}. What do you want to know about the ${opt} (overview, areas, publications,journals or projects.)`
+      );      
+
+      return;
+    }
+
+     if (opt === "Facilities") {
+     sendMessage(` ${opt}`);
+      return;
+    }
+
     if (opt === "Undergraduate Programs") {
-      setBreadcrumb(["Home", "Courses", "UG"]);
-      setOptions(getCoursesByLevel("UG").map((c) => c.course_name));
+      if (breadcrumb.includes("Placement Records")) {
+        setBreadcrumb(["Home", "Placement Records", "UG"]);
+      } else {
+        setBreadcrumb(["Home", "Courses", "UG"]);
+      }
+
+      setOptions(getCoursesByLevel("UG").map(c => c.course_name));
       return;
     }
 
     if (opt === "Postgraduate Programs") {
-      setBreadcrumb(["Home", "Courses", "PG"]);
-      setOptions(getCoursesByLevel("PG").map((c) => c.course_name));
+      if (breadcrumb.includes("Placement Records")) {
+        setBreadcrumb(["Home", "Placement Records", "PG"]);
+      } else {
+        setBreadcrumb(["Home", "Courses", "PG"]);
+      }
+
+      setOptions(getCoursesByLevel("PG").map(c => c.course_name));
       return;
     }
 
     if (opt === "Twinning Programs") {
-      setBreadcrumb(["Home", "Courses", "Twinning"]);
-      setOptions(getCoursesByLevel("TWINNING").map((c) => c.course_name));
-      return;
-    }
+      if (breadcrumb.includes("Placement Records")) {
+        setBreadcrumb(["Home", "Placement Records", "Twinning"]);
+      } else {
+        setBreadcrumb(["Home", "Courses", "Twinning"]);
+      }
 
-    if (breadcrumb.includes("UG") || breadcrumb.includes("PG")) {
-      setBreadcrumb((b) => [...b, opt]);
-      pushBot(
-        `You selected ${opt}. Ask me about eligibility, fees, admission, or placements.`
-      );
+      setOptions(getCoursesByLevel("TWINNING").map(c => c.course_name));
       return;
     }
 
     if (opt === "Admission") {
       setBreadcrumb(["Home", "Admission"]);
-      setOptions(["Eligibility", "Direct Admission", "Indirect Admission"]);
-      return;
-    }
-
-    if (opt === "Eligibility") {
-      pushBot("Eligibility varies by course. Please specify a program.");
+      setOptions(["Direct Admission", " Counselling"]);
       return;
     }
 
@@ -182,8 +274,44 @@ export default function NIETChatbotMessages({ initialMessages = [] }) {
       return;
     }
 
-    if (opt === "Indirect Admission") {
+    if (opt === "Counselling") {
       pushBot("Admission through entrance exams and counseling.");
+      return;
+    }
+
+    if (opt === "Placement Records") {
+      setBreadcrumb(["Home", "Placement Records"]);
+      setOptions([
+        "Undergraduate Programs",
+        "Postgraduate Programs",
+        "Twinning Programs",
+      ]);
+      return;
+    }
+
+    if (
+      breadcrumb.includes("Courses") &&
+      (breadcrumb.includes("UG") || breadcrumb.includes("PG") || breadcrumb.includes("Twinning"))
+    ) {
+      setBreadcrumb(b => [...b, opt]);
+      sendMessage(`Tell me full details about ${opt} in NIET`);
+      return;
+    }
+
+    if (
+      breadcrumb.includes("Placement Records") &&
+      (breadcrumb.includes("UG") || breadcrumb.includes("PG") || breadcrumb.includes("Twinning"))
+    ) {
+      setBreadcrumb(b => [...b, opt]);
+      sendMessage(`placement record  ${opt} in NIET`);
+    }
+
+    if (opt === "Activities") {
+      setBreadcrumb(["Home", "Activities"]);
+      setOptions([
+        "Events",
+        "Club",
+      ]);
       return;
     }
 
@@ -218,6 +346,28 @@ export default function NIETChatbotMessages({ initialMessages = [] }) {
       setIsSending(false);
     }
   };
+function renderLines(text) {
+  if (!text) return null;
+
+  return text
+    .split(/\. |\n/)        
+    .filter(line => line.trim().length > 0)
+    .map((line, i) => (
+      <div key={i} className="leading-relaxed">
+        • {line.trim()}
+      </div>
+    ));
+}
+
+function renderMessageText(text) {
+  if (!text) return null;
+
+  return text.split("\n").map((line, i) => (
+    <div key={i} className="leading-relaxed">
+      {renderWithLinks(line)}
+    </div>
+  ));
+}
 
   return (
     <div className="h-full w-full flex flex-col bg-white">
@@ -261,9 +411,8 @@ export default function NIETChatbotMessages({ initialMessages = [] }) {
         {messages.map((m) => (
           <div
             key={m.id}
-            className={`flex items-end gap-3 ${
-              m.from === "user" ? "justify-end" : "justify-start"
-            }`}
+            className={`flex items-end gap-3 ${m.from === "user" ? "justify-end" : "justify-start"
+              }`}
           >
             {/*BOT AVATAR*/}
             {m.from === "bot" && (
@@ -278,13 +427,12 @@ export default function NIETChatbotMessages({ initialMessages = [] }) {
 
             {/*MESSAGE*/}
             <div
-              className={`max-w-[70%] px-4 py-3 rounded-xl shadow-sm text-sm ${
-                m.from === "user"
+              className={`max-w-[70%] px-4 py-3 rounded-xl shadow-sm text-sm ${m.from === "user"
                   ? "bg-gradient-to-b from-[#e2111f] to-[#551023] text-white"
                   : "bg-white text-[#551023]"
-              }`}
+                }`}
             >
-              {m.text}
+              {renderMessageText(m.text)}
               <div className="text-xs text-gray-400 text-right mt-1">
                 {m.time}
               </div>
@@ -354,3 +502,4 @@ export default function NIETChatbotMessages({ initialMessages = [] }) {
     </div>
   );
 }
+
