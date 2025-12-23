@@ -9,7 +9,8 @@ SCRIPTS = [
     "discover_urls.py",
     "courses.py",
     "placements.py",
-    "facilities.py"
+    "facilities.py",
+    "about_courses.py"
 ]
 
 def fetch_hash():
