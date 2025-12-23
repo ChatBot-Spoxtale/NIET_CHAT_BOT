@@ -8,7 +8,7 @@ export default function NIETChatbot() {
     <>
       {/*CHAT LAUNCHER*/}
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => setOpen(prev => !prev)}
         className="
           fixed bottom-5 right-5 z-50
           w-14 h-14 rounded-full

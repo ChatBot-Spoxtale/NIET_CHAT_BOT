@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function NIETChatbotUI({ isOpen, onToggle, children }) {
+export default function NIETChatbotUI({ children }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onToggle = () => setIsOpen(prev => !prev);
   return (
     <>
       {/*Floating launcher*/}
-      <button
-        onClick={onToggle}
-        aria-label="Open chat"
-        className="fixed right-8 bottom-5 w-14 h-14 rounded-full bg-[#e2111f] shadow-lg flex items-center justify-center z-50"
+     <button
+          onClick={onToggle}
+          aria-label={isOpen ? "Close chat" : "Open chat"}
+          className="fixed right-8 bottom-5 w-14 h-14 rounded-full bg-[#e2111f] shadow-lg flex items-center justify-center z-50 cursor-pointer"
       >
-        <div className="w-10 h-10 rounded-full bg-white p-1 flex items-center justify-center overflow-hidden">
-          <img
-            src="/niet-logo.svg"
-            alt="NIET"
-            className="w-full h-full object-contain rounded-full"
-            onError={(e) => (e.target.src = '/niet-logo.png')}
-          />
-        </div>
+          {isOpen ? (
+            <span className="text-white text-2xl font-bold leading-none">×</span>
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-white p-1 flex items-center justify-center overflow-hidden">
+              <img
+                src="/niet-logo.svg"
+                alt="NIET"
+                className="w-full h-full object-contain rounded-full"
+                onError={(e) => (e.target.src = '/niet-logo.png')}
+              />
+            </div>
+          )}
       </button>
 
       {/*Chat window*/}
