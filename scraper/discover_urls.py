@@ -43,3 +43,6 @@ def discover_urls():
         print(f"{k}: {len(v)}")
 
     return data
+
+if __name__ == "__main__":
+    discover_urls()
