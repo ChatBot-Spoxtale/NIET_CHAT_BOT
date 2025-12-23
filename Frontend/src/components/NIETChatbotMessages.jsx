@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import baseKnowledge from "../../../RAG/data/base_knowledge.json";
 
-/* ---------------- helpers ---------------- */
-
 function now() {
   return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
@@ -41,8 +39,6 @@ function renderWithLinks(text) {
   );
 }
 
-/* ---------------- component ---------------- */
-
 export default function NIETChatbotMessages() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -50,7 +46,7 @@ export default function NIETChatbotMessages() {
   const [isSending, setIsSending] = useState(false);
   const messagesRef = useRef(null);
 
-  /* ---------- restore session ---------- */
+  /*restore session*/
   useEffect(() => {
     const saved = sessionStorage.getItem("niet_chat_messages");
     if (saved) {
@@ -63,17 +59,16 @@ export default function NIETChatbotMessages() {
       } catch {}
     }
 
-    // first load
     pushBot("Hello! I'm the NIET Assistant — how can I help you today?");
     pushOptions(INITIAL_OPTIONS, false);
   }, []);
 
-  /* ---------- persist session ---------- */
+  /*session*/
   useEffect(() => {
     sessionStorage.setItem("niet_chat_messages", JSON.stringify(messages));
   }, [messages]);
 
-  /* ---------- auto scroll ---------- */
+  /*auto scroll */
   useEffect(() => {
     messagesRef.current?.scrollTo({
       top: messagesRef.current.scrollHeight,
@@ -81,7 +76,7 @@ export default function NIETChatbotMessages() {
     });
   }, [messages, typing]);
 
-  /* ---------- message helpers ---------- */
+  /*message helpers*/
 
   const pushBot = (text) =>
     setMessages((m) => [
@@ -108,7 +103,7 @@ export default function NIETChatbotMessages() {
       },
     ]);
 
-  /* ---------- option click ---------- */
+  /*option click*/
 
   const handleOptionClick = (opt) => {
     pushUser(opt);
@@ -182,8 +177,6 @@ export default function NIETChatbotMessages() {
       setIsSending(false);
     }
   };
-
-  /* ---------------- render ---------------- */
 
   return (
     <div className="h-full flex flex-col bg-white">
