@@ -509,7 +509,7 @@ from Scripts.Facilities.general import general_answer
 from Scripts.Facilities.about_overview import overview_answer
 from Scripts.Facilities.admission import admission_answer
 from Scripts.Facilities.faq import faq_answer_question
-from Scripts.LLM.llm_model import generate_answer
+# from Scripts.LLM.llm_model import generate_answer
 from Scripts.Facilities.overview_course_query import overview_course_query
 from Scripts.Facilities.placement_query_rag import query_placement
 
@@ -767,8 +767,8 @@ def answer_question(user_query: str):
     q = user_query.lower().strip()
 
     # ---------------- 0️⃣ GREETING ----------------
-    if q in ["hi", "hello", "hey", "namaste"] and len(q.split()) == 1:
-        return generate_answer("", user_query)
+    # if q in ["hi", "hello", "hey", "namaste"] and len(q.split()) == 1:
+        # return generate_answer("", user_query)
 
     # ---------------- 1️⃣ COMPARISON ----------------
     if any(k in q for k in ["vs", "compare", "difference"]):
@@ -841,8 +841,8 @@ def answer_question(user_query: str):
         "hostel", "auditorium"
     ]
     if any(k in user_query.lower() for k in facilities):
-        context = facility_answer(user_query)
-        return generate_answer(context, user_query)
+        return facility_answer(user_query)
+        # return generate_answer(context, user_query)
 
     faq = [
         "study", "instruction", "language", "medium",
@@ -897,7 +897,7 @@ def answer_question(user_query: str):
             if is_primary_course_chunk(text):
                 return text.strip()
 
-        return generate_answer("", user_query)
+        # return generate_answer("", user_query)
 
     if is_placement_query(user_query_norm):
         return is_placement_query(best_match) or "Placement info not available."
