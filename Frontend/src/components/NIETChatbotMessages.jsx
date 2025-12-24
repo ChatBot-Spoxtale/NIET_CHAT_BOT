@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import baseKnowledge from "../../../RAG/data/base_knowledge.json";
+import placement from "../../../RAG/index_store/placement_chunks.json"
 
 function now() {
   return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -24,6 +25,18 @@ const getCoursesByLevel = (level) => {
   if (level === "PG") return courses.filter(c => c.course_name?.toLowerCase().startsWith("m"));
   if (level === "TWINNING") return courses.filter(c => c.course_name?.toLowerCase().includes("twinning"));
   return [];
+};
+
+const getPlacement = () => {
+  const seen = new Set();
+
+  return placement
+    .filter(item => {
+      if (seen.has(item.department)) return false;
+      seen.add(item.department);
+      return true;
+    })
+    .map(item => item.department);
 };
 
 function renderWithLinks(text) {
@@ -56,7 +69,7 @@ export default function NIETChatbotMessages() {
           setMessages(parsed);
           return;
         }
-      } catch {}
+      } catch { }
     }
 
     pushBot("Hello! I'm the NIET Assistant — how can I help you today?");
@@ -135,14 +148,25 @@ export default function NIETChatbotMessages() {
       pushOptions(getCoursesByLevel("TWINNING").map(c => c.course_name), true);
       return;
     }
-
+    if (opt === "Placement Records") {
+      pushOptions(getPlacement(), true)
+      return;
+    }
+    if (placement.some(p => p.department === opt)) {
+      sendMessage(`placement record of ${opt}`);
+      return;
+    }
     if (opt === "Institute") {
-      pushBot("NIET is a premier institute focused on academic excellence.");
+      pushBot(
+        `You selected ${opt}. What do you want to know about the ${opt} (overview, rankings, awards, or international_alliances.)`
+      );
       return;
     }
 
     if (opt === "Research") {
-      pushBot("NIET actively promotes research and innovation.");
+      pushBot(
+        `You selected ${opt}. What do you want to know about the ${opt} (overview, areas, publications,journals or projects.)`
+      );
       return;
     }
 
@@ -150,8 +174,35 @@ export default function NIETChatbotMessages() {
       sendMessage("Facilities available at NIET");
       return;
     }
+    if (opt === "Admission") {
+      pushOptions(["Direct Admission", "Counselling", "Twinning"], true);
+      return;
+    }
 
-    sendMessage(`Tell me about ${opt} in NIET`);
+    if (opt === "Direct Admission") {
+      sendMessage("How can I get direct admission?");
+      pushBot("Also ask for MBA , MCA, PGDM, M.Tech, Twinning Program ")
+      return;
+    }
+    if (opt === "Counselling") {
+      sendMessage("What is the admission process for first year BTech through JEE Main?");
+      pushBot("Also ask for Lateral Entry, MBA , B.Pharm ")
+      return;
+    }
+    if (opt === "Twinning") {
+      sendMessage("Eligibility for twinning admission");
+      return;
+    }
+
+    if (opt === "Activities") {
+      pushOptions(["Events", "Club"], true);
+      return;
+    }
+    if (opt === "Club") {
+      sendMessage("list of clubs");
+      return;
+    }
+    sendMessage(`About ${opt} in NIET`);
   };
 
   /* ---------- backend ---------- */
@@ -201,11 +252,10 @@ export default function NIETChatbotMessages() {
               </div>
             )}
 
-            <div className={`max-w-[70%] px-4 py-3 rounded-xl shadow-sm text-sm ${
-              m.from === "user"
+            <div className={`max-w-[70%] px-4 py-3 rounded-xl shadow-sm text-sm ${m.from === "user"
                 ? "bg-gradient-to-b from-[#e2111f] to-[#551023] text-white"
                 : "bg-white text-[#551023]"
-            }`}>
+              }`}>
               {m.type === "options" ? (
                 <>
                   <div className="flex justify-between mb-2 font-medium">
@@ -273,3 +323,4 @@ export default function NIETChatbotMessages() {
     </div>
   );
 }
+
