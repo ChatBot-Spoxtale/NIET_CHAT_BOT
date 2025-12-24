@@ -503,15 +503,15 @@ import torch
 import faiss
 from transformers import BertTokenizer, BertModel
 
-from scripts.Facilities.compare_course import handle_user_query
-from scripts.Facilities.facilities import facility_answer
-from scripts.Facilities.general import general_answer
-from scripts.Facilities.about_overview import overview_answer
-from scripts.Facilities.admission import admission_answer
-from scripts.Facilities.faq import faq_answer_question
-from scripts.LLM.llm_model import generate_answer
-from scripts.Facilities.overview_course_query import overview_course_query
-from scripts.Facilities.placement_query_rag import query_placement
+from Scripts.Facilities.compare_course import handle_user_query
+from Scripts.Facilities.facilities import facility_answer
+from Scripts.Facilities.general import general_answer
+from Scripts.Facilities.about_overview import overview_answer
+from Scripts.Facilities.admission import admission_answer
+from Scripts.Facilities.faq import faq_answer_question
+from Scripts.LLM.llm_model import generate_answer
+from Scripts.Facilities.overview_course_query import overview_course_query
+from Scripts.Facilities.placement_query_rag import query_placement
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_DIR = ROOT / "index_store"
