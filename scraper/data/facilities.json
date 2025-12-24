@@ -1,0 +1,55 @@
+{
+  "academic_facilities": [
+    {
+      "title": null,
+      "description": "We at NIET, believe that the whole process of teaching can be highly enhanced by using the latest technological tools which further helps the students gain a better understanding of tough concepts and gives a boost by providing the ways and means to visualize the concept being put forward by the professors, or let’s say, the education experts. Hence, the classrooms are well-equipped with projectors, computers, high-tech sound systems, OHPs and other kinds of audio-visual tools.",
+      "url": "https://niet.co.in/infrastructure/academic-facilities"
+    },
+    {
+      "title": "Laboratories",
+      "description": "NIET believes in acing the practicality along with the theoretical expertise. The laboratories we possess, aren’t just for conducting chemical experiments, but also for brainstorming new ideas as well as learning new things every day. With refined infrastructure and best-in-market equipment to work on, the laboratories aim to fulfil every curiosity that a keen mind has towards learning.",
+      "url": "https://niet.co.in/infrastructure/academic-facilities"
+    },
+    {
+      "title": "Innovation Labs",
+      "description": "Apart from the technical aspects, the labs also help the students learn practical implementation of the theoretical knowledge with the assistance from our team of expert professors and lab assistants.",
+      "url": "https://niet.co.in/infrastructure/academic-facilities"
+    }
+  ],
+  "hostel_facilities": [
+    {
+      "title": "The hostel provides the students with an atmosphere much like a home away from home.",
+      "description": "It provides them with all the necessary facilities, which help them to acclimatize well with this new ambience. Our hostel has its own mess, which is managed and run by the students themselves on co-operative basis. Keeping in mind the different tastes of the students, the mess provides them with healthy and tasty food. Five hostels for boys and two for girls on the campus offer well-ventilated, comfortable rooms. Rooms are available on multi sharing basis. Library and internet facility is also provided to hostel students after college time. Medical facility is also provided to the students all the time. 24 hours RO water supply and power backup is available in hostel. Security guards are posted at the gate of hostels day and night. Canteen, Medical Aid, Xerox, Stationary facility etc are also available for the students.",
+      "url": "https://niet.co.in/campus-facilities/about-hostel"
+    },
+    {
+      "title": "Hostel Management",
+      "description": "The following officers constitute the Hostel Management: A Resident warden who resides in the hostel manages each hostel. The diners of mess may be drawn from different hostels. A Warden administers each mess. The students can approach any of the above officers for help, guidance and grievance redressal. Representations to higher officers must be forwarded through proper channel.",
+      "url": "https://niet.co.in/campus-facilities/about-hostel"
+    },
+    {
+      "title": "Hostel Management",
+      "description": "The following officers constitute the Hostel Management: A Resident warden who resides in the hostel manages each hostel. The diners of mess may be drawn from different hostels. A Warden administers each mess. The students can approach any of the above officers for help, guidance and grievance redressal. Representations to higher officers must be forwarded through proper channel.",
+      "url": "https://niet.co.in/campus-facilities/about-hostel"
+    },
+    {
+      "title": "Accommodation",
+      "description": "Type of Rooms",
+      "url": "https://niet.co.in/campus-facilities/about-hostel"
+    }
+  ],
+  "other_facilities": [
+    {
+      "title": "Auditorium / Seminar Hall",
+      "description": "NIET has a well-designed auditorium where many students take the center stage and showcase their scholastic and cultural talents. The auditorium provides students a platform to engage in various extra-curricular activities and build their personalities.",
+      "url": "https://niet.co.in/campus-facilities/other-facility"
+    },
+    {
+      "title": "Recording Room",
+      "description": "At NIET, Greater Noida, we understand the essence of providing state-of-the-art recording room facilities to nurture creativity and elevate production standards. Our recording rooms are meticulously designed to offer an optimal acoustic environment, equipped with cutting-edge technology to cater to the diverse needs of our students and professionals alike. The cornerstone of any recording room is its acoustics. Our facilities are engineered with precision to control sound reflections, minimizing unwanted reverberations and external noise interference. This ensures that recordings are crisp, clear, and devoid of any distortions, allowing artists to express themselves with unparalleled clarity.",
+      "url": "https://niet.co.in/campus-facilities/other-facility"
+    }
+  ],
+  "sports_facilities": [],
+  "medical_facilities": []
+}

@@ -20,6 +20,8 @@ def discover_urls():
         "courses": [],
         "placements": [],
         "facilities": [],
+        "research": [],
+        "institute": [],
         "pdfs": []
     }
 
@@ -32,6 +34,10 @@ def discover_urls():
             data["placements"].append(loc)
         elif any(x in loc for x in ["/campus-facilities", "/infrastructure"]):
             data["facilities"].append(loc)
+        elif "/research/" in loc:
+            data["research"].append(loc)
+        elif "/why-us/" in loc:
+            data["institute"].append(loc)
         elif loc.lower().endswith(".pdf"):
             data["pdfs"].append(loc)
 

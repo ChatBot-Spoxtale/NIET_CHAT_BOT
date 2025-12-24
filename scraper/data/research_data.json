@@ -1,0 +1,71 @@
+{
+  "overview": {},
+  "areas_of_research": [
+    "Artificial Intelligence (AI) and Machine Learning(ML)",
+    "Augmented reality (AR) and Virtual Reality (VR)",
+    "Human Machine Interaction",
+    "Industry 5.0 (Industrial IoT)",
+    "Robotics & Automation",
+    "Autonomous Guided Navigation",
+    "Bio Technology",
+    "Computer Vision & Image Processing",
+    "Smart Cities Infrastructure",
+    "Cloud Computing & Edge Computing",
+    "5G Wireless Communication",
+    "VLSI Technology",
+    "Novel Drug Delivery System",
+    "Computer aided Drug Design",
+    "Microbiological Studies",
+    "Anticancer studies"
+  ],
+  "patents": {
+    "design_published": 119,
+    "design_granted": 119,
+    "standard_published": 10,
+    "standard_granted": 5
+  },
+  "research_projects": [
+    {
+      "department": "Biotechnology",
+      "faculty": "Dr. Arvind Kumar",
+      "grant": "Project Grant of Rs.35,06,544 from Ministry of Science and Technology, Department of Science and Technology",
+      "year": "2021"
+    },
+    {
+      "department": "Biotechnology",
+      "faculty": "Dr. Pankaj Kumar Tyagi",
+      "grant": "STTC grant of Rs. 380000 from Department of Biotechnology, GOI, New Delhi",
+      "year": "2020"
+    },
+    {
+      "department": "Biotechnology",
+      "faculty": "Dr. Arvind Kumar",
+      "grant": "Project Grant of Rs. 1452000 from CST-UP",
+      "year": "2019"
+    },
+    {
+      "department": "Biotechnology",
+      "faculty": "Dr. Rashmi Mishra, Dr Pankaj Kumar Tyagi, Dr Fahad Khan",
+      "grant": "Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III)",
+      "year": "2019"
+    },
+    {
+      "department": "Biotechnology",
+      "faculty": "Dr. Pratibha Pandey, Dr Rashmi Mishra",
+      "grant": "Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III)",
+      "year": "2019"
+    },
+    {
+      "department": "Management",
+      "faculty": "Dr. Veena Grover",
+      "grant": "International Conference on Innovative Practices for Sustainable Development Business Management & Analytics EAI SUS-DEV 2023 (Funding Received from EAI of rupees 3 Lakh)",
+      "year": "2023"
+    },
+    {
+      "department": "ECE",
+      "faculty": "Dr Pawan Shukla & Dr Himanshu Sharma",
+      "grant": "International Confernce on Application of AI in 5G and IoT, confernce grant of 2.5 lakhs rupees from Dept of Scientific & Industrial Research (DSIR), Govt. of India.",
+      "year": "2024"
+    }
+  ]
+}
