@@ -1,16 +1,5 @@
-sentence-transformers>=2.2.2
-faiss-cpu>=1.7.4
-nltk>=3.8.1
-tqdm>=4.65.0
-python-dotenv>=1.0.0
-openai>=0.27.0    # optional (only if you want to call OpenAI generation)
-
+sentence-transformers
+faiss-cpu
 fastapi
 uvicorn
-torch
-transformers
-faiss-cpu
 numpy
-scikit-learn
-ollama
-
