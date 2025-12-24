@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
 
-from scripts.query_rag_bert import answer_question
+from Scripts.query_rag_bert import answer_question
 
 app = FastAPI(
     title="BERT + FAISS RAG API",
