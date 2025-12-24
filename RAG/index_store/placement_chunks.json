@@ -1,0 +1,353 @@
+[
+  {
+    "id": "computer_science_engineering_placements",
+    "category": "placement",
+    "department": "Computer Science Engineering",
+    "metric": "placements_offered",
+    "value": "640",
+    "url": "https://niet.co.in/department/computer-science-engineering/placement",
+    "text": "The Computer Science Engineering department recorded 640 placements."
+  },
+  {
+    "id": "computer_science_engineering_highest_package",
+    "category": "placement",
+    "department": "Computer Science Engineering",
+    "metric": "highest_package",
+    "value": "40 LPA",
+    "url": "https://niet.co.in/department/computer-science-engineering/placement",
+    "text": "The highest package offered in the Computer Science Engineering department was 40 LPA."
+  },
+  {
+    "id": "computer_science_engineering_average_package",
+    "category": "placement",
+    "department": "Computer Science Engineering",
+    "metric": "average_package",
+    "value": "5.68 LPA",
+    "url": "https://niet.co.in/department/computer-science-engineering/placement",
+    "text": "The average package in the Computer Science Engineering department was 5.68 LPA."
+  },
+  {
+    "id": "computer_science_placements",
+    "category": "placement",
+    "department": "Computer Science",
+    "metric": "placements_offered",
+    "value": "61",
+    "url": "https://niet.co.in/department/computer-science/placement",
+    "text": "The Computer Science department recorded 61 placements."
+  },
+  {
+    "id": "computer_science_highest_package",
+    "category": "placement",
+    "department": "Computer Science",
+    "metric": "highest_package",
+    "value": "23.50 LPA",
+    "url": "https://niet.co.in/department/computer-science/placement",
+    "text": "The highest package offered in the Computer Science department was 23.50 LPA."
+  },
+  {
+    "id": "computer_science_average_package",
+    "category": "placement",
+    "department": "Computer Science",
+    "metric": "average_package",
+    "value": "5.74 LPA",
+    "url": "https://niet.co.in/department/computer-science/placement",
+    "text": "The average package in the Computer Science department was 5.74 LPA."
+  },
+  {
+    "id": "information_technology_placements",
+    "category": "placement",
+    "department": "Information Technology",
+    "metric": "placements_offered",
+    "value": "351",
+    "url": "https://niet.co.in/department/information-technology/placement",
+    "text": "The Information Technology department recorded 351 placements."
+  },
+  {
+    "id": "information_technology_highest_package",
+    "category": "placement",
+    "department": "Information Technology",
+    "metric": "highest_package",
+    "value": "26.50 LPA",
+    "url": "https://niet.co.in/department/information-technology/placement",
+    "text": "The highest package offered in the Information Technology department was 26.50 LPA."
+  },
+  {
+    "id": "information_technology_average_package",
+    "category": "placement",
+    "department": "Information Technology",
+    "metric": "average_package",
+    "value": "5.26 LPA",
+    "url": "https://niet.co.in/department/information-technology/placement",
+    "text": "The average package in the Information Technology department was 5.26 LPA."
+  },
+  {
+    "id": "electronics_and_communication_engineering_placements",
+    "category": "placement",
+    "department": "Electronics And Communication Engineering",
+    "metric": "placements_offered",
+    "value": "331",
+    "url": "https://niet.co.in/department/electronics-and-communication-engineering/placement",
+    "text": "The Electronics And Communication Engineering department recorded 331 placements."
+  },
+  {
+    "id": "electronics_and_communication_engineering_highest_package",
+    "category": "placement",
+    "department": "Electronics And Communication Engineering",
+    "metric": "highest_package",
+    "value": "10 LPA",
+    "url": "https://niet.co.in/department/electronics-and-communication-engineering/placement",
+    "text": "The highest package offered in the Electronics And Communication Engineering department was 10 LPA."
+  },
+  {
+    "id": "electronics_and_communication_engineering_average_package",
+    "category": "placement",
+    "department": "Electronics And Communication Engineering",
+    "metric": "average_package",
+    "value": "4.68 LPA",
+    "url": "https://niet.co.in/department/electronics-and-communication-engineering/placement",
+    "text": "The average package in the Electronics And Communication Engineering department was 4.68 LPA."
+  },
+  {
+    "id": "mechanical_engineering_placements",
+    "category": "placement",
+    "department": "Mechanical Engineering",
+    "metric": "placements_offered",
+    "value": "78",
+    "url": "https://niet.co.in/department/mechanical-engineering/placement",
+    "text": "The Mechanical Engineering department recorded 78 placements."
+  },
+  {
+    "id": "mechanical_engineering_highest_package",
+    "category": "placement",
+    "department": "Mechanical Engineering",
+    "metric": "highest_package",
+    "value": "10 LPA",
+    "url": "https://niet.co.in/department/mechanical-engineering/placement",
+    "text": "The highest package offered in the Mechanical Engineering department was 10 LPA."
+  },
+  {
+    "id": "mechanical_engineering_average_package",
+    "category": "placement",
+    "department": "Mechanical Engineering",
+    "metric": "average_package",
+    "value": "4.08 LPA",
+    "url": "https://niet.co.in/department/mechanical-engineering/placement",
+    "text": "The average package in the Mechanical Engineering department was 4.08 LPA."
+  },
+  {
+    "id": "biotechnology_placements",
+    "category": "placement",
+    "department": "Biotechnology",
+    "metric": "placements_offered",
+    "value": "82",
+    "url": "https://niet.co.in/department/biotechnology/placement",
+    "text": "The Biotechnology department recorded 82 placements."
+  },
+  {
+    "id": "biotechnology_highest_package",
+    "category": "placement",
+    "department": "Biotechnology",
+    "metric": "highest_package",
+    "value": "9 LPA",
+    "url": "https://niet.co.in/department/biotechnology/placement",
+    "text": "The highest package offered in the Biotechnology department was 9 LPA."
+  },
+  {
+    "id": "biotechnology_average_package",
+    "category": "placement",
+    "department": "Biotechnology",
+    "metric": "average_package",
+    "value": "4.56 LPA",
+    "url": "https://niet.co.in/department/biotechnology/placement",
+    "text": "The average package in the Biotechnology department was 4.56 LPA."
+  },
+  {
+    "id": "data_science_placements",
+    "category": "placement",
+    "department": "Data Science",
+    "metric": "placements_offered",
+    "value": "171",
+    "url": "https://niet.co.in/department/data-science/placement",
+    "text": "The Data Science department recorded 171 placements."
+  },
+  {
+    "id": "data_science_highest_package",
+    "category": "placement",
+    "department": "Data Science",
+    "metric": "highest_package",
+    "value": "23.50 LPA",
+    "url": "https://niet.co.in/department/data-science/placement",
+    "text": "The highest package offered in the Data Science department was 23.50 LPA."
+  },
+  {
+    "id": "data_science_average_package",
+    "category": "placement",
+    "department": "Data Science",
+    "metric": "average_package",
+    "value": "5.75 LPA",
+    "url": "https://niet.co.in/department/data-science/placement",
+    "text": "The average package in the Data Science department was 5.75 LPA."
+  },
+  {
+    "id": "artificial_intelligence_machine_language_aiml_placements",
+    "category": "placement",
+    "department": "Artificial Intelligence Machine Language Aiml",
+    "metric": "placements_offered",
+    "value": "147",
+    "url": "https://niet.co.in/department/artificial-intelligence-machine-language-aiml/placement",
+    "text": "The Artificial Intelligence Machine Language Aiml department recorded 147 placements."
+  },
+  {
+    "id": "artificial_intelligence_machine_language_aiml_highest_package",
+    "category": "placement",
+    "department": "Artificial Intelligence Machine Language Aiml",
+    "metric": "highest_package",
+    "value": "23.50 LPA",
+    "url": "https://niet.co.in/department/artificial-intelligence-machine-language-aiml/placement",
+    "text": "The highest package offered in the Artificial Intelligence Machine Language Aiml department was 23.50 LPA."
+  },
+  {
+    "id": "artificial_intelligence_machine_language_aiml_average_package",
+    "category": "placement",
+    "department": "Artificial Intelligence Machine Language Aiml",
+    "metric": "average_package",
+    "value": "5.37 LPA",
+    "url": "https://niet.co.in/department/artificial-intelligence-machine-language-aiml/placement",
+    "text": "The average package in the Artificial Intelligence Machine Language Aiml department was 5.37 LPA."
+  },
+  {
+    "id": "computer_science_and_business_system_placements",
+    "category": "placement",
+    "department": "Computer Science And Business System",
+    "metric": "placements_offered",
+    "value": "26",
+    "url": "https://niet.co.in/department/computer-science-and-business-system/placement",
+    "text": "The Computer Science And Business System department recorded 26 placements."
+  },
+  {
+    "id": "computer_science_and_business_system_highest_package",
+    "category": "placement",
+    "department": "Computer Science And Business System",
+    "metric": "highest_package",
+    "value": "9 LPA",
+    "url": "https://niet.co.in/department/computer-science-and-business-system/placement",
+    "text": "The highest package offered in the Computer Science And Business System department was 9 LPA."
+  },
+  {
+    "id": "computer_science_and_business_system_average_package",
+    "category": "placement",
+    "department": "Computer Science And Business System",
+    "metric": "average_package",
+    "value": "5.4 LPA",
+    "url": "https://niet.co.in/department/computer-science-and-business-system/placement",
+    "text": "The average package in the Computer Science And Business System department was 5.4 LPA."
+  },
+  {
+    "id": "internet_of_things_iot_placements",
+    "category": "placement",
+    "department": "Internet Of Things Iot",
+    "metric": "placements_offered",
+    "value": "28",
+    "url": "https://niet.co.in/department/internet-of-things-iot/placement",
+    "text": "The Internet Of Things Iot department recorded 28 placements."
+  },
+  {
+    "id": "internet_of_things_iot_highest_package",
+    "category": "placement",
+    "department": "Internet Of Things Iot",
+    "metric": "highest_package",
+    "value": "19.50 LPA",
+    "url": "https://niet.co.in/department/internet-of-things-iot/placement",
+    "text": "The highest package offered in the Internet Of Things Iot department was 19.50 LPA."
+  },
+  {
+    "id": "internet_of_things_iot_average_package",
+    "category": "placement",
+    "department": "Internet Of Things Iot",
+    "metric": "average_package",
+    "value": "5.53 LPA",
+    "url": "https://niet.co.in/department/internet-of-things-iot/placement",
+    "text": "The average package in the Internet Of Things Iot department was 5.53 LPA."
+  },
+  {
+    "id": "artificial_intelligence_placements",
+    "category": "placement",
+    "department": "Artificial Intelligence",
+    "metric": "placements_offered",
+    "value": "122",
+    "url": "https://niet.co.in/department/artificial-intelligence/placement",
+    "text": "The Artificial Intelligence department recorded 122 placements."
+  },
+  {
+    "id": "artificial_intelligence_highest_package",
+    "category": "placement",
+    "department": "Artificial Intelligence",
+    "metric": "highest_package",
+    "value": "19.50 LPA",
+    "url": "https://niet.co.in/department/artificial-intelligence/placement",
+    "text": "The highest package offered in the Artificial Intelligence department was 19.50 LPA."
+  },
+  {
+    "id": "artificial_intelligence_average_package",
+    "category": "placement",
+    "department": "Artificial Intelligence",
+    "metric": "average_package",
+    "value": "5.37 LPA",
+    "url": "https://niet.co.in/department/artificial-intelligence/placement",
+    "text": "The average package in the Artificial Intelligence department was 5.37 LPA."
+  },
+  {
+    "id": "master_of_computer_application_mca_placements",
+    "category": "placement",
+    "department": "Master Of Computer Application Mca",
+    "metric": "placements_offered",
+    "value": "180",
+    "url": "https://niet.co.in/department/master-of-computer-application-mca/placement",
+    "text": "The Master Of Computer Application Mca department recorded 180 placements."
+  },
+  {
+    "id": "master_of_computer_application_mca_highest_package",
+    "category": "placement",
+    "department": "Master Of Computer Application Mca",
+    "metric": "highest_package",
+    "value": "10 LPA",
+    "url": "https://niet.co.in/department/master-of-computer-application-mca/placement",
+    "text": "The highest package offered in the Master Of Computer Application Mca department was 10 LPA."
+  },
+  {
+    "id": "master_of_computer_application_mca_average_package",
+    "category": "placement",
+    "department": "Master Of Computer Application Mca",
+    "metric": "average_package",
+    "value": "4.49 LPA",
+    "url": "https://niet.co.in/department/master-of-computer-application-mca/placement",
+    "text": "The average package in the Master Of Computer Application Mca department was 4.49 LPA."
+  },
+  {
+    "id": "master_of_business_administration_mba_placements",
+    "category": "placement",
+    "department": "Master Of Business Administration Mba",
+    "metric": "placements_offered",
+    "value": "493",
+    "url": "https://niet.co.in/department/master-of-business-administration-mba/placement",
+    "text": "The Master Of Business Administration Mba department recorded 493 placements."
+  },
+  {
+    "id": "master_of_business_administration_mba_highest_package",
+    "category": "placement",
+    "department": "Master Of Business Administration Mba",
+    "metric": "highest_package",
+    "value": "10 LPA",
+    "url": "https://niet.co.in/department/master-of-business-administration-mba/placement",
+    "text": "The highest package offered in the Master Of Business Administration Mba department was 10 LPA."
+  },
+  {
+    "id": "master_of_business_administration_mba_average_package",
+    "category": "placement",
+    "department": "Master Of Business Administration Mba",
+    "metric": "average_package",
+    "value": "4.09 LPA",
+    "url": "https://niet.co.in/department/master-of-business-administration-mba/placement",
+    "text": "The average package in the Master Of Business Administration Mba department was 4.09 LPA."
+  }
+]

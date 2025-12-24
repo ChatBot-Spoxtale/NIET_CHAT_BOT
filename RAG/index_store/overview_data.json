@@ -1,0 +1,122 @@
+{
+    "institute": {
+    "overview": [
+      "Noida Institute of Engineering and Technology (NIET) is an autonomous institute located in Greater Noida, Uttar Pradesh.",
+      "NIET is approved by AICTE and affiliated with Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow.",
+      "The institute offers undergraduate, postgraduate, and integrated programs in engineering, management, and computer applications.",
+      "NIET emphasizes industry-oriented education, innovation, and holistic student development."
+    ],
+    "rankings": [
+      "NIET has been featured in the National Institutional Ranking Framework (NIRF) in the Engineering category in recent years.",
+      "The institute has received national recognition through accreditation and ranking frameworks."
+    ],
+    "awards": [
+      "Several programs at NIET are accredited by the National Board of Accreditation (NBA).",
+      "NIET has received awards for academic excellence and industry–institute collaboration.",
+      "The institute is accredited by NAAC with Grade A."
+    ],
+   
+    "international_alliances": [
+      "NIET offers international exposure through academic collaborations and twinning programs with foreign universities."
+    ],
+  
+    "source_urls": {
+      "overview": "https://www.niet.co.in/",
+      "rankings": "https://www.niet.co.in/why-us/rankings",
+      "awards": "https://www.niet.co.in/why-us/awards-amp-accolades",
+      "student_life": "https://www.niet.co.in/students-life",
+      "international_alliances": "https://www.niet.co.in/why-us/international-alliance"
+    }
+  },
+
+  "research": {
+    "overview": [
+      "NIET promotes research activities among faculty members and students across engineering, technology, and management disciplines.",
+      "The institute encourages innovation, publications, patents, and participation in funded research projects."
+    ],
+    "areas": [
+      "Artificial Intelligence and Machine Learning",
+      "Data Science and Analytics",
+      "Internet of Things (IoT)",
+      "Robotics and Automation",
+      "VLSI Design and Embedded Systems",
+      "Wireless Communication",
+      "Biotechnology",
+      "Cyber Security"
+    ],
+    "publications": [
+      "Research papers published by faculty and students in national and international journals and conferences."
+    ],
+    "journals": [
+      "NIET supports publication in peer-reviewed national and international journals."
+    ],
+     "projects": [
+      [
+        "1",
+        "Biotechnology",
+        "Dr. Arvind Kumar",
+        "Project Grant of Rs.35,06,544 from Ministry of Science and Technology, Department of Science and Technology",
+        "2021"
+      ],
+      [
+        "2",
+        "Biotechnology",
+        "Dr. Pankaj Kumar Tyagi",
+        "STTC grant of Rs. 380000 from Department of Biotechnology, GOI, New Delhi",
+        "2020"
+      ],
+      [
+        "3",
+        "Biotechnology",
+        "Dr. Arvind Kumar",
+        "Project Grant of Rs. 1452000 from CST-UP",
+        "2019"
+      ],
+      [
+        "4",
+        "Biotechnology",
+        "Dr. Rashmi Mishra, Dr Pankaj Kumar Tyagi, Dr Fahad Khan",
+        "Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III)",
+        "2019"
+      ],
+      [
+        "5",
+        "Biotechnology",
+        "Dr. Pratibha Pandey, Dr Rashmi Mishra",
+        "Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III)",
+        "2019"
+      ],
+      [
+        "6",
+        "Management",
+        "Dr. Veena Grover",
+        "International Conference on Innovative Practices for Sustainable Development Business Management & Analytics EAI SUS-DEV 2023 (Funding Received from EAI of rupees 3 Lakh)",
+        "2023"
+      ],
+      [
+        "7",
+        "ECE",
+        "Dr Pawan Shukla & Dr Himanshu Sharma",
+        "International Confernce on Application of AI in 5G and IoT, confernce grant of 2.5 lakhs rupees from Dept of Scientific & Industrial Research (DSIR), Govt. of India.",
+        "2024"
+      ]
+    ],
+    "source_urls": {
+      "overview": "https://www.niet.co.in/research/overview",
+      "areas": "https://www.niet.co.in/research/areas-of-research",
+      "projects": "https://www.niet.co.in/research/research-projects"
+    }
+  },
+
+  "facilities": [
+    "Smart classrooms with modern teaching aids.",
+    "Well-equipped engineering and computing laboratories.",
+    "Central library with books, journals, and digital resources.",
+    "Separate hostels for boys and girls with security and amenities.",
+    "Indoor and outdoor sports facilities.",
+    "Medical room with first-aid facilities.",
+    "Auditorium and seminar halls for events.",
+    "Cafeteria providing hygienic food options.",
+    "Transportation facility for students and staff."
+  ]
+}

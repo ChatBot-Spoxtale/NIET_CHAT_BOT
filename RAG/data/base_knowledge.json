@@ -8,6 +8,7 @@
       "seats": "120",
       "why_choose": "",
       "source_url": "https://www.niet.co.in/course/bca"
+      
     },
     "mba-(innovation,_entrepreneurship_&_venture_development)": {
       "type": "course",
@@ -34,7 +35,12 @@
       "mode": "Full Time",
       "seats": "24",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/m-tech-in-me"
+      "source_url": "https://www.niet.co.in/course/m-tech-in-me",
+      "placement":{
+        "highest_package":"10 LPA",
+        "average_package":"4.08 LPA",
+        "placement_offer":"78"
+      }
     },
     "master_of_integrated_technology_in_computer_science_and_engineering": {
       "type": "course",
@@ -43,7 +49,12 @@
       "mode": "Full Time",
       "seats": "10",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/btech-mtech-integrated"
+      "source_url": "https://www.niet.co.in/course/btech-mtech-integrated",
+      "placement":{
+        "highest_package":"40 LPA",
+        "average_package":"5.68 LPA",
+        "placement_offer":"640"
+      }
     },
     "mba_(marketing_and_finance)": {
       "type": "course",
@@ -52,7 +63,12 @@
       "mode": "Full Time",
       "seats": "300",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/mba-marketing-and-finance"
+      "source_url": "https://www.niet.co.in/course/mba-marketing-and-finance",
+      "placement":{
+        "highest_package":"10 LPA",
+        "average_package":"4.09 LPA",
+        "placement_offer":"493"
+      }
     },
     "b._tech_cse_(cyber-security)": {
       "type": "course",
@@ -70,7 +86,12 @@
       "mode": "Full Time",
       "seats": "18",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/mtech-biotechnology"
+      "source_url": "https://www.niet.co.in/course/mtech-biotechnology",
+      "placement":{
+        "highest_package":"9 LPA",
+        "average_package":"4.56 LPA",
+        "placement_offer":"82"
+      }
     },
     "b.tech_-_electronics_&_communication_engineering": {
       "type": "course",
@@ -97,7 +118,12 @@
       "mode": "Full Time",
       "seats": "09",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/mtech-in-electronics-communication-engineering-vlsi-design"
+      "source_url": "https://www.niet.co.in/course/mtech-in-electronics-communication-engineering-vlsi-design",
+      "placement":{
+        "highest_package":"10 LPA",
+        "average_package":"4.68 LPA",
+        "placement_offer":"331"
+      }
     },
     "bba_-_bachelor_of_business_administration": {
       "type": "course",
@@ -223,7 +249,12 @@
       "mode": "Full Time",
       "seats": "60",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/bba-mba-integrated"
+      "source_url": "https://www.niet.co.in/course/bba-mba-integrated",
+      "placement":{
+        "highest_package":"10 LPA",
+        "average_package":"4.09 LPA",
+        "placement_offer":"493"
+      }
     },
     "master_of_computer_applications": {
       "type": "course",
@@ -232,7 +263,12 @@
       "mode": "Full Time",
       "seats": "420",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/mca"
+      "source_url": "https://www.niet.co.in/course/mca",
+      "placement":{
+        "highest_package":"10 LPA",
+        "average_package":"4.49 LPA",
+        "placement_offer":"180"
+      }
     },
     "b.tech-electronics_&_communication_engineering_(working_professionals)": {
       "type": "course",
@@ -268,7 +304,12 @@
       "mode": "Full Time",
       "seats": "30",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/mtech-ai"
+      "source_url": "https://www.niet.co.in/course/mtech-ai",
+      "placement":{
+        "highest_package":"19.50 LPA",
+        "average_package":"5.37 LPA",
+        "placement_offer":"122"
+      }
     },
     "b.tech_information_technology_(international_twinning_program)": {
       "type": "course",
@@ -358,7 +399,12 @@
       "mode": "Full Time",
       "seats": "15",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/mtech-electronics-communication-engineering-working-professionals"
+      "source_url": "https://www.niet.co.in/course/mtech-electronics-communication-engineering-working-professionals",
+      "placement":{
+        "highest_package":"10 LPA",
+        "average_package":"4.68 LPA",
+        "placement_offer":"331"
+      }
     },
     "m.tech-computer_science_&_engineering": {
       "type": "course",
@@ -367,7 +413,12 @@
       "mode": "Full Time",
       "seats": "12",
       "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/m-tech-in-cse"
+      "source_url": "https://www.niet.co.in/course/m-tech-in-cse",
+      "placement":{
+        "highest_package":"40 LPA",
+        "average_package":"5.68 LPA",
+        "placement_offer":"640"
+      }
     },
     "advanced_diploma_in_automotive_mechatronics_(adam)": {
       "type": "course",
@@ -379,42 +430,80 @@
       "source_url": "https://www.niet.co.in/course/advance-diploma-in-automotive-mechatronics-adam"
     }
   },
-
-  
   "facilities": {
-    "infrastructure": {
-      "facility_name": "404 Error",
-      "summary": "Copyright 2025 NIET - All Rights Reserved",
-      "features": [
-        "Overview",
-        "NIET Advisory Board",
-        "Organogram",
-        "Leader's Talk",
-        "Message from Chairperson",
-        "Message from Managing Director",
-        "Message from AMD",
-        "Message from Director",
-        "Message from Director Academics",
-        "Overview"
-      ],
-      "source_url": "https://www.niet.co.in/campus-facilities/infrastructure"
-    },
-    "hostel": {
-      "facility_name": "404 Error",
-      "summary": "Copyright 2025 NIET - All Rights Reserved",
-      "features": [
-        "Overview",
-        "NIET Advisory Board",
-        "Organogram",
-        "Leader's Talk",
-        "Message from Chairperson",
-        "Message from Managing Director",
-        "Message from AMD",
-        "Message from Director",
-        "Message from Director Academics",
-        "Overview"
-      ],
-      "source_url": "https://www.niet.co.in/campus-facilities/hostel"
-    }
+    "academic_facilities": [
+      {
+        "name": "Classrooms",
+        "summary": [
+          "We at NIET, believe that the whole process of teaching can be highly enhanced by using the latest technological tools which further helps the students gain a better understanding of tough concepts and gives a boost by providing the ways and means to visualize the concept being put forward by the professors, or let’s say, the education experts.",
+          "Hence, the classrooms are well-equipped with projectors, computers, high-tech sound systems, OHPs and other kinds of audio-visual tools.",
+          "The classrooms have ergonomically designed furniture, seamless Wi-Fi connectivity, climate controlling systems, aesthetic lighting, and visually pleasing interiors that make the environment of the classroom more conducive towards learning."
+        ],
+        "source_url": "https://niet.co.in/infrastructure/academic-facilities"
+      },
+      {
+        "name": "Library",
+        "summary": [
+          "The peaceful and sunlit areas provide ideal study spaces.",
+          "Our libraries remain open until midnight on all days. During the examinations, they remain open for 24 hours. Completely automated library management systems make it possible to borrow books at any time of the day or night, as well as make reservations online.",
+          "Multiple copies ensure that resources are easily available for reference in the library. Trained staff are always at hand to assist students."
+        ],
+        "source_url": "https://niet.co.in/infrastructure/academic-facilities"
+      },
+      {
+        "name": "Laboratories",
+        "summary": [
+          "NIET believes in acing the practicality along with the theoretical expertise. The laboratories we possess, aren’t just for conducting chemical experiments, but also for brainstorming new ideas as well as learning new things every day.",
+          "With refined infrastructure and best-in-market equipment to work on, the laboratories aim to fulfil every curiosity that a keen mind has towards learning.",
+          "Apart from the technical aspects, the labs also help the students learn practical implementation of the theoretical knowledge with the assistance from our team of expert professors and lab assistants."
+        ],
+        "source_url": "https://niet.co.in/infrastructure/academic-facilities"
+      },
+      {
+        "name": "ADMISSION HELP",
+        "summary": [
+          "NIET, 19, Knowledge Park-II, Institutional Area, Greater Noida (UP) -201306"
+        ],
+        "source_url": "https://niet.co.in/infrastructure/academic-facilities"
+      },
+      {
+        "name": "Medical Help",
+        "summary": [
+          "Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.",
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.",
+          "At NIET, students develop leadership and team skills, while pursuing their interests through diverse organizations."
+        ],
+        "source_url": "https://niet.co.in/infrastructure/sports-health-facilities"
+      }
+    ],
+    "campus_facilities": [
+      {
+        "name": "The hostel provides the students with an atmosphere much like a home away from home.",
+        "summary": [
+          "It provides them with all the necessary facilities, which help them to acclimatize well with this new ambience. Our hostel has its own mess, which is managed and run by the students themselves on co-operative basis. Keeping in mind the different tastes of the students, the mess provides them with healthy and tasty food.",
+          "Five hostels for boys and two for girls on the campus offer well-ventilated, comfortable rooms. Rooms are available on multi sharing basis. Library and internet facility is also provided to hostel students after college time. Medical facility is also provided to the students all the time. 24 hours RO water supply and power backup is available in hostel. Security guards are posted at the gate of hostels day and night.",
+          "Canteen, Medical Aid, Xerox, Stationary facility etc are also available for the students."
+        ],
+        "source_url": "https://niet.co.in/campus-facilities/about-hostel"
+      },
+      {
+        "name": "Auditorium / Seminar Hall",
+        "summary": [
+          "NIET has a well-designed auditorium where many students take the center stage and showcase their scholastic and cultural talents. The auditorium provides students a platform to engage in various extra-curricular activities and build their personalities.",
+          "NIET, Greater Noida boasts state-of-the-art conference room facilities, providing an ideal environment for academic gatherings, corporate meetings, and various events. With a commitment to excellence and innovation, the institute offers a sophisticated space designed to accommodate diverse needs and foster collaborative discussions.",
+          "The conference rooms at Noida Institute of Engineering & Technology are equipped with advanced audiovisual technology, including high-definition projectors, sound systems, and interactive display screens, ensuring seamless presentations and effective communication. Whether hosting lectures, seminars, or workshops, these facilities are tailored to enhance the learning and engagement experience for participants."
+        ],
+        "source_url": "https://niet.co.in/campus-facilities/other-facility"
+      },
+      {
+        "name": "Transporation",
+        "summary": [
+          "The transport service at NIET operates with a fleet of well-maintained buses equipped with modern amenities, ensuring a comfortable and safe journey for students and staff. These buses follow a meticulously planned route covering key locations in Delhi NCR, including major residential areas and transportation hubs.",
+          "The scheduling of the transport service is designed to align with the academic and administrative requirements of the institute, ensuring punctuality and reliability. Whether it's early morning classes or late-night study sessions, NIET's transport service ensures that students and staff can commute conveniently without any hassle",
+          "Safety remains a top priority at NIET, with trained drivers adhering to strict safety protocols and regulations. Additionally, the buses are equipped with GPS tracking systems, enabling real-time monitoring for enhanced security."
+        ],
+        "source_url": "https://niet.co.in/campus-facilities/other-facility"
+      }
+    ]
   }
 }
