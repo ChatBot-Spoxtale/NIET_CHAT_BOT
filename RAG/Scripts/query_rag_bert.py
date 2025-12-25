@@ -1,5 +1,3 @@
-
-
 import sys
 from pathlib import Path
 
@@ -11,7 +9,6 @@ import re
 import numpy as np
 import torch
 import faiss
-from transformers import BertTokenizer, BertModel
 
 from Scripts.Facilities.compare_course import handle_user_query
 from Scripts.Facilities.facilities import facility_answer
@@ -21,6 +18,7 @@ from Scripts.Facilities.admission import admission_answer
 from Scripts.Facilities.faq import faq_answer_question
 from Scripts.Facilities.overview_course_query import overview_course_query
 from Scripts.Facilities.placement_query_rag import query_placement
+from Ollama.llm_client import ask_ollama
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_DIR = ROOT / "index_store"
@@ -199,21 +197,6 @@ def embed_query(text):
 last_matched_course = None
 
 
-# with open("index_store/overview_metadata.json", "r", encoding="utf-8") as f:
-#     course_data = json.load(f)
-
-# with open("index_store/placement_chunks.json", "r", encoding="utf-8") as f:
-#     placement_data = json.load(f)
-# def clean_text(text):
-#     return text.lower().replace("-", " ").strip()
-
-# def match_course_by_name(query):
-#     q = clean_text(query)
-#     for course, info in course_data.items():
-#         if clean_text(course) in q or q in clean_text(course):
-#             return info
-#     return None
-
 def is_placement_query(q):
     return any(k in q for k in [
         "placement", "placements", "package",
@@ -300,6 +283,15 @@ def answer_question(user_query: str):
     global last_matched_course
 
     q = user_query.lower().strip()
+    
+    greeting_keyword = [
+        "hi","hii","hey","namaste","good morning",
+        "good afternoon","good evening","good night",
+        "good night","hello","how are you","how was day"
+        ]
+    if any(k in q for k in greeting_keyword):
+        return ask_ollama(user_query)
+    
     detected_course = match_course_by_name(q)
     if detected_course:
         last_matched_course = detected_course  # store memory
@@ -317,10 +309,10 @@ def answer_question(user_query: str):
         if is_placement_query(q):
             placement = query_placement(last_matched_course)
             return placement or "Placement info not available."
+  
     
     if any(k in q for k in ["vs", "compare", "difference"]):
         return handle_user_query(user_query)
-    #-------Overview_course------
     overview_course_keywords = [
         "detail", "overview", "what","details","choose","about"
     ]
@@ -413,6 +405,11 @@ def answer_question(user_query: str):
         last_matched_course = best_match  
         return best_match
     
+    ollama_answer = ask_ollama(user_query)
+    if ollama_answer:
+        return ollama_answer
+    
+
     if not best_match:
         q_vec = embed_query(user_query_norm)
         D, I = index.search(q_vec, TOP_K)
@@ -447,17 +444,9 @@ def answer_question(user_query: str):
             text = metadata[idx]["text"]
             if is_primary_course_chunk(text):
                 return text.strip()
+            
+   
 
-        # return generate_answer("", user_query)
-
-    # if is_placement_query(user_query_norm):
-    #     return is_placement_query(best_match) or "Placement info not available."
-    
-    # if "duration" in user_query_norm:
-    #     return extract_duration(best_match) or "Duration info not available."
-    
-    # if "seat" in user_query_norm:
-    #     return extract_seats(best_match) or "Seat info not available."
 
 def demo_rag_llm():
     tests = [
@@ -465,7 +454,8 @@ def demo_rag_llm():
         #  "medium of study in class in niet",
         # "is hostel available?",
         # "average package in niet",
-                "what is btech cse",
+                # "what is btech cse",
+                "hi"
 
     ]
 

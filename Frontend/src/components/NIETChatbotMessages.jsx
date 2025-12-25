@@ -213,7 +213,7 @@ export default function NIETChatbotMessages() {
     setIsSending(true);
 
     try {
-      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
+      const res = await fetch("http://localhost:8000/chat", {
         method: "POST",
         mode:"cors",
         headers: { "Content-Type": "application/json" },

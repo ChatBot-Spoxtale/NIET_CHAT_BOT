@@ -1,12 +1,29 @@
-from llm_client import call_ollama
+from llm_client import ask_ollama_with_context
 
 SYSTEM_PROMPT = (
-    "You are a friendly and helpful assistant. "
-    "Answer naturally. Be playful for creative questions."
+    "You are a ChatGPT-style assistant. "
+    "Use FAQ for factual replies. Use normal reasoning for general questions."
 )
 
 def general_answer(user_query: str) -> str:
-    prompt = f"{SYSTEM_PROMPT}\n\nUser: {user_query}\nAssistant:"
-    return call_ollama(prompt)
+    return ask_ollama_with_context(user_query)
 
-print(general_answer(SYSTEM_PROMPT))
+
+def test_context_data():
+    questions = [
+        "wifi available?",
+        "what is Kathputliyaan club?",
+        "list of indoor sports clubs?",
+        "hostel rules?",
+        "what is HID club?",
+        "documents required for admission?"
+    ]
+
+    print("\n🧪 TEST RESULTS:\n")
+    for q in questions:
+        print(f"❓ {q}")
+        print("👉", ask_ollama_with_context(q))
+        print("-" * 60)
+
+if __name__ == "__main__":
+    test_context_data()
