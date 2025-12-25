@@ -221,7 +221,7 @@ export default function NIETChatbotMessages() {
       });
       const data = await res.json();
       await delay(600);
-      pushBot(data.answer || "Sorry, I could not generate a reply.");
+    pushBot(data.final_answer || data.answer || "Server replied but no message found.");
     } catch {
       pushBot("Server error. Please try again.");
     } finally {

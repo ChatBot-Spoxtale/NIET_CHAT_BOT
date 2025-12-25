@@ -3,6 +3,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from Ollama.llm_client import ask_ollama_with_context
 
 ROOT = Path(__file__).resolve().parents[0]
 sys.path.append(str(ROOT))
@@ -13,7 +14,6 @@ app = FastAPI(
     title="BERT + FAISS RAG API",
     version="1.0"
 )
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -38,8 +38,20 @@ def health():
 
 @app.post("/chat")
 def chat(req: QueryRequest):
-    answer = answer_question(req.question)
+    user_query = req.question
+    rag_answer = answer_question(user_query)
+
+    ollama_response = ask_ollama_with_context(
+        f"User asked: {user_query}\n"
+        f"Context from system: {rag_answer}\n"
+        "Answer clearly and based only on this context."
+    )
+    final = ollama_response or rag_answer or "No relevant answer found."
+
     return {
-        "answer": answer,
+        "user_query": user_query,
+        "rag_answer": rag_answer,
+        "ollama_answer": ollama_response,
+        "final_answer": final
     }
 

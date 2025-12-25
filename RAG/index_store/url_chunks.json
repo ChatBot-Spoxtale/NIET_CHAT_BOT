@@ -1,0 +1,148 @@
+[
+  {
+    "course": "btech cse",
+    "aliases": ["computer science","cs engineering","btech cs"],
+    "syllabus_url": "https://niet.co.in/assets/frontend/pdf/B.Tech-CSE-First-Year-2024-25.pdf"
+  },
+  {
+    "course": "btech aiml",
+    "aliases": ["aiml","ai ml","ai&ml","artificial intelligence and machine learning"],
+    "syllabus_url": "https://niet.co.in/assets/frontend/pdf/B.Tech-AIML-First-Year-2024-25.pdf"
+  },
+  
+   {
+    "course": "btech cse ds",
+    "aliases": ["ds","cse data science","data science"],
+    "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/B.Tech-in-Computer-Science-and-Engineering(Data-Science)(DS)-First-Year-2024-25.pdf"
+  },
+   {
+    "course": "btech cse cy",
+    "aliases": ["cy","cse cyber security","cyber security"],
+    "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/B.Tech-in-Computer-Science-and-Engineering(Cyber%20Security)(CY)-First-Year-2024-25.pdf"
+  },
+  {
+    "course": "aiml twinning",
+    "aliases": ["aiml twinning","ai ml twinning","international twinning"],
+    "syllabus_url": "https://niet.co.in/assets/frontend/pdf/B.Tech-AIML-International-Twinning-Program-2024-25.pdf"
+  },
+  {
+    "course": "btech it",
+    "aliases": ["information technology","it","btech it"],
+    "syllabus_url": "https://niet.co.in/assets/frontend/pdf/B.Tech-IT-2024-25.pdf"
+  },
+   {
+    "course": "btech biotechnology",
+    "aliases": ["bio tech","bio technology","bio"],
+    "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/B.Tech-in-Biotechnology(BT)-First-Year-2024-25.pdf"
+  },
+  {
+    "course": "btech csbs",
+    "aliases": ["btech somputer science and business systems","computer science & business systems"],
+    "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/B.Tech-in-Computer-Science-and-Business-System(CSBS)-First-Year-2024-25.pdf"
+  },
+   {
+    "course": "btech iot",
+    "aliases": ["iot twinning international","internet of things"],
+    "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/B.Tech-in-Computer-Science-and-Engineering(Internet-of-Things)(IoT)-First-Year-2024-25.pdf"
+  },
+  {
+    "course": "btech ai",
+    "aliases": ["ai","artificial intelligence","ai twinning","artificial intelligence twinning"],
+    "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/B.Tech-in-Computer-Science-and-Engineering-Artificial-Intelligence-First-Year-AIAI.pdf"
+  },
+   {
+    "course": "bca",
+    "aliases": ["bachelor of computer science"],
+    "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/Bachelor-of-Computer-Applications-(BCA)-First-Year-2024-25.pdff"
+  },
+  {
+    "course": "btech it twinning",
+    "aliases": ["it twinning international","information technology twinning"],
+    "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/B.Tech-in-Information-Technology-IT-Twinning-First-Year-2024-25.pdf"
+  },
+  {
+    "course": "btech ece",
+    "aliases": ["electronics and communication engineering","btech-ece"]
+  },
+  {
+    "course": "vlsi",
+    "aliases": ["vlsi","chip design","ece vlsi","vlsi design"],
+    "syllabus_url": "https://niet.co.in/assets/frontend/pdf/B.Tech-ECE-VLSI-2024-25.pdf"
+  },
+  {
+    "course":"mtech me",
+    "aliases":["mtech me","mtech mechanical engineering, master of technology mechanical engineering","me (working professionals)"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/M.%20Tech%20in%20Mechanical%20Engineering%20_ME_%20First%20Year%202023-24.pdf"
+  },
+  {
+    "course":"mtech cse",
+    "aliases": ["cse","computer science","cs engineering","mtech cs"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/M.TechinComputerScience_Engineering_CSE_FirstYear2023-24.pdf"
+  },
+  {
+    "course":"mtech ai",
+    "aliases": ["ai","artificial intelligence","AI"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/M.Tech.%20in%20Artificial%20Intelligence%20_AI_%20First%20Year%202023-24.pdf"
+  },
+  {
+    "course":"mtech vlsi",
+    "aliases": ["vlsi","m tech vlsi"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/mtech-vlsi-first.pdf"
+  },
+  {
+    "course":"mtech biotech",
+    "aliases": ["bio tech"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/M.%20Tech%20in%20Biotechnology%20_BT_%20First%20Year%202023-24.pdf"
+  },
+   {
+    "course":"mca",
+    "aliases": ["computer application","master computer applications"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/Master%20of%20Computer%20Applications%20(MCA)%20First%20Year%202024-25.pdf"
+  },
+  {
+  "course": "mba",
+  "aliases": [
+    "mba",
+    "mba syllabus",
+    "niet mba",
+    "master of business administration",
+    "business administration",
+    "mba iev"
+  ],
+  "syllabus_url": "https://www.niet.co.in/assets/frontend/pdf/Masters-of-Business-Administration-Innovation-Entrepreneurship-and-Venture-Development-MBA-IEV-First-Year-2023-24.pdf"
+}
+,
+  {
+    "course":"mtech cse",
+    "aliases": ["computer science","cs"]
+  },
+   {
+    "course":"mba innovation enterpreneurship & venture development",
+    "aliases": ["innovation enterpreneurship"," venture development"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/Masters-of-Business-Administration-Innovation-Entrepreneurship-and-Venture-Development-MBA-IEV-First-Year-2023-24.pdf"
+  },
+   {
+    "course":"mtech ece",
+    "aliases": ["ece working professionals","m tech ece"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/mtech-vlsi-first.pdf"
+  },
+   {
+    "course":"mca integrated",
+    "aliases": ["bca mca integrated","computer application","master computer applications integrated"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/MCA(Integrated)%20First%20Year%20Syllabus%202024-25.pdf"
+  },
+  {
+    "course":"btech mtech",
+    "aliases": ["btech mtech integrated","master of technology in cse","btech mtech integrated cse"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/Master-of-Integrated-Technology-in-Computer-Science_Engineering-CSE_-First-Year-2023-24.pdf"
+  },
+  {
+    "course":"mba marketing and finance",
+    "aliases": [" marketing and finance"]
+  },
+  {
+    "course":"minor degree aiml",
+    "aliases": ["minor degree"],
+    "syllabus_url":"https://www.niet.co.in/assets/frontend/pdf/AIML-Minor-Degree-Specialization-Scheme-2022-23.pdf"
+  }
+]

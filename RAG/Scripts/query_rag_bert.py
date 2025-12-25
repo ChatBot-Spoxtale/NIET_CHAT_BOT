@@ -18,7 +18,6 @@ from Scripts.Facilities.admission import admission_answer
 from Scripts.Facilities.faq import faq_answer_question
 from Scripts.Facilities.overview_course_query import overview_course_query
 from Scripts.Facilities.placement_query_rag import query_placement
-from Ollama.llm_client import ask_ollama
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_DIR = ROOT / "index_store"
@@ -283,14 +282,14 @@ def answer_question(user_query: str):
     global last_matched_course
 
     q = user_query.lower().strip()
-    
-    greeting_keyword = [
-        "hi","hii","hey","namaste","good morning",
-        "good afternoon","good evening","good night",
-        "good night","hello","how are you","how was day"
-        ]
-    if any(k in q for k in greeting_keyword):
-        return ask_ollama(user_query)
+
+    # greeting_keyword = [
+    #     "hi","hii","hey","namaste","good morning",
+    #     "good afternoon","good evening","good night",
+    #     "good night","hello","how are you","how was day"
+    #     ]
+    # if any(k in q for k in greeting_keyword):
+    #     return ask_ollama(user_query)
     
     detected_course = match_course_by_name(q)
     if detected_course:
@@ -404,10 +403,6 @@ def answer_question(user_query: str):
     if best_match:
         last_matched_course = best_match  
         return best_match
-    
-    ollama_answer = ask_ollama(user_query)
-    if ollama_answer:
-        return ollama_answer
     
 
     if not best_match:

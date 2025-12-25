@@ -11,19 +11,28 @@ def general_answer(user_query: str) -> str:
 
 def test_context_data():
     questions = [
-        "wifi available?",
-        "what is Kathputliyaan club?",
-        "list of indoor sports clubs?",
-        "hostel rules?",
-        "what is HID club?",
-        "documents required for admission?"
+        # "wifi available?",
+        # "what is Kathputliyaan club?",
+        # "list of indoor sports clubs?",
+        # "hostel rules?",
+        # "what is HID club?",
+        # "documents required for admission?"
+        # "list of clubs",
+        # "computer science engineering syllabus link",
+        # "syllabus for artificial intelligence and machine learning",
+        # "btech it syllabus pdf",
+        # "vlsi syllabus",
+        # "aiml twinning syllabus",
+        # "mtech in me",
+        # "mtech in cse",
+        # "aiml syllabus",
+        # "cyber security syllabus"
     ]
 
     print("\n🧪 TEST RESULTS:\n")
     for q in questions:
         print(f"❓ {q}")
-        print("👉", ask_ollama_with_context(q))
-        print("-" * 60)
+        print(ask_ollama_with_context(q))
 
 if __name__ == "__main__":
     test_context_data()
