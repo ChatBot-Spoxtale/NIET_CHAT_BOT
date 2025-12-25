@@ -17,17 +17,16 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://niet-chat-bot.onrender.com/",
-        "https://niet-chat-bot.onrender.com/chat",
-
-    "https://niet-chat-bot-rag.onrender.com"
-],          
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://niet-chat-bot.onrender.com",       
+        "https://niet-chat-bot-rag.onrender.com"    
+    ],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["*"],          
+    allow_methods=["*"],        
+    allow_headers=["*"],        
 )
+
 
 class QueryRequest(BaseModel):
     question: str
