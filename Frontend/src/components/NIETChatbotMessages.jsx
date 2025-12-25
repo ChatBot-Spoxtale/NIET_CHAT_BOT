@@ -215,6 +215,7 @@ export default function NIETChatbotMessages() {
     try {
       const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
         method: "POST",
+        mode:"cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: text }),
       });

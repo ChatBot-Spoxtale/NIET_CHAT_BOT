@@ -19,7 +19,6 @@ from Scripts.Facilities.general import general_answer
 from Scripts.Facilities.about_overview import overview_answer
 from Scripts.Facilities.admission import admission_answer
 from Scripts.Facilities.faq import faq_answer_question
-# from Scripts.LLM.llm_model import generate_answer
 from Scripts.Facilities.overview_course_query import overview_course_query
 from Scripts.Facilities.placement_query_rag import query_placement
 
@@ -33,9 +32,7 @@ MAX_LEN = 256
 TOP_K = 8
 SCORE_THRESHOLD = 0.60
 
-# tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
-# model = BertModel.from_pretrained(MODEL_NAME)
-# model.eval()
+
 def get_bert():
     global tokenizer, model
     if tokenizer is None or model is None:
@@ -199,11 +196,23 @@ def embed_query(text):
     emb = mean_pooling(output, inputs["attention_mask"]).numpy()
     emb /= np.linalg.norm(emb, axis=1, keepdims=True)
     return emb.astype("float32")
+last_matched_course = None
 
 
-    # emb = mean_pooling(output, inputs["attention_mask"]).numpy()
-    # emb /= np.linalg.norm(emb, axis=1, keepdims=True)
-    # return emb.astype("float32")
+# with open("index_store/overview_metadata.json", "r", encoding="utf-8") as f:
+#     course_data = json.load(f)
+
+# with open("index_store/placement_chunks.json", "r", encoding="utf-8") as f:
+#     placement_data = json.load(f)
+# def clean_text(text):
+#     return text.lower().replace("-", " ").strip()
+
+# def match_course_by_name(query):
+#     q = clean_text(query)
+#     for course, info in course_data.items():
+#         if clean_text(course) in q or q in clean_text(course):
+#             return info
+#     return None
 
 def is_placement_query(q):
     return any(k in q for k in [
@@ -211,17 +220,16 @@ def is_placement_query(q):
         "highest", "average", "placement record", "placement stats"
     ])
 
-def extract_duration(text):
-    m = re.search(r"duration:\s*([\d]+)\s*year", text, re.I)
-    return f"{m.group(1)} years" if m else None
+def extract_duration(course_block):
+    m = re.search(r"Duration:\s*([\w\s]+)", course_block)
+    return f" Duration: {m.group(1)}" if m else None
 
 
-def extract_seats(text):
-    m = re.search(r"seats\s*:\s*(\d+)", text, re.I)
-    return m.group(1) if m else None
+def extract_seats(course_block):
+    m = re.search(r"Seats:\s*([\d]+)", course_block)
+    return f" Seats: {m.group(1)}" if m else None
 
 
-# COURSE PRIORITY
 def course_priority(text: str) -> int:
     t = text.lower()
     if "working professional" in t:
@@ -286,16 +294,30 @@ def extract_placements(text):
     except:
         return None
 
+last_matched_course = None
 
 def answer_question(user_query: str):
+    global last_matched_course
 
     q = user_query.lower().strip()
+    detected_course = match_course_by_name(q)
+    if detected_course:
+        last_matched_course = detected_course  # store memory
+        return detected_course
+    
+    if last_matched_course:
+        if "seat" in q or "seats" in q:
+            seats = extract_seats(last_matched_course)
+            return seats or "Seat info not available."
 
-    # ---------------- 0️⃣ GREETING ----------------
-    # if q in ["hi", "hello", "hey", "namaste"] and len(q.split()) == 1:
-        # return generate_answer("", user_query)
+        if "duration" in q:
+            duration = extract_duration(last_matched_course)
+            return duration or "Duration info not available."
 
-    # ---------------- 1️⃣ COMPARISON ----------------
+        if is_placement_query(q):
+            placement = query_placement(last_matched_course)
+            return placement or "Placement info not available."
+    
     if any(k in q for k in ["vs", "compare", "difference"]):
         return handle_user_query(user_query)
     #-------Overview_course------
@@ -333,14 +355,14 @@ def answer_question(user_query: str):
     if any(k in q for k in general_keyword):
         return general_answer(user_query)
 
-    # ---------------- 4️⃣ COURSE (🔥 MUST COME BEFORE OVERVIEW) ----------------
     course_query = extract_course_name_from_query(user_query)
-    course_match = match_course_by_name(course_query)
+    # course_match = match_course_by_name(course_query)
 
-    if course_match:
-        return course_match.strip()
+    # if course_match:
+    #     last_matched_course = course_match  
+    #     return course_match.strip()
 
-    # ---------------- 5️⃣ ABOUT / OVERVIEW / RESEARCH ----------------
+
     overview_keywords = [
         "about niet", "about the college",
         "overview of niet",
@@ -384,9 +406,13 @@ def answer_question(user_query: str):
 
     user_query_norm = normalize(user_query)
     user_intent = detect_intent(user_query_norm)
+    course_query = extract_course_name_from_query(user_query)
 
     best_match = keyword_course_match(user_query_norm)
-
+    if best_match:
+        last_matched_course = best_match  
+        return best_match
+    
     if not best_match:
         q_vec = embed_query(user_query_norm)
         D, I = index.search(q_vec, TOP_K)
@@ -424,14 +450,14 @@ def answer_question(user_query: str):
 
         # return generate_answer("", user_query)
 
-    if is_placement_query(user_query_norm):
-        return is_placement_query(best_match) or "Placement info not available."
+    # if is_placement_query(user_query_norm):
+    #     return is_placement_query(best_match) or "Placement info not available."
     
-    if "duration" in user_query_norm:
-        return extract_duration(best_match) or "Duration info not available."
+    # if "duration" in user_query_norm:
+    #     return extract_duration(best_match) or "Duration info not available."
     
-    if "seat" in user_query_norm:
-        return extract_seats(best_match) or "Seat info not available."
+    # if "seat" in user_query_norm:
+    #     return extract_seats(best_match) or "Seat info not available."
 
 def demo_rag_llm():
     tests = [

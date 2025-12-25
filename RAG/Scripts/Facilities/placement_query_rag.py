@@ -20,12 +20,13 @@ STOP_WORDS = {
 
 # Similar course mapping (IMPORTANT)
 COURSE_ALIASES = {
-    "aiml": ["artificial intelligence", "machine learning", "aiml"],
+    "aiml": ["artificial intelligence", "machine learning", "aiml","twinning aiml"],
     "ai": ["artificial intelligence", "aiml"],
-    "data science": ["data science", "aiml", "computer science"],
+    "data science": ["data science",  "computer science"],
     "cse": ["computer science engineering", "computer science"],
     "cs": ["computer science"],
     "it": ["information technology"],
+    "mba":["mba","mba bba","mba+bba"]
 }
 
 # ---------------- NORMALIZATION ----------------
