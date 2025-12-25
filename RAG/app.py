@@ -23,7 +23,7 @@ app.add_middleware(
     "https://niet-chat-bot-rag.onrender.com"
 ],          
     allow_credentials=True,
-    allow_methods=["*"],         
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],          
 )
 
