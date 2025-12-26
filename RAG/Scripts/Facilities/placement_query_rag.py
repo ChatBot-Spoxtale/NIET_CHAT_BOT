@@ -31,6 +31,8 @@ COURSE_ALIASES = {
 
 # ---------------- NORMALIZATION ----------------
 def normalize(text: str) -> str:
+    if text is None:
+        return ""
     text = text.lower()
     text = text.replace("-", " ")
     text = re.sub(r"[^\w\s]", " ", text)

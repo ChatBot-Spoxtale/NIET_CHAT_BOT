@@ -12,14 +12,14 @@ def general_answer(user_query: str) -> str:
 def test_context_data():
     questions = [
         # "wifi available?",
-        # "what is Kathputliyaan club?",
-        # "list of indoor sports clubs?",
-        # "hostel rules?",
+        "what is Kathputliyaan club?",
+        "list of indoor sports clubs?",
+        "hostel rules?",
         # "what is HID club?",
         # "documents required for admission?"
         # "list of clubs",
         # "computer science engineering syllabus link",
-        # "syllabus for artificial intelligence and machine learning",
+        "syllabus for artificial intelligence and machine learning",
         # "btech it syllabus pdf",
         # "vlsi syllabus",
         # "aiml twinning syllabus",

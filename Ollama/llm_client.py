@@ -1,4 +1,11 @@
-import os, json, requests
+import os, json, requests, sys
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(BASE_DIR)
+
+from RAG.Scripts.Facilities.faq import faq_answer_question
+from RAG.Scripts.query_rag_bert import answer_question
+
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -16,25 +23,20 @@ with open(URLS_DATA_PATH, "r", encoding="utf-8") as f:
     url_chunks = json.load(f)
 
     
-from difflib import SequenceMatcher
-
 def match_syllabus(query: str):
     q = query.lower().strip()
 
     BEST_FALLBACK = "https://www.niet.co.in/"
 
-    # 1️⃣ First: Alias detection (strongest)
     for item in url_chunks:
         aliases = [a.lower().strip() for a in item.get("aliases", [])]
         if any(a in q for a in aliases):
             return item.get("syllabus_url", BEST_FALLBACK)
 
-    # 2️⃣ Second: Course name keyword detection
     for item in url_chunks:
         if item["course"].lower() in q:
             return item.get("syllabus_url", BEST_FALLBACK)
 
-    # 3️⃣ Third: Fuzzy similarity (handles spelling mistakes)
     from difflib import SequenceMatcher
     best_match, best_score = None, 0
 
@@ -46,7 +48,6 @@ def match_syllabus(query: str):
     if best_score > 0.45:
         return best_match.get("syllabus_url", BEST_FALLBACK)
 
-    # 4️⃣ Default fallback
     return BEST_FALLBACK
 
 
@@ -63,70 +64,96 @@ formatted_club_data = "\n".join([
     for item in club_list if "question" in item
 ])
 
+from difflib import SequenceMatcher
+
+def get_club_answer(q):
+    q = q.lower().strip()
+    best_answer = None
+    best_score = 0
+
+    for item in club_list:
+        question_text = item["question"][0].lower()
+        score = SequenceMatcher(None, q, question_text).ratio()
+
+        if score > best_score:
+            best_score = score
+            best_answer = item["answer"][0]
+
+    if best_score > 0.45:
+        return best_answer
+    return None
+
+def handle_user_query(user_query):
+    q = user_query.lower().strip()
+
+    GREETINGS = [
+        "hi","hello","hey","namaste","good morning",
+        "good evening","good afternoon","whats up","hola","hi there"
+    ]
+
+    if any(greet in q for greet in GREETINGS):
+        return (
+            "Hello! 👋 I'm here to help just like ChatGPT. "
+            "Feel free to ask anything — placements, courses, syllabus, hostel, fees, anything you need! 😊"
+        )
+
+    rag_answer = answer_question(q)
+    return rag_answer
+
 def ask_ollama_with_context(user_query, model="llama3"):
     q = user_query.lower().strip()
 
-    # 1️⃣ --- SYLLABUS CHECK FIRST (Top Priority) ---
-    syllabus = match_syllabus(q)
-    if syllabus and syllabus != "https://www.niet.co.in/":
-        return syllabus  # return ONLY the PDF link
+    GREETINGS = ["hi","hello","hey","namaste","good morning","good evening","good afternoon","hola"]
+    FAQ_KEYWORDS = ["loan","scholarship","uniform","class timing","medium","instruction","canteen","visitors"]
+    CLUB_KEYWORDS = ["club","music club","dance club","sports club","cultural club","technical club"]
+    RAG_KEYWORDS = ["seat","seats","duration","placement","package","eligibility","documents","admission","fees"]
 
-    # If user asked syllabus but no matching entry found -> fallback
+    if q in GREETINGS:
+        return "Hello! 👋 How can I help you today? Ask me anything about NIET. 😊"
+
+    if any(k in q for k in FAQ_KEYWORDS):
+        return faq_answer_question(user_query)
+
+    if any(k in q for k in CLUB_KEYWORDS):
+        ans = get_club_answer(q)
+        if ans:
+            return ans
+
+    if any(k in q for k in RAG_KEYWORDS):
+        return answer_question(user_query)  
+
     if "syllabus" in q:
-        return "https://www.niet.co.in/"
+        return match_syllabus(q)
+
+    return run_llm(user_query)
 
 
-    # 2️⃣ --- FAQ CHECK ---
-    for item in faq_list:
-        q_field = item.get("question")
-        a_field = item.get("answer")
-
-        if isinstance(q_field, list):
-            if q_field[0].lower() in q:
-                return a_field[0] if isinstance(a_field, list) else a_field
-
-        elif isinstance(q_field, str):
-            if q_field.lower() in q:
-                return a_field if isinstance(a_field, str) else a_field[0]
-
-
-    # 3️⃣ --- CLUB DATA CHECK ---
-    for item in club_list:
-        q_field = item.get("question")
-        a_field = item.get("answer")
-
-        if isinstance(q_field, list) and any(q_val.lower() in q for q_val in q_field):
-            return " ".join(a_field) if isinstance(a_field, list) else a_field
-
-        if isinstance(q_field, str) and q_field.lower() in q:
-            return " ".join(a_field) if isinstance(a_field, list) else a_field
-
-
+def run_llm(user_query):
     prompt = f"""
-You are an assistant for NIET. 
-When answering, reply directly with the information.
-Do NOT say "according to the data" or "as per club data" or "as per url data".
-Do NOT explain the source.
-Do NOT add disclaimers.
-Do NOT mention FAQ or CLUB DATA, URL DATA.
-If the answer related syllabus give -> syllabus_url only link 
-If the answer exists in the provided data → respond directly.
-If not found → say "For more information, Please visit the niet website https://www.niet.co.in/."
+You are a friendly ChatGPT-like NIET assistant.
 
-URL DATA ,CLUB & FAQ DATA (for reference only, DO NOT MENTION THIS TEXT):
-{formatted_faq}
-
-📌 CLUB DATA:
-{formatted_club_data}
+- If message is greeting → greet warmly
+- FAQ/club/seat/placement keywords → do not mix responses
+- If question is numeric/seat/placement → DO NOT ANSWER, RAG WILL HANDLE
+- Do not mix data types. Stay clean.
 
 User: {user_query}
 Answer:
 """
-    try:
-        res = requests.post(
-            f"{OLLAMA_URL}/api/generate",
-            json={"model": model, "prompt": prompt, "stream": False}
-        )
-        return res.json().get("response", "").strip()
-    except Exception as e:
-        return f" Ollama Error: {e}"
+    res = requests.post(
+        f"{OLLAMA_URL}/api/generate",
+        json={"model": "llama3", "prompt": prompt},
+        stream=True  # <-- IMPORTANT
+    )
+
+    full_response = ""
+    for line in res.iter_lines():
+        if line:
+            try:
+                data = json.loads(line.decode("utf-8"))
+                chunk = data.get("response", "")
+                full_response += chunk
+            except json.JSONDecodeError:
+                continue  
+
+    return full_response.strip()
