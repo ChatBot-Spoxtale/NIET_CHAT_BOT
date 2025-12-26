@@ -31,14 +31,19 @@ TOP_K = 8
 SCORE_THRESHOLD = 0.60
 
 
+from transformers import AutoTokenizer, AutoModel
+
+tokenizer = None
+model = None
+
 def get_bert():
-    global tokenizer, model
+    global tokenizer, model  
+
     if tokenizer is None or model is None:
-        from transformers import BertTokenizer, BertModel
-        tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-        model = BertModel.from_pretrained("bert-base-uncased")
-        model.eval()
+        tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
+        model = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
     return tokenizer, model
+
 
 
 index = faiss.read_index(str(INDEX_PATH))
@@ -119,7 +124,7 @@ def extract_course_name_from_query(query: str) -> str:
 def alias_match(text: str, alias: str) -> bool:
     return re.search(rf"\b{re.escape(alias)}\b", text) is not None 
 
-def detect_intent(text: str):
+def detect_intent(text: str):   
     text = normalize(text)
     result = {"degree": None, "branch": None}
 
@@ -184,17 +189,14 @@ def mean_pooling(output, mask):
     mask = mask.unsqueeze(-1).expand(token_embeddings.size()).float()
     return (token_embeddings * mask).sum(1) / mask.sum(1)
 
-def embed_query(text):
-    tokenizer, model = get_bert()
-    inputs = tokenizer(text, truncation=True, padding=True,
-                       max_length=MAX_LEN, return_tensors="pt")
-    with torch.no_grad():
-        output = model(**inputs)
+def embed_query(text: str):
+    tokenizer, model = get_bert()  # this will now work
+    
+    inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True)
+    outputs = model(**inputs)
+    embeddings = outputs.last_hidden_state.mean(dim=1).detach().numpy()
+    return embeddings
 
-    emb = mean_pooling(output, inputs["attention_mask"]).numpy()
-    emb /= np.linalg.norm(emb, axis=1, keepdims=True)
-    return emb.astype("float32")
-last_matched_course = None
 
 
 def is_placement_query(q):
@@ -262,6 +264,11 @@ def keyword_course_match(user_query):
 
     return best_text
 
+def handle_club_query(q):
+    with open("index_store/club_data.json","r",encoding="utf-8") as f:
+        data = json.load(f)
+    clubs = [c["name"] for c in data]
+    return "Available Clubs in NIET:\n" + "\n".join(f"• {c}" for c in clubs)
 
 def extract_placements(text):
     m = re.search(r"Placements\s*:\s*(\{.*?\})", text, re.I)
@@ -280,61 +287,50 @@ def extract_placements(text):
 last_matched_course = None
 
 def answer_question(user_query: str):
-    global last_matched_course
     q = user_query.lower().strip()
 
-    # GREETINGS = ["hi","hii","hey","hello","namaste","hola","good morning","good evening"]
-    # GENERAL_CHATS = ["wifi","canteen","tea","chai","food","chatbot","campus","fees","non veg"]
+    global last_matched_course
+    best_match = None   
+    user_query_norm = normalize(user_query)  
 
-    # if any(word in q for word in GREETINGS + GENERAL_CHATS):
-    #     last_matched_course = None   
-    # if any(word in q for word in GREETINGS + GENERAL_CHATS):
-    #     return ask_ollama_with_context(user_query)
+    rag_keywords = ["seat","seats","fee","fees","duration","documents","placement","package"]
+    course_hints = ["btech","mtech","bca","mca","bba","mba","cse","it","cs","aiml","ai","ds","iot","ece","me","vlsi","cyber"]
     
-    overview_course_keywords = [
-        "detail", "overview", "what","details","choose","about"
-    ]
-    if any(k in q for k in overview_course_keywords):
-        return overview_course_query(user_query)
-    
-    # greeting_keyword = [
-    #     "hi","hii","hey","namaste","good morning",
-    #     "good afternoon","good evening","good night",
-    #     "good night","hello","how are you","how was day"
-    #     ]
-    # if any(k in q for k in greeting_keyword):
-    #     return (user_query)
-    
-    # detected_course = match_course_by_name(q)
-    # if detected_course:
-    #     last_matched_course = detected_course  # store memory
-    #     return detected_course
-    
-    # if last_matched_course:
+    if any(k in q for k in rag_keywords) and not any(c in q for c in course_hints):
+        return "Please mention the course  (Example: B.Tech CSE, MBA, MCA, AIML etc.)"
+
+
     if "seat" in q or "seats" in q:
-        seats = extract_seats(last_matched_course)
-        return seats or "Seat info not available."
+        best_match = best_match or keyword_course_match(q)
+        if not best_match:
+            return "Please mention the course name (Example: B.Tech CSE, MBA)"
+        return extract_seats(best_match) or "Seats info not found."
+
 
     if "duration" in q:
-            duration = extract_duration(last_matched_course)
-            return duration or "Duration info not available."
+        best_match = best_match or keyword_course_match(q)
+        if not best_match:
+            return "Please mention the course name to get duration."
+        return extract_duration(best_match) or "Duration info not found."
+
 
     if is_placement_query(q):
-            placement = query_placement(last_matched_course)
-            return placement or "Placement info not available."
-  
-    
+        best_match = best_match or keyword_course_match(q)
+        if not best_match:
+            return "Please specify the course for placement details."
+        return query_placement(best_match) or "Placement data not found."
+
+
     if any(k in q for k in ["vs", "compare", "difference"]):
         return handle_user_query(user_query)
     
 
-    #------placement record------
     placement_record_keywords = [
         "placement", "highest package", "placement details"
     ]
     if any(k in q for k in placement_record_keywords):
         return query_placement(user_query)
-    # ---------------- 2️⃣ ADMISSION ----------------
+
     admission_keywords = [
         "admission", "apply", "eligibility",
         "jee", "direct", "counselling",
@@ -379,8 +375,31 @@ def answer_question(user_query: str):
 
     if any(k in q for k in overview_keywords):
         return overview_answer(user_query)
+    
+    user_query_norm = normalize(user_query)
+    club_keywords = ["club","clubs","indoor club","outdoor club","sports club","dance club","music club"]
 
-    # ---------------- FACILITIES ----------------
+    if any(k in q for k in club_keywords):
+        from difflib import SequenceMatcher
+
+        best_answer = None
+        best_score = 0
+
+        for item in metadata:
+            text = item.get("text","").lower()
+            if "club" in text:
+                score = SequenceMatcher(None, q, text).ratio()
+                if score > best_score:
+                    best_score = score
+                    best_answer = text
+
+        if best_answer:
+            return "Club Information Found:" + best_answer
+
+        return "Club data exists but couldn't match the exact club name. Try: list of clubs"
+
+
+
     facilities = [
         "classroom", "classrooms", "library", "libraries",
         "lab", "labs", "laboratory",
@@ -410,14 +429,16 @@ def answer_question(user_query: str):
     course_query = extract_course_name_from_query(user_query)
 
     best_match = keyword_course_match(user_query_norm)
-    if best_match:
-        last_matched_course = best_match  
-        return best_match
-
-    
 
     if not best_match:
         q_vec = embed_query(user_query_norm)
+
+        q_vec = np.array(q_vec).astype("float32")
+        if q_vec.ndim == 1:
+            q_vec = q_vec.reshape(1, -1)
+
+        if q_vec.shape[1] != index.d:
+            return f"Embedding dimension mismatch! FAISS expects {index.d}, but got {q_vec.shape[1]}. Rebuild index."
         D, I = index.search(q_vec, TOP_K)
 
         for score, idx in zip(D[0], I[0]):
