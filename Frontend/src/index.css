@@ -2,19 +2,293 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-  --raspberry:#e2111f;
-  --raspberry-dark:#551023;
+:root {
+  --raspberry: #e2111f;
+  --raspberry-glow: rgba(226, 17, 31, 0.4);
+  --raspberry-light: #ffebed;
+  --slate-text: #1e293b;
+  --gray-text: #64748b;
+  --border-light: #f1f5f9;
+  --raspberry-dark: #551023;
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --shimmer-bg: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  --glass-white: rgba(255, 255, 255, 0.8);
+  --surface: #ffffff;
 }
-html, body, #root {
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  /* Removed overflow: hidden to allow body scrolling if needed, but keeping app constrained */
 }
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-body{@apply bg-gray-50 font-sans;}
+/* Replaced standard background with a high-end, moving mesh gradient inspired by the "noomo" and "PITMATIC" aesthetic */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  background-image: radial-gradient(at 0% 0%, hsla(355, 85%, 47%, 0.1) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(220, 33%, 98%, 1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(355, 85%, 47%, 0.1) 0, transparent 50%),
+    radial-gradient(at 50% 100%, hsla(220, 33%, 98%, 1) 0, transparent 50%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Added organic animated mesh for the chatbot window specifically */
+.chat-mesh-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 10%, rgba(226, 17, 31, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(30, 41, 59, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 0.8) 100%);
+  animation: bg-shift 20s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes bg-shift {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(2deg);
+  }
+}
+
+/* Glassmorphism utility */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.back-home-btn {
+  @apply flex items-center gap-1.5 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-500 ease-in-out;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.back-home-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.back-home-btn:active {
+  transform: translateY(0);
+}
+
+/* Futuristic glass portal effect for the main chat container */
+.glass-portal {
+  background: var(--glass-white);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  border-radius: 32px;
+}
+
+/* Premium glass-card for the main chat window */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* Redesigned the chat card to be a clean white card with a soft shadow instead of glassmorphism */
+.chat-window-card {
+  @apply bg-white border border-slate-100 shadow-[0_20px_60px_rgba(0,0,0,0.12)] overflow-hidden;
+  border-radius: 28px;
+  position: relative;
+}
+
+.chat-window-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(226, 17, 31, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(30, 41, 59, 0.03) 0%, transparent 50%);
+  animation: mesh-move 15s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes mesh-move {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* Added a helper for full-screen mobile height to handle dynamic browser toolbars */
+.h-dynamic-screen {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Added overscroll-behavior to prevent scroll shadows/overscroll glow */
+.no-overscroll {
+  overscroll-behavior: contain;
+}
+
+/* Styled the header status dot and text */
+.status-indicator {
+  @apply w-3 h-3 bg-green-500 rounded-full border-2 border-white;
+}
+
+/* Message bubble styles to match screenshot */
+.bot-bubble {
+  @apply bg-white border border-slate-100 rounded-2xl rounded-tl-none text-slate-700 shadow-sm;
+}
+
+.user-bubble {
+  @apply bg-[#e2111f] text-white rounded-2xl rounded-tr-none shadow-sm;
+}
+
+/* Quick action chip styles */
+/* Updated action chips to be oval-shaped and more consistent */
+.action-chip {
+  @apply flex items-center justify-center text-center py-2 px-4 bg-white border border-slate-200 rounded-full text-[11px] font-bold text-slate-600 transition-all hover:border-[#e2111f] hover:text-[#e2111f] hover:shadow-md active:scale-95;
+}
+
+/* Elegant, uniform pill buttons that handle text gracefully without spilling */
+.action-pill {
+  @apply flex items-center justify-center px-3 py-1.5 bg-white border border-slate-200/60 rounded-full transition-all duration-300;
+  @apply text-[10px] font-semibold text-slate-600 tracking-tight leading-tight text-center;
+  min-height: 32px;
+  backdrop-filter: blur(4px);
+  max-width: 100%;
+}
+
+.action-pill span {
+  @apply line-clamp-2 overflow-hidden text-ellipsis;
+}
+
+.action-pill:hover {
+  @apply bg-white border-[#e2111f] text-[#e2111f] shadow-lg -translate-y-0.5;
+}
+
+/* Launcher button refined size and positioning */
+.launcher-btn {
+  @apply fixed bottom-5 right-5 z-[100] w-12 h-12 rounded-2xl bg-gradient-to-br from-[#e2111f] to-[#b00d18] flex items-center justify-center shadow-[0_8px_25px_rgba(226,17,31,0.35)] transition-all hover:scale-105 active:scale-95;
+}
+
+.launcher-btn::before {
+  content: "";
+  @apply absolute inset-0 bg-[#e2111f] rounded-2xl blur-xl opacity-40 -z-10 animate-pulse;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseSlow {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float-portal {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+.animate-pulse-slow {
+  animation: pulseSlow 3s infinite ease-in-out;
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--shimmer-bg);
+  animation: shimmer 2.5s infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Organic message bubbles with asymmetrical corners */
+.organic-bot {
+  @apply bg-white border border-slate-100/50 rounded-[22px] rounded-tl-none text-slate-700 shadow-sm backdrop-blur-md;
+}
+
+.organic-user {
+  @apply bg-[#e2111f] text-white rounded-[22px] rounded-tr-none shadow-lg shadow-[#e2111f]/15;
+}
+
+.animate-float {
+  animation: float-portal 6s ease-in-out infinite;
+}
