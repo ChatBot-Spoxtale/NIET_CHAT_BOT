@@ -1,0 +1,73 @@
+{
+    "Admission_through": {
+        "UPCET_Counseling or JEE mains": {
+            "Admission_First_Year_Btech": [
+                "The candidate must have passed the intermediate examination of U.P. Board",
+                "10+2 level examination from any recognized board/university",
+                "Securing minimum 45% (40% for SC/ST) marks in total of required subject combination"
+            ],
+            "Admission_First_Year_B.Pharm": [
+                "Candidate must have passed (with/without grace) intermediate examination of U.P. Board",
+                "10+2 level examination or its equivalent with Physics and Chemistry",
+                "compulsory subjects along with Mathematics/ Biology subjects."
+            ],
+            "Admission_First_Year_MCA": [
+                "The candidate must have passed three years degree course from any recognized University;",
+                "securing a minimum 50% (45% for SC/ST) marks in aggregate.",
+                "The candidate must have a minimum 50% (45% for SC/ST) marks in mathematics at 10 + 2 level or bachelor’s degree level."
+            ],
+            "Admission_First_Year_MBA": [
+                "The candidate must have passed three years of degree course from any recognized University;",
+                "securing a minimum 45% (40% for SC/ST) marks in aggregate."
+            ],
+            "Admission_Lateral_Entry_Btech": [
+                "The candidate must have passed three years of Diploma in Engineering",
+                "securing a minimum 45% (40% for SC/ST) marks in mathematics."
+            ],
+            "Admission_Lateral_Entry_B.Pharam": [
+                "The candidate must have passed three years of Diploma in Pharmacy"
+            ],
+            "Other_Process": [
+                "The admission of NRI and Kashmiri migrants will be according to the norms laid down by the Govt of UP/AICTE",
+                "This admission test is open only for candidates who have passed the qualifying examination from any institution located in U.P and the parents, father/mother of the students must be domiciles of U.P"
+            ]
+        },
+        "Direct_Admission": {
+            "Fifteen percent (15%) of the approved": [
+                "Intake of a course is filled under this category as per the Govt. of U.P. and AKTU guidelines",
+                "There is usually a great rush for management quota seats.",
+                "The students need to register themselves early to establish priority."
+            ],
+            "For admission to B.Tech courses": [
+                "The candidate must have passed the intermediate examination or equivalent (10+2) with required subject combination",
+                "The admission criteria is defined by the college admission policy."
+            ],
+            "For admission to the first year of MCA (2 years)": [
+                "A candidate must have passed a bachelor’s degree course of three years minimum duration from any recognized Indian university or its equivalent.",
+                " Candidate must have passed Mathematics at 10+2 level",
+                "graduation level and the admission criteria are defined by the college admission policy."
+            ],
+            "For admission to MBA course": [
+                "The minimum qualification required is three years of bachelor’s degree in any discipline",
+                "the admission criteria are defined by college admission policy."
+            ],
+            "For admission to PGDM course": [
+                "Other criteria defined by the AICTE and affiliating University In PGDM Other criteria defined by the AICTE"
+            ],
+            "For admission to M.Tech course": [
+                "The minimum qualification required is a bachelor’s degree in a relevant discipline.",
+                "MCA is also eligible for the admission to M. Tech (Computer Science & Engineering)",
+                "The admission criteria are defined by the college admission policy."
+            ]
+        },
+            "Twinning_Admission": [
+                "A valid Passport with more than 4 years of expiry",
+                "English proficiency preferably IELTS level 6",
+                "Sufficient funds to manage visa, airfare and living expenses",
+                "No immigration check required",
+                "Minimun 75% marks for Undergraduate Programs",
+                "Minimun 60% marks for Post Graduate Programs with minimum attendance criteria and no backlogs"
+            ]
+        
+    }
+}

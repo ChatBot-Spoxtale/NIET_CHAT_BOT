@@ -1,0 +1,65 @@
+[
+  {
+    "id": "food_non_veg",
+    "category": "Food",
+    "topic": "Non_veg",
+    "text": "No, non-veg food is not available in NIET hostels.",
+    "source": "NIET Hostel FAQ"
+  },
+  {
+    "id": "food_meals",
+    "category": "Food",
+    "topic": "Breakfast / Dinner / Lunch",
+    "text": "Breakfast, lunch, and dinner are available in NIET hostels every day. More information is available on the website.",
+    "source": "NIET Hostel FAQ"
+  },
+  {
+    "id": "food_tea_coffee",
+    "category": "Food",
+    "topic": "Tea / Coffee",
+    "text": "Tea or coffee is available during breakfast in the hostel mess.",
+    "source": "NIET Hostel FAQ"
+  },
+  {
+    "id": "laundry_washing_machine",
+    "category": "Laundary",
+    "topic": "Washing Machine",
+    "text": "Washing machine facilities are provided by the hostel for washing clothes.",
+    "source": "NIET Hostel FAQ"
+  },
+  {
+    "id": "laundry_iron",
+    "category": "Laundary",
+    "topic": "Iron",
+    "text": "Iron is not provided by the hostel.",
+    "source": "NIET Hostel FAQ"
+  },
+  {
+    "id": "hostel_furniture",
+    "category": "Campus Facilities",
+    "topic": "Hostel Furniture",
+    "text": "Hostel rooms are equipped with essential furniture including a bed, almirah, study table, chair, and book shelf for students.",
+    "source": "NIET Hostel FAQ"
+  },
+  {
+    "id": "hostel_wifi",
+    "category": "Campus Facilities",
+    "topic": "Hostel WiFi",
+    "text": "WiFi connectivity is available in the hostel premises for academic and educational purposes.",
+    "source": "NIET Hostel FAQ"
+  },
+  {
+    "id": "hostel_water_facilities",
+    "category": "Campus Facilities",
+    "topic": "Drinking Water Facilities",
+    "text": "RO water supply and water coolers are available in hostels to provide safe drinking water to students.",
+    "source": "NIET Hostel FAQ"
+  },
+  {
+    "id": "hostel_geyser",
+    "category": "Campus Facilities",
+    "topic": "Geyser",
+    "text": "Geyser facilities are provided in hostels to ensure availability of hot water for students.",
+    "source": "NIET Hostel FAQ"
+  }
+]

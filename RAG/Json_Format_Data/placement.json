@@ -1,0 +1,93 @@
+[
+  {
+    "department": "Computer Science Engineering (CSE)",
+    "url": "https://niet.co.in/department/computer-science-engineering/placement",
+    "placements_offered": "640",
+    "highest_package": "40 LPA",
+    "average_package": "5.68 LPA"
+  },
+  {
+    "department": "Computer Science",
+    "url": "https://niet.co.in/department/computer-science/placement",
+    "placements_offered": "61",
+    "highest_package": "23.50 LPA",
+    "average_package": "5.74 LPA"
+  },
+  {
+    "department": "Information Technology (IT)",
+    "url": "https://niet.co.in/department/information-technology/placement",
+    "placements_offered": "351",
+    "highest_package": "26.50 LPA",
+    "average_package": "5.26 LPA"
+  },
+  {
+    "department": "Electronics & Communication Engineering (ECE)",
+    "url": "https://niet.co.in/department/electronics-and-communication-engineering/placement",
+    "placements_offered": "331",
+    "highest_package": "10 LPA",
+    "average_package": "4.68 LPA"
+  },
+  {
+    "department": "Mechanical Engineering",
+    "url": "https://niet.co.in/department/mechanical-engineering/placement",
+    "placements_offered": "78",
+    "highest_package": "10 LPA",
+    "average_package": "4.08 LPA"
+  },
+  {
+    "department": "Biotechnology",
+    "url": "https://niet.co.in/department/biotechnology/placement",
+    "placements_offered": "82",
+    "highest_package": "9 LPA",
+    "average_package": "4.56 LPA"
+  },
+  {
+    "department": "Data Science",
+    "url": "https://niet.co.in/department/data-science/placement",
+    "placements_offered": "171",
+    "highest_package": "23.50 LPA",
+    "average_package": "5.75 LPA"
+  },
+  {
+    "department": "AIML (Artificial Intelligence & Machine Learning)",
+    "url": "https://niet.co.in/department/artificial-intelligence-machine-language-aiml/placement",
+    "placements_offered": "147",
+    "highest_package": "23.50 LPA",
+    "average_package": "5.37 LPA"
+  },
+  {
+    "department": "CSBS (Computer Science & Business Systems)",
+    "url": "https://niet.co.in/department/computer-science-and-business-system/placement",
+    "placements_offered": "26",
+    "highest_package": "9 LPA",
+    "average_package": "5.4 LPA"
+  },
+  {
+    "department": "IoT (Internet of Things)",
+    "url": "https://niet.co.in/department/internet-of-things-iot/placement",
+    "placements_offered": "28",
+    "highest_package": "19.50 LPA",
+    "average_package": "5.53 LPA"
+  },
+  {
+    "department": "Artificial Intelligence",
+    "url": "https://niet.co.in/department/artificial-intelligence/placement",
+    "placements_offered": "122",
+    "highest_package": "19.50 LPA",
+    "average_package": "5.37 LPA"
+  },
+  {
+    "department": "MCA",
+    "url": "https://niet.co.in/department/master-of-computer-application-mca/placement",
+    "placements_offered": "180",
+    "highest_package": "10 LPA",
+    "average_package": "4.49 LPA"
+  },
+  {
+    "department": "MBA",
+    "url": "https://niet.co.in/department/master-of-business-administration-mba/placement",
+    "placements_offered": "493",
+    "highest_package": "10 LPA",
+    "average_package": "4.09 LPA"
+  }
+]
