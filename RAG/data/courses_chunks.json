@@ -1,0 +1,166 @@
+
+[
+    {
+  "seat_data": [
+    {
+      "course": "B.Tech CSE",
+      "seats": 360,
+      "keywords": ["btech cse", "cse seats", "computer science seats", "cse intake"]
+    },
+    {
+      "course": "B.Tech CSE Regional",
+      "seats": 60,
+      "keywords": ["cse regional", "regional cse seats", "cs regional intake"]
+    },
+    {
+      "course": "B.Tech CS",
+      "seats": 180,
+      "keywords": ["btech cs", "cs seats", "computer science seats"]
+    },
+    {
+      "course": "B.Tech IT",
+      "seats": 240,
+      "keywords": ["btech it", "it seats", "information technology seats"]
+    },
+    {
+      "course": "B.Tech ECE",
+      "seats": 120,
+      "keywords": ["ece seats", "electronics seats", "ece intake"]
+    },
+    {
+      "course": "B.Tech VLSI",
+      "seats": 60,
+      "keywords": ["vlsi seats", "very large scale", "vlsi intake"]
+    },
+    {
+      "course": "B.Tech ME",
+      "seats": 60,
+      "keywords": ["mechanical seats", "me seats", "mechanical engineering"]
+    },
+    {
+      "course": "B.Tech Data Science",
+      "seats": 240,
+      "keywords": ["data science seats", "ds seats", "cse ds", "btech ds"]
+    },
+    {
+      "course": "B.Tech AIML",
+      "seats": 240,
+      "keywords": ["aiml seats", "ai ml", "artificial intelligence seats","aiml"]
+    },
+    {
+      "course": "B.Tech Cyber Security",
+      "seats": 120,
+      "keywords": ["cyber security seats", "cy seats", "cyber intake"]
+    },
+    {
+      "course": "B.Tech CSBS",
+      "seats": 60,
+      "keywords": ["csbs seat","btech csbs seat", "business system seats", "cse csbs"]
+    },
+    {
+      "course": "B.Tech IoT",
+      "seats": 120,
+      "keywords": ["iot seats", "internet of things seats"]
+    },
+    {
+      "course": "BCA",
+      "seats": 120,
+      "keywords": ["bca seats", "bca intake"]
+    },
+    {
+      "course": "BBA",
+      "seats": 120,
+      "keywords": ["bba seats", "bba intake"]
+    }
+  ]
+},
+{
+  "duration_data": [
+    {
+      "course": "B.Tech Programs",
+      "duration": "4 Years",
+      "keywords": ["btech duration", "engineering course time", "4 years degree"]
+    },
+    {
+      "course": "BCA",
+      "duration": "3 Years",
+      "keywords": ["bca duration", "3 years course", "bca time period"]
+    },
+    {
+      "course": "BBA",
+      "duration": "3 Years",
+      "keywords": ["bba duration", "management course time"]
+    },
+    {
+      "course": "Working Professional B.Tech (ECE/ME)",
+      "duration": "3 Years",
+      "keywords": ["working professional duration", "btech wp duration"]
+    },
+    {
+      "course": "International Twinning",
+      "duration": "4 Years + Abroad Exposure",
+      "keywords": ["twinning duration", "international duration", "semester abroad"]
+    }
+  ]
+},
+{
+  "why_choose": [
+    {
+      "course": "B.Tech CSE",
+      "reasons": [
+        "Strong placement & industry collaboration",
+        "AI, ML, Cloud, Robotics, Data Analytics exposure"
+      ],
+      "keywords": ["why cse", "cse benefits", "cse scope", "cse at niet"]
+    },
+    {
+      "course": "B.Tech IT",
+      "reasons": [
+        "Direct IT/software industry career path",
+        "Focus on modern computing + problem solving"
+      ],
+      "keywords": ["why it", "it benefits", "it scope", "it at niet"]
+    },
+    {
+      "course": "B.Tech AIML",
+      "reasons": [
+        "Artificial Intelligence + ML focused curriculum",
+        "Future-ready technology skill development"
+      ],
+      "keywords": ["why aiml", "ai ml scope", "aiml benefits"]
+    },
+    {
+      "course": "B.Tech Data Science",
+      "reasons": [
+        "High-demand analytics & data modeling careers",
+        "Hands-on industrial project exposure"
+      ],
+      "keywords": ["why data science", "ds scope", "data science demand"]
+    },
+    {
+      "course": "B.Tech Cyber Security",
+      "reasons": [
+        "Cyber protection, ethical security & hacking domain",
+        "High demand across all industries"
+      ],
+      "keywords": ["why cyber security", "cyber scope", "cs career"]
+    },
+    {
+      "course": "BCA",
+      "reasons": [
+        "Perfect start for IT & Software foundations",
+        "Direct MCA / job / coding career path"
+      ],
+      "keywords": ["why bca", "bca scope", "bca benefits"]
+    },
+    {
+      "course": "BBA",
+      "reasons": [
+        "Best for business, management, corporate jobs",
+        "Leadership, entrepreneurship, finance & HR"
+      ],
+      "keywords": ["why bba", "bba scope", "bba benefits"]
+    }
+  ]
+}
+]

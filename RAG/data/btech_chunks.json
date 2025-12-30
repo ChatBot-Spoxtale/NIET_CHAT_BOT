@@ -1,0 +1,98 @@
+[
+  {
+    "course": "B.Tech CSE (AIML)",
+    "type": "btech",
+    "branch": "cse",
+    "specialization": "aiml",
+    "keywords": ["btech cse aiml","aiml","ai ml","machine learning","artificial intelligence"],
+    "overview": "B.Tech CSE (AIML) is focused on Artificial Intelligence, Machine Learning, Deep Learning & Data Systems.",
+    "properties": {
+      "duration": "4 Years (8 Semesters)",
+      "seats": "60 - 120 (varies yearly)",
+      "eligibility": "10+2 PCM + JEE/UPTAC",
+      "fees": "As per institute admission department"
+    },
+    "placements": {
+      "average": "6-7 LPA (approx)",
+      "highest": "Varies yearly",
+      "recruiters": ["TCS","Infosys","Wipro","Tech Mahindra","Capgemini"]
+    },
+    "subjects": [
+      "Machine Learning", "Deep Learning", "Neural Networks",
+      "Data Science", "NLP", "Computer Vision"
+    ],
+    "facilities": ["AI Lab","IoT Lab","Cloud Lab","Deep Learning Lab"],
+    "career_scope": [
+      "Machine Learning Engineer",
+      "AI Engineer",
+      "Data Scientist",
+      "MLOps Engineer",
+      "NLP Engineer"
+    ]
+  },
+
+  {
+    "course": "B.Tech CSE (AI)",
+    "type": "btech",
+    "branch": "cse",
+    "specialization": "ai",
+    "keywords": ["btech cse ai","cse ai","artificial intelligence","btech ai"],
+    "overview": "B.Tech CSE (AI) emphasizes Artificial Intelligence, automation systems and intelligent computing foundations.",
+    "properties": {
+      "duration": "4 Years (8 Semesters)",
+      "seats": "60 (varies yearly)",
+      "eligibility": "10+2 PCM + JEE/UPTAC",
+      "fees": "Check with admission department"
+    },
+    "placements": {
+      "average": "6 LPA (approx)",
+      "highest": "Varies yearly based on companies",
+      "recruiters": ["TCS","Infosys","Wipro","Accenture","Cognizant"]
+    },
+    "subjects": [
+      "Artificial Intelligence","Data Structures","Algorithms",
+      "Knowledge Engineering","Neural Networks","AI Applications"
+    ],
+    "facilities": ["AI Innovation Lab","Automation Lab","ML Computing Center"],
+    "career_scope": [
+      "AI Engineer","Automation Engineer","Cognitive Systems Developer",
+      "ML Model Trainer","AI Research Assistant"
+    ]
+  },
+
+  {
+    "course": "B.Tech CSE (Data Science)",
+    "type": "btech",
+    "branch": "cse",
+    "specialization": "ds",
+    "keywords": ["btech cse ds","btech data science","cse ds","data science","ds"],
+    "overview": "B.Tech CSE (DS) specializes in Data Science, Big Data, Predictive Analytics and Business Intelligence.",
+    "properties": {
+      "duration": "4 Years (8 Semesters)",
+      "seats": "60 - 120 (as per intake)",
+      "eligibility": "10+2 PCM + JEE/UPTAC",
+      "fees": "Ask admission cell"
+    },
+    "placements": {
+      "average": "6.5 LPA (approx)",
+      "highest": "Depends on placement drive",
+      "recruiters": ["IBM","Deloitte","Accenture","KPMG","TCS Data Team"]
+    },
+    "why_choose": [
+    "High demand in AI-based industries and automation",
+    "Strong placement scope in product and IT companies",
+    "Industry-relevant labs and practical exposure",
+    "Emerging career opportunities in AI & automation",
+    "Future-ready specialization with global scope"
+  ],
+    "subjects": [
+      "Data Structures","Data Analytics","Big Data","SQL & NoSQL",
+      "Python for Data Science","Statistics & Probability","ML & Predictive Models"
+    ],
+    "facilities": ["Data Science Lab","Big Data Lab","Analytics Lab"],
+    "career_scope": [
+      "Data Scientist","Data Analyst","Business Analyst",
+      "ML Engineer","Big Data Engineer"
+    ]
+  }
+]
