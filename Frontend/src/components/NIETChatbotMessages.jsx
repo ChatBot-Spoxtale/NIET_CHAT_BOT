@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import baseKnowledge from "../../../RAG/data/base_knowledge.json"
+import baseKnowledge from "../../../RAG/Json_Format_Data/base_knowledge.json"
 import placement from "../../../RAG/index_store/placement_chunks.json"
 
 function now() {
