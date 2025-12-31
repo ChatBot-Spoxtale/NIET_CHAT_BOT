@@ -23,7 +23,6 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  /* Removed overflow: hidden to allow body scrolling if needed, but keeping app constrained */
 }
 *,
 *::before,
@@ -31,7 +30,6 @@ body,
   box-sizing: border-box;
 }
 
-/* Replaced standard background with a high-end, moving mesh gradient inspired by the "noomo" and "PITMATIC" aesthetic */
 body {
   margin: 0;
   min-height: 100vh;
@@ -44,7 +42,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Added organic animated mesh for the chatbot window specifically */
 .chat-mesh-bg {
   position: absolute;
   inset: 0;
@@ -64,7 +61,6 @@ body {
   }
 }
 
-/* Glassmorphism utility */
 .glass-effect {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
@@ -93,7 +89,6 @@ body {
   transform: translateY(0);
 }
 
-/* Futuristic glass portal effect for the main chat container */
 .glass-portal {
   background: var(--glass-white);
   backdrop-filter: blur(24px) saturate(180%);
@@ -103,7 +98,6 @@ body {
   border-radius: 32px;
 }
 
-/* Premium glass-card for the main chat window */
 .glass-card {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
@@ -112,11 +106,13 @@ body {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
 }
 
-/* Redesigned the chat card to be a clean white card with a soft shadow instead of glassmorphism */
 .chat-window-card {
   @apply bg-white border border-slate-100 shadow-[0_20px_60px_rgba(0,0,0,0.12)] overflow-hidden;
   border-radius: 28px;
   position: relative;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  text-align: left !important;
+  line-height: 1.5 !important;
 }
 
 .chat-window-card::before {
@@ -138,23 +134,19 @@ body {
   }
 }
 
-/* Added a helper for full-screen mobile height to handle dynamic browser toolbars */
 .h-dynamic-screen {
   height: 100vh;
   height: 100dvh;
 }
 
-/* Added overscroll-behavior to prevent scroll shadows/overscroll glow */
 .no-overscroll {
   overscroll-behavior: contain;
 }
 
-/* Styled the header status dot and text */
 .status-indicator {
   @apply w-3 h-3 bg-green-500 rounded-full border-2 border-white;
 }
 
-/* Message bubble styles to match screenshot */
 .bot-bubble {
   @apply bg-white border border-slate-100 rounded-2xl rounded-tl-none text-slate-700 shadow-sm;
 }
@@ -163,30 +155,26 @@ body {
   @apply bg-[#e2111f] text-white rounded-2xl rounded-tr-none shadow-sm;
 }
 
-/* Quick action chip styles */
-/* Updated action chips to be oval-shaped and more consistent */
-.action-chip {
-  @apply flex items-center justify-center text-center py-2 px-4 bg-white border border-slate-200 rounded-full text-[11px] font-bold text-slate-600 transition-all hover:border-[#e2111f] hover:text-[#e2111f] hover:shadow-md active:scale-95;
-}
-
-/* Elegant, uniform pill buttons that handle text gracefully without spilling */
+/* Updated action-pill to be oval (pill-shaped) and adjusted padding/height for a cleaner, balanced look */
 .action-pill {
-  @apply flex items-center justify-center px-3 py-1.5 bg-white border border-slate-200/60 rounded-full transition-all duration-300;
-  @apply text-[10px] font-semibold text-slate-600 tracking-tight leading-tight text-center;
-  min-height: 32px;
-  backdrop-filter: blur(4px);
-  max-width: 100%;
-}
-
-.action-pill span {
-  @apply line-clamp-2 overflow-hidden text-ellipsis;
+  /* Decreased size and padding for better proportions */
+  @apply flex items-center justify-center px-4 py-2 bg-white border border-slate-200 rounded-full transition-all duration-300;
+  @apply text-[12px] font-bold text-slate-700 tracking-tight text-center shadow-sm;
+  min-height: 36px;
 }
 
 .action-pill:hover {
-  @apply bg-white border-[#e2111f] text-[#e2111f] shadow-lg -translate-y-0.5;
+  @apply bg-[#ffebed] border-[#e2111f] text-[#e2111f] shadow-md transform -translate-y-0.5;
 }
 
-/* Launcher button refined size and positioning */
+/* Updated active state to maintain the highlight color with a better shadow */
+.action-pill-active {
+  background-color: #e2111f !important;
+  border-color: #e2111f !important;
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(226, 17, 31, 0.35) !important;
+}
+
 .launcher-btn {
   @apply fixed bottom-5 right-5 z-[100] w-12 h-12 rounded-2xl bg-gradient-to-br from-[#e2111f] to-[#b00d18] flex items-center justify-center shadow-[0_8px_25px_rgba(226,17,31,0.35)] transition-all hover:scale-105 active:scale-95;
 }
@@ -271,7 +259,6 @@ body {
   animation: shimmer 2.5s infinite;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -280,7 +267,6 @@ body {
   border-radius: 10px;
 }
 
-/* Organic message bubbles with asymmetrical corners */
 .organic-bot {
   @apply bg-white border border-slate-100/50 rounded-[22px] rounded-tl-none text-slate-700 shadow-sm backdrop-blur-md;
 }
@@ -291,4 +277,58 @@ body {
 
 .animate-float {
   animation: float-portal 6s ease-in-out infinite;
+}
+
+.fixed {
+  isolation: isolate;
+}
+
+@keyframes bounce-subtle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-typing-dot {
+  animation: bounce-subtle 1s infinite ease-in-out;
+}
+
+.typing-dot-1 {
+  animation-delay: 0s;
+}
+.typing-dot-2 {
+  animation-delay: 0.2s;
+}
+.typing-dot-3 {
+  animation-delay: 0.4s;
+}
+
+.flex-1::-webkit-scrollbar {
+  width: 6px;
+}
+.flex-1::-webkit-scrollbar-track {
+  background: transparent;
+}
+.flex-1::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+.flex-1::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+/* Finalized input and send button height/alignment for a perfectly centered, circular fit */
+form input {
+  height: 50px !important;
+  @apply border-slate-200 bg-slate-50/50 rounded-full;
+}
+
+form button {
+  height: 44px !important;
+  width: 44px !important;
+  @apply shadow-lg rounded-full;
 }
