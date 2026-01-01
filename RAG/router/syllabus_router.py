@@ -2,8 +2,14 @@
 import json
 from RAG.alias_map.alias_map import DEPT_ALIASES  
 
-with open("RAG/data/url_final_chunks.json","r",encoding="utf-8") as f:
-    SYLLABUS_DATA = json.load(f)
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent  
+DATA_PATH = BASE_DIR / "data" / "url_final_chunks.json"
+
+with open(DATA_PATH, "r", encoding="utf-8") as f:
+    SYLLABUS_DATA = f.read()
+
 
 def normalize_query(q: str):
     q = q.lower().strip()
