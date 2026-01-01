@@ -2,9 +2,11 @@
 
 import json, os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+from pathlib import Path
 
-with open("RAG/data/about_course_chunks.json", "r", encoding="utf-8") as f:
-    ABOUT_DATA = json.load(f)
+
+BASE_DIR = Path(__file__).resolve().parent.parent  
+DATA_PATH = BASE_DIR / "data" / "about_course_chunks.json"
 
 
 

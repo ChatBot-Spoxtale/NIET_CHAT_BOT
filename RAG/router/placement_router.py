@@ -1,11 +1,11 @@
 # RAG/routers/placement_router.py
 import json, os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+from pathlib import Path
 
-from RAG.alias_map.alias_map import DEPT_ALIASES  
 
-with open("RAG/data/placements_final_chunks.json","r",encoding="utf-8") as f:
-    PLACEMENT_DATA = json.load(f)
+BASE_DIR = Path(__file__).resolve().parent.parent  
+DATA_PATH = BASE_DIR / "data" / "placements_final_chunks.json"
 
 def normalize(q: str):
     q = q.lower().strip()
