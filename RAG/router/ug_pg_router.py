@@ -21,7 +21,6 @@ def ug_pg_router(query: str):
     for data in UGPG_DATA:
         if any(k in q for k in data.get("keywords", [])):
 
-            # Placement queries
             if any(w in q for w in ["placement","package","salary","highest","average"]):
                 plc = data.get("placements", {})
                 return f"""Placement - {data['course']}
@@ -29,7 +28,6 @@ def ug_pg_router(query: str):
 • Highest Package: {plc.get('highest','NA')}
 • Source: {plc.get('source_url','NA')}"""
 
-            # Overview queries
             if any(w in q for w in ["overview","about","details","information"]):
                 return f"""{data['course']} - Overview
 {data.get('overview','No overview found.')}"""

@@ -1,9 +1,7 @@
 import os
 import requests
 
-# -----------------------------
-# 🔧 BASIC OLLAMA CONFIG
-# -----------------------------
+
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
 MODEL_NAME = os.getenv("OLLAMA_MODEL", "gemma3:1b")
 
@@ -24,9 +22,6 @@ def ask_ollama_with_context(user_query: str, rag_context: str = "") -> str:
 
 
 
-# ----------------------------------------------------
-# 🔥 DIRECT MODEL CALL (if ever needed)
-# ----------------------------------------------------
 def ask_ollama_raw(prompt: str) -> str:
     HUMANIZED_PROMPT = f"""
 You are NIET’s Virtual Assistant with friendly personality.
@@ -63,19 +58,16 @@ USER QUESTION:
         response = requests.post(OLLAMA_URL, json=payload, timeout=30)
         if response.status_code == 200:
             return response.json().get("response", "").strip()
-        return f"⚠️ Model error: HTTP {response.status_code}"
+        return f"Model error: HTTP {response.status_code}"
 
     except requests.exceptions.ConnectionError:
-        return "❌ Ollama server offline. Run: ollama serve"
+        return "Ollama server offline. Run: ollama serve"
     except Exception as e:
-        return f"⚠️ Error: {str(e)}"
+        return f" Error: {str(e)}"
 
 
 
-# ----------------------------------------------------
-# 🧪 TEST FROM TERMINAL
-# ----------------------------------------------------
 if __name__ == "__main__":
     while True:
         q = input("\n❓ You: ")
-        print("🤖 Bot:", ask_ollama_with_context(q))
+        print(" Bot:", ask_ollama_with_context(q))

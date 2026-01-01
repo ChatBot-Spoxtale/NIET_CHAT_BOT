@@ -17,7 +17,6 @@ def normalize(text: str) -> str:
 def mtech_router(query: str):
     q = normalize(query)
 
-    # Accept alternate names for M.Tech
     if not any(word in q for word in [
     "mtech", "m tech", "m.tech",
     "master of technology", "master in technology",

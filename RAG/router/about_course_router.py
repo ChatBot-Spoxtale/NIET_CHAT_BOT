@@ -69,9 +69,7 @@ def about_course_router(query: str):
     return "Course not found in data. Please check the course name."
 
 
-# ----------------------------------------------------
-# 🖼 RESPONSE TEMPLATE
-# ----------------------------------------------------
+
 def format_response(item):
     return f"""
 

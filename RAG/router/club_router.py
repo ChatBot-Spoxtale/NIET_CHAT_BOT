@@ -5,20 +5,16 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")
 from Ollama.llm_client import ask_ollama_with_context
 
 
-# -------------- LOAD CLUB DATA --------------
 with open("RAG/data/club_chunks.json","r",encoding="utf-8") as f:
     CLUB_DATA = json.load(f)
 
 
-# -------------- NORMALIZE FUNCTION (Fix misspellings & aliases) --------------
 def club_normalize(q: str) -> str:
     q = q.lower().strip()
 
-    # remove symbols
     for ch in ["?", ",", ".", ":", "-"]:
         q = q.replace(ch, " ")
 
-    # spelling fixes
     corrections = {
         "scoieties": "societies",
         "scoiety": "society",
@@ -35,7 +31,6 @@ def club_normalize(q: str) -> str:
         "hid ": "hope in darkness",
         "hope darkness": "hope in darkness",
 
-        # IMPORTANT FIX for YOUR PROBLEM
         "khushiyan baton": "khushiyan baaton club",
         "khushiyan baaton": "khushiyan baaton club",
         "khushiyan batton": "khushiyan baaton club",
@@ -134,7 +129,6 @@ def format_list(title, arr):
            "\n\n🔗 Full list: https://niet.co.in/students-life/student-clubs-societies"
 
 
-# -------------- MAIN ROUTER FUNCTION --------------
 def club_router(query: str):
     q = club_normalize(query)
 
@@ -151,27 +145,23 @@ def club_router(query: str):
         return format_list("Cultural & Hobby Clubs", CULTURAL)
 
 
-    # Exact Name Match (fix for Khushiyan Baaton, HID, etc.)
     for item in CLUB_DATA:
         name = item.get("club_name","").lower()
         answer = item.get("answer","")
 
         if any(bad in name for bad in BAD_PATTERNS):
-            continue  # skip garbage entries
+            continue  
 
-        # FINAL CORRECT MATCH LOGIC
         if name == q or name in q or q in name:
             return answer
 
 
-    #  Keyword Lookup
     for item in CLUB_DATA:
         for kw in item.get("keywords", []):
             if kw.lower() in q:
                 return item.get("answer")
 
 
-    # Full list fallback
     clean = [
         c["club_name"] for c in CLUB_DATA
         if not any(bad in c["club_name"].lower() for bad in BAD_PATTERNS)
@@ -180,7 +170,6 @@ def club_router(query: str):
 
 
 
-# ---------- Local Test ----------
 if __name__ == "__main__":
     test_queries = [
         # "list of clubs",
@@ -194,6 +183,4 @@ if __name__ == "__main__":
     ]
 
     for q in test_queries:
-        print("Q:", q)
         print(club_router(q))
-        print("-"*40)

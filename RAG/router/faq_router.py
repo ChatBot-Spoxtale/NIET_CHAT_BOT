@@ -33,59 +33,6 @@ def clean(text: str) -> str:
 def keyword_faq_router(query: str):
     q = clean(query)
 
-#     if any(x in q for x in [
-#     "tell about niet","about niet","niet information","overview of niet","niet intro"
-# ]):
-#         return """
-# About NIET (Noida Institute of Engineering & Technology)
-
-# NIET is an AICTE-approved, AKTU-affiliated institute known for:
-# • Industry-oriented B.Tech & M.Tech programs 
-# • MCA / MBA / PGDM professional degrees
-# • Active research labs & international tie-ups
-# • Strong placement culture & corporate partnerships
-
-# If you want for a specific course (CSE, AIML, IT, Mechanical etc), ask:
-# tell about btech cse
-#     """
-
-
-#     if any(x in q for x in [
-#     "niet research","research in niet","research facility","research labs",
-#     "research centre","research center","innovation hub","centre of excellence"
-# ]):
-#         return """
-# Research at NIET
-
-# NIET has multiple research & innovation facilities:
-# • AI & Machine Learning Labs
-# • IoT / VLSI / Embedded Systems Research Units
-# • Entrepreneurship & Innovation Cell
-# • Incubation Center for Startups
-# • Industrial Collaboration Projects with TCS / IBM / Infosys (as per department)
-# • Support for publications, internships & patent filing
-
-# For official research info:
-# Visit the Research/Innovation section on NIET website.
-# """ 
-
-# # 🎯 HARD-CODED NIET RANKING RESPONSE
-#     if "niet ranking" in q or "ranking of niet" in q or "nirf" in q or "college ranking" in q or "ranking" in q:
-#         return """
-# NIET Ranking Information
-
-# NIET has been consistently listed among reputed engineering institutions.
-# - Ranked in top engineering colleges in AKTU region
-# - Listed in NIRF (National Institutional Ranking Framework) category
-# - Known for strong placement performance & campus environment
-
-# For latest official rank:
-# Visit NIRF website or NIET official ranking page (updated yearly)
-
-# Would you like details for *placements* or *admission* next?
-# """
-
-
     if any(b in q for b in BLOCK_KEYWORDS):
         return None
 

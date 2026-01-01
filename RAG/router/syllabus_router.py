@@ -37,9 +37,8 @@ def detect_department(q: str):
         for alias in aliases:
             if alias in q:
                 return dept
-    return None  # no match
+    return None  
 
-#extract pdf
 import re
 
 def extract_url(text: str):
@@ -203,6 +202,4 @@ if __name__ == "__main__":
 
     ]
     for t in tests:
-        print("Q:",t)
         print(syllabus_router(t))
-        print("-"*50)

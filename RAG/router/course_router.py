@@ -6,7 +6,6 @@ import os, json
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(BASE_DIR, "../data/courses_chunks.json")
 
-# ------------ SAFE JSON LOADING ------------
 with open(JSON_PATH, "r", encoding="utf-8") as f:
     content = f.read().strip()
     if not content:
@@ -17,7 +16,6 @@ SEAT_DATA = RAW_DATA[0]["seat_data"]
 DURATION_DATA = RAW_DATA[1]["duration_data"]
 WHY_CHOOSE_DATA = RAW_DATA[2]["why_choose"]
 
-# ------------ CATEGORY TRIGGERS ------------
 CATEGORY_MAP = {
     "seat": ["seats", "intake", "kitna", "kitne", "how many","seets"],
     "duration": ["duration", "years", "kitne saal", "time period", "course time"],
@@ -28,9 +26,8 @@ def detect_category(q):
     for key, triggers in CATEGORY_MAP.items():
         if any(t in q for t in triggers):
             return key
-    return None  # fallback
+    return None  
 
-# ------------ FUZZY MATCHING ------------
 def fuzzy_search(query, dataset):
     q = query.lower()
     all_keywords = [kw for item in dataset for kw in item["keywords"]]
@@ -44,7 +41,6 @@ def fuzzy_search(query, dataset):
 
     return None
 
-# ------------ MAIN ROUTER ------------
 def course_router(query: str):
     q = query.lower().strip()
     category = detect_category(q)
@@ -69,16 +65,13 @@ def course_router(query: str):
     return " I found nothing. Check spelling or ask like:\n- btech cse seats\n- bca duration\n- why choose aiml"
 
 
-# ------------ TESTS ------------
 if __name__ == "__main__":
     queries = [
         "btech csbs seat",
         "duration of bca",
         "why choose cyber security",
-        "aiml seets",     # fuzzy match test
+        "aiml seets",     
         "cse datta science scope"
     ]
     for q in queries:
-        print("Q:", q)
         print(course_router(q))
-        print("-" * 40)

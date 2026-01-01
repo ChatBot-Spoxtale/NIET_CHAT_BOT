@@ -1,7 +1,6 @@
 # RAG/routers/about_niet_router.py
 import json, os, sys
 
-# allow imports to work from root
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 from Ollama.llm_client import ask_ollama_with_context
@@ -44,7 +43,7 @@ def about_niet_router(query: str):
 
         if any(word in question for word in q.split()):
             return f"""
-🏛️ About NIET
+About NIET
 {ans}
 
 Need more:-
@@ -55,7 +54,6 @@ Need more:-
 • Clubs & Activities
             """.strip()
 
-    # If detected as NIET query but no exact match
     if "niet" in q:
         return """
 NIET (Noida Institute of Engineering & Technology) is an AICTE-approved,

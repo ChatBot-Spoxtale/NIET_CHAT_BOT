@@ -2,13 +2,11 @@
 import json, os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from RAG.alias_map.alias_map import DEPT_ALIASES  # same alias map you're maintaining
+from RAG.alias_map.alias_map import DEPT_ALIASES  
 
-# Load placement dataset
 with open("RAG/data/placements_final_chunks.json","r",encoding="utf-8") as f:
     PLACEMENT_DATA = json.load(f)
 
-# Normalize user query
 def normalize(q: str):
     q = q.lower().strip()
 
@@ -51,7 +49,6 @@ def normalize(q: str):
     return q
 
 
-# ------------------ KEYWORD MATCH MAP ------------------
 PLACEMENT_KEYWORDS = {
     "mechanical": [
         "mechanical", "me", "btech me", "mechanical engineering", "mech", "me engg"
@@ -78,7 +75,6 @@ PLACEMENT_KEYWORDS = {
     "mba": ["mba", "masters of business administration"]
 }
 
-# Detect which department user asked
 def detect_department(q: str):
     q = normalize(q)
     for dept, aliases in PLACEMENT_DATA.items():
@@ -88,7 +84,6 @@ def detect_department(q: str):
     return None
 
 
-# Extract the metric asked (average/highest/count)
 def detect_metric(q: str):
     if "average" in q or "avg" in q:
         return "average"
@@ -96,10 +91,9 @@ def detect_metric(q: str):
         return "highest"
     if "how many" in q or "count" in q or "total" in q:
         return "placements"
-    return None  # if no metric → give general placement summary
+    return None  
 
 
-# -------------- MAIN ROUTER --------------
 def placement_router(query: str):
     q = normalize(query)
     
@@ -112,14 +106,12 @@ def placement_router(query: str):
     if not dept:
         return "Please specify department like: CSE, AIML, DS, IoT, CSBS, MCA, MBA, ME etc."
 
-    # ✔ Search exact match in dataset
     results = []
     for item in PLACEMENT_DATA:
         text = normalize(item.get("question",""))
         ans = item.get("answer","")
 
-        if dept in text:  # department matched
-            # If metric asked, filter accordingly
+        if dept in text: 
             if metric == "average" and "average" in text:
                 return ans
             if metric == "highest" and "highest" in text:
@@ -129,14 +121,12 @@ def placement_router(query: str):
             
             results.append(ans)
 
-    # If department found but no metric match, give overview
     if results:
         return f"{dept.upper()} Placement Details\n" + results[0]
 
     return f"No placement record found for {dept.upper()}in dataset."
 
 
-# Debug run:
 if __name__ == "__main__":
     print(placement_router("average package of btech aiml"))
     print(placement_router("highest package in cse ai"))
