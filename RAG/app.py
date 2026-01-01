@@ -51,7 +51,9 @@ SMALL_TALK = [
 COURSE_INDICATORS = [
     "btech","b.tech","mtech","m.tech","mba","mca","bca","bba",
     "cse","it","aiml","ai ml","ece","civil","mechanical",
-    "syllabus","seats","duration","fees","eligibility","placement"
+    "syllabus","seats","duration","fees","eligibility","placement",
+    "club","non veg","iron","washing machine","fees","about","niet","ranking","area","research",
+    "admission","document","facilities","bus","hostel","transport"
 ]
 
 
