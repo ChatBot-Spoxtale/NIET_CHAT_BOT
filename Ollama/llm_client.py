@@ -1,8 +1,10 @@
 import os
 import requests
 
-
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
+OLLAMA_URL = os.getenv(
+    "OLLAMA_URL",
+    "https://carman-unexercisable-snarly.ngrok-free.dev/api/generate"
+)
 MODEL_NAME = os.getenv("OLLAMA_MODEL", "gemma3:1b")
 
 

@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react"
 import baseKnowledge from "../../../RAG/Json_Format_Data/base_knowledge.json"
-import placement from "../../../RAG/index_store/placement_chunks.json"
 
 function now() {
   return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
