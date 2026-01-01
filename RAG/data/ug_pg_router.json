@@ -1,0 +1,120 @@
+[
+    {
+        "course": "MBA - Master of Business Administration",
+        "type": "pg",
+        "branch": "mba",
+        "specialization": " ",
+        "keywords": [
+            "mba",
+            "master of bussiness administration"
+        ],
+        "overview": "The MBA program is designed for ambitious professionals looking to elevate their careers, gain cutting-edge business knowledge, and develop leadership skills that make a real impact in the global business landscape. At NIET, we offer a comprehensive curriculum, industry-driven, innovative, and experiential learning for the holistic development of management graduates. Postgraduates from NIET are highly desirable job candidates because they are self-directed, ethical, and effective contributors in their communities.",
+        "properties": {
+            "duration": "2 Years (4 Semesters)",
+            "seats": "300(varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department"
+        },
+        "placements": {
+            "average": "4.09 LPA (approx)",
+            "highest": "10 LPA ",
+            "source_url": "https://niet.co.in/department/master-of-business-administration-mba/placement"
+        },
+        "why_choose": [
+            "Apply knowledge of management theories and practices to solve business problems.",
+            "Foster analytical and critical thinking abilities for data-based decision making.",
+            "Ability to develop value-based leadership ability.",
+            "Ability to understand, analyze and communicate global, economic, legal, and ethical aspects of business."
+        ]
+    },
+    {
+        "course": "Master of Computer Applications",
+        "type": "pg",
+        "branch": "mca",
+        "specialization": "",
+        "keywords": [
+            "mca",
+            "master of computer science",
+            "master of cs"
+        ],
+        "overview": "The Working Professional in Mechanical Engineering for PG (M. Tech.) course offered by the School of Mechanical Engineering at Noida Institute of Engineering and Technology in Greater Noida is uniquely tailored to address the demands of Industry 4.0, the era characterized by the integration of advanced technologies into manufacturing and production processes. This program emphasizes cutting-edge topics such as automation, robotics, artificial intelligence, and cyber-physical systems, which are at the forefront of the Industry 4.0 revolution.",
+        "properties": {
+            "duration": "2 Years (4 Semesters)",
+            "seats": "420(varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department"
+        },
+        "placements": {
+            "average": "4.49 LPA (approx)",
+            "highest": "10 LPA ",
+            "source_url": "https://niet.co.in/department/master-of-computer-application-mca/placement"
+        },
+        "why_choose": [
+            "To develop/apply knowledge of computing fundamentals, computing specialization, mathematics, and domain knowledge for solving real-world problems.",
+            "Identify formulated review research literature and analyze complex problems reaching substantial conclusions using first fundamental principles of mathematics, computing science, and relevant domain specific.",
+            "Ability to design and evaluate systems, components, or processes for complex computing problems that meet specified needs with appropriate consideration for public health and safety and cultural societal, and environmental considerations.",
+            "Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions."
+        ]
+    },
+    {
+        "course": "Bachelor of Computer Applications",
+        "type": "ug",
+        "branch": "bca",
+        "specialization": " ",
+        "keywords": [
+            "bca",
+            "bca course",
+            "bca degree",
+            "bca placement",
+            "bca placements",
+            "bca admission",
+            "bca in niet"
+        ],
+        "overview": "Noida Institute of Engineering & Technology, An Autonomous Institute, coming up with the popular course among students of India - Bachelor of Computer Application 3 years course with high demand all over the IT sector. This program is one of the top choices in BCA colleges in Greater Noida, (Delhi NCR) for students seeking a strong foundation in computer applications. The program is streamlined to meet the challenges in the IT industry.",
+        "properties": {
+            "duration": "3 Years (6 Semesters)",
+            "seats": "120 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department"
+        },
+        "placements": {
+            "average": "4.68 LPA (approx)",
+            "highest": "10 LPA",
+            "source_url": "https://niet.co.in/department/electronics-and-communication-engineering/placement"
+        },
+        "why_choose": [
+            "To develop/apply knowledge of computing fundamentals, computing specialization, mathematics, and domain knowledge for solving real-world problems.",
+            "Identify formulated review research literature and analyze complex problems reaching substantial conclusions using first fundamental principles of mathematics, computing science, and relevant domain specific.",
+            "Ability to design and evaluate systems, components, or processes for complex computing problems that meet specified needs with appropriate consideration for public health and safety and cultural societal, and environmental considerations.",
+            "Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions."
+        ]
+    },
+    {
+        "course": "BBA - Bachelor of Business Administration",
+        "type": "ug",
+        "branch": "bba",
+        "specialization": " ",
+        "keywords": [
+            "bba  ",
+            "bachelor of business administration"
+        ],
+        "overview": "VLSI, or Very-Large-Scale Integration, is a branch of electronics engineering that deals with the design, fabrication and manufacturing of chips or integrated circuits (ICs) that contain a very large number of transistors. The field of very-large-scale integration (VLSI) in India is currently experiencing rapid growth and development. There has been a significant increase in the number of companies and research institutions working in this area.",
+        "properties": {
+            "duration": "3 Years (6 Semesters)",
+            "seats": "120 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department"
+        },
+        "placements": {
+            "average": "4.68 LPA (approx)",
+            "highest": "10 LPA",
+            "source_url": "https://niet.co.in/department/electronics-and-communication-engineering/placement"
+        },
+        "why_choose": [
+            "Apply knowledge of management theories and practices to solve business problems.",
+            "Foster analytical and critical thinking abilities for data-based decision making.",
+            "Ability to develop value-based leadership ability.",
+            "Ability to understand, analyze and communicate global, economic, legal, and ethical aspects of business."
+        ]
+    }
+]
