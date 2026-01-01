@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import baseKnowledge from "../../../RAG/Json_Format_Data/base_knowledge.json"
+import placement from "../../../RAG/Json_Format_Data/base_knowledge.json"
 
 function now() {
   return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
@@ -27,22 +28,31 @@ const getCoursesByLevel = (level) => {
 }
 
 const getPlacementFromBase = (department) => {
-  const courses = baseKnowledge.courses ?? {};
+  const normalize = (str) =>
+    str?.toLowerCase()
+      .replace(/[\.\-\(\)]/g, "") 
+      .replace(/\s+/g, " ")       
+      .trim();
+
+  const query = normalize(department);
+  const courses = placement.courses ?? {};
+
   for (const key in courses) {
     const course = courses[key];
-    const name = course.course_name?.toLowerCase();
+    const name = normalize(course.course_name);
 
-    if (name && name.includes(department.toLowerCase()) && course.placement) {
+    if (name.includes(query) && course.placement) {
       const p = course.placement;
       return `
-Highest Package: ${p.highest_package} 
-Average Package: **${p.average_package}
-Offers: ${p.placement_offer} 
 
-Official Link: ${course.source_url}`;
+Highest Package: ${p.highest_package}
+Average Package: ${p.average_package}
+Offers: **${p.placement_offer}+
+Official Link: ${course.source_url}
+      `;
     }
   }
-  return "❌ Placement not found for this department.";
+  return `Placement not found for "${department}".`;
 };
 
 
@@ -180,10 +190,7 @@ export default function NIETChatbotMessages() {
       )
       return
     }
-    if (opt === "Placement Records") {
-      pushOptions(getPlacement(), true)
-      return
-    }
+  
    if (opt === "Placement Records") {
   const deptList = Object.values(baseKnowledge.courses)
     .filter(c => c.placement)
