@@ -27,17 +27,25 @@ const getCoursesByLevel = (level) => {
   return []
 }
 
-const getPlacement = () => {
-  const seen = new Set()
+const getPlacementFromBase = (department) => {
+  const courses = baseKnowledge.courses ?? {};
+  for (const key in courses) {
+    const course = courses[key];
+    const name = course.course_name?.toLowerCase();
 
-  return placement
-    .filter((item) => {
-      if (seen.has(item.department)) return false
-      seen.add(item.department)
-      return true
-    })
-    .map((item) => item.department)
-}
+    if (name && name.includes(department.toLowerCase()) && course.placement) {
+      const p = course.placement;
+      return `
+Highest Package: ${p.highest_package} 
+Average Package: **${p.average_package}
+Offers: ${p.placement_offer} 
+
+Official Link: ${course.source_url}`;
+    }
+  }
+  return "❌ Placement not found for this department.";
+};
+
 
 function renderWithLinks(text) {
   const urlRegex = /(https?:\/\/[^\s]+)/g
@@ -177,10 +185,21 @@ export default function NIETChatbotMessages() {
       pushOptions(getPlacement(), true)
       return
     }
-    if (placement.some((p) => p.department === opt)) {
-      sendMessage(`placement record of ${opt}`)
-      return
-    }
+   if (opt === "Placement Records") {
+  const deptList = Object.values(baseKnowledge.courses)
+    .filter(c => c.placement)
+    .map(c => c.course_name);
+    
+  pushOptions(deptList, true);
+  return;
+}
+
+const placementData = getPlacementFromBase(opt);
+if (placementData) {
+  pushBot(placementData);
+  return;
+}
+
     if (opt === "Institute") {
       pushBot(
         `You selected ${opt}. What do you want to know about the ${opt} (overview, rankings, awards, or international_alliances.)`,
@@ -234,7 +253,7 @@ export default function NIETChatbotMessages() {
     setIsSending(true)
 
     try {
-      const res = await fetch("http://localhost:8000/chat", {
+      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
         method: "POST",
         mode: "cors",
         headers: { "Content-Type": "application/json" },
