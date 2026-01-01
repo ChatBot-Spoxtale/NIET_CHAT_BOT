@@ -3,8 +3,8 @@
 import json, os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-with open("RAG/data/admission_chunks.json", "r", encoding="utf-8") as f:
-    ADMISSION_DATA = json.load(f)
+BASE_DIR = Path(__file__).resolve().parent.parent  
+DATA_PATH = BASE_DIR / "data" / "admission_chunks.json"
 
 
 def clean_text(text: str):

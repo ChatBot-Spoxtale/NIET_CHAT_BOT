@@ -5,8 +5,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")
 from Ollama.llm_client import ask_ollama_with_context
 
 
-with open("RAG/data/club_chunks.json","r",encoding="utf-8") as f:
-    CLUB_DATA = json.load(f)
+BASE_DIR = Path(__file__).resolve().parent.parent  
+DATA_PATH = BASE_DIR / "data" / "club_chunks.json"
 
 
 def club_normalize(q: str) -> str:
