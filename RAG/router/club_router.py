@@ -2,8 +2,6 @@
 import json, os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from Ollama.llm_client import ask_ollama_with_context
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent  
 DATA_PATH = BASE_DIR / "data" / "club_chunks.json"
