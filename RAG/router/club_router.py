@@ -1,6 +1,7 @@
 # RAG/routers/club_router.py
 import json, os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent  
