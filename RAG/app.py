@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-ROOT = Path(__file__).resolve().parents[0]
+ROOT = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT))
 
 from RAG.query_rag_2 import answer_rag
