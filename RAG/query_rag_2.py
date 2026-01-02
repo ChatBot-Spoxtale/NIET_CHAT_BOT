@@ -54,7 +54,7 @@ def answer_rag(query:str):
 
     if "syllabus" in q or "pdf" in q or "subject" in q or "subjects" in q or "circulum" in q:
         syllabus=syllabus_router(q)
-        if syllabus
+        if syllabus:
             "Please visit out website for information:- https://www.niet.co.in/academics/syllabus"
 
     if "club" in q or "clubs" in q or "Club" in q or "Clubs":
