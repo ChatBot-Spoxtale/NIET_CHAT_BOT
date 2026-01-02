@@ -232,6 +232,25 @@ if (placementData) {
   return;
 }
 
+if (
+  selectedOptions.has("Placement Records") &&
+  (
+    opt.toLowerCase().includes("b.tech") ||
+    opt.toLowerCase().includes("m.tech") ||
+    opt.toLowerCase().includes("twinning") ||
+    opt.toLowerCase().includes("tech")
+  )
+) {
+  pushBot(
+    `Placement data for ${opt} is currently not available.
+
+ Placements at NIET are largely centralized.
+ For official & latest placement updates, please visit:
+
+https://www.niet.co.in/placement`
+  );
+  return; 
+}
     if (opt === "Institute") {
       pushBot(
         `You selected ${opt}. What do you want to know about the ${opt} (overview, rankings, awards, or international_alliances.)`,
