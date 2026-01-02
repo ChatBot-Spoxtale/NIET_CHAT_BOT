@@ -52,7 +52,7 @@ Official Link: ${course.source_url}
       `;
     }
   }
-  return `Placement not found for "${department}".`;
+  return null;
 };
 
 
