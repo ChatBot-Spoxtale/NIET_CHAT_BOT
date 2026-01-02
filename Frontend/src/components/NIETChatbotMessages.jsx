@@ -241,16 +241,24 @@ if (
     opt.toLowerCase().includes("tech")
   )
 ) {
-  pushBot(
-    `Placement data for ${opt} is currently not available.
+  (async () => {
+    const success = await sendMessage(`placement record of ${opt}`);
 
- Placements at NIET are largely centralized.
- For official & latest placement updates, please visit:
+    if (!success) {
+      pushBot(
+        `📊 Placement data for ${opt} is currently not available.
+
+Placements at NIET are largely centralized.
+For official & latest placement updates, please visit:
 
 https://www.niet.co.in/placement`
-  );
-  return; 
+      );
+    }
+  })();
+
+  return;
 }
+
     if (opt === "Institute") {
       pushBot(
         `You selected ${opt}. What do you want to know about the ${opt} (overview, rankings, awards, or international_alliances.)`,
@@ -298,28 +306,38 @@ https://www.niet.co.in/placement`
     sendMessage(`About ${opt} in NIET`)
   }
 
-  const sendMessage = async (text) => {
-    pushUser(text)
-    setTyping(true)
-    setIsSending(true)
+ const sendMessage = async (text) => {
+  pushUser(text);
+  setTyping(true);
+  setIsSending(true);
 
-    try {
-      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: text }),
-      })
-      const data = await res.json()
-      await delay(600)
-      pushBot(data.final_answer || data.answer || "Server replied but no message found.")
-    } catch {
-      pushBot("Server error. Please try again.")
-    } finally {
-      setTyping(false)
-      setIsSending(false)
+  try {
+    const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: text }),
+    });
+
+    const data = await res.json();
+    await delay(600);
+
+    const answer = data.final_answer || data.answer;
+
+    if (!answer || answer.toLowerCase().includes("i don't know")) {
+      return false; 
     }
+
+    pushBot(answer);
+    return true; 
+  } catch {
+    return false; 
+  } finally {
+    setTyping(false);
+    setIsSending(false);
   }
+};
+
 
   return (
     <div className="h-full flex flex-col bg-white overflow-hidden relative">
