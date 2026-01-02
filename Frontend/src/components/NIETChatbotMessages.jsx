@@ -191,14 +191,40 @@ export default function NIETChatbotMessages() {
       return
     }
   
-   if (opt === "Placement Records") {
-  const deptList = Object.values(baseKnowledge.courses)
-    
-    .map(c => c.course_name);
-    
-  pushOptions(deptList, true);
+  
+if (opt === "Placement Records") {
+  pushOptions(
+    ["B.Tech Programs", "M.Tech Programs", "Twinning Programs"],
+    true
+  );
   return;
 }
+
+
+if (opt === "B.Tech Programs") {
+  pushOptions(
+    getCoursesByLevel("UG").map(c => c.course_name),
+    true
+  );
+  return;
+}
+
+if (opt === "M.Tech Programs") {
+  pushOptions(
+    getCoursesByLevel("PG").map(c => c.course_name),
+    true
+  );
+  return;
+}
+
+if (opt === "Twinning Programs") {
+  pushOptions(
+    getCoursesByLevel("TWINNING").map(c => c.course_name),
+    true
+  );
+  return;
+}
+
 
 const placementData = getPlacementFromBase(opt);
 if (placementData) {
