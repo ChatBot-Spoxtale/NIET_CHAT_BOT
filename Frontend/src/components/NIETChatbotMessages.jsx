@@ -47,7 +47,7 @@ const getPlacementFromBase = (department) => {
 
 Highest Package: ${p.highest_package}
 Average Package: ${p.average_package}
-Offers: **${p.placement_offer}+
+Offers: ${p.placement_offer}
 Official Link: ${course.source_url}
       `;
     }
@@ -193,7 +193,7 @@ export default function NIETChatbotMessages() {
   
    if (opt === "Placement Records") {
   const deptList = Object.values(baseKnowledge.courses)
-    .filter(c => c.placement)
+    
     .map(c => c.course_name);
     
   pushOptions(deptList, true);
