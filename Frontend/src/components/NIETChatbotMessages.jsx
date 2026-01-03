@@ -270,106 +270,13 @@ const [currentFlow, setCurrentFlow] = useState(null);
 };
 
 
-// const handleOptionClick = (opt, messageId) => {
-//   pushUser(opt);
-
-//   setMessages((prev) =>
-//     prev.map((m) => (m.id === messageId ? { ...m, selectedValue: opt } : m))
-//   );
-
-//   /* =======================
-//      COURSES FLOW
-//   ======================= */
-
-//   if (opt === "Courses Offered") {
-//     pushOptions(["Undergraduate Programs", "Postgraduate Programs", "Twinning Programs"], true);
-//     return;
-//   }
-
-//   if (opt === "Undergraduate Programs") {
-//     pushOptions(getCoursesByLevel("UG").map(c => c.course_name), true);
-//     return;
-//   }
-
-//   if (opt === "Postgraduate Programs") {
-//     pushOptions(getCoursesByLevel("PG").map(c => c.course_name), true);
-//     return;
-//   }
-
-//   if (opt === "Twinning Programs") {
-//     pushOptions(getCoursesByLevel("TWINNING").map(c => c.course_name), true);
-//     return;
-//   }
-
-//   /* =======================
-//      COURSE OVERVIEW (NO BACKEND)
-//   ======================= */
-
-//   const course = getCourseByName(opt);
-//   if (course) {
-//     pushBot(course.overview || "Overview not available.");
-//     return;
-//   }
-
-//   /* =======================
-//      PLACEMENT FLOW
-//   ======================= */
-
-//   if (opt === "Placement Records") {
-//     pushOptions(["B.Tech Programs", "M.Tech Programs", "Twinning Programs"], true);
-//     return;
-//   }
-
-//   const placement = getPlacementFromBase(opt);
-//   if (placement) {
-//     pushBot(placement);
-//     return;
-//   }
-
-//   /* =======================
-//      ACTIVITIES
-//   ======================= */
-
-//   if (opt === "Activities") {
-//     pushOptions(["Events", "Club"], true);
-//     return;
-//   }
-
-//   if (opt === "Club") {
-//     sendMessage("list of clubs"); // backend needed
-//     return;
-//   }
-
-//   /* =======================
-//      ADMISSION
-//   ======================= */
-
-//   if (opt === "Admission") {
-//     pushOptions(["Direct Admission", "Counselling", "Twinning"], true);
-//     return;
-//   }
-
-//   if (opt === "Direct Admission") {
-//     sendMessage("How can I get direct admission?");
-//     return;
-//   }
-
-//   if (opt === "Counselling") {
-//     sendMessage("Admission process for first year BTech");
-//     return;
-//   }
-
-
-//   sendMessage(opt); // only here backend is allowed
-// };
-
  const sendMessage = async (text) => {
   pushUser(text);
   setTyping(true);
   setIsSending(true);
 
   try {
-    const res = await fetch("http://localhost:8000/chat", {
+    const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
       method: "POST",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
