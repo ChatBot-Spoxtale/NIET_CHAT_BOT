@@ -1,98 +1,603 @@
 [
-  {
-    "course": "B.Tech CSE (AIML)",
-    "type": "btech",
-    "branch": "cse",
-    "specialization": "aiml",
-    "keywords": ["btech cse aiml","aiml","ai ml","machine learning","artificial intelligence"],
-    "overview": "B.Tech CSE (AIML) is focused on Artificial Intelligence, Machine Learning, Deep Learning & Data Systems.",
-    "properties": {
-      "duration": "4 Years (8 Semesters)",
-      "seats": "60 - 120 (varies yearly)",
-      "eligibility": "10+2 PCM + JEE/UPTAC",
-      "fees": "As per institute admission department"
+    {
+        "course": "B.Tech CSE",
+        "type": "btech",
+        "branch": "cse",
+        "specialization": " ",
+        "keywords": [
+  "btech cse",
+  "btech computer science",
+  "computer science engineering",
+  "cse core"
+],
+        "overview": "The Department of Computer Science and Engineering at NIET is known for its excellence in computer engineering education with the highest package and 100% placement record. As one of the leading B Tech CSE colleges in Delhi NCR, the department has a strong tradition of producing producing high-quality professionals and a significant presence in the software industry both in India and abroad, department has established itself as a leader in the field. The department is at the forefront of cutting-edge research and the delivery of state-of-the-art education. ",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "360(varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.\n Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.68 LPA (approx)",
+            "highest": "40 LPA ",
+            "source_url": "https://niet.co.in/department/computer-science-engineering/placement"
+        },
+        "why_choose": [
+            "Focuses on solving real-world problems using AI, Robotics, AR/VR, Data Analytics, Blockchain, and Cloud Computing.",
+            "Offers hands-on learning with hardware sensors, software systems, and modern engineering tools.",
+            "Encourages interdisciplinary learning across computing, engineering, and emerging technologies.",
+            "Provides research, industry collaboration, and leadership skill development through sponsored labs."
+        ]
     },
-    "placements": {
-      "average": "6-7 LPA (approx)",
-      "highest": "Varies yearly",
-      "recruiters": ["TCS","Infosys","Wipro","Tech Mahindra","Capgemini"]
+    {
+        "course": "B.Tech CSE (AIML)",
+        "type": "btech",
+        "branch": "cse",
+        "specialization": "aiml",
+        "keywords": [
+  "btech cse aiml",
+  "btech aiml",
+  "artificial intelligence and machine learning",
+  "cse aiml"
+]
+,
+        "overview": "NIET offers a four-year under-graduate B.Tech course in Artificial Intelligence and Machine Learning which aims to develop a strong foundation by using the principles and technologies that consist of many facets of Artificial Intelligence including logic, knowledge representation, probabilistic models, and machine learning. This course is best suited for students seeking to build world-class expertise in Artificial Intelligence and Machine Learning and emerging technologies which help to stand in the crowd and grow careers in the upcoming technological era. The course is designed to give the students enough exposure to the variety of applications that can be built using techniques covered under this program.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "180(varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.37 LPA (approx)",
+            "highest": "Varies yearly",
+            "source_url": "https://niet.co.in/department/artificial-intelligence-machine-language-aiml/placement"
+        },
+        "why_choose": [
+            "Design innovative intelligent systems for the welfare of the people using machine learning and its applications.",
+            "Demonstrate ethical, professional and team-oriented skills while providing innovative solutions in Artificial Intelligence and Machine Learning for life-long learning."
+        ]
     },
-    "subjects": [
-      "Machine Learning", "Deep Learning", "Neural Networks",
-      "Data Science", "NLP", "Computer Vision"
-    ],
-    "facilities": ["AI Lab","IoT Lab","Cloud Lab","Deep Learning Lab"],
-    "career_scope": [
-      "Machine Learning Engineer",
-      "AI Engineer",
-      "Data Scientist",
-      "MLOps Engineer",
-      "NLP Engineer"
-    ]
-  },
-
-  {
-    "course": "B.Tech CSE (AI)",
-    "type": "btech",
-    "branch": "cse",
-    "specialization": "ai",
-    "keywords": ["btech cse ai","cse ai","artificial intelligence","btech ai"],
-    "overview": "B.Tech CSE (AI) emphasizes Artificial Intelligence, automation systems and intelligent computing foundations.",
-    "properties": {
-      "duration": "4 Years (8 Semesters)",
-      "seats": "60 (varies yearly)",
-      "eligibility": "10+2 PCM + JEE/UPTAC",
-      "fees": "Check with admission department"
+    {
+        "course": "B.Tech CSE (AI)",
+        "type": "btech",
+        "branch": "cse",
+        "specialization": "ai",
+        "keywords": [
+  "btech cse ai",
+  "btech artificial intelligence",
+  "cse ai"
+]
+,
+        "overview": "NIET offers a four-year under-graduate Bachelor of Technology (B.Tech) in Computer Science and Engineering (CSE) with a specialization in Artificial Intelligence (AI) is designed to provide students with a comprehensive understanding of both computer science principles and advanced AI techniques. This program aims to equip students with the skills and knowledge necessary to develop intelligent systems, algorithms, and applications that can solve complex problems across various domains. Artificial Intelligence (AI) enables machines to learn from experience, when used they adjust with different inputs and perform tasks like a human.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "180 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "6 LPA (approx)",
+            "highest": "Varies yearly based on companies",
+            "source_url": "https://niet.co.in/department/artificial-intelligence-machine-language-aiml/placement"
+        },
+        "why_choose": [
+            "Apply Artificial Intelligence and its applications to design intelligent systems for the betterment of society.",
+            "Develop AI-based innovative solutions demonstrating research, entrepreneurship, professional ethics, and communication skills.",
+            "Demonstrate competency in AI by working in a team and engaging in life-long learning."
+        ]
     },
-    "placements": {
-      "average": "6 LPA (approx)",
-      "highest": "Varies yearly based on companies",
-      "recruiters": ["TCS","Infosys","Wipro","Accenture","Cognizant"]
+    {
+        "course": "B.Tech CSE (Data Science)",
+        "type": "btech",
+        "branch": "cse",
+        "specialization": "ds",
+        "keywords": [
+  "btech cse data science",
+  "btech data science",
+  "cse data science"
+]
+,
+        "overview": "B.Tech Data Science at NIET at NIET , a four-year under-graduate B.Tech program in Data Science has been specifically designed to provide a platform to undergraduate students for a prospective career in upcoming data science industry. The course encompasses Data Science as an interdisciplinary, problem-solving approach that learns to apply scientific techniques to practical problems. It is an intensive skill-oriented program with enough practical training for building business models for analytics.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "240 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.75 LPA (approx)",
+            "highest": "23.50 LPA",
+            "source_url": "https://niet.co.in/department/data-science/placement"
+        },
+        "why_choose": [
+            "Design innovative intelligent systems for the welfare of the people using machine learning and its applications.",
+            "Demonstrate ethical, professional and team-oriented skills while providing innovative solutions in Artificial Intelligence and Machine Learning for life-long learning."
+        ]
     },
-    "subjects": [
-      "Artificial Intelligence","Data Structures","Algorithms",
-      "Knowledge Engineering","Neural Networks","AI Applications"
-    ],
-    "facilities": ["AI Innovation Lab","Automation Lab","ML Computing Center"],
-    "career_scope": [
-      "AI Engineer","Automation Engineer","Cognitive Systems Developer",
-      "ML Model Trainer","AI Research Assistant"
-    ]
-  },
-
-  {
-    "course": "B.Tech CSE (Data Science)",
-    "type": "btech",
-    "branch": "cse",
-    "specialization": "ds",
-    "keywords": ["btech cse ds","btech data science","cse ds","data science","ds"],
-    "overview": "B.Tech CSE (DS) specializes in Data Science, Big Data, Predictive Analytics and Business Intelligence.",
-    "properties": {
-      "duration": "4 Years (8 Semesters)",
-      "seats": "60 - 120 (as per intake)",
-      "eligibility": "10+2 PCM + JEE/UPTAC",
-      "fees": "Ask admission cell"
+    {
+        "course": "B.Tech CSE (Cyber-Security)",
+        "type": "btech",
+        "branch": "cse",
+        "specialization": "cy",
+        "keywords": [
+  "btech cse cyber security",
+  "btech cyber security",
+  "cse cyber security",
+  "cyber security engineering"
+]
+,
+        "overview": "NIET offers a four-year under-graduate B.Tech course in Cyber Security which aims to develop a strong foundation that will allow students to learn comprehensive approaches to protect infrastructure including data and information. Cybersecurity plays pivotal role in today’s information era. The demand for security and privacy of data is growing with each passing hour as effectiveness of a business relies on real time secure processing of data.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "120 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.75 LPA (approx)",
+            "highest": "23.50 LPA",
+            "source_url": "https://niet.co.in/department/data-science/placement"
+        },
+        "why_choose": [
+            "The ability to create secure applications, systems, and networks",
+            "The ability to master the concepts and theories to navigate policy changes impacting computer security and develop cross-disciplinary strategy to tackle the complex challenges involved in keeping our digital information safe.",
+            "The ability to conduct investigation of complex security problems and tackle the technical, regulatory and business challenges of cyber security ethically."
+        ]
     },
-    "placements": {
-      "average": "6.5 LPA (approx)",
-      "highest": "Depends on placement drive",
-      "recruiters": ["IBM","Deloitte","Accenture","KPMG","TCS Data Team"]
+    {
+        "course": "B.Tech-Computer Science & Engineering (Regional)",
+        "type": "btech",
+        "branch": "cse",
+        "keywords": [
+  "btech cse regional",
+  "computer science regional"
+]
+,
+        "overview": "The four-year B.Tech programme at NIET in Computer Science & Engineering Regional is the epitome of high-class specialization. For Computer Science Regional, NIET is definitely the best place to study. Students may become a part of the tradition of excellence, and, with rapidly evolving technology and the continuous need for innovation, the department is in the process of producing quality professionals.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "60 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.75 LPA (approx)",
+            "highest": "23.50 LPA",
+            "source_url": "https://niet.co.in/department/computer-science/placement"
+        },
+        "why_choose": [
+            "Identify, analyze real world problems and design their ethical solutions using artificial intelligence, robotics, virtual/augmented reality, data analytics, block chain technology, and cloud computing.",
+            "Design and develop the hardware sensor devices and related interfacing software systems for solving complex engineering problems.",
+            "Understand inter-disciplinary computing techniques and to apply them in the design of advanced computing.",
+            "Conduct investigation of complex problems with the help of technical, managerial, leadership qualities, and modern engineering tools provided by industry-sponsored laboratories."
+        ]
     },
-    "why_choose": [
-    "High demand in AI-based industries and automation",
-    "Strong placement scope in product and IT companies",
-    "Industry-relevant labs and practical exposure",
-    "Emerging career opportunities in AI & automation",
-    "Future-ready specialization with global scope"
-  ],
-    "subjects": [
-      "Data Structures","Data Analytics","Big Data","SQL & NoSQL",
-      "Python for Data Science","Statistics & Probability","ML & Predictive Models"
-    ],
-    "facilities": ["Data Science Lab","Big Data Lab","Analytics Lab"],
-    "career_scope": [
-      "Data Scientist","Data Analyst","Business Analyst",
-      "ML Engineer","Big Data Engineer"
-    ]
-  }
+    {
+        "course": "B.Tech-CSE (Internet of Things)",
+        "type": "btech",
+        "branch": "cse",
+        "specialization": "iot",
+        "keywords": [
+  "btech cse iot",
+  "btech internet of things",
+  "cse iot",
+  "internet of things engineering"
+]
+,
+        "overview": "Internet of Things (IoT) is an interdisciplinary program which has its application enormously increased in the past few years since it has a vast scope of usage. IoT generally refers to a growing network of internet-connected devices that find various applications in engineering and sciences. When objects are interconnected across the world, it allows people or things using those objects to be connected anytime.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "120 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.53 LPA (approx)",
+            "highest": "19.50 LPA",
+            "source_url": "https://niet.co.in/department/internet-of-things-iot/placement"
+        },
+        "why_choose": [
+            "Apply concept of IoT to solve real world problems for societal wellbeing by leveraging latest tools.",
+            "Work as an individual or lead as a team with good communication and engage in life-long learning.",
+            "Apply ethical principles as a successful professional, entrepreneur, and pursue higher education."
+        ]
+    },
+    {
+        "course": "B.Tech - Electronics & Communication Engineering",
+        "type": "btech",
+        "branch": "ece",
+        "specialization": " ",
+        "keywords": [
+  "btech ece",
+  "electronics and communication engineering",
+  "ece engineering"
+]
+,
+        "overview": "The Department of Electronics and Communication Engineering, approved by All India Council for Technical Education (AICTE) and accredited by the National Board of Accreditation (NBA), New Delhi was established in the year 2001. The Department offers a Bachelor’s program with an initial intake of 120 and a Master’s program in VLSI Design with an intake of 09 students each. The labs though well-equipped and the infrastructure, are regularly upgraded not only to serve the purpose of the curriculum prescribed but also to facilitate the carrying out of innovative projects to challenge the fast-changing needs of the society besides undertaking R&D activities.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "120 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "4.68 LPA (approx)",
+            "highest": "10 LPA",
+            "source_url": "https://niet.co.in/department/electronics-and-communication-engineering/placement"
+        },
+        "why_choose": [
+            "To Design an implement products using the cutting-edge Software and Hardware tools in electronics and communication engineering to satisfy the customer need.",
+            "To analyse and developed solution for the real time problem and to apply the knowledge for innovative ideas and solutions in Telecommunications, Wireless Networking, Embedded systems, and VLSI.",
+            "To demonstrate the technical skills, professional competence entrepreneurial attitude and deliver innovative solution to solve the society."
+        ]
+    },
+    {
+        "course": "B.Tech-Computer Science",
+        "type": "btech",
+        "branch": "cs",
+        "specialization": " ",
+        "keywords": [
+            "btech cs",
+            "btech computer science",
+            "cs"
+        ],
+        "overview": "Niet offers an under-graduate honours course (b.tech) in Computer Science with specialisation in Cloud Computing which deals with the theoretical foundations of computation and practical techniques for their application. B.Tech Computer Science is a course for students who are interested in adopting cloud resources or frameworks as their field of study or who want to gain hands-on practical experience to improve their competitiveness in the cloud job market. Cloud computing technology is used across the world.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "120 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.74 LPA (approx)",
+            "highest": "23.50 LPA",
+            "source_url": "https://niet.co.in/department/computer-science/placement"
+        },
+        "why_choose": [
+            "To Design an implement products using the cutting-edge Software and Hardware tools in electronics and communication engineering to satisfy the customer need.",
+            "To analyse and developed solution for the real time problem and to apply the knowledge for innovative ideas and solutions in Telecommunications, Wireless Networking, Embedded systems, and VLSI.",
+            "To demonstrate the technical skills, professional competence entrepreneurial attitude and deliver innovative solution to solve the society."
+        ]
+    },
+    {
+        "course": "B.Tech CSE (Artificial Intelligence and Machine Learning/International Twinning)",
+        "type": "btech",
+        "branch": "cse",
+        "specialization": "aiml twinning",
+        "keywords": [
+            "btech cse aiml twinning",
+            "aiml twinning",
+            "twinning program",
+            "international twinning"
+        ],
+        "overview": "Niet offers an under-graduate honours course (b.tech) in Computer Science with specialisation in Cloud Computing which deals with the theoretical foundations of computation and practical techniques for their application. B.Tech Computer Science is a course for students who are interested in adopting cloud resources or frameworks as their field of study or who want to gain hands-on practical experience to improve their competitiveness in the cloud job market. Cloud computing technology is used across the world.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "180 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.74 LPA (approx)",
+            "highest": "23.50 LPA",
+            "source_url": "https://niet.co.in/department/artificial-intelligence-machine-language-aiml/placement"
+        },
+        "why_choose": [
+            "Design innovative intelligent systems for the welfare of the people using machine learning and its applications.",
+            "Demonstrate ethical, professional and team-oriented skills while providing innovative solutions in Artificial Intelligence and Machine Learning for life-long learning."
+        ]
+    },
+    {
+        "course": "B.Tech-Information Technology",
+        "type": "btech",
+        "branch": "it",
+        "specialization": " ",
+        "keywords": [
+  "btech it",
+  "information technology engineering",
+  "it engineering"
+]
+,
+        "overview": "The IT sector is exceptionally diverse and continues to grow. IT professionals often move between professional specializations as their interests and expertise change. A work-focused IT degree allows you to choose from a wide range of career options in software development, computer programming, business analysis, data modeling, systems integration and network management.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "240 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.26 LPA (approx)",
+            "highest": "26.50 LPA",
+            "source_url": "https://niet.co.in/department/information-technology/placement"
+        },
+        "why_choose": [
+            " Work as a software engineer in different dimensions of information technology to provide solutions to real-world and industrial problems in an eco-friendly manner.",
+            " Apply knowledge of core subjects with multi-disciplinary and modern computing techniques to solve complex IT problems.",
+            " Establish a successful and innovative career by practicing lifelong learning and communicating in a team or as an individual to manage projects with ethical concerns."
+        ]
+    },
+    {
+        "course": "B.Tech in Computer Science & Business Systems",
+        "type": "btech",
+        "branch": "csbs",
+        "specialization": " ",
+       "keywords": [
+  "btech csbs",
+  "computer science and business systems",
+  "csbs engineering"
+]
+,
+        "overview": "NIET in partnership with India’s leading IT Service and Consulting Company, TCS, is offering a four-year specialized B.Tech course titled “Computer Science and Business Systems” to cater to the rising need of engineering talent with skills in technology. This state-of-the-art course aims to impart knowledge of cutting-edge technologies and business skills with hands-on exposure to make students industry-ready. The main goal of this course is to make sure that the students not only know the core topics of Computer Science but also develop an equal understanding of humanities, human values, and management sciences.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "60 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.4 LPA (approx)",
+            "highest": "9 LPA",
+            "source_url": "https://niet.co.in/department/computer-science-and-business-system/placement"
+        },
+        "why_choose": [
+            "Apply concept of IoT to solve real world problems for societal wellbeing by leveraging latest tools.",
+            "Work as an individual or lead as a team with good communication and engage in life-long learning.",
+            "Apply ethical principles as a successful professional, entrepreneur, and pursue higher education."
+        ]
+    },
+    {
+        "course": "B.Tech-Mechanical Engineering",
+        "type": "btech",
+        "branch": "me",
+        "specialization": " ",
+       "keywords": [
+  "btech mechanical engineering",
+  "mechanical engineering"
+]
+,
+        "overview": "Mechanical engineers need to play a vital role in the development, operation and manufacturing of new machines, devices, and processes to benefit humankind. They need to apply their creative imagination and professional skills in different situations. The Department of Mechanical Engineering imparts technical knowledge to the students, nurtures their problem-solving skills and involves them in the innovation of modern technologies.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "60 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.4 LPA (approx)",
+            "highest": "9 LPA",
+            "source_url": "https://niet.co.in/department/mechanical-engineering/placement"
+        },
+        "why_choose": [
+            "Apply, analyze, design, and solve the complex problem related to Mechanical Engineering.",
+            "Implement the use of software, latest equipment, and scientific concepts for the betterment of the society in professional and ethical manner.",
+            "To present their technical ideas, execute various projects, and learn the upcoming interdisciplinary technology"
+        ]
+    },
+    {
+        "course": "B.Tech-Biotechnology",
+        "type": "btech",
+        "branch": "bio",
+        "specialization": " ",
+        "keywords": [
+  "btech biotechnology",
+  "biotechnology engineering"
+]
+,
+        "overview": "At Department of Biotechnology, we are dedicated to providing a cutting-edge Biotechnology course that prepares students for exciting careers at the intersection of biology, technology, and innovation. Our Biotechnology program is designed to equip students with the knowledge, skills, and practical experience necessary to thrive in the rapidly evolving field of biotechnology. Our Biotechnology course offers a comprehensive curriculum that covers a wide range of topics, including molecular biology, genetics, biochemistry, microbiology, and bioinformatics.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "60 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "4.56 LPA (approx)",
+            "highest": "9 LPA",
+            "source_url": "https://niet.co.in/department/biotechnology/placement"
+        },
+        "why_choose": [
+            "To apply knowledge of basic sciences and biotechnological techniques to modify living organisms.",
+            "To design, optimize, analyze & scale up bio-processes to develop useful products with societal consideration.",
+            "To generate, analyze & interpret biological data using insilico & other relevant approaches."
+        ]
+    },
+    {
+        "course": "B.Tech-Electronics & Communication Engineering (Working Professionals)",
+        "type": "btech",
+        "branch": "ece",
+        "specialization": " ",
+        "keywords": [
+            "btech ece working professional",
+            "ece working professional"
+        ],
+        "overview": "The Working Professional in Electronics Engineering for UG (B. Tech.) course offered by the School of Working Professional in Electronics Engineering for UG (B. Tech.) course offered by the School of Electronics Engineering at Noida Institute of Engineering and Technology in Greater Noida is designed to cater to the needs of individuals already engaged in the workforce seeking to enhance their skills and knowledge in the field of Electronics engineering.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "60 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department.Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "4.68 LPA (approx)",
+            "highest": "10 LPA",
+            "source_url": "https://niet.co.in/department/electronics-and-communication-engineering/placement"
+        },
+        "why_choose": [
+            "To Design an implement products using the cutting-edge Software and Hardware tools in electronics and communication engineering to satisfy the customer need.",
+            "To analyse and developed solution for the real time problem and to apply the knowledge for innovative ideas and solutions in Telecommunications, Wireless Networking, Embedded systems, and VLSI.",
+            "To demonstrate the technical skills, professional competence entrepreneurial attitude and deliver innovative solution to solve the society."
+        ]
+    },
+    {
+        "course": "B.Tech CSE (Artificial Intelligence/International Twinning)",
+        "type": "btech",
+        "branch": "cse",
+        "specialization": "ai twinning",
+        "keywords": [
+            "btech ai twinning ",
+            "ai twinning"
+        ],
+        "overview": "Make your Academic Journey Truly International! NIET offers an AICTE approved International Twinning program for the students. The program is based on institution-to-institution partnerships and peer relationships which help in broadening the scope of the educational program by providing opportunities for enhanced learning and an affordable access to the students aspiring to pursue higher studies with a global exposure.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "180 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department. Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.37 LPA (approx)",
+            "highest": "19.50 LPA",
+            "source_url": "https://niet.co.in/department/artificial-intelligence/placement"
+        },
+        "why_choose": [
+            "Spend a semester abroad and make your academic journey truly international",
+            "The credits earned in the semester abroad will be transferred to NIET and counted in the final"
+        ]
+    },
+    {
+        "course": "B.Tech Information Technology (International Twinning Program)",
+        "type": "btech",
+        "branch": "it",
+        "specialization": "twinning",
+        "keywords": [
+            "btech it twinning ",
+            "information technology twinning",
+            "btech information technology twinning"
+        ],
+        "overview": "Make your Academic Journey Truly International! NIET offers an AICTE approved International Twinning program for the students. The program is based on institution-to-institution partnerships and peer relationships which help in broadening the scope of the educational program by providing opportunities for enhanced learning and an affordable access to the students aspiring to pursue higher studies with a global exposure.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "180 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department. Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "5.26 LPA (approx)",
+            "highest": "26.50 LPA",
+            "source_url": "https://niet.co.in/department/information-technology/placement"
+        },
+        "why_choose": [
+            "Spend a semester abroad and make your academic journey truly international",
+            "The credits earned in the semester abroad will be transferred to NIET and counted in the final"
+        ]
+    },
+    {
+        "course": "B.Tech. in Electronics Engineering (VLSI Design and technology)",
+        "type": "btech",
+        "branch": "vlsi",
+        "specialization": " ",
+        "keywords": [
+            "btech vlsi ",
+            "vlsi design and technology"
+        ],
+        "overview": "VLSI, or Very-Large-Scale Integration, is a branch of electronics engineering that deals with the design, fabrication and manufacturing of chips or integrated circuits (ICs) that contain a very large number of transistors. The field of very-large-scale integration (VLSI) in India is currently experiencing rapid growth and development. There has been a significant increase in the number of companies and research institutions working in this area.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "60 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department. Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "4.68 LPA (approx)",
+            "highest": "10 LPA",
+            "source_url": "https://niet.co.in/department/electronics-and-communication-engineering/placement"
+        },
+        "why_choose": [
+            "An ability to independently carry out research/investigation and development works to solve practical problems.",
+            "An ability to write and present substantial technical report.",
+            "Student should able to demonstrate a degree of mastery over the area as per the specialization of the program. The mastery should be at a level higher than the requirements in the appropriate bachelor program."
+        ]
+    },
+    {
+        "course": "BBA - Bachelor of Business Administration",
+        "type": "bba",
+        "branch": "bba",
+        "specialization": " ",
+        "keywords": [
+            "bba  ",
+            "bachelor of business administration"
+        ],
+        "overview": "VLSI, or Very-Large-Scale Integration, is a branch of electronics engineering that deals with the design, fabrication and manufacturing of chips or integrated circuits (ICs) that contain a very large number of transistors. The field of very-large-scale integration (VLSI) in India is currently experiencing rapid growth and development. There has been a significant increase in the number of companies and research institutions working in this area.",
+        "properties": {
+            "duration": "3 Years (6 Semesters)",
+            "seats": "120 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department. Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "4.68 LPA (approx)",
+            "highest": "10 LPA",
+            "source_url": "https://niet.co.in/department/electronics-and-communication-engineering/placement"
+        },
+        "why_choose": [
+            "Apply knowledge of management theories and practices to solve business problems.",
+            "Foster analytical and critical thinking abilities for data-based decision making.",
+            "Ability to develop value-based leadership ability.",
+            "Ability to understand, analyze and communicate global, economic, legal, and ethical aspects of business."
+        ]
+    },
+    {
+        "course": "Bachelor of Computer Applications",
+        "type": "ug",
+        "branch": "bca",
+        "specialization": " ",
+        "keywords": [
+  "bca",
+  "bachelor of computer applications",
+  "bca course"
+]
+,
+        "overview": "Noida Institute of Engineering & Technology, An Autonomous Institute, coming up with the popular course among students of India - Bachelor of Computer Application 3 years course with high demand all over the IT sector. This program is one of the top choices in BCA colleges in Greater Noida, (Delhi NCR) for students seeking a strong foundation in computer applications. The program is streamlined to meet the challenges in the IT industry.",
+        "properties": {
+            "duration": "3 Years (6 Semesters)",
+            "seats": "120 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department. Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "4.68 LPA (approx)",
+            "highest": "10 LPA",
+            "source_url": "https://niet.co.in/department/electronics-and-communication-engineering/placement"
+        },
+        "why_choose": [
+            "To develop/apply knowledge of computing fundamentals, computing specialization, mathematics, and domain knowledge for solving real-world problems.",
+            "Identify formulated review research literature and analyze complex problems reaching substantial conclusions using first fundamental principles of mathematics, computing science, and relevant domain specific.",
+            "Ability to design and evaluate systems, components, or processes for complex computing problems that meet specified needs with appropriate consideration for public health and safety and cultural societal, and environmental considerations.",
+            "Use research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of the information to provide valid conclusions."
+        ]
+    },
+    {
+        "course": "B.Tech-Mathematics and Computing",
+        "type": "btech",
+        "branch": "mathematics and computing",
+        "specialization": "math computing",
+        "keywords": [
+            "btech mathematics and computing",
+            "mathematics and computing",
+            "btech math computing",
+            "math computing",
+            "maths computing",
+            "btech mnc",
+            "mnc"
+        ],
+        "overview": "The B.Tech in Mathematics and Computing with Specialization in Quantum Computing is a four-year undergraduate honours program that equips students with the strong mathematical foundation, computational expertise, and quantum technology skills required to excel in the emerging quantum industry. The quantum computing sector is poised to transform industries such as cryptography, pharmaceuticals, artificial intelligence, finance, and scientific research. With the demand for skilled quantum computing professionals growing rapidly worldwide, graduates of this program will be well-prepared to build successful careers in this groundbreaking and evolving field.",
+        "properties": {
+            "duration": "4 Years (8 Semesters)",
+            "seats": "60 (varies yearly)",
+            "eligibility": "10+2 PCM + JEE/UPTAC",
+            "fees": "As per institute admission department. Please visit our website For Specific Information :- https://www.niet.co.in/"
+        },
+        "placements": {
+            "average": "4.68 LPA (approx)",
+            "highest": "10 LPA",
+            "source_url": "https://niet.co.in/department/electronics-and-communication-engineering/placement"
+        },
+        "why_choose": [
+            "Engineering Knowledge: Apply knowledge of mathematics, natural science, computing, engineering fundamentals and an engineering specialization as specified in WK1 to WK4 respectively to develop to the solution of complex engineering problems.",
+            "Problem Analysis: Identify, formulate, review research literature and analyze complex engineering problems reaching substantiated conclusions with consideration for sustainable development. (WK1 to WK4)",
+            "Design/Development of Solutions: Design creative solutions for complex engineering problems and design/develop systems/components/processes to meet identified needs with consideration for the public health and safety, whole-life cost, net zero carbon, culture, society and environment as required. (WK5)",
+            "Conduct Investigations of Complex Problems: Conduct investigations of complex engineering problems using research-based knowledge including design of experiments, modelling, analysis & interpretation of data to provide valid conclusions. (WK8)"
+        ]
+    }
 ]

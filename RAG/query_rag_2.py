@@ -16,7 +16,7 @@ from RAG.router.ug_pg_router import ug_pg_router
 
 def answer_rag(query:str):
     q=query.lower()
-    ONLY_FIELD_WORDS = ["seat","seats","duration","time","years","course length","timing","syllabus","placement"]
+    ONLY_FIELD_WORDS = ["seat","seats","duration","time","years","course length","timing"]
 
     if any(w in q for w in ONLY_FIELD_WORDS) and not any(
     c in q for c in ["btech","bca","bba","mba","mca","mtech","cse","it","aiml","ece","civil","mechanical"]
@@ -30,6 +30,16 @@ def answer_rag(query:str):
             return niet
         else:
             "For more information visit:-https://www.niet.co.in/about"
+
+    if any(w in q for w in ["syllabus", "pdf", "subject", "subjects", "curriculum"]):
+        return "Please visit the official NIET syllabus page:\nhttps://www.niet.co.in/academics/syllabus"
+    
+    if "admission" in q or "admissions" in q or "quiry" in q or"counselling" in q or "jee main" in q or"admission process" in q:
+        admission=admission_router(q)
+        if admission:
+            return admission
+        else:
+            "Please visit for more information:- https://www.niet.co.in/admissions/eligibility-admission-process"
 
     pg_ug = ug_pg_router(q)
     if pg_ug:
@@ -52,9 +62,6 @@ def answer_rag(query:str):
         else:
             "Please visit our website : - https://www.niet.co.in/courses"
 
-    if "syllabus" in q or "pdf" in q or "subject" in q or "subjects" in q or "circulum" in q:
-
-        "Please visit out website for information:- https://www.niet.co.in/academics/syllabus"
 
     if "club" in q or "clubs" in q or "Club" in q or "Clubs":
         club=club_router(q)
@@ -72,15 +79,7 @@ def answer_rag(query:str):
             "Please visit our website :- https://www.niet.co.in/"
             ""
 
-    if "admission" in q or "admissions" in q or "quiry" in q or"counselling" in q or "jee main" in q:
-        admission=admission_router(q)
-        if admission:
-            return admission
-        else:
-            "Please visit for more information:- https://www.niet.co.in/admissions/eligibility-admission-process"
-
-
-    return keyword_faq_router(q)
+    return ask_ollama_raw(keyword_faq_router(q)) 
 
 
 if __name__=="__main__":
