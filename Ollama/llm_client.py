@@ -3,7 +3,7 @@ import requests
 
 OLLAMA_URL = os.getenv(
     "OLLAMA_URL",
-    "https://carman-unexercisable-snarly.ngrok-free.dev/api/generate"
+    "https://carman-unexercisable-snarly.ngrok-free.dev/v1/generate"
 )
 MODEL_NAME = os.getenv("OLLAMA_MODEL", "gemma3:1b")
 
@@ -73,3 +73,4 @@ if __name__ == "__main__":
     while True:
         q = input("\n❓ You: ")
         print(" Bot:", ask_ollama_with_context(q))
+
