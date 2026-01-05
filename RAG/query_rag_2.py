@@ -12,17 +12,15 @@ from RAG.router.course_router import course_router
 from RAG.router.btech_course import btech_router
 from RAG.router.mtech_course_router import mtech_router
 from RAG.router.ug_pg_router import ug_pg_router
+from RAG.router.facilities_router import facilities_router
 
 
 def answer_rag(query:str):
     q=query.lower()
-    ONLY_FIELD_WORDS = ["seat","seats","duration","time","years","course length","timing"]
 
-    if any(w in q for w in ONLY_FIELD_WORDS) and not any(
-    c in q for c in ["btech","bca","bba","mba","mca","mtech","cse","it","aiml","ece","civil","mechanical"]
-):
-        return " Please type full course name. Example:\n MCA seats and duration"
-    
+    facility_response = facilities_router(q)
+    if facility_response:
+        return facility_response
     
     if "about niet"in q or "niet" in q or "overview" in q:
         niet=keyword_faq_router(q)
@@ -45,6 +43,7 @@ def answer_rag(query:str):
     if pg_ug:
         return pg_ug
     
+
     course_response = btech_router(q)
     if course_response:
         return course_response
@@ -78,6 +77,8 @@ def answer_rag(query:str):
         else:
             "Please visit our website :- https://www.niet.co.in/"
             ""
+
+    
 
     return ask_ollama_raw(keyword_faq_router(q)) 
 
