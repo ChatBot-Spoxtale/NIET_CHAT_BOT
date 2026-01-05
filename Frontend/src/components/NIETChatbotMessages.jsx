@@ -327,7 +327,7 @@ export default function NIETChatbotMessages() {
 
             <div className={`flex flex-col gap-1 ${m.from === "user" ? "items-end" : "items-start"} max-w-[88%]`}>
               <div
-                className={`px-3 py-2 text-[13px] leading-relaxed ${m.from === "user" ? "organic-user" : "organic-bot overflow-visible"}`}
+                className={`px-3 py-2 text-[13px] leading-relaxed whitespace-pre-line ${m.from === "user" ? "organic-user" : "organic-bot overflow-visible"}`}
               >
                 {m.type === "options" ? (
                   <div className="w-full">
