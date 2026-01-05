@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import baseKnowledge from "../../../RAG/Json_Format_Data/base_knowledge.json"
-import placement from "../../../RAG/Json_Format_Data/base_knowledge.json"
+import baseKnowledge from "../../../RAG/data/base_knowledge.json"
+import placement from "../../../RAG/index_store/placement_chunks.json"
 
 function now() {
   return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
@@ -27,34 +27,17 @@ const getCoursesByLevel = (level) => {
   return []
 }
 
-const getPlacementFromBase = (department) => {
-  const normalize = (str) =>
-    str?.toLowerCase()
-      .replace(/[\.\-\(\)]/g, "") 
-      .replace(/\s+/g, " ")       
-      .trim();
+const getPlacement = () => {
+  const seen = new Set()
 
-  const query = normalize(department);
-  const courses = placement.courses ?? {};
-
-  for (const key in courses) {
-    const course = courses[key];
-    const name = normalize(course.course_name);
-
-    if (name.includes(query) && course.placement) {
-      const p = course.placement;
-      return `
-
-Highest Package: ${p.highest_package}
-Average Package: ${p.average_package}
-Offers: ${p.placement_offer}
-Official Link: ${course.source_url}
-      `;
-    }
-  }
-  return null;
-};
-
+  return placement
+    .filter((item) => {
+      if (seen.has(item.department)) return false
+      seen.add(item.department)
+      return true
+    })
+    .map((item) => item.department)
+}
 
 function renderWithLinks(text) {
   const urlRegex = /(https?:\/\/[^\s]+)/g
@@ -92,7 +75,6 @@ export default function NIETChatbotMessages() {
   const [selectedOptions, setSelectedOptions] = useState(new Set())
   const [activeDropdown, setActiveDropdown] = useState(null)
   const messagesRef = useRef(null)
-const [currentFlow, setCurrentFlow] = useState(null);
 
   useEffect(() => {
     const saved = sessionStorage.getItem("niet_chat_messages")
@@ -149,162 +131,128 @@ const [currentFlow, setCurrentFlow] = useState(null);
         options,
         showBack,
         time: now(),
-        selectedValue: null, // Added selectedValue to track dropdown choice
+        selectedValue: null,
       },
     ])
 
-    const normalize = (str) =>
-  str?.toLowerCase().replace(/[\.\(\)\-]/g, "").replace(/\s+/g, " ").trim();
+  const handleOptionClick = (opt, messageId) => {
+    pushUser(opt)
+    setMessages((prev) => prev.map((m) => (m.id === messageId ? { ...m, selectedValue: opt } : m)))
+    setSelectedOptions((prev) => new Set(prev).add(opt))
 
-// const getCourseByName = (name) => {
-//   const courses = Object.values(baseKnowledge.courses || {});
-//   return courses.find(
-//     (c) => normalize(c.course_name) === normalize(name)
-//   );
-// };
-
-
- const handleOptionClick = (opt, messageId) => {
-  // show user message
-  pushUser(opt);
-
-  // mark dropdown selected
-  setMessages(prev =>
-    prev.map(m =>
-      m.id === messageId ? { ...m, selectedValue: opt } : m
-    )
-  );
-
-  /* ---------------- ROOT MENUS ---------------- */
-
-  if (opt === "Courses Offered") {
-    setCurrentFlow("about");
-    pushOptions(
-      ["Undergraduate Programs", "Postgraduate Programs", "Twinning Programs"],
-      true
-    );
-    return;
-  }
-
-  if (opt === "Placement Records") {
-    setCurrentFlow("placement");
-    pushOptions(
-      ["B.Tech Programs", "M.Tech Programs", "Twinning Programs"],
-      true
-    );
-    return;
-  }
-
-  /* ---------------- PROGRAM LEVEL ---------------- */
-
-  if (opt === "Undergraduate Programs") {
-    pushOptions(getCoursesByLevel("UG").map(c => c.course_name), true);
-    return;
-  }
-
-  if (opt === "Postgraduate Programs") {
-    pushOptions(getCoursesByLevel("PG").map(c => c.course_name), true);
-    return;
-  }
-
-  if (opt === "Twinning Programs") {
-    pushOptions(getCoursesByLevel("TWINNING").map(c => c.course_name), true);
-    return;
-  }
-
-  if (opt === "B.Tech Programs") {
-    pushOptions(getCoursesByLevel("UG").map(c => c.course_name), true);
-    return;
-  }
-
-  if (opt === "M.Tech Programs") {
-    pushOptions(getCoursesByLevel("PG").map(c => c.course_name), true);
-    return;
-  }
-
-  /* ---------------- FINAL ACTION (MOST IMPORTANT) ---------------- */
-
-  // ABOUT COURSE → overview only
-  if (currentFlow === "about") {
-    sendMessage(`Overview ${opt}`);
-    return;
-  }
-
-  // PLACEMENT → placement only
-  if (currentFlow === "placement") {
-    sendMessage(`Placement record of ${opt}`);
-    return;
-  }
-
-  /* ---------------- STATIC / GENERAL ---------------- */
-
-  if (opt === "Facilities") {
-    sendMessage("Facilities available at NIET");
-    return;
-  }
-
-  if (opt === "Admission") {
-    pushOptions(["Direct Admission", "Counselling", "Twinning"], true);
-    return;
-  }
-
-  if (opt === "Direct Admission") {
-    sendMessage("How can I get direct admission?");
-    return;
-  }
-
-  if (opt === "Counselling") {
-    sendMessage("What is the admission process for first year BTech through JEE Main?");
-    return;
-  }
-
-  if (opt === "Activities") {
-    pushOptions(["Events", "Club"], true);
-    return;
-  }
-
-  if (opt === "Club") {
-    sendMessage("list of clubs");
-    return;
-  }
-};
-
-
- const sendMessage = async (text) => {
-  pushUser(text);
-  setTyping(true);
-  setIsSending(true);
-
-  try {
-    const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: text }),
-    });
-
-    const data = await res.json();
-    await delay(600);
-
-    const answer = data.final_answer || data.answer;
-
-    if (!answer || answer.toLowerCase().includes("i don't know")) {
-      return false; 
+    if (opt === "Courses Offered") {
+      pushOptions(["Undergraduate Programs", "Postgraduate Programs", "Twinning Programs"], true)
+      return
     }
 
-    pushBot(answer);
-    return true; 
-  } catch {
-    return false; 
-  } finally {
-    setTyping(false);
-    setIsSending(false);
-  }
-};
+    if (opt === "About NIET") {
+      pushOptions(["Institute", "Research", "Facilities"], true)
+      return
+    }
 
+    if (opt === "Undergraduate Programs") {
+      pushOptions(
+        getCoursesByLevel("UG").map((c) => c.course_name),
+        true,
+      )
+      return
+    }
+
+    if (opt === "Postgraduate Programs") {
+      pushOptions(
+        getCoursesByLevel("PG").map((c) => c.course_name),
+        true,
+      )
+      return
+    }
+
+    if (opt === "Twinning Programs") {
+      pushOptions(
+        getCoursesByLevel("TWINNING").map((c) => c.course_name),
+        true,
+      )
+      return
+    }
+    if (opt === "Placement Records") {
+      pushOptions(getPlacement(), true)
+      return
+    }
+    if (placement.some((p) => p.department === opt)) {
+      sendMessage(`placement record of ${opt}`)
+      return
+    }
+    if (opt === "Institute") {
+      pushBot(
+        `You selected ${opt}. What do you want to know about the ${opt} (overview, rankings, awards, or international_alliances.)`,
+      )
+      return
+    }
+
+    if (opt === "Research") {
+      pushBot(
+        `You selected ${opt}. What do you want to know about the ${opt} (overview, areas, publications,journals or projects.)`,
+      )
+      return
+    }
+
+    if (opt === "Facilities") {
+      sendMessage("Facilities available at NIET")
+      return
+    }
+    if (opt === "Admission") {
+      pushOptions(["Direct Admission", "Counselling", "Twinning"], true)
+      return
+    }
+
+    if (opt === "Direct Admission") {
+      sendMessage("How can I get direct admission?")
+      return
+    }
+    if (opt === "Counselling") {
+      sendMessage("What is the admission process for first year BTech through JEE Main?")
+      return
+    }
+    if (opt === "Twinning") {
+      sendMessage("Eligibility for twinning admission")
+      return
+    }
+
+    if (opt === "Activities") {
+      pushOptions(["Events", "Club"], true)
+      return
+    }
+    if (opt === "Club") {
+      sendMessage("list of clubs")
+      return
+    }
+    sendMessage(`About ${opt} in NIET`)
+  }
+
+  const sendMessage = async (text) => {
+    pushUser(text)
+    setTyping(true)
+    setIsSending(true)
+
+    try {
+      const res = await fetch("http://localhost:8000/chat", {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: text }),
+      })
+      const data = await res.json()
+      await delay(600)
+      pushBot(data.final_answer || data.answer || "Server replied but no message found.")
+    } catch {
+      pushBot("Server error. Please try again.")
+    } finally {
+      setTyping(false)
+      setIsSending(false)
+    }
+  }
 
   return (
-    <div className="h-full flex flex-col bg-white overflow-hidden relative">
+    <div className="h-full flex flex-col bg-white overflow-hidden relative transform-gpu">
       <div className="chat-mesh-bg" />
 
       <div className="px-5 py-5 bg-gradient-to-br from-[#e2111f] via-[#d00f1c] to-[#9a0b15] flex items-center gap-3 shrink-0 shadow-lg relative z-10 border-b border-white/10 overflow-hidden">
@@ -462,7 +410,7 @@ const [currentFlow, setCurrentFlow] = useState(null);
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="w-full bg-slate-50 border border-slate-200 rounded-[24px] px-6 py-[10px] pr-14 text-[14px] text-slate-700 focus:outline-none focus:bg-white focus:border-[#e2111f] transition-all duration-300 placeholder:text-slate-400 font-medium h-[46px] shadow-inner"
+            className="w-full bg-white border border-slate-300 rounded-[24px] px-6 py-[10px] pr-14 text-[14px] text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#e2111f]/20 focus:border-[#e2111f] transition-all duration-300 placeholder:text-slate-400 font-medium h-[46px] shadow-sm"
             placeholder="Type your message..."
           />
           <button

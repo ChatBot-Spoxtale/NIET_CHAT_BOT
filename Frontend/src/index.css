@@ -23,6 +23,10 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
 }
 *,
 *::before,
@@ -113,6 +117,9 @@ body {
   font-family: system-ui, -apple-system, sans-serif !important;
   text-align: left !important;
   line-height: 1.5 !important;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .chat-window-card::before {
@@ -155,9 +162,7 @@ body {
   @apply bg-[#e2111f] text-white rounded-2xl rounded-tr-none shadow-sm;
 }
 
-/* Updated action-pill to be oval (pill-shaped) and adjusted padding/height for a cleaner, balanced look */
 .action-pill {
-  /* Decreased size and padding for better proportions */
   @apply flex items-center justify-center px-4 py-2 bg-white border border-slate-200 rounded-full transition-all duration-300;
   @apply text-[12px] font-bold text-slate-700 tracking-tight text-center shadow-sm;
   min-height: 36px;
@@ -167,7 +172,6 @@ body {
   @apply bg-[#ffebed] border-[#e2111f] text-[#e2111f] shadow-md transform -translate-y-0.5;
 }
 
-/* Updated active state to maintain the highlight color with a better shadow */
 .action-pill-active {
   background-color: #e2111f !important;
   border-color: #e2111f !important;
@@ -321,10 +325,9 @@ body {
   background: #cbd5e1;
 }
 
-/* Finalized input and send button height/alignment for a perfectly centered, circular fit */
 form input {
   height: 50px !important;
-  @apply border-slate-200 bg-slate-50/50 rounded-full;
+  @apply border-slate-200 bg-white rounded-full;
 }
 
 form button {

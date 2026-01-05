@@ -28,26 +28,33 @@ export default function NIETChatbot() {
       )}
 
       {open && (
-        <button
-          onClick={() => setOpen(false)}
-          className="fixed z-[101] w-7.5 h-7.5 rounded-full bg-[#e2111f] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 active:scale-95"
-          style={{
-            bottom: "min(700px, calc(100vh - 120px))",
-            right: "24px",
-            marginBottom: "38px",
-          }}
-          aria-label="Close Chat"
-        >
-          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      )}
+        <div className="fixed inset-0 z-[90] pointer-events-none flex flex-col items-end justify-end p-2 sm:p-6 animate-in fade-in duration-300">
+          <div className="relative pointer-events-auto w-full sm:w-[340px] h-full sm:h-[min(700px,calc(100vh-120px))] bg-white border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.18)] flex flex-col animate-in slide-in-from-bottom-8 duration-500 rounded-[32px] transform-gpu">
+            {/* Desktop Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute -top-3 -right-3 z-[101] w-7 h-7 rounded-full bg-[#e2111f] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 hidden sm:flex border-2 border-white"
+              aria-label="Close Chat"
+            >
+              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
-      {open && (
-        <div className="fixed inset-0 z-[90] pointer-events-none flex flex-col items-end justify-end sm:p-6 animate-in fade-in duration-300">
-          <div className="pointer-events-auto w-full sm:w-[340px] h-full sm:h-[min(700px,calc(100vh-120px))] bg-white border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.18)] overflow-hidden flex flex-col animate-in slide-in-from-bottom-8 duration-500 sm:rounded-[32px] rounded-none">
-            <NIETChatbotMessages />
+            {/* Mobile Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute -top-3 -right-3 z-[101] w-8 h-8 rounded-full bg-[#e2111f] flex items-center justify-center shadow-lg transition-all duration-300 active:scale-95 flex sm:hidden border-2 border-white"
+              aria-label="Close Chat"
+            >
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="flex-1 flex flex-col rounded-[32px] overflow-hidden">
+              <NIETChatbotMessages />
+            </div>
           </div>
         </div>
       )}
