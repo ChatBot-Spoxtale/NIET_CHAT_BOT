@@ -17,7 +17,18 @@ function truncateWithDots(text, limit = 28) {
   return text.slice(0, limit) + "...."
 }
 
-const INITIAL_OPTIONS = ["About NIET", "Courses Offered", "Admission", "Placement Records", "Activities", "Other"]
+const INITIAL_OPTIONS = [
+  "Apply Now",
+  "About NIET",
+  "Courses Offered",
+  "Admission",
+  "Placement Records",
+  "Events",
+  "Clubs",
+  "Request Callback",
+  "Research",
+  "Facilities",
+]
 
 const getCoursesByLevel = (level) => {
   const courses = Object.values(baseKnowledge.courses || {})
@@ -74,27 +85,19 @@ export default function NIETChatbotMessages() {
   const [isSending, setIsSending] = useState(false)
   const [selectedOptions, setSelectedOptions] = useState(new Set())
   const [activeDropdown, setActiveDropdown] = useState(null)
+  const [callbackStep, setCallbackStep] = useState(null)
+  const [callbackData, setCallbackData] = useState({ name: "", phone: "" })
   const messagesRef = useRef(null)
 
   useEffect(() => {
-    const saved = sessionStorage.getItem("niet_chat_messages")
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved)
-        if (Array.isArray(parsed)) {
-          setMessages(parsed)
-          return
-        }
-      } catch {}
-    }
-
+    sessionStorage.removeItem("niet_chat_messages")
     pushBot("Hello! I'm the NIET Assistant — how can I help you today?")
     pushOptions(INITIAL_OPTIONS, false)
-  }, [])
 
-  useEffect(() => {
-    sessionStorage.setItem("niet_chat_messages", JSON.stringify(messages))
-  }, [messages])
+    return () => {
+      sessionStorage.removeItem("niet_chat_messages")
+    }
+  }, [])
 
   useEffect(() => {
     messagesRef.current?.scrollTo({
@@ -103,17 +106,6 @@ export default function NIETChatbotMessages() {
     })
     setActiveDropdown(null)
   }, [messages, typing])
-
-  useEffect(() => {
-    if (activeDropdown) {
-      setTimeout(() => {
-        messagesRef.current?.scrollTo({
-          top: messagesRef.current.scrollHeight,
-          behavior: "smooth",
-        })
-      }, 100)
-    }
-  }, [activeDropdown])
 
   const pushBot = (text) =>
     setMessages((m) => [...m, { id: crypto.randomUUID(), from: "bot", type: "text", text, time: now() }])
@@ -136,17 +128,23 @@ export default function NIETChatbotMessages() {
     ])
 
   const handleOptionClick = (opt, messageId) => {
+    if (opt === "Apply Now") {
+      window.open("https://applynow.niet.co.in/", "_blank")
+      return
+    }
+
     pushUser(opt)
     setMessages((prev) => prev.map((m) => (m.id === messageId ? { ...m, selectedValue: opt } : m)))
     setSelectedOptions((prev) => new Set(prev).add(opt))
 
-    if (opt === "Courses Offered") {
-      pushOptions(["Undergraduate Programs", "Postgraduate Programs", "Twinning Programs"], true)
+    if (opt === "Request Callback") {
+      setCallbackStep("name")
+      pushBot("Please provide your name.")
       return
     }
 
-    if (opt === "About NIET") {
-      pushOptions(["Institute", "Research", "Facilities"], true)
+    if (opt === "Courses Offered") {
+      pushOptions(["Undergraduate Programs", "Postgraduate Programs", "Twinning Programs"], true)
       return
     }
 
@@ -217,18 +215,33 @@ export default function NIETChatbotMessages() {
       return
     }
 
-    if (opt === "Activities") {
-      pushOptions(["Events", "Club"], true)
-      return
-    }
     if (opt === "Club") {
       sendMessage("list of clubs")
       return
     }
-    sendMessage(`About ${opt} in NIET`)
   }
 
   const sendMessage = async (text) => {
+    if (callbackStep === "name") {
+      setCallbackData((prev) => ({ ...prev, name: text }))
+      pushUser(text)
+      setCallbackStep("phone")
+      pushBot("Great! Now kindly provide your mobile number so that our counsellor can contact you.")
+      return
+    }
+
+    if (callbackStep === "phone") {
+      setCallbackData((prev) => ({ ...prev, phone: text }))
+      pushUser(text)
+      setCallbackStep(null)
+      const newRequest = { ...callbackData, phone: text, timestamp: new Date().toISOString() }
+      const existing = JSON.parse(localStorage.getItem("niet_callback_requests") || "[]")
+      localStorage.setItem("niet_callback_requests", JSON.stringify([...existing, newRequest]))
+      console.log("[v0] Callback request stored:", newRequest)
+      pushBot("Thank you! Our counsellor will get back to you shortly.")
+      return
+    }
+
     pushUser(text)
     setTyping(true)
     setIsSending(true)
@@ -278,6 +291,9 @@ export default function NIETChatbotMessages() {
           onClick={() => {
             setMessages([])
             setSelectedOptions(new Set())
+            setCallbackStep(null)
+            setCallbackData({ name: "", phone: "" })
+            sessionStorage.removeItem("niet_chat_messages")
             pushBot("Hello! I'm the NIET Assistant — how can I help you today?")
             pushOptions(INITIAL_OPTIONS, false)
           }}
@@ -334,43 +350,68 @@ export default function NIETChatbotMessages() {
                     <div className="text-[11px] font-bold text-[#e2111f] uppercase mb-3 border-b border-[#e2111f]/10 pb-1 font-[Arial,sans-serif]">
                       Quick Actions
                     </div>
-                    <div className="relative group">
-                      <button
-                        onClick={() => setActiveDropdown(activeDropdown === m.id ? null : m.id)}
-                        className="w-full min-w-[200px] bg-white border-2 border-[#e2111f]/20 rounded-xl px-4 py-2.5 text-[12px] font-bold text-slate-700 flex items-center justify-between hover:border-[#e2111f]/40 transition-all cursor-pointer shadow-sm"
-                      >
-                        <span className="truncate">
-                          {m.selectedValue ? truncateWithDots(m.selectedValue) : "Select an option..."}
-                        </span>
-                        <svg
-                          className={`w-4 h-4 text-[#e2111f] transition-transform duration-200 shrink-0 ${activeDropdown === m.id ? "rotate-180" : ""}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                    {m.options.some((opt) => opt.match(/^[BM]\./i) || opt.toLowerCase().includes("twinning program in")) ? (
+                      <div className="relative group">
+                        <button
+                          onClick={() => setActiveDropdown(activeDropdown === m.id ? null : m.id)}
+                          className="w-full min-w-[200px] bg-white border-2 border-[#e2111f]/20 rounded-xl px-4 py-2.5 text-[12px] font-bold text-slate-700 flex items-center justify-between hover:border-[#e2111f]/40 transition-all cursor-pointer shadow-sm"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
+                          <span className="truncate">
+                            {m.selectedValue ? truncateWithDots(m.selectedValue) : "Select an option..."}
+                          </span>
+                          <svg
+                            className={`w-4 h-4 text-[#e2111f] transition-transform duration-200 shrink-0 ${activeDropdown === m.id ? "rotate-180" : ""}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
 
-                      {activeDropdown === m.id && (
-                        <div className="relative z-[60] mt-1 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 w-full">
-                          <div className="max-h-60 overflow-y-auto py-1 custom-scrollbar">
-                            {m.options.map((opt) => (
-                              <button
-                                key={opt}
-                                onClick={() => {
-                                  handleOptionClick(opt, m.id)
-                                  setActiveDropdown(null)
-                                }}
-                                className="w-full text-left px-4 py-2.5 text-[12px] font-medium text-slate-600 hover:bg-[#e2111f]/5 hover:text-[#e2111f] transition-colors border-b border-slate-50 last:border-0"
-                              >
-                                {opt}
-                              </button>
-                            ))}
+                        {activeDropdown === m.id && (
+                          <div className="relative z-[60] mt-1 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 w-full">
+                            <div className="max-h-60 overflow-y-auto py-1 custom-scrollbar">
+                              {m.options.map((opt) => (
+                                <button
+                                  key={opt}
+                                  onClick={() => {
+                                    handleOptionClick(opt, m.id)
+                                    setActiveDropdown(null)
+                                  }}
+                                  className="w-full text-left px-4 py-2.5 text-[12px] font-medium text-slate-600 hover:bg-[#e2111f]/5 hover:text-[#e2111f] transition-colors border-b border-slate-50 last:border-0"
+                                >
+                                  {opt}
+                                </button>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="flex flex-wrap gap-2">
+                        {m.options.map((opt) => (
+                          <button
+                            key={opt}
+                            disabled={m.selectedValue !== null}
+                            onClick={() => handleOptionClick(opt, m.id)}
+                            className={`action-pill ${m.selectedValue === opt ? "action-pill-active" : ""}`}
+                          >
+                            {opt}
+                            {opt === "Apply Now" && (
+                              <svg className="ml-1.5 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2.5}
+                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                />
+                              </svg>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ) : (
                   renderWithLinks(m.text)
@@ -411,7 +452,7 @@ export default function NIETChatbotMessages() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="w-full bg-white border border-slate-300 rounded-[24px] px-6 py-[10px] pr-14 text-[14px] text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#e2111f]/20 focus:border-[#e2111f] transition-all duration-300 placeholder:text-slate-400 font-medium h-[46px] shadow-sm"
-            placeholder="Type your message..."
+            placeholder={callbackStep ? `Enter your ${callbackStep}...` : "Type your message..."}
           />
           <button
             disabled={isSending || !input.trim()}
