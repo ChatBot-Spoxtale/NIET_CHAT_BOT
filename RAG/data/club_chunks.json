@@ -1,221 +1,226 @@
-[
-       {
-        "id": "club_12a4ab",
-        "category": "club",
-        "club_name": "How Many Club In The Niet/ List Of Club In Niet/ Different Club Of Niet",
-        "question": "What is How Many Club In The Niet/ List Of Club In Niet/ Different Club Of Niet Club?",
-        "answer": "Student Scoieties & Clubs, Sports Club(outdoor & indoor), Fitness Club,Cultural and Hooby Club",
-        "keywords": [
-           "list",
-           "different",
-           "types"
-        ]
-    },
-     {
-        "id": "club_12a4451",
-        "category": "club",
-        "club_name": "How Many Club In The Niet/ List Of Club In Niet/ Different Club Of Niet",
-        "question": "What is How Many Club In The Niet/ List Of Club In Niet/ Different Club Of Niet Club?",
-        "answer": "Sports Club :- outdoor & indoor club,",
-        "keywords": [
-           "sports"
-                ]
-    },
-      {
-        "id": "club_12a4621",
-        "category": "club",
-        "club_name": "How cultural club",
-        "question": "What is How Many Cultural Club In The Niet?",
-        "answer": "Cultural Club :- Nritya Bhakti (Traditional Dance),Kathputliyaan (Theatre Club),Harmonics (Music Club),Spectrum (Cinematography Club),Megapixels (Photography & Videography),Green Gold Society,Khushiyan Baaton Club,Hope In Darkness (HID)",
-        "keywords": [
-           "sports"
-                ]
-    },
-    {
-        "id": "club_d8db92",
-        "category": "club",
-        "club_name": "List Of Different Type Of Outdoor Sports",
-        "question": "What is List Of Different Type Of Outdoor Sports Club?",
-        "answer": "Basketball Club, Cricket Club, Voleyball Club, Sports Club, Football Club",
-        "keywords": [
-           "outdoor",
-           "outdoor sports"
-        ]
-    },
-    {
-        "id": "club_0672f9",
-        "category": "club",
-        "club_name": "List Of Different Type Of Indoor Sports",
-        "question": "What is List Of Different Type Of Indoor Sports Club?",
-        "answer": "Table Tennis Club, Chess Club, Dodge Gaming Club, Yoga Club",
-        "keywords": [
-           "indoor",
-           "indoor club"
-        ]
-    },
-    {
-        "id": "club_adf93a",
-        "category": "club",
-        "club_name": "Nritya Bhakti (Traditional Dance )",
-        "question": "What is Nritya Bhakti (Traditional Dance ) Club?",
-        "answer": "Nrityabhakti (a traditional dance club of NIET) as the name suggests! We as a club is not only a dance club,We have dedicated ourselves to learn and perform a wide range of traditional dances from various regions and cultures",
-        "keywords": [
-            "nritya",
-            "traditional",
-            "bhakti",
-            "nrityabhakti"
-        ]
-    },
-    {
-        "id": "club_bdae0f",
-        "category": "club",
-        "club_name": "Kathputliyaan (The Theatre )",
-        "question": "What is Kathputliyaan (The Theatre ) Club?",
-        "answer": "Kathputliyaan, a name that resonates a certain enthusiasm and an undying passion for theater,A space of our college where the exhalation of emotions is received by the shining eyes of the audience.",
-        "keywords": [
-            "kathputliyaan",
-            "kathputliyaan,"
-        ]
-    },
-    {
-        "id": "club_3f15c3",
-        "category": "club",
-        "club_name": "Hope In Darkness (Hid)",
-        "question": "What is Hope In Darkness (Hid) Club?",
-        "answer": "We're a club dedicated to unveiling the often overlooked realms of mental health and personal development.At HID, we shatter silence, challenge stereotypes",
-        "keywords": [
-            "hid",
-            "hope in darkness",
-            "darkness"
-        ]
-    },
-    {
-        "id": "club_842a73",
-        "category": "club",
-        "club_name": "Spectrum (Cinematography )",
-        "question": "What is Spectrum (Cinematography ) Club?",
-        "answer": "Welcome to Spectrum, the sacred realm of cinematic poetry at NIET, where souls intertwine in the dance of storytelling through the lens.Spectrum is not merely a club",
-        "keywords": [
-            "cinematography",
-            "spectrum,"
-        ]
-    },
-    {
-        "id": "club_4c1503",
-        "category": "club",
-        "club_name": "Khushiyan Baaton",
-        "question": "What is Khushiyan Baaton Club?",
-        "answer": "A community driven by the mission of spreading happiness through meaningful actions.Our club focuses on making a difference by supporting the underprivileged through donations and collaboration with NGOs.",
-        "keywords": [
-            "baaton",
-            "khushiyan"
-        ]
-    },
-    {
-        "id": "club_c18f3c",
-        "category": "club",
-        "club_name": "Megapixels (Photography & Videography )",
-        "question": "What is Megapixels (Photography & Videography ) Club?",
-        "answer": "Megapixels, the official Photography & Videography club of NIET, is a thriving community of dedicated individuals passionate about the art of visual storytelling.",
-        "keywords": [
-            "photography",
-            "videography,",
-            "megapixels"
-        ]
-    },
-    {
-        "id": "club_a28821",
-        "category": "club",
-        "club_name": "Green Gold Society",
-        "question": "What is Green Gold Society Club?",
-        "answer": "The Green Gold Society, NIET is a beacon of hope in the realm of environmental awareness and animal welfare.",
-        "keywords": [
-            "green",
-            "gold",
-            "green gold",
-            "green gold society"
-        ]
-    },
-    {
-        "id": "club_2aa5d2",
-        "category": "club",
-        "club_name": "Juventas (Dance)",
-        "question": "What is Juventas (Dance) Club?",
-        "answer": "For a dancer there is no greater feeling in the world than moving a piece of music and letting the rest of the world disappear. Dancing is surely the most basic and relevant of all forms of expression.",
-        "keywords": [
-            "dance",
-            "dancer",
-            "juventas"
-        ]
-    },
-    {
-        "id": "club_e63472",
-        "category": "club",
-        "club_name": "Harmonics (Music )",
-        "question": "What is Harmonics (Music) Club?",
-        "answer": "Music Club of NIET is a club that encourages and promotes all kinds of music. The club provides an inclusive platform for the exchange of musical ideas, appreciation of music and to encourage musical development.",
-        "keywords": [
-            "music",
-            "harmonics"
-        ]
-    },
-    {
-        "id": "club_b8686b",
-        "category": "club",
-        "club_name": "Editorial",
-        "question": "What is Editorial Club?",
-        "answer": "Our club aims at fostering literary and journalistic skills among students promoting free expression of ideas and contributing to the intellectual and creative environment of the college community.",
-        "keywords": [
-            "editorial",
-            "edit"
-        ]
-    },
-    {
-        "id": "club_779b02",
-        "category": "club",
-        "club_name": "Yoga",
-        "question": "What is Yoga Club?",
-        "answer": "The college Yoga club is a community of students passionate about promoting physical and mental well-being through yoga. It offers classes for students of all levels, from beginners to advanced",
-        "keywords": [
-            "yoga",
-            "yo ga"
-        ]
-    },
-    {
-        "id": "club_5c0850",
-        "category": "club",
-        "club_name": "Dodge Gaming",
-        "question": "What is Dodge Gaming Club?",
-        "answer": "Dodge Gaming Club at NIET is to create a dynamic and inclusive community that fosters a passion for competitive and recreational gaming among our students.",
-        "keywords": [
-            "gaming",
-            "dodge",
-            "dodge gaming"
-        ]
-    },
-    {
-        "id": "club_111f9e",
-        "category": "club",
-        "club_name": "Chess",
-        "question": "What is Chess Club?",
-        "answer": "Exercise your mind and reign supreme on the board with our Chess Club. From casual games to intense tournaments",
-        "keywords": [
-            "chess",
-            "mind",
-            "chess club"
-        ]
-    },
-    {
-        "id": "club_6faf7b",
-        "category": "club",
-        "club_name": "Table Tenn",
-        "question": "What is Table Tenn Club?",
-        "answer": "Swing into action with our Table Tennis Club, where the ping of the ball echoes the excitement of the game",
-        "keywords": [
-            "swing",
-            "table",            
-            "tenn",
-            "action"
-        ]
+# RAG/routers/club_router.py
+import json, os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+
+from Ollama.llm_client import ask_ollama_with_context
+
+
+# -------------- LOAD CLUB DATA --------------
+with open("RAG/data/club_chunks.json","r",encoding="utf-8") as f:
+    CLUB_DATA = json.load(f)
+
+
+# -------------- NORMALIZE FUNCTION (Fix misspellings & aliases) --------------
+def club_normalize(q: str) -> str:
+    q = q.lower().strip()
+
+    # remove symbols
+    for ch in ["?", ",", ".", ":", "-"]:
+        q = q.replace(ch, " ")
+
+    # spelling fixes
+    corrections = {
+        "clubs":"club",
+        "scoieties": "societies",
+        "scoiety": "society",
+        "hobyy": "hobby",
+        "hobi": "hobby",
+        "cultral": "cultural",
+        "cutural": "cultural",
+        "nritya bhkati": "nritya bhakti",
+        "nritya bhaktiya": "nritya bhakti",
+        "traditional":"nritya bhakti",
+
+        "katputliyan": "kathputliyaan",
+        "kathputliyan": "kathputliyaan",
+        "hid ": "hope in darkness",
+        "hope darkness": "hope in darkness",
+
+        # IMPORTANT FIX for YOUR PROBLEM
+        "khushiyan baton": "khushiyan baaton club",
+        "khushiyan baaton": "khushiyan baaton club",
+        "khushiyan batton": "khushiyan baaton club",
+        "khushiya baaton": "khushiyan baaton club",
+        
+        #for spectrun
+        "spectrum":"spectrum (cinematography ) club",
+        "spectrum club":"spectrum (cinematography ) club",
+
+        #megapixels
+        "megapixels":"megapixels (photography & videography ) club",
+        "megapixels club":"megapixels (photography & videography ) club",
+        "photography club":"megapixels (photography & videography ) club",
+        "videography club":"megapixels (photography & videography ) club",
+
+        #green gold society
+        "green gold society":"green gold society club",
+        "green-gold-society":"green gold society club",
+
+        #juventas club 
+        "juventas club":"juventas (dance) club",
+        "dance club":"juventas (dance) club",
+
+        #harmonic club
+        "harmonics club":"harmonics (music) club",
+        "music club":"harmonics (music) club",
+
+        #editorial club
+        "editorial-club":"editorial club",
+        "editorial  club":"editorial club",
+
+        #yoga club
+        "yoga-club":"yoga club",
+
+        #dodge haming club
+        "dodge gaming":"dodge gaming club",
+
+        #chess club
+        "chess-club":"chess club",
+
+        #table tenn club
+        "table tenn":"table tenn club",
+        "table club":"table tenn club",
+
+        #kathputliyaan club
+        "kathputliyaan":"kathputliyaan club",
+        "theatre club":"kathputliyaan club"
     }
+
+    for wrong, right in corrections.items():
+        q = q.replace(wrong, right)
+
+    # alias mapping
+    alias_map = {
+        "dance club": "nritya bhakti",
+        "traditional dance": "nritya bhakti",
+        "theatre club": "kathputliyaan",
+        "acting club": "kathputliyaan",
+        "music club": "harmonics",
+        "photography club": "megapixels",
+        "film club": "spectrum",
+        "cinema club": "spectrum",
+        "social club": "khushiyan baaton club",
+        "ngo club": "khushiyan baaton club",
+    }
+
+    for key, value in alias_map.items():
+        if key in q:
+            q = value
+
+    return " ".join(q.split())
+
+
+BAD_PATTERNS = [
+    "student scoieties", "sports club(outdoor", "fitness club",
+    "cultural and hooby", "different club", "how many club"
 ]
+
+
+OUTDOOR = ["Basketball Club","Cricket Club","Volleyball Club","Football Club","Sports Club"]
+INDOOR  = ["Table Tennis Club","Chess Club","Dodge Gaming Club","Yoga Club"]
+CULTURAL = [
+    "Nritya Bhakti (Traditional Dance)",
+    "Kathputliyaan (Theatre Club)",
+    "Harmonics (Music Club)",
+    "Spectrum (Cinematography Club)",
+    "Megapixels (Photography & Videography)",
+    "Green Gold Society",
+    "Khushiyan Baaton Club",
+    "Hope In Darkness (HID)"
+]
+
+
+def format_list(title, arr):
+    return f"{title}**\n" + "\n".join("• "+x for x in arr) + \
+           "\n\n🔗 Full list: https://niet.co.in/students-life/student-clubs-societies"
+
+
+# -------------- MAIN ROUTER FUNCTION --------------
+def club_router(query: str):
+    q = club_normalize(query)
+    # ---------- EXACT CLUB NAME MATCH (HIGHEST PRIORITY) ----------
+    for item in CLUB_DATA:
+        name = item.get("club_name", "").lower()
+        answer = item.get("answer", "")
+
+    # Exact or near-exact match
+    if q == name or q in name or name in q:
+        return answer
+
+    # Very generic query
+    if q.strip() == "club" or q.strip() == "clubs":
+        return (
+        "• Cultural & hobby clubs\n"
+        "• Sports clubs :- indoor & outdoor \n"
+        "• Fitness & yoga club\n\n"
+        "Please specify which type of club you want 😊"
+    )
+
+    if "club" not in q and "society" not in q:
+        return None
+    if "music club" in q or q == "music":
+        return format_list("Music Clubs", ["Harmonics (Music) Club"])
+
+    if "dance club" in q:
+        return format_list("Dance Clubs", ["Nritya Bhakti", "Juventas"])
+
+    if "cultural" in q or "hobby" in q:
+        return format_list("Cultural & Hobby Clubs", CULTURAL)
+
+    if "outdoor" in q:
+        return format_list("Outdoor Sports Clubs", OUTDOOR)
+
+    if "indoor" in q:
+        return format_list("Indoor Clubs", INDOOR)
+
+    if "cultural" in q or "hobby" in q or "activities" in q:
+        return format_list("Cultural & Hobby Clubs", CULTURAL)
+
+
+    # Exact Name Match (fix for Khushiyan Baaton, HID, etc.)
+    for item in CLUB_DATA:
+        name = item.get("club_name","").lower()
+        answer = item.get("answer","")
+
+        if any(bad in name for bad in BAD_PATTERNS):
+            continue  # skip garbage entries
+
+        # FINAL CORRECT MATCH LOGIC
+        if name == q or name in q or q in name:
+            return answer
+
+
+    #  Keyword Lookup
+    for item in CLUB_DATA:
+        for kw in item.get("keywords", []):
+            words=q.split()
+            if kw.lower() in words:
+                return item.get("answer")
+
+
+    # Full list fallback
+    clean = [
+        c["club_name"] for c in CLUB_DATA
+        if not any(bad in c["club_name"].lower() for bad in BAD_PATTERNS)
+    ]
+    return format_list("Available Clubs at NIET", clean)
+
+
+
+# ---------- Local Test ----------
+if __name__ == "__main__":
+    test_queries = [
+        # "list of clubs",
+        # "outdoor sports club",
+        # "indoor club list",
+        # "cultural hobby club",
+        # "nritya bhakti club",
+        # "kathputliyaan club",
+        # "Spectrum club"
+        "green gold society"
+    ]
+
+    for q in test_queries:
+        print("Q:", q)
+        print(club_router(q))
+        print("-"*40)
