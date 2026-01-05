@@ -10,16 +10,12 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
-
-# ---------------- PATHS ----------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
 URLS_FILE = os.path.join(DATA_DIR, "urls_meta.json")
 OUT_FILE = os.path.join(DATA_DIR, "research_data.json")
 
-
-# ---------------- HELPERS ----------------
 def clean(text):
     return re.sub(r"\s+", " ", text).strip()
 
@@ -60,7 +56,6 @@ def extract_overview(url):
         if not container:
             continue
 
-        # ---------- SUMMARY (RIGHT COLUMN ONLY) ----------
         summary = ""
         summary_p = container.select_one(
             "div.col-lg-4 div.stu.niet-img.list-itm > p"
@@ -68,7 +63,6 @@ def extract_overview(url):
         if summary_p:
             summary = clean(summary_p.get_text())
 
-        # ---------- HIGHLIGHTS (LEFT COLUMN ONLY) ----------
         highlights = []
         highlights_ul = container.select_one(
             "div.col-lg-8 div.niet-img.live-pr-img ul"
@@ -87,7 +81,6 @@ def extract_overview(url):
 
     return {}
 
-# ---------------- AREAS OF RESEARCH ----------------
 def extract_areas(url):
     if not url:
         return []
@@ -98,7 +91,6 @@ def extract_areas(url):
     return [clean(li.get_text()) for li in soup.select(".benefits_listing li span")]
 
 
-# ---------------- PATENTS ----------------
 def extract_patents(url):
     if not url:
         return {}
@@ -122,8 +114,6 @@ def extract_patents(url):
 
     return data
 
-
-# ---------------- RESEARCH PROJECTS ----------------
 def extract_projects(url):
     if not url:
         return []
@@ -144,8 +134,6 @@ def extract_projects(url):
 
     return projects
 
-
-# ---------------- MAIN ----------------
 def run_research_scraper():
     print("🔬 Scraping research data")
 

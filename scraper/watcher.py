@@ -1,60 +1,82 @@
-import requests, time, hashlib, os, subprocess
+import time
+import hashlib
+import os
+import subprocess
+import requests
+import sqlite3
 
-SITEMAP = "https://www.niet.co.in/sitemap.xml"
+SITEMAP_URL = "https://www.niet.co.in/sitemap.xml"
 CHECK_INTERVAL = 3600  # 1 hour
 
-STATE_FILE = "data/sitemap.hash"
+DATA_DIR = "data"
+STATE_DIR = "state"
 
-SCRIPTS = [
-    "discover_urls.py",
-    "courses.py",
-    "placements.py",
-    "facilities.py",
-    "about_courses.py",
-    "research.py"
-]
+SITEMAP_STATE = os.path.join(STATE_DIR, "sitemap.hash")
+DB_STATE = os.path.join(STATE_DIR, "db.timestamp")
 
-def fetch_hash():
-    r = requests.get(SITEMAP, timeout=20)
+DB_PATH = os.path.join(DATA_DIR, "data.db")
+BUILD_SCRIPT = "build_base_knowledge.py"
+
+def ensure_dirs():
+    os.makedirs(STATE_DIR, exist_ok=True)
+
+def fetch_db_last_updated():
+    if not os.path.exists(DB_PATH):
+        return None
+
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    try:
+        cur.execute("SELECT MAX(last_updated) FROM data")
+        return cur.fetchone()[0]
+    finally:
+        conn.close()
+
+def load_last_db_timestamp():
+    return open(DB_STATE).read().strip() if os.path.exists(DB_STATE) else None
+
+def save_db_timestamp(ts):
+    with open(DB_STATE, "w") as f:
+        f.write(str(ts))
+
+def fetch_sitemap_hash():
+    r = requests.get(SITEMAP_URL, timeout=20)
+    r.raise_for_status()
     return hashlib.md5(r.text.encode()).hexdigest()
 
-def load_last_hash():
-    if os.path.exists(STATE_FILE):
-        return open(STATE_FILE).read().strip()
-    return None
+def load_last_sitemap_hash():
+    return open(SITEMAP_STATE).read().strip() if os.path.exists(SITEMAP_STATE) else None
 
-def save_hash(h):
-    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
-    with open(STATE_FILE, "w") as f:
+def save_sitemap_hash(h):
+    with open(SITEMAP_STATE, "w") as f:
         f.write(h)
 
-def trigger_scrapers():
-    print("🚀 Triggering independent scrapers (sequential)")
 
-    for script in SCRIPTS:
-        print(f"▶ Running {script}")
-        try:
-            subprocess.run(
-                ["python", script],
-                check=True
-            )
-            print(f"✓ Finished {script}")
-        except subprocess.CalledProcessError as e:
-            print(f"❌ {script} failed:", e)
-            break   # stop if URLs are missing
+def trigger_build(reason):
+    print(f"\n🚀 Triggered rebuild due to {reason}\n")
+    subprocess.run(["python", BUILD_SCRIPT], check=True)
+
 
 def watch():
-    print("👀 Watcher started (monitoring NIET sitemap)")
+    ensure_dirs()
+    print("👀 Watcher started (DB → Sitemap priority)")
 
     while True:
         try:
-            current = fetch_hash()
-            last = load_last_hash()
+            current_db_ts = fetch_db_last_updated()
+            last_db_ts = load_last_db_timestamp()
 
-            if current != last:
-                print("🔄 Sitemap changed → running scrapers")
-                trigger_scrapers()
-                save_hash(current)
+            if current_db_ts and str(current_db_ts) != str(last_db_ts):
+                save_db_timestamp(current_db_ts)
+                trigger_build("DATABASE CHANGE")
+                time.sleep(CHECK_INTERVAL)
+                continue  
+            current_hash = fetch_sitemap_hash()
+            last_hash = load_last_sitemap_hash()
+
+            if current_hash != last_hash:
+                save_sitemap_hash(current_hash)
+                trigger_build("SITEMAP CHANGE")
             else:
                 print("✓ No change detected")
 

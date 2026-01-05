@@ -85,6 +85,37 @@
     "https://niet.co.in/infrastructure/campus-facilities",
     "https://niet.co.in/infrastructure/sports-health-facilities"
   ],
+  "research": [
+    "https://niet.co.in/research/overview",
+    "https://niet.co.in/research/areas-of-research",
+    "https://niet.co.in/research/journals",
+    "https://niet.co.in/research/patents",
+    "https://niet.co.in/research/publications",
+    "https://niet.co.in/research/research-projects",
+    "https://niet.co.in/research/conference",
+    "https://niet.co.in/research/conference/eai-sus-dev-2023",
+    "https://niet.co.in/research/conference/icbacst",
+    "https://niet.co.in/research/conference/icbacst-2",
+    "https://niet.co.in/department/computer-science-engineering/research/overview",
+    "https://niet.co.in/department/information-technology/research/overview",
+    "https://niet.co.in/department/electronics-and-communication-engineering/research/overview",
+    "https://niet.co.in/department/mechanical-engineering/research/overview",
+    "https://niet.co.in/department/data-science/research/overview",
+    "https://niet.co.in/department/artificial-intelligence-machine-language-aiml/research/overview",
+    "https://niet.co.in/department/computer-science-and-business-system/research/overview",
+    "https://niet.co.in/department/internet-of-things-iot/research/overview",
+    "https://niet.co.in/department/artificial-intelligence/research/overview",
+    "https://niet.co.in/department/mathematics-and-computing/research/overview",
+    "https://niet.co.in/department/master-of-computer-application-mca/research/overview",
+    "https://niet.co.in/department/master-of-business-administration-mba/research/overview"
+  ],
+  "institute": [
+    "https://niet.co.in/why-us/overview",
+    "https://niet.co.in/why-us/awards-amp-accolades",
+    "https://niet.co.in/why-us/rankings",
+    "https://niet.co.in/why-us/international-alliance",
+    "https://niet.co.in/why-us/students-life/alumni"
+  ],
   "pdfs": [
     "https://niet.co.in/uploads/Admissions/brochure/Brochure-for-View.pdf",
     "https://niet.co.in/uploads/notification/6925639527a0b1764058005.pdf",

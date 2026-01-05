@@ -1,5 +1,5 @@
 import json, os
-from build_base_knowledge import extract_meta
+from course_utils import extract_meta
 from enrich_why_choose import enrich_why_choose
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

@@ -1,22 +1,13 @@
-# facilities.py
 import json
 import os
 import requests
 from bs4 import BeautifulSoup
 from typing import Dict, List
 
-# -------------------------------------------------------------------
-# CONFIG
-# -------------------------------------------------------------------
-
 OUTPUT_PATH = "data/facilities.json"
 HEADERS = {
     "User-Agent": "NIET-Chatbot-Scraper/1.0"
 }
-
-# -------------------------------------------------------------------
-# URL SOURCE (AUTO – NO HARD CODING)
-# -------------------------------------------------------------------
 
 def load_facility_urls() -> Dict[str, List[str]]:
     with open("data/urls_meta.json", "r", encoding="utf-8") as f:
@@ -51,10 +42,6 @@ def load_facility_urls() -> Dict[str, List[str]]:
             categorized["medical_facilities"].append(url)
 
     return categorized
-
-# -------------------------------------------------------------------
-# CORE SCRAPER
-# -------------------------------------------------------------------
 
 def clean_text(text: str) -> str:
     return " ".join(text.split())
@@ -91,10 +78,6 @@ def extract_facility_sections(html: str) -> List[Dict]:
 
     return sections
 
-# -------------------------------------------------------------------
-# SCRAPE SINGLE URL
-# -------------------------------------------------------------------
-
 def scrape_facility_page(url: str) -> List[Dict]:
     try:
         r = requests.get(url, headers=HEADERS, timeout=20)
@@ -109,10 +92,6 @@ def scrape_facility_page(url: str) -> List[Dict]:
     except Exception as e:
         print(f"[ERROR] {url} -> {e}")
         return []
-
-# -------------------------------------------------------------------
-# MAIN RUNNER
-# -------------------------------------------------------------------
 
 def run():
     print("▶ Loading facility URLs...")
@@ -134,10 +113,6 @@ def run():
         json.dump(final_data, f, indent=2, ensure_ascii=False)
 
     print(f"✔ Facilities data saved to {OUTPUT_PATH}")
-
-# -------------------------------------------------------------------
-# ENTRY POINT
-# -------------------------------------------------------------------
 
 if __name__ == "__main__":
     run()

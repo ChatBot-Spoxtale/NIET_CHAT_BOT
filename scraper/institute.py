@@ -13,8 +13,6 @@ OUT_FILE = os.path.join(DATA_DIR, "institute_data.json")
 def clean(text):
     return re.sub(r"\s+", " ", text).strip()
 
-
-# ---------------- URL FETCH ----------------
 def get_institute_urls():
     with open(URLS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -39,8 +37,6 @@ def get_institute_urls():
 
     return urls
 
-
-# ---------------- ABOUT INSTITUTE ----------------
 def extract_about(url):
     if not url:
         return {}
@@ -59,8 +55,6 @@ def extract_about(url):
         "highlights": highlights
     }
 
-
-# ---------------- AWARDS ----------------
 def extract_awards(url):
     if not url:
         return []
@@ -80,8 +74,6 @@ def extract_awards(url):
 
     return awards
 
-
-# ---------------- RANKINGS ----------------
 def extract_rankings(url):
     if not url:
         return []
@@ -99,8 +91,6 @@ def extract_rankings(url):
 
     return rankings
 
-
-# ---------------- INTERNATIONAL ALLIANCES ----------------
 def extract_alliances(url):
     if not url:
         return []
@@ -113,8 +103,6 @@ def extract_alliances(url):
 
     return alliances
 
-
-# ---------------- MAIN ----------------
 def run_institute_scraper():
     print("🏛️ Scraping institute data")
 

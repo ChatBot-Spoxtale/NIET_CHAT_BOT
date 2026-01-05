@@ -1,19 +1,27 @@
-import requests, re
+import subprocess
+import sys
 
-def extract_meta(course_url):
-    meta = {"duration": "", "seats": ""}
-    try:
-        text = requests.get(course_url, timeout=10).text
-        plain = re.sub("<[^>]+>", " ", text)
+SCRIPTS = [
+    "discover_urls.py",
+    "about_courses.py",
+    "courses.py",
+    "placements.py",
+    "facilities.py",
+    "institute.py",
+    "research.py"
+]
 
-        d = re.search(r"Duration\s*[:\-]?\s*(\d+\s*Years?)", plain, re.I)
-        if d:
-            meta["duration"] = d.group(1)
+def run(script):
+    print(f"\n▶ Running {script}")
+    subprocess.run([sys.executable, script], check=True)
 
-        s = re.search(r"(Seats|Intake)\s*[:\-]?\s*(\d+)", plain, re.I)
-        if s:
-            meta["seats"] = s.group(2)
-    except:
-        pass
+def build():
+    print("\n🔁 FULL RE-SCRAPE STARTED\n")
 
-    return meta
+    for script in SCRIPTS:
+        run(script)
+
+    print("\n✅ Base knowledge rebuild completed successfully\n")
+
+if __name__ == "__main__":
+    build()
