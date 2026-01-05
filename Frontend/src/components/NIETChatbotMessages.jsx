@@ -172,7 +172,7 @@ export default function NIETChatbotMessages() {
       return
     }
     if (opt === "Placement Records") {
-      pushOptions(getPlacement(), true)
+      sendMessage("Show me the placement records and top recruiters of NIET")
       return
     }
     if (placement.some((p) => p.department === opt)) {
@@ -350,7 +350,9 @@ export default function NIETChatbotMessages() {
                     <div className="text-[11px] font-bold text-[#e2111f] uppercase mb-3 border-b border-[#e2111f]/10 pb-1 font-[Arial,sans-serif]">
                       Quick Actions
                     </div>
-                    {m.options.some((opt) => opt.match(/^[BM]\./i) || opt.toLowerCase().includes("twinning program in")) ? (
+                    {m.options.some(
+                      (opt) => opt.match(/^[BM]\./i) || opt.toLowerCase().includes("twinning program in"),
+                    ) ? (
                       <div className="relative group">
                         <button
                           onClick={() => setActiveDropdown(activeDropdown === m.id ? null : m.id)}
