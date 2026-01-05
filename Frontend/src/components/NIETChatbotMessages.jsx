@@ -27,7 +27,8 @@ const INITIAL_OPTIONS = [
   "Clubs",
   "Request Callback",
   "Research",
-  "Facilities",
+  "Hostel Facility",
+  "Academic Facility"
 ]
 
 const getCoursesByLevel = (level) => {
@@ -171,52 +172,14 @@ export default function NIETChatbotMessages() {
       )
       return
     }
-    if (opt === "Placement Records") {
-      sendMessage("Show me the placement records and top recruiters of NIET")
-      return
-    }
+    
     if (placement.some((p) => p.department === opt)) {
       sendMessage(`placement record of ${opt}`)
       return
     }
-    if (opt === "Institute") {
-      pushBot(
-        `You selected ${opt}. What do you want to know about the ${opt} (overview, rankings, awards, or international_alliances.)`,
-      )
-      return
-    }
 
-    if (opt === "Research") {
-      pushBot(
-        `You selected ${opt}. What do you want to know about the ${opt} (overview, areas, publications,journals or projects.)`,
-      )
-      return
-    }
-
-    if (opt === "Facilities") {
-      sendMessage("Facilities available at NIET")
-      return
-    }
     if (opt === "Admission") {
       pushOptions(["Direct Admission", "Counselling", "Twinning"], true)
-      return
-    }
-
-    if (opt === "Direct Admission") {
-      sendMessage("How can I get direct admission?")
-      return
-    }
-    if (opt === "Counselling") {
-      sendMessage("What is the admission process for first year BTech through JEE Main?")
-      return
-    }
-    if (opt === "Twinning") {
-      sendMessage("Eligibility for twinning admission")
-      return
-    }
-
-    if (opt === "Club") {
-      sendMessage("list of clubs")
       return
     }
   }
