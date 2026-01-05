@@ -3,7 +3,7 @@ import requests
 
 OLLAMA_URL = os.getenv(
     "OLLAMA_URL",
-    "https://carman-unexercisable-snarly.ngrok-free.dev/v1/generate"
+    "https://carman-unexercisable-snarly.ngrok-free.dev/api/generate"
 )
 MODEL_NAME = os.getenv("OLLAMA_MODEL", "gemma3:1b")
 
@@ -11,8 +11,8 @@ MODEL_NAME = os.getenv("OLLAMA_MODEL", "gemma3:1b")
 def ask_ollama_with_context(user_query: str, rag_context: str = "") -> str:
     query = user_query.lower().strip()
 
-    GREETINGS = ["hi","hello","hey","namaste","good morning","good afternoon","good evening"]
-    GENERAL = ["how are you","what's up","how is your day","kaisa ho","kya haal hai"]
+    GREETINGS = ["hi", "hello", "hey", "namaste", "good morning", "good afternoon", "good evening"]
+    GENERAL = ["how are you", "what's up", "how is your day", "kaisa ho", "kya haal hai"]
 
     if query in GREETINGS:
         return f"{user_query.capitalize()}! 👋 How can I assist you today?"
@@ -20,8 +20,7 @@ def ask_ollama_with_context(user_query: str, rag_context: str = "") -> str:
     if any(g in query for g in GENERAL):
         return "I'm doing well and happy to help! 😊 What would you like to know about NIET?"
 
-    return "I handle greetings and general talk here. For course questions, ask normally."
-
+    return ask_ollama_raw(user_query)
 
 
 def ask_ollama_raw(prompt: str) -> str:
@@ -73,4 +72,5 @@ if __name__ == "__main__":
     while True:
         q = input("\n❓ You: ")
         print(" Bot:", ask_ollama_with_context(q))
+
 
