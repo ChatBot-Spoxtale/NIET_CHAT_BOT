@@ -108,6 +108,16 @@ export default function NIETChatbotMessages() {
     setActiveDropdown(null)
   }, [messages, typing])
 
+
+
+ useEffect(() => {
+   const savedProfile = JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY))
+   if (savedProfile) {
+     setCallbackData(savedProfile)
+   }
+ }, [])
+
+  
   const pushBot = (text) =>
     setMessages((m) => [...m, { id: crypto.randomUUID(), from: "bot", type: "text", text, time: now() }])
 
@@ -184,26 +194,71 @@ export default function NIETChatbotMessages() {
     }
   }
 
+  const CALLBACK_STORAGE_KEY = "niet_user_profile"
+  
   const sendMessage = async (text) => {
-    if (callbackStep === "name") {
-      setCallbackData((prev) => ({ ...prev, name: text }))
-      pushUser(text)
-      setCallbackStep("phone")
-      pushBot("Great! Now kindly provide your mobile number so that our counsellor can contact you.")
-      return
+    if (callbackStep === "name" && callbackData?.name) {
+  pushBot(`I already have your name as ${callbackData.name}.`)
+  setCallbackStep("phone")
+  return
+}
+
+if (callbackStep === "phone" && callbackData?.phone) {
+  pushBot(`I already have your phone number ending with ${callbackData.phone.slice(-4)}.`)
+  setCallbackStep(null)
+  return
+}
+  const savedProfile =
+    JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY)) || {}
+
+  
+  if (callbackStep === "name") {
+    const updatedData = { ...savedProfile, name: text }
+
+    setCallbackData(updatedData)
+    localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
+
+    pushUser(text)
+    setCallbackStep("phone")
+    pushBot("Great! Now kindly provide your mobile number so that our counsellor can contact you.")
+    return
+  }
+
+  
+  if (callbackStep === "phone") {
+    const updatedData = { ...savedProfile, phone: text }
+
+    setCallbackData(updatedData)
+    localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
+
+    pushUser(text)
+    setCallbackStep(null)
+
+    const newRequest = {
+      ...updatedData,
+      timestamp: new Date().toISOString()
     }
 
-    if (callbackStep === "phone") {
-      setCallbackData((prev) => ({ ...prev, phone: text }))
-      pushUser(text)
-      setCallbackStep(null)
-      const newRequest = { ...callbackData, phone: text, timestamp: new Date().toISOString() }
-      const existing = JSON.parse(localStorage.getItem("niet_callback_requests") || "[]")
-      localStorage.setItem("niet_callback_requests", JSON.stringify([...existing, newRequest]))
-      console.log("[v0] Callback request stored:", newRequest)
-      pushBot("Thank you! Our counsellor will get back to you shortly.")
-      return
-    }
+    const existing =
+      JSON.parse(localStorage.getItem("niet_callback_requests") || "[]")
+
+    localStorage.setItem(
+      "niet_callback_requests",
+      JSON.stringify([...existing, newRequest])
+    )
+
+    console.log("[v0] Callback request stored:", newRequest)
+    pushBot("Thank you! Our counsellor will get back to you shortly.")
+    return
+  }
+
+  pushUser(text)
+  setTyping(true)
+  setIsSending(true)
+  }
+
+    stored:", newRequest)
+      pushBot("Thank you! Our counsellor w
 
     pushUser(text)
     setTyping(true)
