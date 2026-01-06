@@ -11,6 +11,7 @@ sys.path.append(str(ROOT))
 # 📌 Import RAG + NEW greeting-only LLM
 from RAG.query_rag_2 import answer_rag
 from Ollama.llm_client import ask_ollama_with_context
+from RAG.router.callback_router import router as callback_router
 
 
 app = FastAPI(
@@ -27,6 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(callback_router, prefix="/api")
 
 class QueryRequest(BaseModel):
     question: str
