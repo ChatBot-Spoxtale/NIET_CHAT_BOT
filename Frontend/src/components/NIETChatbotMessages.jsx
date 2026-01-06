@@ -195,8 +195,56 @@ export default function NIETChatbotMessages() {
   }
 
   const CALLBACK_STORAGE_KEY = "niet_user_profile"
+
+  const CALLBACK_INTENT_KEYWORDS = [
+  "fee",
+  "fees",
+  "admission",
+  "apply",
+  "application",
+  "enquiry",
+  "inquiry",
+  "counselling",
+  "counseling",
+  "registration",
+  "join",
+]
+
+  const shouldTriggerCallback = (text) => {
+  const q = text.toLowerCase()
+  return CALLBACK_INTENT_KEYWORDS.some((k) => q.includes(k))
+  }
   
   const sendMessage = async (text) => {
+
+    // ---- AUTO CALLBACK TRIGGER ----
+if (!callbackStep && shouldTriggerCallback(text)) {
+  pushUser(text)
+
+  const savedProfile =
+    JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY)) || {}
+
+  if (!savedProfile.name) {
+    setCallbackStep("name")
+    pushBot(
+      "I can help you better with admission details. May I know your name?"
+    )
+    return
+  }
+
+  if (!savedProfile.phone) {
+    setCallbackStep("phone")
+    pushBot(
+      `Thanks ${savedProfile.name}! Please share your mobile number so our counsellor can guide you.`
+    )
+    return
+  }
+
+  pushBot(
+    "I already have your details. Our counsellor will contact you shortly."
+  )
+  return
+}
     if (callbackStep === "name" && callbackData?.name) {
   pushBot(`I already have your name as ${callbackData.name}.`)
   setCallbackStep("phone")
