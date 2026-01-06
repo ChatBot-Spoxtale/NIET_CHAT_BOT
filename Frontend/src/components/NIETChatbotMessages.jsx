@@ -17,6 +17,96 @@ function truncateWithDots(text, limit = 28) {
   return text.slice(0, limit) + "...."
 }
 
+function ImageSlideshow({ images }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const autoSlideTimer = useRef(null)
+
+  useEffect(() => {
+    // Auto-advance every 5 seconds
+    autoSlideTimer.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, 5000)
+
+    return () => clearInterval(autoSlideTimer.current)
+  }, [images.length])
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+    // Reset timer on manual interaction
+    clearInterval(autoSlideTimer.current)
+    autoSlideTimer.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, 5000)
+  }
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length)
+    // Reset timer on manual interaction
+    clearInterval(autoSlideTimer.current)
+    autoSlideTimer.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, 5000)
+  }
+
+  return (
+    <div className="relative w-full bg-slate-100 rounded-lg overflow-hidden mt-2">
+      <div className="relative aspect-video flex items-center justify-center bg-slate-200">
+        <img
+          src={images[currentIndex] || "/placeholder.svg"}
+          alt={`Image ${currentIndex + 1} of ${images.length}`}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {images.length > 1 && (
+        <>
+          {/* Previous button */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 z-10"
+            aria-label="Previous image"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Next button */}
+          <button
+            onClick={handleNext}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 z-10"
+            aria-label="Next image"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Indicator dots */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  setCurrentIndex(idx)
+                  clearInterval(autoSlideTimer.current)
+                  autoSlideTimer.current = setInterval(() => {
+                    setCurrentIndex((prev) => (prev + 1) % images.length)
+                  }, 5000)
+                }}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  idx === currentIndex ? "bg-white w-6" : "bg-white/50"
+                }`}
+                aria-label={`Go to image ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
 const INITIAL_OPTIONS = [
   "Apply Now",
   "About NIET",
@@ -28,7 +118,7 @@ const INITIAL_OPTIONS = [
   "Request Callback",
   "Research",
   "Hostel Facility",
-  "Academic Facility"
+  "Academic Facility",
 ]
 
 const getCoursesByLevel = (level) => {
@@ -108,16 +198,13 @@ export default function NIETChatbotMessages() {
     setActiveDropdown(null)
   }, [messages, typing])
 
+  useEffect(() => {
+    const savedProfile = JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY))
+    if (savedProfile) {
+      setCallbackData(savedProfile)
+    }
+  }, [])
 
-
- useEffect(() => {
-   const savedProfile = JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY))
-   if (savedProfile) {
-     setCallbackData(savedProfile)
-   }
- }, [])
-
-  
   const pushBot = (text) =>
     setMessages((m) => [...m, { id: crypto.randomUUID(), from: "bot", type: "text", text, time: now() }])
 
@@ -137,22 +224,27 @@ export default function NIETChatbotMessages() {
         selectedValue: null,
       },
     ])
-const sendCallbackToBackend = async (data) => {
-  try {
-    await fetch("http://localhost:8000/api/save-callback", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.name,
-        phone: data.phone,
-      }),
-    })
-  } catch (error) {
-    console.error("Failed to save callback:", error)
+
+  const pushImages = (images) =>
+    setMessages((m) => [...m, { id: crypto.randomUUID(), from: "bot", type: "images", images, time: now() }])
+
+  const sendCallbackToBackend = async (data) => {
+    try {
+      await fetch("http://localhost:8000/api/save-callback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+        }),
+      })
+    } catch (error) {
+      console.error("Failed to save callback:", error)
+    }
   }
-}
+
   const handleOptionClick = (opt, messageId) => {
     if (opt === "Apply Now") {
       window.open("https://applynow.niet.co.in/", "_blank")
@@ -168,42 +260,42 @@ const sendCallbackToBackend = async (data) => {
       return
     }
 
-    if(opt === "About NIET"){
+    if (opt === "About NIET") {
       sendMessage("About NIET")
       return
     }
 
-      if(opt === "Clubs"){
+    if (opt === "Clubs") {
       sendMessage("List of Clubs")
       return
     }
 
-      if(opt === "Admission"){
+    if (opt === "Admission") {
       sendMessage("Admission")
       return
     }
 
-        if(opt === "Academic Facility"){
+    if (opt === "Academic Facility") {
       sendMessage("Academic Facility")
       return
     }
 
-        if(opt === "Hostel Facility"){
+    if (opt === "Hostel Facility") {
       sendMessage("Hostel Facility")
       return
     }
 
-        if(opt === "Research"){
+    if (opt === "Research") {
       sendMessage("Research")
       return
     }
 
-        if(opt === "Placement Records"){
+    if (opt === "Placement Records") {
       sendMessage("Placement Records")
       return
     }
 
-        if(opt === "Events"){
+    if (opt === "Events") {
       sendMessage("Niet Events")
       return
     }
@@ -213,44 +305,42 @@ const sendCallbackToBackend = async (data) => {
       return
     }
 
+    const ugCourses = getCoursesByLevel("UG").map((c) => c.course_name)
 
-    const ugCourses = getCoursesByLevel("UG").map(c => c.course_name)
+    if (opt === "Undergraduate Programs") {
+      pushOptions(ugCourses, true)
+      return
+    }
 
-if (opt === "Undergraduate Programs") {
-  pushOptions(ugCourses, true)
-  return
-}
+    if (ugCourses.includes(opt)) {
+      sendMessage(`Overview of ${opt}`)
+      return
+    }
 
-if (ugCourses.includes(opt)) {
-  sendMessage(`Overview of ${opt}`)
-  return
-}
+    const pgCourses = getCoursesByLevel("PG").map((c) => c.course_name)
 
-    const pgCourses = getCoursesByLevel("PG").map(c => c.course_name)
+    if (opt === "Postgraduate Programs") {
+      pushOptions(pgCourses, true)
+      return
+    }
 
-if (opt === "Postgraduate Programs") {
-  pushOptions(pgCourses, true)
-  return
-}
+    if (pgCourses.includes(opt)) {
+      sendMessage(`Overview of ${opt}`)
+      return
+    }
 
-if (pgCourses.includes(opt)) {
-  sendMessage(`Overview of ${opt}`)
-  return
-}
+    const twinningCourses = getCoursesByLevel("TWINNING").map((c) => c.course_name)
 
+    if (opt === "Twinning Programs") {
+      pushOptions(twinningCourses, true)
+      return
+    }
 
-    const twinningCourses = getCoursesByLevel("TWINNING").map(c => c.course_name)
+    if (twinningCourses.includes(opt)) {
+      sendMessage(`Overview of ${opt}`)
+      return
+    }
 
-if (opt === "Twinning Programs") {
-  pushOptions(twinningCourses, true)
-  return
-}
-
-if (twinningCourses.includes(opt)) {
-  sendMessage(`Overview of ${opt}`)
-  return
-}
-    
     if (placement.some((p) => p.department === opt)) {
       sendMessage(`placement record of ${opt}`)
       return
@@ -265,121 +355,103 @@ if (twinningCourses.includes(opt)) {
   const CALLBACK_STORAGE_KEY = "niet_user_profile"
 
   const CALLBACK_INTENT_KEYWORDS = [
-  "fee",
-  "fees",
-  "apply",
-  "application",
-  "enquiry",
-  "inquiry",
-  "registration",
-  "join",
-  "amount",
-  "cash",
-]
+    "fee",
+    "fees",
+    "apply",
+    "application",
+    "enquiry",
+    "inquiry",
+    "registration",
+    "join",
+    "amount",
+    "cash",
+  ]
 
   const shouldTriggerCallback = (text) => {
-  const q = text.toLowerCase()
-  return CALLBACK_INTENT_KEYWORDS.some((k) => q.includes(k))
+    const q = text.toLowerCase()
+    return CALLBACK_INTENT_KEYWORDS.some((k) => q.includes(k))
   }
-  
+
   const sendMessage = async (text) => {
+    if (!callbackStep && shouldTriggerCallback(text)) {
+      pushUser(text)
 
-if (!callbackStep && shouldTriggerCallback(text)) {
-  pushUser(text)
+      const savedProfile = JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY)) || {}
 
-  const savedProfile =
-    JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY)) || {}
+      if (!savedProfile.name) {
+        setCallbackStep("name")
+        pushBot("I can help you better with admission details. May I know your name?")
+        return
+      }
 
-  if (!savedProfile.name) {
-    setCallbackStep("name")
-    pushBot(
-      "I can help you better with admission details. May I know your name?"
-    )
-    return
-  }
+      if (!savedProfile.phone) {
+        setCallbackStep("phone")
+        pushBot(`Thanks ${savedProfile.name}! Please share your mobile number so our counsellor can guide you.`)
+        return
+      }
 
-  if (!savedProfile.phone) {
-    setCallbackStep("phone")
-    pushBot(
-      `Thanks ${savedProfile.name}! Please share your mobile number so our counsellor can guide you.`
-    )
-    return
-  }
-
-  pushBot(
-    "I already have your details. Our counsellor will contact you shortly."
-  )
-  return
-}
+      pushBot("I already have your details. Our counsellor will contact you shortly.")
+      return
+    }
     if (callbackStep === "name" && callbackData?.name) {
-  pushBot(`I already have your name as ${callbackData.name}.`)
-  setCallbackStep("phone")
-  return
-}
+      pushBot(`I already have your name as ${callbackData.name}.`)
+      setCallbackStep("phone")
+      return
+    }
 
-if (callbackStep === "phone" && callbackData?.phone) {
-  pushBot(`I already have your phone number ending with ${callbackData.phone.slice(-4)}.`)
-  setCallbackStep(null)
-  return
-}
-  const savedProfile =
-    JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY)) || {}
+    if (callbackStep === "phone" && callbackData?.phone) {
+      pushBot(`I already have your phone number ending with ${callbackData.phone.slice(-4)}.`)
+      setCallbackStep(null)
+      return
+    }
+    const savedProfile = JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY)) || {}
 
-  
-  if (callbackStep === "name") {
-    const updatedData = { ...savedProfile, name: text }
+    if (callbackStep === "name") {
+      const updatedData = { ...savedProfile, name: text }
 
-    setCallbackData(updatedData)
-    localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
+      setCallbackData(updatedData)
+      localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
+
+      pushUser(text)
+      setCallbackStep("phone")
+      pushBot("Great! Now kindly provide your mobile number so that our counsellor can contact you.")
+      return
+    }
+
+    if (callbackStep === "phone") {
+      if (!/^\d{10}$/.test(text)) {
+        pushBot("Please enter a valid 10-digit mobile number.")
+        return
+      }
+
+      const updatedData = { ...savedProfile, phone: text }
+
+      setCallbackData(updatedData)
+      localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
+
+      pushUser(text)
+      setCallbackStep(null)
+
+      const newRequest = {
+        ...updatedData,
+        timestamp: new Date().toISOString(),
+      }
+
+      // ✅ SEND TO FASTAPI BACKEND (TXT / CSV / DB)
+      await sendCallbackToBackend(updatedData)
+
+      const existing = JSON.parse(localStorage.getItem("niet_callback_requests") || "[]")
+
+      localStorage.setItem("niet_callback_requests", JSON.stringify([...existing, newRequest]))
+
+      console.log("[v0] Callback request stored:", newRequest)
+      pushBot("Thank you! Our counsellor will get back to you shortly.")
+      return
+    }
 
     pushUser(text)
-    setCallbackStep("phone")
-    pushBot("Great! Now kindly provide your mobile number so that our counsellor can contact you.")
-    return
-  }
-
-  
-  if (callbackStep === "phone") {
-  if (!/^\d{10}$/.test(text)) {
-    pushBot("Please enter a valid 10-digit mobile number.")
-    return
-  }
-
-  const updatedData = { ...savedProfile, phone: text }
-
-  setCallbackData(updatedData)
-  localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
-
-  pushUser(text)
-  setCallbackStep(null)
-
-  const newRequest = {
-    ...updatedData,
-    timestamp: new Date().toISOString(),
-  }
-
-  // ✅ SEND TO FASTAPI BACKEND (TXT / CSV / DB)
-  await sendCallbackToBackend(updatedData)
-
-  const existing =
-    JSON.parse(localStorage.getItem("niet_callback_requests") || "[]")
-
-  localStorage.setItem(
-    "niet_callback_requests",
-    JSON.stringify([...existing, newRequest])
-  )
-
-  console.log("[v0] Callback request stored:", newRequest)
-  pushBot("Thank you! Our counsellor will get back to you shortly.")
-  return
-}
-
-  pushUser(text)
-  setTyping(true)
-  setIsSending(true)
-  
-
-
+    setTyping(true)
+    setIsSending(true)
 
     try {
       const res = await fetch("http://localhost:8000/chat", {
@@ -390,7 +462,15 @@ if (callbackStep === "phone" && callbackData?.phone) {
       })
       const data = await res.json()
       await delay(600)
-      pushBot(data.final_answer || data.answer || "Server replied but no message found.")
+
+      if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+        pushImages(data.images)
+      }
+
+      // Display text response if available
+      if (data.final_answer || data.answer) {
+        pushBot(data.final_answer || data.answer)
+      }
     } catch {
       pushBot("Server error. Please try again.")
     } finally {
@@ -477,6 +557,12 @@ if (callbackStep === "phone" && callbackData?.phone) {
             )}
 
             <div className={`flex flex-col gap-1 ${m.from === "user" ? "items-end" : "items-start"} max-w-[88%]`}>
+              {m.type === "images" && (
+                <div className="w-full">
+                  <ImageSlideshow images={m.images} />
+                </div>
+              )}
+
               <div
                 className={`px-3 py-2 text-[13px] leading-relaxed whitespace-pre-line ${m.from === "user" ? "organic-user" : "organic-bot overflow-visible"}`}
               >
@@ -550,9 +636,9 @@ if (callbackStep === "phone" && callbackData?.phone) {
                       </div>
                     )}
                   </div>
-                ) : (
+                ) : m.type === "text" ? (
                   renderWithLinks(m.text)
-                )}
+                ) : null}
               </div>
               <div className="w-full mt-1">
                 <span
