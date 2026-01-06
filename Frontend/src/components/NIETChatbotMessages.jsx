@@ -257,12 +257,7 @@ if (callbackStep === "phone" && callbackData?.phone) {
   setIsSending(true)
   }
 
-    stored:", newRequest)
-      pushBot("Thank you! Our counsellor w
 
-    pushUser(text)
-    setTyping(true)
-    setIsSending(true)
 
     try {
       const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
