@@ -255,7 +255,7 @@ if (callbackStep === "phone" && callbackData?.phone) {
   pushUser(text)
   setTyping(true)
   setIsSending(true)
-  }
+  
 
 
 
