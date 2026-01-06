@@ -8,7 +8,8 @@ SCRIPTS = [
     "placements.py",
     "facilities.py",
     "institute.py",
-    "research.py"
+    "research.py",
+    "placement_records.py"
 ]
 
 def run(script):

@@ -22,7 +22,8 @@ def discover_urls():
         "facilities": [],
         "research": [],
         "institute": [],
-        "pdfs": []
+        "pdfs": [],
+        "placement_records": []
     }
 
     for url in root.findall("ns:url", ns):
@@ -40,6 +41,9 @@ def discover_urls():
             data["institute"].append(loc)
         elif loc.lower().endswith(".pdf"):
             data["pdfs"].append(loc)
+        elif "/placement/placement-records" in loc:
+            data["placement_records"].append(loc)
+
 
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
