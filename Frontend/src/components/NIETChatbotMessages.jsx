@@ -199,13 +199,10 @@ export default function NIETChatbotMessages() {
   const CALLBACK_INTENT_KEYWORDS = [
   "fee",
   "fees",
-  "admission",
   "apply",
   "application",
   "enquiry",
   "inquiry",
-  "counselling",
-  "counseling",
   "registration",
   "join",
 ]
