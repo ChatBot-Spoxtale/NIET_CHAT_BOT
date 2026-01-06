@@ -189,7 +189,7 @@ export default function NIETChatbotMessages() {
     }
 
         if(opt === "Events"){
-      sendMessage("Events")
+      sendMessage("Event")
       return
     }
 
