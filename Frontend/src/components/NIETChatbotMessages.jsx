@@ -144,13 +144,52 @@ export default function NIETChatbotMessages() {
       return
     }
 
-    pushUser(opt)
     setMessages((prev) => prev.map((m) => (m.id === messageId ? { ...m, selectedValue: opt } : m)))
     setSelectedOptions((prev) => new Set(prev).add(opt))
 
     if (opt === "Request Callback") {
       setCallbackStep("name")
       pushBot("Please provide your name.")
+      return
+    }
+
+    if(opt === "About NIET"){
+      sendMessage("About NIET")
+      return
+    }
+
+      if(opt === "Clubs"){
+      sendMessage("List of Clubs")
+      return
+    }
+
+      if(opt === "Admission"){
+      sendMessage("Admission")
+      return
+    }
+
+        if(opt === "Academic Facility"){
+      sendMessage("Academic Facility")
+      return
+    }
+
+        if(opt === "Hostel Facility"){
+      sendMessage("Hostel Facility")
+      return
+    }
+
+        if(opt === "Research"){
+      sendMessage("Research")
+      return
+    }
+
+        if(opt === "Placement Records"){
+      sendMessage("Placement Records")
+      return
+    }
+
+        if(opt === "Events"){
+      sendMessage("Events")
       return
     }
 
@@ -205,6 +244,8 @@ export default function NIETChatbotMessages() {
   "inquiry",
   "registration",
   "join",
+  "amount",
+  "cash",
 ]
 
   const shouldTriggerCallback = (text) => {
@@ -214,7 +255,6 @@ export default function NIETChatbotMessages() {
   
   const sendMessage = async (text) => {
 
-    // ---- AUTO CALLBACK TRIGGER ----
 if (!callbackStep && shouldTriggerCallback(text)) {
   pushUser(text)
 
@@ -305,7 +345,7 @@ if (callbackStep === "phone" && callbackData?.phone) {
 
 
     try {
-      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
+      const res = await fetch("http://localhost:8000/chat", {
         method: "POST",
         mode: "cors",
         headers: { "Content-Type": "application/json" },
