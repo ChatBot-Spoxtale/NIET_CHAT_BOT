@@ -230,7 +230,7 @@ export default function NIETChatbotMessages() {
 
   const sendCallbackToBackend = async (data) => {
     try {
-      await fetch("http://localhost:8000/api/save-callback", {
+      await fetch("https://niet-chat-bot-rag.onrender.com/api/save-callback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -454,7 +454,7 @@ export default function NIETChatbotMessages() {
     setIsSending(true)
 
     try {
-      const res = await fetch("http://localhost:8000/chat", {
+      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
         method: "POST",
         mode: "cors",
         headers: { "Content-Type": "application/json" },
