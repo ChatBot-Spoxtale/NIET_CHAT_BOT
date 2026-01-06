@@ -4,11 +4,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-# # 📌 Import paths
-# ROOT = Path(__file__).resolve().parents[0]
-# sys.path.append(str(ROOT))
 
-# 📌 Import RAG + NEW greeting-only LLM
 from query_rag_2 import answer_rag
 from Ollama.llm_client import ask_ollama_with_context
 from RAG.router.callback_router import router as callback_router

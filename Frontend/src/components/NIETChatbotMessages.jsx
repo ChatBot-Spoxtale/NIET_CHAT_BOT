@@ -137,7 +137,22 @@ export default function NIETChatbotMessages() {
         selectedValue: null,
       },
     ])
-
+const sendCallbackToBackend = async (data) => {
+  try {
+    await fetch("http://localhost:8000/api/save-callback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        phone: data.phone,
+      }),
+    })
+  } catch (error) {
+    console.error("Failed to save callback:", error)
+  }
+}
   const handleOptionClick = (opt, messageId) => {
     if (opt === "Apply Now") {
       window.open("https://applynow.niet.co.in/", "_blank")
@@ -189,7 +204,7 @@ export default function NIETChatbotMessages() {
     }
 
         if(opt === "Events"){
-      sendMessage("Event")
+      sendMessage("Niet Events")
       return
     }
 
@@ -198,29 +213,43 @@ export default function NIETChatbotMessages() {
       return
     }
 
-    if (opt === "Undergraduate Programs") {
-      pushOptions(
-        getCoursesByLevel("UG").map((c) => c.course_name),
-        true,
-      )
-      return
-    }
 
-    if (opt === "Postgraduate Programs") {
-      pushOptions(
-        getCoursesByLevel("PG").map((c) => c.course_name),
-        true,
-      )
-      return
-    }
+    const ugCourses = getCoursesByLevel("UG").map(c => c.course_name)
 
-    if (opt === "Twinning Programs") {
-      pushOptions(
-        getCoursesByLevel("TWINNING").map((c) => c.course_name),
-        true,
-      )
-      return
-    }
+if (opt === "Undergraduate Programs") {
+  pushOptions(ugCourses, true)
+  return
+}
+
+if (ugCourses.includes(opt)) {
+  sendMessage(`Overview of ${opt}`)
+  return
+}
+
+    const pgCourses = getCoursesByLevel("PG").map(c => c.course_name)
+
+if (opt === "Postgraduate Programs") {
+  pushOptions(pgCourses, true)
+  return
+}
+
+if (pgCourses.includes(opt)) {
+  sendMessage(`Overview of ${opt}`)
+  return
+}
+
+
+    const twinningCourses = getCoursesByLevel("TWINNING").map(c => c.course_name)
+
+if (opt === "Twinning Programs") {
+  pushOptions(twinningCourses, true)
+  return
+}
+
+if (twinningCourses.includes(opt)) {
+  sendMessage(`Overview of ${opt}`)
+  return
+}
     
     if (placement.some((p) => p.department === opt)) {
       sendMessage(`placement record of ${opt}`)
@@ -311,31 +340,39 @@ if (callbackStep === "phone" && callbackData?.phone) {
 
   
   if (callbackStep === "phone") {
-    const updatedData = { ...savedProfile, phone: text }
-
-    setCallbackData(updatedData)
-    localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
-
-    pushUser(text)
-    setCallbackStep(null)
-
-    const newRequest = {
-      ...updatedData,
-      timestamp: new Date().toISOString()
-    }
-
-    const existing =
-      JSON.parse(localStorage.getItem("niet_callback_requests") || "[]")
-
-    localStorage.setItem(
-      "niet_callback_requests",
-      JSON.stringify([...existing, newRequest])
-    )
-
-    console.log("[v0] Callback request stored:", newRequest)
-    pushBot("Thank you! Our counsellor will get back to you shortly.")
+  if (!/^\d{10}$/.test(text)) {
+    pushBot("Please enter a valid 10-digit mobile number.")
     return
   }
+
+  const updatedData = { ...savedProfile, phone: text }
+
+  setCallbackData(updatedData)
+  localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
+
+  pushUser(text)
+  setCallbackStep(null)
+
+  const newRequest = {
+    ...updatedData,
+    timestamp: new Date().toISOString(),
+  }
+
+  // ✅ SEND TO FASTAPI BACKEND (TXT / CSV / DB)
+  await sendCallbackToBackend(updatedData)
+
+  const existing =
+    JSON.parse(localStorage.getItem("niet_callback_requests") || "[]")
+
+  localStorage.setItem(
+    "niet_callback_requests",
+    JSON.stringify([...existing, newRequest])
+  )
+
+  console.log("[v0] Callback request stored:", newRequest)
+  pushBot("Thank you! Our counsellor will get back to you shortly.")
+  return
+}
 
   pushUser(text)
   setTyping(true)
