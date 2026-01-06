@@ -5,9 +5,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")
 from Ollama.llm_client import ask_ollama_with_context
 
 
-# -------------- LOAD CLUB DATA --------------
-with open("RAG/data/club_chunks.json","r",encoding="utf-8") as f:
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # points to RAG/
+DATA_PATH = os.path.join(BASE_DIR, "data", "club_chunks.json")
+
+with open(DATA_PATH, "r", encoding="utf-8") as f:
     CLUB_DATA = json.load(f)
+
 
 
 # -------------- NORMALIZE FUNCTION (Fix misspellings & aliases) --------------
