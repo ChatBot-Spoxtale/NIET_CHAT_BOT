@@ -215,6 +215,20 @@
     ]
   },
   {
+  "question": "What are NIET’s research areas, research focus, and academic rankings?",
+  "answer": "• NIET focuses on research and innovation across multiple disciplines including Artificial Intelligence & Machine Learning, Data Science, Internet of Things (IoT), Robotics & Automation, Cyber Security, VLSI Design, Wireless Communication, Biotechnology, and Embedded Systems.\n• The institute actively promotes research culture through faculty and student participation in funded projects, publications, patents, and industry collaborations.\n• NIET is recognized nationally for its academic excellence, has been featured in the National Institutional Ranking Framework (NIRF), accredited by NAAC with Grade A, and several of its programs are accredited by the National Board of Accreditation (NBA). Follow Offical Link For More Information:- https://niet.co.in/research/overview",
+  "keywords": [
+    "research",
+    "research areas",
+    "innovation",
+    "ranking",
+    "nirf",
+    "naac",
+    "nba",
+    "academic excellence"
+  ]
+  },
+  {
     "question": "What are NIET rankings?",
     "answer": "\u2022 NIET has been featured in the National Institutional Ranking Framework (NIRF) in the Engineering category in recent years.\n\u2022 The institute has received national recognition through accreditation and ranking frameworks.",
     "keywords": [
@@ -313,4 +327,5 @@
       "hostel facility"
             ]
   }
+
 ]
