@@ -1,6 +1,7 @@
 # RAG/routers/about_niet_router.py
 import json, os, sys
 
+# allow imports to work from root
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 from Ollama.llm_client import ask_ollama_with_context
@@ -30,23 +31,46 @@ ABOUT_TRIGGERS = [
     "why choose niet"
 ]
 
+RESEARCH_TRIGGERS = [
+    "research",
+    "research area",
+    "research areas",
+    "research focus",
+    "research at niet",
+    "niet research",
+    "r&d",
+    "innovation research"
+]
 
 def about_niet_router(query: str):
     q = normalize(query)
 
+    # ---------- RESEARCH ----------
+    if any(trigger in q for trigger in RESEARCH_TRIGGERS):
+        for item in NIET_DATA:
+            question = normalize(item.get("question", ""))
+            if "research" in question:
+                return f"""
+🔬 Research at NIET
+{item.get("answer")}
+
+🔗 More details: https://niet.co.in/research
+                """.strip()
+
+    # ---------- ABOUT NIET ----------
     if not any(trigger in q for trigger in ABOUT_TRIGGERS):
         return None
 
     for item in NIET_DATA:
-        question = normalize(item.get("question",""))
-        ans = item.get("answer","")
+        question = normalize(item.get("question", ""))
+        ans = item.get("answer", "")
 
         if any(word in question for word in q.split()):
             return f"""
-About NIET
+🏛️ About NIET
 {ans}
 
-Need more:-
+Need more:
 • Courses Offered
 • Admission Process
 • Placement Record
@@ -54,22 +78,23 @@ Need more:-
 • Clubs & Activities
             """.strip()
 
+    # ---------- FALLBACK ----------
     if "niet" in q:
         return """
 NIET (Noida Institute of Engineering & Technology) is an AICTE-approved,
-AKTU-affiliated institute known for B.Tech, MCA, MBA and more — with strong placement,
-modern campus infrastructure, and active student clubs.
+AKTU-affiliated autonomous institute known for strong placements,
+modern infrastructure, and active research culture.
 
-Ask specifically like:
+Ask specifically:
+• Research areas at NIET
 • Why choose NIET?
-• NIET infrastructure?
-• NIET ranking?
-• NIET hostel?
+• NIET rankings
+• NIET hostel
         """.strip()
 
     return ask_ollama_with_context(
         q,
-        "Answer only about NIET institute overview. Do not hallucinate new claims."
+        "Answer only about NIET institute overview. Do not hallucinate."
     )
 
 
