@@ -286,7 +286,7 @@ export default function NIETChatbotMessages() {
     }
 
     if (opt === "Research") {
-      sendMessage("Research")
+      sendMessage("Research At NIET")
       return
     }
 
