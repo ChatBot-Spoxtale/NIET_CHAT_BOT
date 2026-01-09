@@ -50,7 +50,7 @@ function ImageSlideshow({ images }) {
 
   return (
     <div className="relative w-full bg-slate-100 rounded-lg overflow-hidden mt-2">
-      <div className="relative aspect-video flex items-center justify-center bg-slate-200">
+      <div className="relative h-[320px] sm:h-[380px] md:h-[420px] lg:h-[480px] flex items-center justify-center bg-slate-200">
         <img
           src={images[currentIndex] || "/placeholder.svg"}
           alt={`Image ${currentIndex + 1} of ${images.length}`}
@@ -94,9 +94,8 @@ function ImageSlideshow({ images }) {
                     setCurrentIndex((prev) => (prev + 1) % images.length)
                   }, 5000)
                 }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  idx === currentIndex ? "bg-white w-6" : "bg-white/50"
-                }`}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-white w-6" : "bg-white/50"
+                  }`}
                 aria-label={`Go to image ${idx + 1}`}
               />
             ))}
@@ -142,6 +141,10 @@ const getPlacement = () => {
 }
 
 function renderWithLinks(text) {
+  if (typeof text !== "string") {
+    return <span>{""}</span>  // or JSON.stringify(text) for debugging
+  }
+
   const urlRegex = /(https?:\/\/[^\s]+)/g
   return text.split(urlRegex).map((part, i) =>
     part.match(urlRegex) ? (
@@ -153,21 +156,15 @@ function renderWithLinks(text) {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#e2111f] text-[#e2111f] font-semibold text-[11px] hover:bg-[#e2111f] hover:text-white transition-all duration-300 shadow-sm bg-white"
         >
           <span>{part.length > 30 ? "Visit Official Link" : part}</span>
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2.5}
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-            />
-          </svg>
         </a>
       </div>
     ) : (
       <span key={i}>{part}</span>
-    ),
+    )
   )
 }
+
+
 
 export default function NIETChatbotMessages() {
   const [messages, setMessages] = useState([])
@@ -230,7 +227,7 @@ export default function NIETChatbotMessages() {
 
   const sendCallbackToBackend = async (data) => {
     try {
-      await fetch("https://niet-chat-bot-rag.onrender.com/api/save-callback", {
+      await fetch("http://localhost:8000/api/save-callback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -256,6 +253,7 @@ export default function NIETChatbotMessages() {
 
     if (opt === "Request Callback") {
       setCallbackStep("name")
+      setCallbackData({ name: "", phone: "" })
       pushBot("Please provide your name.")
       return
     }
@@ -271,7 +269,7 @@ export default function NIETChatbotMessages() {
     }
 
     if (opt === "Admission") {
-      sendMessage("Admission")
+      sendMessage("Admission Prcoess At NIET")
       return
     }
 
@@ -291,7 +289,7 @@ export default function NIETChatbotMessages() {
     }
 
     if (opt === "Placement Records") {
-      sendMessage("Placement Records")
+      sendMessage("Placement Record oF NIET")
       return
     }
 
@@ -393,43 +391,36 @@ export default function NIETChatbotMessages() {
       pushBot("I already have your details. Our counsellor will contact you shortly.")
       return
     }
-    if (callbackStep === "name" && callbackData?.name) {
-      pushBot(`I already have your name as ${callbackData.name}.`)
-      setCallbackStep("phone")
-      return
-    }
-
-    if (callbackStep === "phone" && callbackData?.phone) {
-      pushBot(`I already have your phone number ending with ${callbackData.phone.slice(-4)}.`)
-      setCallbackStep(null)
-      return
-    }
-    const savedProfile = JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY)) || {}
 
     if (callbackStep === "name") {
-      const updatedData = { ...savedProfile, name: text }
+      pushUser(text)
 
+      const updatedData = { name: text, phone: "" }
       setCallbackData(updatedData)
       localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
 
-      pushUser(text)
       setCallbackStep("phone")
       pushBot("Great! Now kindly provide your mobile number so that our counsellor can contact you.")
       return
     }
 
+
     if (callbackStep === "phone") {
+        pushUser(text)
+
       if (!/^\d{10}$/.test(text)) {
         pushBot("Please enter a valid 10-digit mobile number.")
         return
       }
 
-      const updatedData = { ...savedProfile, phone: text }
+      // pushUser(text)
+
+  const updatedData = { ...callbackData, phone: text }
 
       setCallbackData(updatedData)
       localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
 
-      pushUser(text)
+      // pushUser(text)
       setCallbackStep(null)
 
       const newRequest = {
@@ -454,7 +445,7 @@ export default function NIETChatbotMessages() {
     setIsSending(true)
 
     try {
-      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
+      const res = await fetch("http://localhost:8000/chat", {
         method: "POST",
         mode: "cors",
         headers: { "Content-Type": "application/json" },
@@ -464,13 +455,15 @@ export default function NIETChatbotMessages() {
       await delay(600)
 
       if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+        await delay(100)
         pushImages(data.images)
       }
 
-      // Display text response if available
       if (data.final_answer || data.answer) {
+        await delay(50)
         pushBot(data.final_answer || data.answer)
       }
+
     } catch {
       pushBot("Server error. Please try again.")
     } finally {
@@ -538,9 +531,8 @@ export default function NIETChatbotMessages() {
         {messages.map((m, idx) => (
           <div
             key={m.id}
-            className={`flex gap-2 items-start animate-in fade-in slide-in-from-bottom-2 duration-500 relative ${
-              activeDropdown === m.id ? "z-50" : "z-0"
-            } ${m.from === "user" ? "flex-row-reverse" : ""}`}
+            className={`flex gap-2 items-start animate-in fade-in slide-in-from-bottom-2 duration-500 relative ${activeDropdown === m.id ? "z-50" : "z-0"
+              } ${m.from === "user" ? "flex-row-reverse" : ""}`}
             style={{ animationDelay: `${idx * 0.05}s` }}
           >
             {m.from === "bot" && (
@@ -616,7 +608,7 @@ export default function NIETChatbotMessages() {
                         {m.options.map((opt) => (
                           <button
                             key={opt}
-                            disabled={m.selectedValue !== null}
+                            // disabled={m.selectedValue !== null}
                             onClick={() => handleOptionClick(opt, m.id)}
                             className={`action-pill ${m.selectedValue === opt ? "action-pill-active" : ""}`}
                           >
