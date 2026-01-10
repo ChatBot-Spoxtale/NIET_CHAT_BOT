@@ -22,7 +22,6 @@ function ImageSlideshow({ images }) {
   const autoSlideTimer = useRef(null)
 
   useEffect(() => {
-    // Auto-advance every 5 seconds
     autoSlideTimer.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length)
     }, 5000)
@@ -32,7 +31,6 @@ function ImageSlideshow({ images }) {
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
-    // Reset timer on manual interaction
     clearInterval(autoSlideTimer.current)
     autoSlideTimer.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length)
@@ -41,7 +39,6 @@ function ImageSlideshow({ images }) {
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length)
-    // Reset timer on manual interaction
     clearInterval(autoSlideTimer.current)
     autoSlideTimer.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length)
@@ -60,7 +57,6 @@ function ImageSlideshow({ images }) {
 
       {images.length > 1 && (
         <>
-          {/* Previous button */}
           <button
             onClick={handlePrev}
             className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 z-10"
@@ -71,7 +67,6 @@ function ImageSlideshow({ images }) {
             </svg>
           </button>
 
-          {/* Next button */}
           <button
             onClick={handleNext}
             className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 z-10"
@@ -82,7 +77,6 @@ function ImageSlideshow({ images }) {
             </svg>
           </button>
 
-          {/* Indicator dots */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
             {images.map((_, idx) => (
               <button
@@ -94,8 +88,9 @@ function ImageSlideshow({ images }) {
                     setCurrentIndex((prev) => (prev + 1) % images.length)
                   }, 5000)
                 }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-white w-6" : "bg-white/50"
-                  }`}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  idx === currentIndex ? "bg-white w-6" : "bg-white/50"
+                }`}
                 aria-label={`Go to image ${idx + 1}`}
               />
             ))}
@@ -105,6 +100,275 @@ function ImageSlideshow({ images }) {
     </div>
   )
 }
+
+function parseMessageContent(text) {
+  if (typeof text !== "string") return { type: "plain", content: text }
+
+  const hasCourseDetails =
+    text.includes("*Course Details*") ||
+    text.includes("*Placements*") ||
+    text.includes("*Why Choose*") ||
+    (text.includes("*Overview*") && text.includes("*"))
+
+  const hasBulletPoints = /^[\s]*[-•*]/m.test(text)
+  const hasMultipleSections = (text.match(/\n/g) || []).length > 3 && hasBulletPoints
+  const isGreeting = text.length < 150 && !hasBulletPoints && !hasCourseDetails
+
+  if (hasCourseDetails) return { type: "courseDetails", content: text }
+  if (hasMultipleSections) return { type: "structured", content: text }
+  if (hasBulletPoints) return { type: "bulletList", content: text }
+  return { type: "greeting", content: text }
+}
+
+function renderCourseDetails(text) {
+  const sections = text.split(/(\*[^*]+\*)/g).filter(Boolean)
+
+  const sectionIcons = {
+    "*Course Details*": "",
+    "*Placements*": "",
+    "*Why Choose This Course?*": "",
+    "*Overview*": ""
+    }
+
+  const contentGroups = []
+  let currentGroup = { title: null, items: [] }
+
+  sections.forEach((section) => {
+    if (section.startsWith("*") && section.endsWith("*")) {
+      if (currentGroup.items.length > 0) {
+        contentGroups.push(currentGroup)
+      }
+      currentGroup = { title: section, items: [] }
+    } else {
+      const lines = section.split("\n").filter((l) => l.trim())
+      lines.forEach((line) => {
+        const match = line.match(/^[\s]*[-•*]\s*(.*)/)
+        if (match) {
+          currentGroup.items.push(match[1])
+        } else if (line.trim()) {
+          currentGroup.items.push(line.trim())
+        }
+      })
+    }
+  })
+
+  if (currentGroup.items.length > 0) {
+    contentGroups.push(currentGroup)
+  }
+
+  return (
+    <div className="space-y-3 w-full">
+      {contentGroups.map((group, groupIdx) => {
+        const title = group.title?.slice(1, -1)
+        const icon = sectionIcons[group.title] || ""
+
+        return (
+          <div key={groupIdx} className="course-detail-card">
+            <div className="flex items-center gap-2 mb-2 pb-2 border-b-2 border-red-300">
+              {icon && <span className="text-xl">{icon}</span>}
+              <h3 className="font-bold text-red-600 text-sm uppercase tracking-wide">{title}</h3>
+            </div>
+            <div className="space-y-2 ml-1">
+              {group.items.map((item, itemIdx) => (
+                <div key={itemIdx} className="flex gap-3 items-start">
+                  <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mt-1.5 shrink-0" />
+                  <p className="text-sm text-slate-700 leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function renderBulletList(text) {
+  const lines = text.split("\n")
+  const elements = []
+  let currentList = []
+
+  lines.forEach((line) => {
+    const trimmed = line.trim()
+
+    if (/^[\s]*[-•*]/.test(trimmed)) {
+      const content = trimmed.replace(/^[\s]*[-•*]\s*/, "")
+      if (content.trim()) {
+        currentList.push(content)
+      }
+    } else if (trimmed && currentList.length > 0) {
+      elements.push({ type: "list", items: currentList })
+      currentList = []
+      elements.push({ type: "text", content: trimmed })
+    } else if (trimmed) {
+      if (currentList.length > 0) {
+        elements.push({ type: "list", items: currentList })
+        currentList = []
+      }
+      elements.push({ type: "text", content: trimmed })
+    }
+  })
+
+  if (currentList.length > 0) {
+    elements.push({ type: "list", items: currentList })
+  }
+
+  return (
+    <div className="space-y-3 w-full">
+      {elements.map((elem, idx) => {
+        if (elem.type === "list") {
+          return (
+            <div key={idx} className="bullet-list-card">
+              <ul className="space-y-2">
+                {elem.items.map((item, itemIdx) => (
+                  <li key={itemIdx} className="flex gap-3 items-start">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mt-1.5 shrink-0 shadow-sm" />
+                    <span className="text-sm text-slate-700 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        return (
+          <p key={idx} className="text-sm text-slate-700 leading-relaxed pl-3">
+            {elem.content}
+          </p>
+        )
+      })}
+    </div>
+  )
+}
+
+function renderStructuredContent(text) {
+  const lines = text.split("\n")
+  const elements = []
+  let currentList = []
+
+  lines.forEach((line) => {
+    const trimmed = line.trim()
+
+    if (/^[\s]*[-•*]/.test(trimmed)) {
+      const content = trimmed.replace(/^[\s]*[-•*]\s*/, "")
+      if (content.trim()) {
+        currentList.push(content)
+      }
+    } else if (trimmed && currentList.length > 0) {
+      elements.push({ type: "list", items: currentList })
+      currentList = []
+      elements.push({ type: "text", content: trimmed })
+    } else if (trimmed) {
+      if (currentList.length > 0) {
+        elements.push({ type: "list", items: currentList })
+        currentList = []
+      }
+      elements.push({ type: "text", content: trimmed })
+    }
+  })
+
+  if (currentList.length > 0) {
+    elements.push({ type: "list", items: currentList })
+  }
+
+  return (
+    <div className="space-y-3 w-full">
+      {elements.map((elem, idx) => {
+        if (elem.type === "list") {
+          return (
+            <div key={idx} className="mixed-content-card">
+              <ul className="space-y-2">
+                {elem.items.map((item, itemIdx) => (
+                  <li key={itemIdx} className="flex gap-3 items-start">
+                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-pink-500 rounded-full mt-1.5 shrink-0" />
+                    <span className="text-sm text-slate-700 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        return (
+          <p key={idx} className="text-sm text-slate-700 leading-relaxed px-3 py-2">
+            {elem.content}
+          </p>
+        )
+      })}
+    </div>
+  )
+}
+
+function renderGreeting(text) {
+  return (
+    <div className="inline-block max-w-full">
+      <p className="text-sm text-slate-700 leading-relaxed greeting-pill">{text}</p>
+    </div>
+  )
+}
+
+const renderWithLinks = (text) => {
+  if (typeof text !== "string") {
+    return <span>{""}</span>
+  }
+
+  const { type, content } = parseMessageContent(text)
+
+  if (type === "courseDetails") {
+    return renderCourseDetails(content)
+  } else if (type === "structured") {
+    return renderStructuredContent(content)
+  } else if (type === "bulletList") {
+    return renderBulletList(content)
+  } else {
+    const urlRegex = /(https?:\/\/[^\s]+)/g
+    const parts = content.split(urlRegex)
+    const hasLinks = parts.some((p) => p.match(urlRegex))
+
+    if (hasLinks) {
+      return (
+        <div className="flex flex-col gap-2">
+          {parts.map((part, i) =>
+            part.match(urlRegex) ? (
+              <button
+                key={i}
+                onClick={() => window.open(part, "_blank")}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e2111f] text-white font-semibold text-[12px] hover:bg-[#b00d18] transition-all duration-300 shadow-md hover:shadow-lg w-fit cursor-pointer border-none"
+              >
+                <span>Visit Official Link</span>
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </button>
+            ) : part.trim() ? (
+              <span key={i} className="text-sm text-slate-700 leading-relaxed">
+                {part.trim()}
+              </span>
+            ) : null,
+          )}
+        </div>
+      )
+    }
+
+    return renderGreeting(content)
+  }
+}
+const isValidName = (name) => {
+  if (!name) return false
+  const cleaned = name.trim()
+  return /^[A-Za-z\s]{2,40}$/.test(cleaned)
+}
+
+const isValidIndianPhone = (phone) => {
+  if (!phone) return false
+  const cleaned = phone.replace(/\s|-/g, "").replace(/^(\+91)/, "")
+  return /^[6-9]\d{9}$/.test(cleaned)
+}
+
+
 
 const INITIAL_OPTIONS = [
   "Apply Now",
@@ -127,44 +391,6 @@ const getCoursesByLevel = (level) => {
   if (level === "TWINNING") return courses.filter((c) => c.course_name?.toLowerCase().includes("twinning"))
   return []
 }
-
-const getPlacement = () => {
-  const seen = new Set()
-
-  return placement
-    .filter((item) => {
-      if (seen.has(item.department)) return false
-      seen.add(item.department)
-      return true
-    })
-    .map((item) => item.department)
-}
-
-function renderWithLinks(text) {
-  if (typeof text !== "string") {
-    return <span>{""}</span>  // or JSON.stringify(text) for debugging
-  }
-
-  const urlRegex = /(https?:\/\/[^\s]+)/g
-  return text.split(urlRegex).map((part, i) =>
-    part.match(urlRegex) ? (
-      <div key={i} className="my-2">
-        <a
-          href={part}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#e2111f] text-[#e2111f] font-semibold text-[11px] hover:bg-[#e2111f] hover:text-white transition-all duration-300 shadow-sm bg-white"
-        >
-          <span>{part.length > 30 ? "Visit Official Link" : part}</span>
-        </a>
-      </div>
-    ) : (
-      <span key={i}>{part}</span>
-    )
-  )
-}
-
-
 
 export default function NIETChatbotMessages() {
   const [messages, setMessages] = useState([])
@@ -196,7 +422,7 @@ export default function NIETChatbotMessages() {
   }, [messages, typing])
 
   useEffect(() => {
-    const savedProfile = JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY))
+    const savedProfile = JSON.parse(localStorage.getItem("CALLBACK_STORAGE_KEY"))
     if (savedProfile) {
       setCallbackData(savedProfile)
     }
@@ -298,179 +524,150 @@ export default function NIETChatbotMessages() {
       return
     }
 
-    if (opt === "Courses Offered") {
-      pushOptions(["Undergraduate Programs", "Postgraduate Programs", "Twinning Programs"], true)
-      return
-    }
+   if (opt === "Courses Offered") {
+  pushOptions(["UG", "PG", "TWINNING PROGRAM"], true)
+  return
+}
 
-    const ugCourses = getCoursesByLevel("UG").map((c) => c.course_name)
+if (["UG", "PG", "TWINNING PROGRAM"].includes(opt)) {
+  const level =
+    opt === "UG" ? "UG" :
+    opt === "PG" ? "PG" :
+    "TWINNING"
 
-    if (opt === "Undergraduate Programs") {
-      pushOptions(ugCourses, true)
-      return
-    }
+  const courses = getCoursesByLevel(level)
 
-    if (ugCourses.includes(opt)) {
-      sendMessage(`Overview of ${opt}`)
-      return
-    }
-
-    const pgCourses = getCoursesByLevel("PG").map((c) => c.course_name)
-
-    if (opt === "Postgraduate Programs") {
-      pushOptions(pgCourses, true)
-      return
-    }
-
-    if (pgCourses.includes(opt)) {
-      sendMessage(`Overview of ${opt}`)
-      return
-    }
-
-    const twinningCourses = getCoursesByLevel("TWINNING").map((c) => c.course_name)
-
-    if (opt === "Twinning Programs") {
-      pushOptions(twinningCourses, true)
-      return
-    }
-
-    if (twinningCourses.includes(opt)) {
-      sendMessage(`Overview of ${opt}`)
-      return
-    }
-
-    if (placement.some((p) => p.department === opt)) {
-      sendMessage(`placement record of ${opt}`)
-      return
-    }
-
-    if (opt === "Admission") {
-      pushOptions(["Direct Admission", "Counselling", "Twinning"], true)
-      return
-    }
+  if (courses.length > 0) {
+    pushBot("Which course would you like to know more about?")
+    pushOptions(
+      courses.map((c) => c.course_name),
+      true
+    )
+  } else {
+    pushBot(`Sorry, no ${opt} courses found.`)
+    pushOptions(INITIAL_OPTIONS, true)
   }
+  return
+}
 
-  const CALLBACK_STORAGE_KEY = "niet_user_profile"
+const allCourses = [
+  ...getCoursesByLevel("UG"),
+  ...getCoursesByLevel("PG"),
+  ...getCoursesByLevel("TWINNING"),
+]
 
-  const CALLBACK_INTENT_KEYWORDS = [
-    "fee",
-    "fees",
-    "apply",
-    "application",
-    "enquiry",
-    "inquiry",
-    "registration",
-    "join",
-    "amount",
-    "cash",
-  ]
+const selectedCourse = allCourses.find(
+  (c) => c.course_name === opt
+)
 
-  const shouldTriggerCallback = (text) => {
-    const q = text.toLowerCase()
-    return CALLBACK_INTENT_KEYWORDS.some((k) => q.includes(k))
+if (selectedCourse) {
+  sendMessage(`Overview Of ${selectedCourse.course_name}`)
+  return
+}
   }
+const CALLBACK_STORAGE_KEY = "niet_user_profile"
 
-  const sendMessage = async (text) => {
-    if (!callbackStep && shouldTriggerCallback(text)) {
-      pushUser(text)
+const CALLBACK_INTENT_KEYWORDS = [
+  "fee",
+  "fees",
+  "apply",
+  "application",
+  "enquiry",
+  "inquiry",
+  "registration",
+  "join",
+  "amount",
+  "cash",
+]
+const shouldTriggerCallback = (text) => {
+  if (!text) return false
+  const lower = text.toLowerCase()
+  return CALLBACK_INTENT_KEYWORDS.some((k) => lower.includes(k))
+}
 
-      const savedProfile = JSON.parse(localStorage.getItem(CALLBACK_STORAGE_KEY)) || {}
-
-      if (!savedProfile.name) {
-        setCallbackStep("name")
-        pushBot("I can help you better with admission details. May I know your name?")
-        return
-      }
-
-      if (!savedProfile.phone) {
-        setCallbackStep("phone")
-        pushBot(`Thanks ${savedProfile.name}! Please share your mobile number so our counsellor can guide you.`)
-        return
-      }
-
-      pushBot("I already have your details. Our counsellor will contact you shortly.")
+  
+ const sendMessage = async (text) => {
+  if (!text.trim()) return
+ if (!callbackStep && shouldTriggerCallback(text)) {
+    pushUser(text)
+    setCallbackStep("name")
+    pushBot("I can help you with fees and admission details. May I know your name?")
+    setInput("")
+    return
+  }
+  /* ===== NAME STEP ===== */
+  if (callbackStep === "name") {
+    if (!isValidName(text)) {
+      pushBot("Please enter a valid name (only letters, min 2 characters).")
+      setInput("")
       return
     }
 
-    if (callbackStep === "name") {
-      pushUser(text)
-
-      const updatedData = { name: text, phone: "" }
-      setCallbackData(updatedData)
-      localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
-
-      setCallbackStep("phone")
-      pushBot("Great! Now kindly provide your mobile number so that our counsellor can contact you.")
-      return
-    }
-
-
-    if (callbackStep === "phone") {
-        pushUser(text)
-
-      if (!/^\d{10}$/.test(text)) {
-        pushBot("Please enter a valid 10-digit mobile number.")
-        return
-      }
-
-      // pushUser(text)
-
-  const updatedData = { ...callbackData, phone: text }
-
-      setCallbackData(updatedData)
-      localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
-
-      // pushUser(text)
-      setCallbackStep(null)
-
-      const newRequest = {
-        ...updatedData,
-        timestamp: new Date().toISOString(),
-      }
-
-      // ✅ SEND TO FASTAPI BACKEND (TXT / CSV / DB)
-      await sendCallbackToBackend(updatedData)
-
-      const existing = JSON.parse(localStorage.getItem("niet_callback_requests") || "[]")
-
-      localStorage.setItem("niet_callback_requests", JSON.stringify([...existing, newRequest]))
-
-      console.log("[v0] Callback request stored:", newRequest)
-      pushBot("Thank you! Our counsellor will get back to you shortly.")
-      return
-    }
+    setCallbackData((prev) => ({ ...prev, name: text.trim() }))
+    localStorage.setItem(
+      CALLBACK_STORAGE_KEY,
+      JSON.stringify({ ...callbackData, name: text.trim() })
+    )
 
     pushUser(text)
-    setTyping(true)
-    setIsSending(true)
-
-    try {
-      const res = await fetch("http://localhost:8000/chat", {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: text }),
-      })
-      const data = await res.json()
-      await delay(600)
-
-      if (data.images && Array.isArray(data.images) && data.images.length > 0) {
-        await delay(100)
-        pushImages(data.images)
-      }
-
-      if (data.final_answer || data.answer) {
-        await delay(50)
-        pushBot(data.final_answer || data.answer)
-      }
-
-    } catch {
-      pushBot("Server error. Please try again.")
-    } finally {
-      setTyping(false)
-      setIsSending(false)
-    }
+    setCallbackStep("phone")
+    pushBot("Please provide your 10-digit mobile number.")
+    setInput("")
+    return
   }
+
+  /* ===== PHONE STEP ===== */
+  if (callbackStep === "phone") {
+    if (!isValidIndianPhone(text)) {
+      pushBot("Please enter a valid Indian mobile number.")
+      setInput("")
+      return
+    }
+
+    const cleanedPhone = text.replace(/\s|-/g, "").replace(/^(\+91)/, "")
+
+    const updatedData = { ...callbackData, phone: cleanedPhone }
+    setCallbackData(updatedData)
+    localStorage.setItem(CALLBACK_STORAGE_KEY, JSON.stringify(updatedData))
+
+    pushUser(cleanedPhone)
+    setCallbackStep(null)
+
+    await sendCallbackToBackend(updatedData)
+
+    pushBot("Thank you! Our counsellor will contact you shortly.")
+    pushOptions(INITIAL_OPTIONS, false)
+    setInput("")
+    return
+  }
+
+  /* ===== NORMAL MESSAGE ===== */
+  pushUser(text)
+  setInput("")
+  setTyping(true)
+  setIsSending(true)
+
+  try {
+    const res = await fetch("http://localhost:8000/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: text }),
+    })
+
+    const data = await res.json()
+    await delay(600)
+
+    if (data.images?.length) pushImages(data.images)
+    if (data.final_answer || data.answer)
+      pushBot(data.final_answer || data.answer)
+  } catch {
+    pushBot("Server error. Please try again.")
+  } finally {
+    setTyping(false)
+    setIsSending(false)
+  }
+}
+
 
   return (
     <div className="h-full flex flex-col bg-white overflow-hidden relative transform-gpu">
@@ -531,8 +728,9 @@ export default function NIETChatbotMessages() {
         {messages.map((m, idx) => (
           <div
             key={m.id}
-            className={`flex gap-2 items-start animate-in fade-in slide-in-from-bottom-2 duration-500 relative ${activeDropdown === m.id ? "z-50" : "z-0"
-              } ${m.from === "user" ? "flex-row-reverse" : ""}`}
+            className={`flex gap-2 items-start animate-in fade-in slide-in-from-bottom-2 duration-500 relative ${
+              activeDropdown === m.id ? "z-50" : "z-0"
+            } ${m.from === "user" ? "flex-row-reverse" : ""}`}
             style={{ animationDelay: `${idx * 0.05}s` }}
           >
             {m.from === "bot" && (
@@ -556,7 +754,11 @@ export default function NIETChatbotMessages() {
               )}
 
               <div
-                className={`px-3 py-2 text-[13px] leading-relaxed whitespace-pre-line ${m.from === "user" ? "organic-user" : "organic-bot overflow-visible"}`}
+                className={` text-[8px] leading-relaxed whitespace-pre-line ${
+                  m.from === "user"
+                    ? /* Changed user bubble to red pill shape */ " text-white rounded-full shadow-lg font-medium "
+                    : "bg-white border border-slate-100 rounded-2xl rounded-tl-none text-slate-700 shadow-sm"
+                }`}
               >
                 {m.type === "options" ? (
                   <div className="w-full">
@@ -608,7 +810,6 @@ export default function NIETChatbotMessages() {
                         {m.options.map((opt) => (
                           <button
                             key={opt}
-                            // disabled={m.selectedValue !== null}
                             onClick={() => handleOptionClick(opt, m.id)}
                             className={`action-pill ${m.selectedValue === opt ? "action-pill-active" : ""}`}
                           >
