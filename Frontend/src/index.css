@@ -16,6 +16,7 @@
   --glass-white: rgba(255, 255, 255, 0.8);
   --surface: #ffffff;
 }
+
 html,
 body,
 #root {
@@ -28,6 +29,7 @@ body,
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
 }
+
 *,
 *::before,
 *::after {
@@ -188,6 +190,23 @@ body {
   @apply absolute inset-0 bg-[#e2111f] rounded-2xl blur-xl opacity-40 -z-10 animate-pulse;
 }
 
+/* New enhanced bot reply styling classes */
+.greeting-pill {
+  @apply bg-gradient-to-r from-white via-red-50 to-white px-4 py-3 rounded-2xl border border-red-100/40 shadow-sm;
+}
+
+.course-detail-card {
+  @apply bg-gradient-to-br from-red-50/80 to-white rounded-lg p-4 border-l-4 border-red-500 shadow-sm hover:shadow-md transition-shadow;
+}
+
+.bullet-list-card {
+  @apply bg-gradient-to-r from-red-50 to-white rounded-lg p-3 border-l-4 border-red-500 shadow-sm;
+}
+
+.mixed-content-card {
+  @apply bg-white rounded-lg p-3 border-l-4 border-red-400 shadow-sm;
+}
+
 @keyframes slideUp {
   from {
     transform: translateY(20px);
@@ -240,9 +259,11 @@ body {
 .animate-slide-up {
   animation: slideUp 0.4s ease-out forwards;
 }
+
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out forwards;
 }
+
 .animate-pulse-slow {
   animation: pulseSlow 3s infinite ease-in-out;
 }
@@ -266,6 +287,7 @@ body {
 ::-webkit-scrollbar {
   width: 5px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -275,9 +297,9 @@ body {
   @apply bg-white border border-slate-100/50 rounded-[22px] rounded-tl-none text-slate-700 shadow-sm backdrop-blur-md;
 }
 
-.organic-user {
+/* .organic-user {
   @apply bg-[#e2111f] text-white rounded-[22px] rounded-tr-none shadow-lg shadow-[#e2111f]/15;
-}
+} */
 
 .animate-float {
   animation: float-portal 6s ease-in-out infinite;
@@ -304,9 +326,11 @@ body {
 .typing-dot-1 {
   animation-delay: 0s;
 }
+
 .typing-dot-2 {
   animation-delay: 0.2s;
 }
+
 .typing-dot-3 {
   animation-delay: 0.4s;
 }
@@ -314,13 +338,16 @@ body {
 .flex-1::-webkit-scrollbar {
   width: 6px;
 }
+
 .flex-1::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .flex-1::-webkit-scrollbar-thumb {
   background: #e2e8f0;
   border-radius: 10px;
 }
+
 .flex-1::-webkit-scrollbar-thumb:hover {
   background: #cbd5e1;
 }
