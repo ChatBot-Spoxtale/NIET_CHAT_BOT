@@ -29,7 +29,7 @@ export default function NIETChatbot() {
 
       {open && (
         <div className="fixed inset-0 z-[90] pointer-events-none flex flex-col items-end justify-end p-2 sm:p-6 animate-in fade-in duration-300">
-          <div className="relative pointer-events-auto w-full sm:w-[340px] h-full sm:h-[min(700px,calc(100vh-120px))] bg-white border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.18)] flex flex-col animate-in slide-in-from-bottom-8 duration-500 rounded-[32px] transform-gpu">
+          <div className="relative pointer-events-auto w-full sm:w-[380px] md:w-[480px] lg:w-[560px] h-full sm:h-[min(700px,calc(100vh-120px))] md:h-[min(800px,calc(100vh-100px))] lg:h-[min(850px,calc(100vh-80px))] bg-white border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.18)] flex flex-col animate-in slide-in-from-bottom-8 duration-500 rounded-[32px] transform-gpu">
             {/* Desktop Close Button */}
             <button
               onClick={() => setOpen(false)}
