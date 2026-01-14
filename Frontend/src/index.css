@@ -68,7 +68,6 @@ body {
 }
 
 .glass-effect {
-  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -96,7 +95,6 @@ body {
 }
 
 .glass-portal {
-  background: var(--glass-white);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
@@ -105,7 +103,6 @@ body {
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
