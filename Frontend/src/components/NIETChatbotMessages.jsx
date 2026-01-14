@@ -575,7 +575,7 @@ const fetchPlacementRecords = async () => {
 
   const sendCallbackToBackend = async (data) => {
     try {
-      await fetch("http://localhost:8000/api/save-callback", {
+      await fetch("https://niet-chat-bot-rag.onrender.com/api/save-callback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -766,7 +766,7 @@ const fetchPlacementRecords = async () => {
     setIsSending(true)
 
     try {
-      const res = await fetch("http://localhost:8000/chat", {
+      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: text }),
