@@ -501,7 +501,7 @@ const getCoursesByLevel = (level) => {
   return []
 }
 
-export default function NIETChatbotMessages() {
+export default function NIETChatbotMessages({embed=false}) {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState("")
   const [typing, setTyping] = useState(false)
@@ -798,8 +798,12 @@ if (data.text || data.link) {
 
 
   return (
-    <div className="h-full flex flex-col bg-white overflow-hidden relative transform-gpu">
-      <div className="chat-mesh-bg" />
+  <div
+    className={`h-full flex flex-col overflow-hidden relative transform-gpu ${
+      embed ? "bg-transparent" : "bg-white"
+    }`}
+  >
+      {!embed && <div className="chat-mesh-bg" />}
 
       <div className="px-5 py-5 bg-gradient-to-br from-[#e2111f] via-[#d00f1c] to-[#9a0b15] flex items-center gap-3 shrink-0 shadow-lg relative z-10 border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_3s_infinite]" />
