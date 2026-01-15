@@ -1,13 +1,11 @@
 # RAG/routers/about_niet_router.py
 import json, os, sys
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_PATH = os.path.join(BASE_DIR, "data", "combined_chunks.json")
 
-from Ollama.llm_client import ask_ollama_with_context
-
-with open("RAG/data/combined_chunks.json","r",encoding="utf-8") as f:
+with open(DATA_PATH, "r", encoding="utf-8") as f:
     NIET_DATA = json.load(f)
-
 
 def normalize(q: str):
     q = q.lower().strip()
@@ -77,3 +75,4 @@ if __name__ == "__main__":
     print(about_niet_router("tell me about NIET"))
     print(about_niet_router("why choose niet"))
     print(about_niet_router("wifi "))
+
