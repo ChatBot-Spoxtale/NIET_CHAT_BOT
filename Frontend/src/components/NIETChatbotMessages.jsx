@@ -17,6 +17,26 @@ function truncateWithDots(text, limit = 28) {
   return text.slice(0, limit) + "...."
 }
 
+function extractLinkFromText(text) {
+  if (!text || typeof text !== 'string') {
+    return { cleanText: text, link: null }
+  }
+  
+  // Regular expression to match URLs
+  const urlRegex = /(https?:\/\/[^\s]+)/g
+  const matches = text.match(urlRegex)
+  
+  if (matches && matches.length > 0) {
+    // Remove the URL from the text to get clean text
+    const cleanText = text.replace(urlRegex, '').trim()
+    // Return the first URL found
+    return { cleanText: cleanText || null, link: matches[0] }
+  }
+  
+  // If no links found, return original text as cleanText
+  return { cleanText: text, link: null }
+}
+
 function ImageSlideshow({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const autoSlideTimer = useRef(null)
@@ -266,14 +286,20 @@ function renderBulletList(text) {
 
       {/* Link outside bullet */}
       {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ml-5 text-[#e2111f] text-sm font-semibold underline underline-offset-2 pointer-events-auto"
+        <button
+          onClick={() => window.open(link, "_blank")}
+          className="ml-5 relative z-[999] pointer-events-auto inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#e2111f] text-white font-semibold text-sm hover:bg-[#b00d18] transition-all shadow-md cursor-pointer"
         >
-          Visit Official Link
-        </a>
+          <span>Visit Official Link</span>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M14 3h7m0 0v7m0-7L10 14"
+            />
+          </svg>
+        </button>
       )}
     </li>
   )
@@ -285,14 +311,41 @@ function renderBulletList(text) {
         }
 
         return (
-          <p key={idx} className="text-sm text-slate-700 leading-relaxed pl-3">
-            {elem.content}
-          </p>
+          <div 
+            key={idx} 
+            className="rounded-lg p-3 border-l-4 border-red-500 shadow-sm"
+            style={{
+              background: 'linear-gradient(to right, #fef2f2, #ffffff)',
+            }}
+          >
+            {elem.content.match(/https?:\/\/[^\s]+/) ? (
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => window.open(elem.content.match(/https?:\/\/[^\s]+/)[0], "_blank")}
+                  className="relative z-[999] pointer-events-auto inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#e2111f] text-white font-semibold text-sm hover:bg-[#b00d18] transition-all shadow-md cursor-pointer"
+                >
+                  <span>Visit Official Link</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 3h7m0 0v7m0-7L10 14"
+                    />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              renderWithLinks(elem.content)
+            )}
+          </div>
         )
       })}
     </div>
   )
 }
+
+export { renderBulletList }
 
 
 function renderStructuredContent(text) {
@@ -343,9 +396,9 @@ function renderStructuredContent(text) {
           )
         }
         return (
-          <p key={idx} className="text-sm text-slate-700 leading-relaxed px-3 py-2">
-            {elem.content}
-          </p>
+          <div key={idx} className="text-sm text-slate-700 leading-relaxed px-3 py-2">
+            {renderWithLinks(elem.content)}
+          </div>
         )
       })}
     </div>
@@ -361,26 +414,6 @@ function renderGreeting(text) {
 }
 
 const renderWithLinks = (text) => {
-
-  if (text.startsWith("ACTION::")) {
-    const actionKey = text.replace("ACTION::", "")
-    const link = UI_LINKS[actionKey]
-
-    if (!link) return null
-
-    return (
-      <button
-        type="button"
-        onClick={() => window.open(link.url, "_blank", "noopener,noreferrer")}
-        className="relative z-[999] inline-flex items-center gap-2
-                   px-5 py-2 rounded-full bg-[#e2111f] text-white
-                   font-semibold text-sm hover:bg-[#b00d18]
-                   transition-all shadow-md cursor-pointer"
-      >
-        {link.label}
-      </button>
-    )
-  }
   
 if (text.startsWith("LINK::")) {
   const [, payload] = text.split("LINK::")
@@ -393,18 +426,10 @@ if (text.startsWith("LINK::")) {
         e.stopPropagation()
         window.open(url, "_blank", "noopener,noreferrer")
       }}
-      className="relative z-[999] pointer-events-auto inline-flex items-center gap-2
-                 px-5 py-2 rounded-full bg-[#e2111f] text-white
-                 font-semibold text-sm hover:bg-[#b00d18]
-                 transition-all shadow-md cursor-pointer"
+      className="relative z-[999] pointer-events-auto inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#e2111f] text-white font-semibold text-sm hover:bg-[#b00d18] transition-all shadow-md cursor-pointer"
     >
-      {label}
-      <svg
-        className="w-4 h-4"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <span>{label}</span>
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -435,26 +460,28 @@ if (text.startsWith("LINK::")) {
 
     if (hasLinks) {
       return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 bg-transparent items-start">
           {parts.map((part, i) =>
             part.match(urlRegex) ? (
               <button
                 key={i}
-                onClick={() => window.open(part, "_blank")}
-                className="pointer-events-auto relative z-50 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e2111f] text-white font-semibold text-[12px] hover:bg-[#b00d18] transition-all duration-300 shadow-md hover:shadow-lg w-fit cursor-pointer border-none"
+                onClick={() => {
+                  console.log("Button clicked!")
+                  window.open(part, "_blank")
+                }}
+                className="relative z-[999] pointer-events-auto inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#e2111f] text-white font-semibold text-sm hover:bg-[#b00d18] transition-all shadow-md cursor-pointer"
               >
                 <span>Visit Official Link</span>
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2v-4M14 4h6m0 0v6m0-6L10 14"
+                    d="M14 3h7m0 0v7m0-7L10 14"
                   />
                 </svg>
               </button>
-
-            ) : part.trim() ? (
+            ) : part.trim() && !part.toLowerCase().includes('visit official link') ? (
               <span key={i} className="text-sm text-slate-700 leading-relaxed">
                 {part.trim()}
               </span>
@@ -467,6 +494,9 @@ if (text.startsWith("LINK::")) {
     return renderGreeting(content)
   }
 }
+
+export { renderWithLinks }
+
 const isValidName = (name) => {
   if (!name) return false
   const cleaned = name.trim()
@@ -778,9 +808,6 @@ const fetchPlacementRecords = async () => {
       if (data.images?.length) pushImages(data.images)
 if (data.text || data.link) {
   if (data.text) pushBot(data.text)
-    if (data.action) {
-  pushBot(`ACTION::${data.action}`)
-}
   if (data.link?.url) {
     pushBot(`LINK::${data.link.label}||${data.link.url}`)
   }
@@ -800,7 +827,7 @@ if (data.text || data.link) {
   return (
   <div
     className={`h-full flex flex-col overflow-hidden relative transform-gpu ${
-      embed ? "bg-transparent" : "bg-white"
+      embed ? "" : "bg-white"
     }`}
   >
       {!embed && <div className="chat-mesh-bg" />}
@@ -885,9 +912,9 @@ if (data.text || data.link) {
               )}
 
               <div
-                className={`relative z-10 pointer-events-auto text-[8px] leading-relaxed whitespace-pre-line ${m.from === "user"
-                    ? /* Changed user bubble to red pill shape */ " text-white rounded-full shadow-lg font-medium "
-                    : "bg-white border border-slate-100 rounded-2xl rounded-tl-none text-slate-700 shadow-sm"
+                className={`relative z-10 pointer-events-auto leading-relaxed whitespace-pre-line ${m.from === "user"
+                    ? " text-white rounded-full shadow-lg font-medium "
+                    : "bg-white rounded-2xl rounded-tl-none text-slate-700 shadow-sm p-4"
                   }`}
               >
                 {m.type === "options" ? (
@@ -983,7 +1010,7 @@ if (data.text || data.link) {
         )}
       </div>
 
-      <div className="p-4 pb-4 bg-white border-t border-slate-100 shadow-[0_-10px_20px_rgba(0,0,0,0.02)]">
+      <div className={`p-4 pb-4 ${embed ? "" : "bg-white border-t border-slate-100 shadow-[0_-10px_20px_rgba(0,0,0,0.02)]"}`}>
         <form
           onSubmit={(e) => {
             e.preventDefault()
@@ -996,7 +1023,7 @@ if (data.text || data.link) {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="w-full bg-white border border-slate-300 rounded-[24px] px-6 py-[10px] pr-14 text-[14px] text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#e2111f]/20 focus:border-[#e2111f] transition-all duration-300 placeholder:text-slate-400 font-medium h-[46px] shadow-sm"
+            className={`w-full ${embed ? "bg-transparent border-slate-400/50" : "bg-white border-slate-300"} rounded-[24px] px-6 py-[10px] pr-14 text-[14px] text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#e2111f]/20 focus:border-[#e2111f] transition-all duration-300 placeholder:text-slate-400 font-medium h-[46px] shadow-sm`}
             placeholder={callbackStep ? `Enter your ${callbackStep}...` : "Type your message..."}
           />
           <button
