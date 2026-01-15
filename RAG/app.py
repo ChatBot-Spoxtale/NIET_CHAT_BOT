@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from query_rag_2 import answer_rag
 from Ollama.llm_client import ask_ollama_with_context
 from RAG.router.callback_router import router as callback_router
+from router.placement_router import router as placement_router
 
 
 app = FastAPI(
@@ -25,6 +26,7 @@ app.add_middleware(
 )
 
 app.include_router(callback_router, prefix="/api")
+app.include_router(placement_router)
 
 class QueryRequest(BaseModel):
     question: str
