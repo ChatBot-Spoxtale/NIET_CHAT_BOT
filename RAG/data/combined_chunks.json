@@ -1,4 +1,19 @@
 [
+    {
+    "question": "Tell me about NIET.",
+    "answer": "Noida Institute of Engineering & Technology (NIET), Greater Noida, is one of the premier Engineering and Management institutes of India’s National Capital Region (NCR).\n\nNoida Institute of Engineering & Technology (NIET), a self-financed institute, offering high-standard quality education to students from all corners of the country, is situated in Greater Noida (a hub of global MNCs). The institute has a sprawling area of 23 acres with a lush green ambience all around.\n\nNoida Institute of Engineering & Technology (NIET) has established itself as a centre of excellence and a leader in the academic arena nationally. It is the first-ever private educational institution in Uttar Pradesh to have received Autonomous status by the University Grants Commission (UGC), a government body responsible for the coordination, determination, and maintenance of educational standards in the country.\n\nThe institute is accredited by NAAC (A Grade, 3.23) and NBA (CSE, ECE, ME, Biotechnology, B.Pharm, MBA, MCA, and PGDM), and ranked by NIRF (37th in NIET Pharmacy Institute; 101–150 rank band in NIET Greater Noida Engineering Institute). The institute aims at recognizing, respecting, and nurturing the creative potential of each student.",
+    "keywords": [
+      "aicte",
+      "approved",
+      "education",
+      "emphasizes",
+      "engineering",
+      "innovation",
+      "institute",
+      "undergraduate",
+      "about niet"
+    ]
+  },
   {
     "question": "What is the procedure for direct admission to NIET?",
     "answer": "\u2022 Candidate must fill online application form on NIET institute website. Documents need to be verified. Course and Branch will be allocated to candidate according to their merit/test/seat availability. College fee payment for allocated course and branch.",
@@ -7,6 +22,18 @@
       "online",
       "procedure",
       "direct"
+    ]
+  },
+  {
+    "id": "admission_a90b58",
+    "category": "admission",
+    "course": "admission",
+    "question": "The college admission  process?",
+    "answer": "Admission Process:- Allotment on the basis of JEE mains/UPCET Counselling conductted by AKTU, Lucknow (85% of total seat) and Direct Admission (15 % of Total Seat). For Registration:-  https://applynow.niet.co.in/",
+    "keywords": [
+      " admission",
+      "process",
+      "admission process"
     ]
   },
   {
@@ -64,7 +91,7 @@
     "question": "How can the institute support, if the candidate wants to apply for an education loan?",
     "answer": "\u2022 Once the candidate has paid the amount to reserve the seat, the Provisional Admission Certificate is issued by the institution. Bona fide, Demand note, Placement details, and any other document required by the bank will be provided to the candidate by the institution enabling them to process for the education loan.",
     "keywords": [
-      "education loan" ,
+      "education loan",
       "paid",
       "loan"
     ]
@@ -79,7 +106,6 @@
       "timings"
     ]
   },
- 
   {
     "question": "Is there a campus Tour for visitors?",
     "answer": "\u2022 Yes, candidate is taken for a campus visit which includes visit to respective departments, Innovation labs, Library and Hostel and other facilities.",
@@ -123,7 +149,7 @@
       "upcet"
     ]
   },
-   {
+  {
     "question": "What about Drinking Water Facilities in hostel?",
     "answer": "\u2022 RO water supply and water coolers are available in hostels to provide safe drinking water to students.",
     "keywords": [
@@ -171,7 +197,8 @@
     "question": "What about Iron in hostel?",
     "answer": "\u2022 Iron is not provided by the hostel.",
     "keywords": [
-      "iron"    ]
+      "iron"
+    ]
   },
   {
     "question": "What about Hostel Furniture in hostel?",
@@ -190,7 +217,6 @@
       "wifi"
     ]
   },
- 
   {
     "question": "What about Geyser in hostel?",
     "answer": "\u2022 Geyser facilities are provided in hostels to ensure availability of hot water for students.",
@@ -199,19 +225,19 @@
       "provided"
     ]
   },
+
   {
-    "question": "Tell me about NIET.",
-    "answer": "\u2022 Noida Institute of Engineering and Technology (NIET) is an autonomous institute located in Greater Noida, Uttar Pradesh.\n\u2022 NIET is approved by AICTE and affiliated with Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow.\n\u2022 The institute offers undergraduate, postgraduate, and integrated programs in engineering, management, and computer applications.\n\u2022 NIET emphasizes industry-oriented education, innovation, and holistic student development.",
+    "question": "What are NIET’s research areas, research focus, and academic rankings?",
+    "answer": "\n• The institute actively promotes research culture through faculty and student participation in funded projects, publications, patents, and industry collaborations.\n\n• NIET’s areas of research include Artificial Intelligence & Machine Learning, Augmented and Virtual Reality, Human–Machine Interaction, Industry 5.0 (Industrial IoT), Robotics & Automation, Autonomous Guided Navigation, Biotechnology, Computer Vision & Image Processing, Smart Cities Infrastructure, Cloud & Edge Computing, 5G Wireless Communication, VLSI Technology, Novel Drug Delivery Systems, Computer Aided Drug Design, Microbiological Studies, and Anticancer Research.\n\n• NIET has a strong patent portfolio with 119 design patents published and granted, along with 10 standard patents published and 5 standard patents granted.\n\n• NIET has undertaken multiple funded research projects across Biotechnology, Management, and ECE departments, led by faculty members and supported by grants from DST, DBT, CST-UP, AKTU (TEQIP-III), EAI, and DSIR, covering areas such as biotechnology innovation, sustainable management practices, and applications of AI in 5G and IoT between 2019 and 2024.\n\n  https://niet.co.in/research/overview",
     "keywords": [
-      "aicte",
-      "approved",
-      "education",
-      "emphasizes",
-      "engineering",
+      "research",
+      "research areas",
       "innovation",
-      "institute",
-      "undergraduate",
-      "about niet"
+      "ranking",
+      "nirf",
+      "naac",
+      "nba",
+      "academic excellence"
     ]
   },
   {
@@ -237,7 +263,6 @@
       "several"
     ]
   },
- 
   {
     "question": "Research area at NIET?",
     "answer": "\u2022 Artificial Intelligence and Machine Learning\n\u2022 Data Science and Analytics\n\u2022 Internet of Things (IoT)\n\u2022 Robotics and Automation\n\u2022 VLSI Design and Embedded Systems\n\u2022 Wireless Communication\n\u2022 Biotechnology\n\u2022 Cyber Security",
@@ -258,7 +283,7 @@
       "wireless"
     ]
   },
-   {
+  {
     "question": "Explain NIET research focus.",
     "answer": "\u2022 NIET promotes research activities among faculty members and students across engineering, technology, and management disciplines.\n\u2022 The institute encourages innovation, publications, patents, and participation in funded research projects.",
     "keywords": [
@@ -304,13 +329,13 @@
       "wellequipped"
     ]
   },
-   {
+  {
     "question": "Is there any Housing/hostel accommodation facility?",
     "answer": "\u2022 NIET provides in-campus comfortable and well hygienic hostel accommodation separately for boys and girls with all standard civic amenities. Hostel accommodation is mandatory for all the non-residents of Delhi/NCR.",
     "keywords": [
       "accommodation",
       "housinghostel",
       "hostel facility"
-            ]
+    ]
   }
 ]
