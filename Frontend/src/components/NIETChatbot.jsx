@@ -3,7 +3,7 @@
 import { useState } from "react"
 import NIETChatbotMessages from "./NIETChatbotMessages"
 
-export default function NIETChatbot(embed={embed}) {
+export default function NIETChatbot() {
   const [open, setOpen] = useState(false)
 
   return (
@@ -28,13 +28,7 @@ export default function NIETChatbot(embed={embed}) {
       )}
 
       {open && (
-        <div
-  className={
-    embed
-      ? "fixed bottom-6 right-6 z-[90]"   // no fullscreen, no transparency
-      : "fixed inset-0 z-[90] pointer-events-none flex flex-col items-end justify-end p-2 sm:p-6 animate-in fade-in duration-300"
-          }
-        >
+        <div className="fixed inset-0 z-[90] pointer-events-none flex flex-col items-end justify-end p-2 sm:p-6 animate-in fade-in duration-300">
           <div className="relative pointer-events-auto w-full sm:w-[380px] md:w-[480px] lg:w-[560px] h-full sm:h-[min(700px,calc(100vh-120px))] md:h-[min(800px,calc(100vh-100px))] lg:h-[min(850px,calc(100vh-80px))] bg-white border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.18)] flex flex-col animate-in slide-in-from-bottom-8 duration-500 rounded-[32px] transform-gpu">
             {/* Desktop Close Button */}
             <button
@@ -59,7 +53,7 @@ export default function NIETChatbot(embed={embed}) {
             </button>
 
             <div className="flex-1 flex flex-col rounded-[32px] overflow-hidden">
-              <NIETChatbotMessages embed={embed}/>
+              <NIETChatbotMessages />
             </div>
           </div>
         </div>
