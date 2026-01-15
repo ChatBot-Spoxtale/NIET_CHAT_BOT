@@ -104,7 +104,7 @@ def extract_alliances(url):
     return alliances
 
 def run_institute_scraper():
-    print("🏛️ Scraping institute data")
+    print("Scraping institute data")
 
     urls = get_institute_urls()
 
@@ -119,7 +119,7 @@ def run_institute_scraper():
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    print("✅ institute_data.json generated")
+    print("institute_data.json generated")
 
 
 if __name__ == "__main__":
