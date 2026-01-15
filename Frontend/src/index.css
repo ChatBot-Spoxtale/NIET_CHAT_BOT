@@ -47,6 +47,10 @@ body {
   background-attachment: fixed;
   overflow-x: hidden;
 }
+body.embed {
+  background: transparent !important;
+  background-image: none !important;
+}
 
 .chat-mesh-bg {
   position: absolute;
