@@ -560,7 +560,7 @@ const fetchPlacementRecords = async () => {
   try {
     pushBot("NIET Placement Records")
 
-    const res = await fetch("http://localhost:8000/placement-records")
+    const res = await fetch("https://niet-chat-bot-rag.onrender.com/placement-records")
     const data = await res.json()
 
     if (data.images?.length) {
