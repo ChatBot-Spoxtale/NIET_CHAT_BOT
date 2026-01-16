@@ -34,6 +34,10 @@ def answer_rag(query: str):
             "For complete admission details, please visit:\n"
             "https://www.niet.co.in/admissions/eligibility-admission-process"
         )
+    if any(w in q for w in ["event", "events", "hackathon", "conference"]):
+        res = event_router(q)
+        if res:
+            return res
 
      # ---------- NIET OVERVIEW (LAST) ----------
     if any(w in q for w in ["about", "niet", "institute", "college"]):
@@ -45,11 +49,7 @@ def answer_rag(query: str):
             "https://www.niet.co.in"
         )
     # ---------- EVENTS ----------
-    if any(w in q for w in ["event", "events", "hackathon", "conference"]):
-        res = event_router(q)
-        if res:
-            return res
-
+    
     # ---------- CLUBS ----------
     if "club" in q or "clubs" in q:
         res = club_router(q)
@@ -107,3 +107,4 @@ def answer_rag(query: str):
 
 if __name__=="__main__":
     print(answer_rag("why choose iot"))
+
