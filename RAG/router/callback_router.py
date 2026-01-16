@@ -6,7 +6,7 @@ import os
 
 router = APIRouter()
 
-CSV_FILE_PATH = "RAG/CSV_DATA/callback_requests.csv"
+CSV_FILE_PATH = "RAG/callback_requests.csv"
 
 class CallbackRequest(BaseModel):
     name: str
@@ -48,4 +48,5 @@ def download_csv():
 
     return {
         "file": CSV_FILE_PATH
+
     }
