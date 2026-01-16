@@ -128,20 +128,28 @@ def group_admission_by_course():
     return grouped
 
 def format_standard_admission():
-    grouped_data = group_admission_by_course()
+    grouped = group_admission_by_course()
+    response = []
 
-    response = "Admission Process – NIET\n\n"
+    response.append("🎓 Admission Process – NIET\n")
 
-    for course, answers in grouped_data.items():
-        response += f"• {course}\n"
-        for ans in set(answers):
-            response += f"  - {ans}\n"
-        response += "\n"
+    for course, answers in grouped.items():
+        response.append(f"📌 {course}")
 
-    response += "🔗 Apply here: https://www.niet.co.in/admissions/eligibility-admission-process/\n"
-    response += "📞 Admission Helpline: 8010500700"
+        for ans in answers:
+            parts = re.split(r";|\.\s+", ans)
+            for p in parts:
+                p = p.strip()
+                if p:
+                    response.append(f"- {p}")
 
-    return response.strip()
+        response.append("")  
+
+    response.append("🔗 Official details:")
+    response.append("- https://www.niet.co.in/admissions/eligibility-admission-process")
+
+    return "\n".join(response).strip()
+
 
 
 def admission_router(query: str):
@@ -171,11 +179,22 @@ def admission_router(query: str):
     return format_standard_admission()
 
 def format_admission(row):
+    response = []
+    response.append(f"🎓 Admission Process – {row['course']}")
+
     answer = normalize_answer(row["answer"])
-    return f"""
-Admission Process for {row['course']}
-{answer}
-"""
+    parts = re.split(r";|\.\s+", answer)
+
+    for p in parts:
+        p = p.strip()
+        if p:
+            response.append(f"- {p}")
+
+    response.append("\n🔗 Official details:")
+    response.append("- https://www.niet.co.in/admissions/eligibility-admission-process")
+
+    return "\n".join(response)
+
 
 
 if __name__ == "__main__":
@@ -184,4 +203,5 @@ if __name__ == "__main__":
     # print(admission_router("how to take admission in MCA"))
     # print(admission_router("b.tech cse admission process"))
     # print(admission_router("how to take admission in PGDM"))
+
 
