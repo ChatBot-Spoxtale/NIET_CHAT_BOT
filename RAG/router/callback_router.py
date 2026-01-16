@@ -6,7 +6,10 @@ import os
 
 router = APIRouter()
 
-CSV_FILE_PATH = "RAG/callback_requests.csv"
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSV_FILE_PATH = os.path.join(BASE_DIR, "RAG", "callback_requests.csv")
+
 
 class CallbackRequest(BaseModel):
     name: str
@@ -14,13 +17,15 @@ class CallbackRequest(BaseModel):
 
 
 def save_to_csv(name: str, phone: str):
-    file_exists = os.path.isfile(CSV_FILE_PATH)
-
+    # Ensure directory exists
     os.makedirs(os.path.dirname(CSV_FILE_PATH), exist_ok=True)
+
+    file_exists = os.path.isfile(CSV_FILE_PATH)
 
     with open(CSV_FILE_PATH, mode="a", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
 
+        # Write header once
         if not file_exists:
             writer.writerow(["Name", "Phone", "Timestamp"])
 
@@ -33,13 +38,11 @@ def save_to_csv(name: str, phone: str):
 
 @router.post("/save-callback")
 def save_callback(data: CallbackRequest):
-    if not data.name or not data.phone:
+    if not data.name.strip() or not data.phone.strip():
         raise HTTPException(status_code=400, detail="Invalid data")
 
     save_to_csv(data.name, data.phone)
-
-    return {"message": "Saved to CSV successfully"}
-
+    return {"message": "Callback request saved successfully"}
 
 @router.get("/admin/download-csv")
 def download_csv():
@@ -47,6 +50,6 @@ def download_csv():
         raise HTTPException(status_code=404, detail="CSV file not found")
 
     return {
-        "file": CSV_FILE_PATH
-
+        "file_path": CSV_FILE_PATH,
+        "message": "CSV file is available on the server"
     }
