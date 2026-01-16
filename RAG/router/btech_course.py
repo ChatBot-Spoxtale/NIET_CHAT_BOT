@@ -135,94 +135,62 @@ def format_full_course(c: dict) -> str:
 
 def btech_router(query: str):
     q = normalize(query)
-    # current_course = BTECH_DATA[0] if BTECH_DATA else None
-    selected_course = None
 
-    if not any(k in q for k in ["btech", "seat", "seats", "placement", "duration", "eligibility", "fee"]):
+    if not any(k in q for k in ["btech", "seat", "seats", "fee", "fees", "placement", "duration", "eligibility", "overview"]):
         return None
-
-
-    if "::" in query:
-        parts = query.lower().split("::")
-        _, branch, *spec = parts
-        specialization = spec[0] if spec else ""
-
-        for c in BTECH_DATA:
-            if c.get("branch") == branch:
-                if specialization:
-                    if normalize(c.get("specialization", "")) == specialization:
-                        return format_full_course(c)
-                else:
-                    return format_full_course(c)
 
     branch = detect_branch(q)
     specialization = detect_specialization(q)
-    
-    if branch:
-        branch_courses = [
-            c for c in BTECH_DATA if c.get("branch") == branch
-        ]
-        if branch_courses:
-            selected_course = branch_courses[0]
-        if specialization:
-            for c in branch_courses:
-                if normalize(c.get("specialization", "")) == specialization:
-                    return format_full_course(c)
 
+    if not branch:
+        return None
+
+    branch_courses = [c for c in BTECH_DATA if c.get("branch") == branch]
+    if not branch_courses:
+        return None
+
+    selected_course = branch_courses[0]
+
+    if specialization:
         for c in branch_courses:
-            if not c.get("specialization") or c.get("specialization").strip() == "":
-                return format_full_course(c)
+            if normalize(c.get("specialization", "")) == specialization:
+                selected_course = c
+                break
 
-        if branch_courses:
-            return format_full_course(branch_courses[0])
+    props = selected_course.get("properties", {})
+    placements = selected_course.get("placements", {})
 
-
-    if "seat" in q:
-        return f"Seats: {selected_course['properties'].get('seats','NA')}"
+    if "seat" in q or "seats" in q:
+        return f"Seats for {selected_course.get('course')}: {props.get('seats', 'NA')}"
 
     if "duration" in q or "year" in q:
-        return f"Duration: {selected_course['properties'].get('duration','NA')}"
+        return f"Duration: {props.get('duration', 'NA')}"
 
     if "eligibility" in q:
-        return f"Eligibility: {selected_course['properties'].get('eligibility','NA')}"
+        return f"Eligibility: {props.get('eligibility', 'NA')}"
 
-    if "fee" in q:
-        return f"Fees: {selected_course['properties'].get('fees','Check admission dept')}"
+    if "fee" in q or "fees" in q:
+        return f"Fees: {props.get('fees', 'Check with admission department')}"
 
     if "placement" in q:
-        if not selected_course:
-            return "Detailed placement statistics for branch are individually published in the official placement records. Visit to the institute’s placement overview at https://www.niet.co.in/placement/placement-records";
+        return (
+            # f"Placements for {selected_course.get('course')}:\n"
+            f"• Average Package: {placements.get('average', 'NA')}\n"
+            f"• Highest Package: {placements.get('highest', 'NA')}\n"
+            f"• Visit For More Information: {placements.get('source_url', 'NA')}"
+        )
 
-        p = selected_course.get("placements", {})
-        return f"""Placement:
-• Average: {p.get('average','NA')}
-• Highest: {p.get('highest','NA')}
-• Source: {p.get('source_url','NA')}
-"""
+    return format_full_course(selected_course)
 
-    if any(w in q for w in ["why", "benefit"]):
-        return "Why choose this course:\n- " + "\n- ".join(c.get("why_choose", []))
-
-    return format_full_course(c)
-
-
-def test_btech_router():
-    test_queries = [
-        # "about btech aiml",
-        # " Overview B.Tech-Information Technology",
-        # "btech cse aiml placement",
-    "Overview B.Tech CSE Data Science"
-        # "what is the duration of btech cse aiml",
-        # "what is the duration of btech cse ai",
-        # "placement record of btech cse ds",
-        # "why choose this btech cse ai"
+# ---------------- TEST ----------------
+if __name__ == "__main__":
+    tests = [
+        "fees of btech cse",
+        "placement of btech cse ai",
+        "seats in btech me",
+        "overview of btech cse data science",
     ]
 
-    print("\n Running B.Tech Router Test Cases:\n")
-    for q in test_queries:
-        print(f"Query: {q}")
-        print(f"Response: {btech_router(q)}\n")
-
-
-if __name__ == "__main__":
-    test_btech_router()
+    for t in tests:
+        print("\nQ:", t)
+        print(btech_router(t))
