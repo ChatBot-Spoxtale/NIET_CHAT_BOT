@@ -1,11 +1,13 @@
 # RAG/router/admission_router.py
-from pathlib import Path
 
 import json, os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-BASE_DIR = Path(__file__).resolve().parent.parent  
-DATA_PATH = BASE_DIR / "data" / "admission_chunks.json"
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_PATH = os.path.join(BASE_DIR, "data", "admission_chunks.json")
+
+with open(DATA_PATH, "r", encoding="utf-8") as f:
+    ADMISSION_DATA = json.load(f)
 
 
 def clean_text(text: str):
@@ -52,48 +54,134 @@ PRIORITY_MAP = [
 
     ("twinning", "twinning_program"),
 ]
+import re
+
+def remove_urls(text: str):
+    return re.sub(r'https?://\S+|www\.\S+', '', text)
+
+
+def normalize_answer(text: str):
+    text = remove_urls(text)         
+    text = text.replace("•", "")
+    text = text.replace("  ", " ")
+    return text.strip()
+
+
+def collect_admission_data():
+    sections = {
+        "process": [],
+        "eligibility": [],
+        "registration": [],
+        "other": []
+    }
+
+    for row in ADMISSION_DATA:
+        raw_answer = row.get("answer", "")
+
+        answer = normalize_answer(raw_answer)
+        answer = clean_text(answer)
+
+        course = clean_text(row.get("course", ""))
+        answer_lower = answer.lower()
+
+        if "admission process" in answer_lower or "allotment" in answer_lower:
+            sections["process"].append(answer)
+
+        elif "documents required" in answer_lower or "mark sheet" in answer_lower:
+            sections["eligibility"].append(answer)
+
+        elif "registration" in answer_lower or "apply" in answer_lower:
+            sections["registration"].append(answer)
+
+        elif "first year" in course or "lateral" in course:
+            sections["eligibility"].append(answer)
+
+        else:
+            sections["other"].append(answer)
+
+    return sections
+
+def get_unique_courses():
+    courses = set()
+
+    for row in ADMISSION_DATA:
+        course = row.get("course", "").strip()
+        if course and course.lower() not in ["admission", "direct", "jee_main"]:
+            courses.add(course)
+
+    return sorted(courses)
+def group_admission_by_course():
+    grouped = {}
+
+    for row in ADMISSION_DATA:
+        course = row.get("course", "").strip()
+        answer = normalize_answer(row.get("answer", "")).strip()
+
+        if not course or course.lower() in ["admission", "direct", "jee_main"]:
+            continue
+
+        if course not in grouped:
+            grouped[course] = []
+
+        grouped[course].append(answer)
+
+    return grouped
+
+def format_standard_admission():
+    grouped_data = group_admission_by_course()
+
+    response = "Admission Process – NIET\n\n"
+
+    for course, answers in grouped_data.items():
+        response += f"• {course}\n"
+        for ans in set(answers):
+            response += f"  - {ans}\n"
+        response += "\n"
+
+    response += "🔗 Apply here: https://www.niet.co.in/admissions/eligibility-admission-process/\n"
+    response += "📞 Admission Helpline: 8010500700"
+
+    return response.strip()
 
 
 def admission_router(query: str):
     q = clean_text(query)
 
-    TRIGGERS = ["admission", "admission process", "how to take", "how to apply"]
-    if not any(t in q for t in TRIGGERS):
-        return None
-
-    if "btech" in q or "b tech" in q:
-        for row in ADMISSION_DATA:
-            if "first year  btech" in row["course"].lower().replace(" ", ""):
-                return format_admission(row)
-
     for key, tag in PRIORITY_MAP:
         if key in q:
             for row in ADMISSION_DATA:
-                if tag.replace(" ", "") in row["course"].replace(" ", "").lower():
+                course_clean = clean_text(row.get("course", ""))
+                if tag in course_clean:
                     return format_admission(row)
 
-    return """
-Admission details for the selected course are not available.
+    if "btech" in q or "b tech" in q:
+        for row in ADMISSION_DATA:
+            course_clean = clean_text(row.get("course", ""))
+            if "first year btech" in course_clean:
+                return format_admission(row)
 
-Please check spelling OR try:
-• admission process for btech
-• admission process for mca
-• admission for mba
-• admission for pgdm
-    """.strip()
+    GENERIC_KEYWORDS = [
+        "admission", "apply", "documents",
+        "fees", "counselling", "eligibility", "registration"
+    ]
 
+    if any(k in q for k in GENERIC_KEYWORDS):
+        return format_standard_admission()
+
+    return format_standard_admission()
 
 def format_admission(row):
+    answer = normalize_answer(row["answer"])
     return f"""
 Admission Process for {row['course']}
-{row['answer']}
-
+{answer}
 """
 
 
 if __name__ == "__main__":
-    print(admission_router("admission process for btech it"))
-    print(admission_router("how to take admission in MCA"))
-    print(admission_router("b.tech cse admission process"))
-    print(admission_router("how to take admission in PGDM"))
+    print(admission_router("Admission Prcoess At NIET"))
+    # print(admission_router("admission process for btech cse aiml"))
+    # print(admission_router("how to take admission in MCA"))
+    # print(admission_router("b.tech cse admission process"))
+    # print(admission_router("how to take admission in PGDM"))
 
