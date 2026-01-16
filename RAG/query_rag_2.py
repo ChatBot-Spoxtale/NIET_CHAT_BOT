@@ -15,7 +15,15 @@ from RAG.router.niet_overview import about_niet_router
 
 def answer_rag(query: str):
     q = query.lower().strip()
-
+    if "admission" in q or "admissions" in q:
+        admission = admission_router(q)
+        if admission:
+            return admission
+        return (
+            "For complete admission details, please visit:\n"
+            "https://www.niet.co.in/admissions/eligibility-admission-process"
+        )
+        
     if any(w in q for w in ["syllabus", "pdf", "subject", "subjects", "curriculum"]):
         return (
             "To access the complete and officially updated course syllabus, "
@@ -58,16 +66,6 @@ def answer_rag(query: str):
         return res
 
    
-    if "admission" in q or "admissions" in q:
-        admission = admission_router(q)
-        if admission:
-            return admission
-        return (
-            "For complete admission details, please visit:\n"
-            "https://www.niet.co.in/admissions/eligibility-admission-process"
-        )
-
-   
 
     return (
         "I couldn’t find a specific answer to that.\n\n"
@@ -79,3 +77,4 @@ def answer_rag(query: str):
 
 if __name__=="__main__":
     print(answer_rag("why choose iot"))
+
