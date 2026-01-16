@@ -209,20 +209,18 @@ function renderCourseDetails(text) {
 const renderTextWithLinks = (text) => {
   if (!text) return null
 
-  const cleanedText = text.replace(/Visit Official Link/gi, "").trim()
-
   const urlRegex = /(https?:\/\/[^\s]+)/g
 
-  return cleanedText.split(urlRegex).map((part, i) =>
+  return text.split(urlRegex).map((part, i) =>
     part.match(urlRegex) ? (
       <a
         key={i}
         href={part}
         target="_blank"
         rel="noopener noreferrer"
-        className= " relative z-20 text-[#e2111f] font-semibold underline underline-offset-2 break-all pointer-events-auto"
+        className="relative z-20 text-[#e2111f] font-semibold underline underline-offset-2 pointer-events-auto"
       >
-        {part}
+        Visit Official Link
       </a>
     ) : (
       <span key={i}>{part}</span>
