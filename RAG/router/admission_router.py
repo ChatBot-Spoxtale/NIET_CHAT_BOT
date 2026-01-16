@@ -147,7 +147,8 @@ def format_standard_admission():
 
     response.append("🔗 Official details:")
     response.append("- https://www.niet.co.in/admissions/eligibility-admission-process")
-
+    response.append("🔗 For Registration :- ")
+    response.append("- https://applynow.niet.co.in/")
     return "\n".join(response).strip()
 
 
@@ -203,5 +204,6 @@ if __name__ == "__main__":
     # print(admission_router("how to take admission in MCA"))
     # print(admission_router("b.tech cse admission process"))
     # print(admission_router("how to take admission in PGDM"))
+
 
 
