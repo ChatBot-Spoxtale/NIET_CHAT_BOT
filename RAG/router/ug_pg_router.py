@@ -9,46 +9,94 @@ def normalize(q: str):
     q = re.sub(r"[^\w\s]", " ", q)
     return " ".join(q.split())
 
-EMPTY_FIELD_WORDS = ["seat","seats","duration","year","years","time","timing"]
-COURSE_HINTS = ["mba","mca","bca","bba","integrated"]
+EMPTY_FIELD_WORDS = ["seat", "seats", "duration", "year", "years", "time", "timing"]
+
+COURSE_NAMES = ["bba", "bca", "mba", "mca"]
+
+def format_ugpg_course(course: dict) -> str:
+    p = course.get("placements", {})
+    props = course.get("properties", {})
+
+    return f"""
+*{course.get('course')}*
+
+*Overview*
+{course.get('overview','NA')}
+
+*Course Details*
+- Duration: {props.get('duration','NA')}
+- Seats: {props.get('seats','NA')}
+- Eligibility: {props.get('eligibility','NA')}
+- Fees: {props.get('fees','Check admission department')}
+
+*Placements*
+- Average Package: {p.get('average','NA')}
+- Highest Package: {p.get('highest','NA')}
+- Source: {p.get('source_url','NA')}
+
+*Why Choose This Course?*
+- """ + "\n- ".join(course.get("why_choose", []))
 
 def ug_pg_router(query: str):
     q = normalize(query)
 
-    if any(w in q for w in EMPTY_FIELD_WORDS) and not any(c in q for c in COURSE_HINTS):
-        return "Please type full course name. Example:\nMBA duration\nBCA seats\nMCA placement record"
+    if any(w in q for w in EMPTY_FIELD_WORDS) and not any(c in q for c in COURSE_NAMES):
+        return (
+            "Please mention the full course name.\n\n"
+            "For example:\n"
+            "- BBA seats\n"
+            "- MBA duration\n"
+            "- MCA placement"
+        )
+
+    best_course = None
+    best_score = 0
 
     for data in UGPG_DATA:
-        if any(k in q for k in data.get("keywords", [])):
+        keywords = [normalize(k) for k in data.get("keywords", [])]
+        score = 0
 
-            if any(w in q for w in ["placement","package","salary","highest","average"]):
-                plc = data.get("placements", {})
-                return f"""Placement - {data['course']}
-• Average Package: {plc.get('average','NA')}
-• Highest Package: {plc.get('highest','NA')}
-• Source: {plc.get('source_url','NA')}"""
+        for k in keywords:
+            if q == k:
+                score += 100
+            elif re.search(rf"\b{k}\b", q):
+                score += 50
+            elif k in q:
+                score += 10
 
-            if any(w in q for w in ["overview","about","details","information"]):
-                return f"""{data['course']} - Overview
-{data.get('overview','No overview found.')}"""
+        if score > best_score:
+            best_score = score
+            best_course = data
 
-            # Seats & Duration
-            if "seat" in q or "duration" in q:
-                p = data.get("properties", {})
-                return f"""{data['course']}
-• Seats: {p.get('seats','NA')}
-• Duration: {p.get('duration','NA')}"""
+    if not best_course or best_score < 30:
+        return None
 
-            
-            if any(w in q for w in ["eligibility","criteria","qualification","required","requirement"]):
-                p = data.get("properties", {})
-                return f"""Eligibility - {data['course']}**
-         {p.get('eligibility','Not available')}"""
-            
-            if "why" in q or "benefit" in q or "choose" in q:
-                reasons = "\n- ".join(data.get("why_choose", []))
-                return f"Why Choose {data['course']}?\n- {reasons}"
+    c = best_course
+    props = c.get("properties", {})
+    plc = c.get("placements", {})
 
-            return f" {data['course']} identified.\nAsk something like:\n overview / placement / seats / duration / fees"
+    if any(w in q for w in ["placement", "package", "salary", "highest", "average"]):
+        return f"""*Placements – {c['course']}*
+- Average Package: {plc.get('average','NA')}
+- Highest Package: {plc.get('highest','NA')}
+- Source: {plc.get('source_url','NA')}"""
 
-    return None  
+    if any(w in q for w in ["eligibility", "criteria", "qualification", "required"]):
+        return f"""*Eligibility – {c['course']}*
+{props.get('eligibility','Not available')}"""
+
+    if "seat" in q or "duration" in q:
+        return f"""{c['course']}
+- Seats: {props.get('seats','NA')}
+- Duration: {props.get('duration','NA')}"""
+
+    if "fee" in q or "fees" in q:
+        return f"""Fees – {c['course']}
+{props.get('fees','Check admission department')}"""
+
+    if any(w in q for w in ["why", "benefit", "choose"]):
+        reasons = c.get("why_choose", [])
+        return f"""Why Choose {c['course']}
+- """ + "\n- ".join(reasons)
+
+    return format_ugpg_course(c)
