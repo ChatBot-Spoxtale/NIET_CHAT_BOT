@@ -4,6 +4,8 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from RAG.router.club_router import club_router
 from RAG.router.admission_router import admission_router
+# from RAG.router.faq_router import keyword_faq_router
+# from RAG.router.course_router import course_router
 from RAG.router.btech_course import btech_router
 from RAG.router.mtech_course_router import mtech_router
 from RAG.router.ug_pg_router import ug_pg_router
@@ -20,6 +22,7 @@ def answer_rag(query: str):
             "please consult the official NIET syllabus page:\n"
             "https://www.niet.co.in/academics/syllabus"
         )
+     # ---------- NIET OVERVIEW (LAST) ----------
     if any(w in q for w in ["about", "niet", "institute", "college"]):
         res = about_niet_router(q)
         if res:
@@ -42,6 +45,9 @@ def answer_rag(query: str):
     res = facilities_router(q)
     if res:
         return res
+    res = ug_pg_router(q)
+    if res:
+        return res
 
     res = btech_router(q)
     if res:
@@ -51,11 +57,7 @@ def answer_rag(query: str):
     if res:
         return res
 
-    res = ug_pg_router(q)
-    if res:
-        return res
-
-    # ---------- ADMISSION ----------
+   
     if "admission" in q or "admissions" in q:
         admission = admission_router(q)
         if admission:
