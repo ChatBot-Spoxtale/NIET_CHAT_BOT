@@ -143,9 +143,6 @@ def format_full_course(c: dict) -> str:
 def btech_router(query: str):
     q = normalize(query)
 
-    if not any(k in q for k in ["btech", "seat", "seats", "fee", "fees", "placement", "duration", "eligibility", "overview"]):
-        return None
-
     branch = detect_branch(q)
     specialization = detect_specialization(q)
 
@@ -203,4 +200,5 @@ if __name__ == "__main__":
     for t in tests:
         print("\nQ:", t)
         print(btech_router(t))
+
 
