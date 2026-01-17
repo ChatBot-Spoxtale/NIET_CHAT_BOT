@@ -108,6 +108,14 @@ SPECIALIZATION_SIGNALS = {
     "aiml twinning": ["aiml twinning", "international twinning"]
 }
 
+CSE_SPECIALIZATIONS = {
+    "aiml",
+    "ai",
+    "ds",
+    "cy",
+    "iot",
+}
+
 # ---------------- FORMATTER ----------------
 def format_full_mtech_course(c: dict) -> str:
     p = c.get("placements", {})
@@ -145,6 +153,9 @@ def mtech_router(query: str):
 
     branch = detect_branch(q)
     specialization = detect_specialization(q)
+
+    if not branch and specialization in CSE_SPECIALIZATIONS:
+        branch="cse"
 
     if not branch:
         return "Please mention the branch clearly, for example: mtech cse aiml"
@@ -212,3 +223,4 @@ if __name__ == "__main__":
     for t in tests:
         print("\nQ:", t)
         print(mtech_router(t))
+
