@@ -108,6 +108,13 @@ SPECIALIZATION_SIGNALS = {
     "aiml twinning": ["aiml twinning", "international twinning"]
 }
 
+CSE_SPECIALIZATIONS = {
+    "aiml",
+    "ai",
+    "ds",
+    "cy",
+    "iot"
+}
 def format_full_course(c: dict) -> str:
     p = c.get("placements", {})
     props = c.get("properties", {})
@@ -142,8 +149,11 @@ def btech_router(query: str):
     branch = detect_branch(q)
     specialization = detect_specialization(q)
 
+    if not branch and specialization in CSE_SPECIALIZATIONS:
+        branch="cse"
+        
     if not branch:
-        return None
+        return "Please mention the branch like Placement record of btech cse aiml"
 
     branch_courses = [c for c in BTECH_DATA if c.get("branch") == branch]
     if not branch_courses:
@@ -174,10 +184,9 @@ def btech_router(query: str):
 
     if "placement" in q:
         return (
-            # f"Placements for {selected_course.get('course')}:\n"
-            f"• Average Package: {placements.get('average', 'NA')}\n"
-            f"• Highest Package: {placements.get('highest', 'NA')}\n"
-            f"• Visit For More Information: {placements.get('source_url', 'NA')}"
+            f"- Average Package: {placements.get('average', 'NA')}\n"
+            f"- Highest Package: {placements.get('highest', 'NA')}\n"
+            f"- Visit For More Information: {placements.get('source_url', 'NA')}"
         )
 
     return format_full_course(selected_course)
@@ -194,3 +203,4 @@ if __name__ == "__main__":
     for t in tests:
         print("\nQ:", t)
         print(btech_router(t))
+
