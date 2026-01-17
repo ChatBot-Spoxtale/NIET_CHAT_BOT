@@ -9,6 +9,7 @@ from RAG.router.ug_pg_router import ug_pg_router
 from RAG.router.facilities_router import facilities_router
 from RAG.router.event_router import event_router
 from RAG.router.niet_overview import about_niet_router
+from RAG.router.admission_router import admission_router
 
 
 def answer_rag(query: str):
@@ -118,5 +119,6 @@ def answer_rag(query: str):
 
 if __name__=="__main__":
     print(answer_rag("why choose iot"))
+
 
 
