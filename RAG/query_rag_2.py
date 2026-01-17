@@ -14,7 +14,18 @@ from RAG.router.niet_overview import about_niet_router
 def answer_rag(query: str):
     q = query.lower().strip()
 
-    is_btech = "btech" in q or "b.tech" in q
+    BTECH_SPECIALIZATIONS = [
+    "aiml", "ai", "artificial intelligence",
+    "data science", "ds",
+    "cyber", "cyber security","cy",
+    "iot", "internet of things","me","ece","bio","it"
+]
+
+    is_btech = (
+    "btech" in q
+    or "b.tech" in q
+    or any(s in q for s in BTECH_SPECIALIZATIONS)
+)
     is_mtech = "mtech" in q or "m.tech" in q
 
     # ---------- SYLLABUS (highest priority) ----------
@@ -107,4 +118,5 @@ def answer_rag(query: str):
 
 if __name__=="__main__":
     print(answer_rag("why choose iot"))
+
 
