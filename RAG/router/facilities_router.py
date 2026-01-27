@@ -1,93 +1,103 @@
-import json, os
+import json
+import os
+import re
 
-FACILITY_PATH = os.path.join(
-    os.path.dirname(__file__),
-    "../Json_Format_Data/facilities.json"
+from llm_model_gemini.llm.gemini_client import generate_answer
+# Project root (RAG/)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+DATA_PATH = os.path.join(
+    PROJECT_ROOT,
+    "data_chunk",
+    "facilities_data_chunk",
+    "facility_chunks.json"
 )
 
-with open(FACILITY_PATH, "r", encoding="utf-8") as f:
-    FACILITIES = json.load(f)
+with open(DATA_PATH, "r", encoding="utf-8") as f:
+    FACILITY_DATA = json.load(f)
 
 
-def to_bullets(items):
+def to_bullets(text: str):
+    """
+    Convert paragraphs into bullet points
+    """
+    lines = re.split(r"\n+|\. ", text)
     bullets = []
-    link = None
+    for line in lines:
+        line = line.strip()
+        if len(line) > 10:
+            bullets.append(f"• {line}")
+    return bullets
 
-    for item in items:
-        desc = item.get("description", "")
-        if not desc:
+
+def extract_url(text: str):
+    match = re.search(r"https?://\S+", text)
+    return match.group(0) if match else None
+
+
+def facility_router(query: str):
+    q = query.lower()
+
+    academic_points = []
+    hostel_points = []
+    academic_url = None
+    hostel_url = None
+
+    for item in FACILITY_DATA:
+        if not isinstance(item, dict):
             continue
 
-        # capture first available url
-        if not link:
-            link = item.get("url")
+        category = item.get("category")
+        answer = item.get("answer", "")
 
-        sentences = desc.replace("\n", " ").split(".")
-        for s in sentences:
-            s = s.strip()
-            if len(s) > 8:
-                bullets.append(f"• {s}.")
+        if not answer:
+            continue
 
-    output = "\n".join(bullets)
+        bullets = to_bullets(answer)
+        url = extract_url(answer)
 
-    if link:
-        output += f"\n\n🔗 Visit Official Link: {link}"
+        if category == "campus_facilities":
+            academic_points.extend(bullets)
+            if url:
+                academic_url = url
 
-    return output
-
-
-
-
-def facilities_router(query: str):
-    q = query.lower()
-    # -------- ACADEMIC FACILITIES --------
-    if (
-    "academic facility" in q
-    or "academic facilities" in q
-    or "classroom" in q
-    or "classrooms" in q
-    or "laboratory" in q
-    or "laboratories" in q
-    or "lab" in q
-    or "labs" in q
-):
-        academic_items = FACILITIES.get("academic_facilities", [])
-        return to_bullets(academic_items)
-
-    # -------- HOSTEL --------
-    if "hostel" in q or "hostel facilites" in q:
-        return to_bullets(
-            FACILITIES.get("hostel_facilities", [])
+        if category == "hostel_facilities":
+            hostel_points.extend(bullets)
+            if url:
+                hostel_url = url
+    academic_url="https://niet.co.in/infrastructure/academic-facilities"
+    # Academic only
+    if "academic" in q:
+        return (
+            "Academic Facilities at NIET\n\n"
+            + "\n".join(academic_points)
+            + (f"\n\n🔗 {academic_url}" if academic_url else "")
+        )
+    hostel_url="https://niet.co.in/campus-facilities/about-hostel"
+    # Hostel only
+    if "hostel" in q:
+        return (
+            "Hostel Facilities at NIET\n\n"
+            + "\n".join(hostel_points)
+            + (f"\n\n🔗 {hostel_url}" if hostel_url else "")
         )
 
-    # -------- AUDITORIUM / SEMINAR --------
-    if "auditorium" in q or "seminar hall" in q or "seminar" in q:
-        auditorium_items = [
-            f for f in FACILITIES.get("other_facilities", [])
-            if "auditorium" in (f.get("title") or "").lower()
-        ]
-        return to_bullets(auditorium_items)
-
-    # -------- MEDICAL --------
-    if "medical" in q or "health" in q:
-        return to_bullets(
-            FACILITIES.get("medical_facilities", [])
-        )
-
-    # -------- SPORTS --------
-    if "sports" in q or "playground" in q or "gym" in q:
-        return to_bullets(
-            FACILITIES.get("sports_facilities", [])
-        )
-
-    # -------- GENERIC --------
+    # Both
     if "facility" in q or "facilities" in q:
         return (
-            "• Hostel facilities\n"
-            "• Auditorium & seminar halls\n"
-            "• Sports facilities\n"
-            "• Medical facilities\n\n"
-            "Please tell me which one you want details about."
+            "🏫 Academic Facilities at NIET\n\n"
+            + "\n".join(academic_points)
+            + (f"\n\n🔗 {academic_url}" if academic_url else "")
+            + "\n\n"
+            + "🏠 Hostel Facilities at NIET\n\n"
+            + "\n".join(hostel_points)
+            + (f"\n\n🔗 {hostel_url}" if hostel_url else "")
         )
 
     return None
+
+# ---- Local test ----
+if __name__ == "__main__":
+    print(facility_router("Academic Facilities"))
+    print("-" * 50)
+    print(facility_router("Hostel Facilities"))

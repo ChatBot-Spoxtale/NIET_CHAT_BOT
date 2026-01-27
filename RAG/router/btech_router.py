@@ -2,7 +2,7 @@
 
 import json, os, re
 
-BTECH_PATH = os.path.join(os.path.dirname(__file__), "../data/btech_chunks.json")
+BTECH_PATH = os.path.join(os.path.dirname(__file__), "../data_chunk/course_data_chunk/btech_chunks.json")
 with open(BTECH_PATH, "r", encoding="utf-8") as f:
     data = json.load(f)
 
@@ -200,5 +200,4 @@ if __name__ == "__main__":
     for t in tests:
         print("\nQ:", t)
         print(btech_router(t))
-
 

@@ -1,27 +1,62 @@
-# RAG/routers/club_router.py
-import json, os, sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+import json
+import os
 
-from Ollama.llm_client import ask_ollama_with_context
+# Project root directory (RAG/)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
+# Path to club data JSON
+DATA_PATH = os.path.join(
+    PROJECT_ROOT,
+    "data_chunk",
+    "club_data_chunk",
+    "club_chunks.json"
+)
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # points to RAG/
-DATA_PATH = os.path.join(BASE_DIR, "data", "club_chunks.json")
-
+# Load club data once at startup
 with open(DATA_PATH, "r", encoding="utf-8") as f:
     CLUB_DATA = json.load(f)
 
+CLUB_LIST = {
+    "Cultural & Hobby Clubs": [
+        "Nritya Bhakti (Traditional Dance Club)",
+        "Kathputliyaan (Theatre Club)",
+        "Harmonics (Music Club)",
+        "Spectrum (Cinematography Club)",
+        "Megapixels (Photography & Videography Club)",
+        "Green Gold Society",
+        "Khushiyan Baaton Club",
+        "Hope In Darkness (HID)",
+    ],
+    "Indoor Sports Clubs": [
+        "Table Tennis Club",
+        "Chess Club",
+        "Dodge Gaming Club",
+        "Yoga Club",
+    ],
+    "Outdoor Sports Clubs": [
+        "Basketball Club",
+        "Cricket Club",
+        "Football Club",
+        "Volleyball Club",
+    ],
+}
 
+# QUERY NORMALIZATION
+def club_normalize(query: str) -> str:
+    """
+    Normalizes user input so that:
+    - Case differences don't matter
+    - Extra symbols don't break matching
+    - Common spelling mistakes are fixed
+    - Similar phrases map to one standard form
+    """
+    q = query.lower().strip()
 
-# -------------- NORMALIZE FUNCTION (Fix misspellings & aliases) --------------
-def club_normalize(q: str) -> str:
-    q = q.lower().strip()
-
-    # remove symbols
-    for ch in ["?", ",", ".", ":", "-"]:
+    # Remove punctuation that can break matching
+    for ch in ["?", ",", ".", ":", "-", "_"]:
         q = q.replace(ch, " ")
 
-    # spelling fixes
+    # Common spelling / wording corrections
     corrections = {
         "clubs":"club",
         "scoieties": "societies",
@@ -92,7 +127,7 @@ def club_normalize(q: str) -> str:
     for wrong, right in corrections.items():
         q = q.replace(wrong, right)
 
-    # alias mapping
+    # Alias mapping (different words → same club)
     alias_map = {
         "dance club": "nritya bhakti",
         "traditional dance": "nritya bhakti",
@@ -100,130 +135,134 @@ def club_normalize(q: str) -> str:
         "acting club": "kathputliyaan",
         "music club": "harmonics",
         "photography club": "megapixels",
-        "film club": "spectrum",
+        "videography club": "megapixels",
         "cinema club": "spectrum",
-        "social club": "khushiyan baaton club",
+        "film club": "spectrum",
         "ngo club": "khushiyan baaton club",
+        "social club": "khushiyan baaton club",
     }
 
     for key, value in alias_map.items():
         if key in q:
             q = value
 
+    # Remove extra spaces
     return " ".join(q.split())
 
 
-BAD_PATTERNS = [
-    "student scoieties", "sports club(outdoor", "fitness club",
-    "cultural and hooby", "different club", "how many club"
+# CONSTANT CLUB GROUPS
+ 
+OUTDOOR_CLUBS = [
+    "Basketball Club",
+    "Cricket Club",
+    "Volleyball Club",
+    "Football Club",
+    "Sports Club",
 ]
 
+INDOOR_CLUBS = [
+    "Table Tennis Club",
+    "Chess Club",
+    "Dodge Gaming Club",
+    "Yoga Club",
+]
 
-OUTDOOR = ["Basketball Club","Cricket Club","Volleyball Club","Football Club","Sports Club"]
-INDOOR  = ["Table Tennis Club","Chess Club","Dodge Gaming Club","Yoga Club"]
-CULTURAL = [
-    "Nritya Bhakti (Traditional Dance)",
+CULTURAL_CLUBS = [
+    "Nritya Bhakti (Traditional Dance Club)",
     "Kathputliyaan (Theatre Club)",
     "Harmonics (Music Club)",
     "Spectrum (Cinematography Club)",
-    "Megapixels (Photography & Videography)",
+    "Megapixels (Photography & Videography Club)",
     "Green Gold Society",
     "Khushiyan Baaton Club",
-    "Hope In Darkness (HID)"
+    "Hope In Darkness (HID)",
 ]
 
 
-def format_list(title, arr):
-    return f"{title}**\n" + "\n".join("• "+x for x in arr) + \
-           "\n\n🔗 Full list: https://niet.co.in/students-life/student-clubs-societies"
+# HELPER FUNCTION FOR FORMATTED LIST
+def format_list(title: str, items: list) -> str:
+    """
+    Converts a list into a clean bullet-point response
+    """
+    bullets = "\n".join(f"• {item}" for item in items)
+    return (
+        f"{title}**\n"
+        f"{bullets}\n\n"
+        "🔗 Full list: https://niet.co.in/students-life/student-clubs-societies"
+    )
 
 
-# -------------- MAIN ROUTER FUNCTION --------------
+#list of club format data 
+def format_club_list() -> str:
+    """
+    Formats the hardcoded club list nicely
+    """
+    output = ["Here are the student clubs at NIET:\n"]
+    for category, clubs in CLUB_LIST.items():
+        output.append(f"{category}:")
+        for club in clubs:
+            output.append(f"• {club}")
+        output.append("")  # empty line
+
+    output.append("🔗 https://niet.co.in/students-life/student-clubs-societies")
+    return "\n".join(output)
+
+# MAIN ROUTER FUNCTION
 def club_router(query: str):
+    """
+    Main entry point for club-related queries.
+    Decides WHAT to answer based on the user question.
+    """
+
+    # Step 1: Normalize user query
     q = club_normalize(query)
-    # ---------- EXACT CLUB NAME MATCH (HIGHEST PRIORITY) ----------
+
+    # CASE 1: User asks for list of clubs
+    if "list" in q and "club" in q:
+        return format_club_list()
+    
+    # CASE 2: Category-based queries
+    if "outdoor" in q:
+        return format_list("Outdoor Sports Clubs", OUTDOOR_CLUBS)
+
+    if "indoor" in q:
+        return format_list("Indoor Sports Clubs", INDOOR_CLUBS)
+
+    if "cultural" in q or "hobby" in q or "activities" in q:
+        return format_list("Cultural & Hobby Clubs", CULTURAL_CLUBS)
+
+    # CASE 3: Exact club detail lookup
     for item in CLUB_DATA:
         name = item.get("club_name", "").lower()
         answer = item.get("answer", "")
 
-    # Exact or near-exact match
-    if q == name or q in name or name in q:
-        return answer
-
-    # Very generic query
-    if q.strip() == "club" or q.strip() == "clubs":
-        return (
-        "• Cultural & hobby clubs\n"
-        "• Sports clubs :- indoor & outdoor \n"
-        "• Fitness & yoga club\n\n"
-        "Please specify which type of club you want 😊"
-    )
-
-    if "club" not in q and "society" not in q:
-        return None
-    if "music club" in q or q == "music":
-        return format_list("Music Clubs", ["Harmonics (Music) Club"])
-
-    if "dance club" in q:
-        return format_list("Dance Clubs", ["Nritya Bhakti", "Juventas"])
-
-    if "cultural" in q or "hobby" in q:
-        return format_list("Cultural & Hobby Clubs", CULTURAL)
-
-    if "outdoor" in q:
-        return format_list("Outdoor Sports Clubs", OUTDOOR)
-
-    if "indoor" in q:
-        return format_list("Indoor Clubs", INDOOR)
-
-    if "cultural" in q or "hobby" in q or "activities" in q:
-        return format_list("Cultural & Hobby Clubs", CULTURAL)
-
-
-    # Exact Name Match (fix for Khushiyan Baaton, HID, etc.)
-    for item in CLUB_DATA:
-        name = item.get("club_name","").lower()
-        answer = item.get("answer","")
-
-        if any(bad in name for bad in BAD_PATTERNS):
-            continue  # skip garbage entries
-
-        # FINAL CORRECT MATCH LOGIC
-        if name == q or name in q or q in name:
+        # Match full name or partial name safely
+        if name == q or q in name or name in q:
             return answer
 
-
-    #  Keyword Lookup
+    # CASE 4: Keyword-based fallback
     for item in CLUB_DATA:
         for kw in item.get("keywords", []):
-            words=q.split()
-            if kw.lower() in words:
+            if kw.lower() in q:
                 return item.get("answer")
 
-
-    # Full list fallback
-    clean = [
-        c["club_name"] for c in CLUB_DATA
-        if not any(bad in c["club_name"].lower() for bad in BAD_PATTERNS)
-    ]
-    return format_list("Available Clubs at NIET", clean)
+    # CASE 5: Final safe fallback
+    club_names = [item["club_name"] for item in CLUB_DATA]
+    return format_list("Available Clubs at NIET", club_names)
 
 
-
-# ---------- Local Test ----------
+# LOCAL TESTING
 if __name__ == "__main__":
     test_queries = [
-        # "list of clubs",
+        "list of clubs",
+        # "indoor clubs",
         # "outdoor sports club",
-        # "indoor club list",
-        # "cultural hobby club",
-        # "nritya bhakti club",
-        # "kathputliyaan club",
-        # "Spectrum club"
-        "green gold society"
+        # "table tennis club",
+        # "dance club",
+        # "music club",
     ]
 
     for q in test_queries:
         print("Q:", q)
         print(club_router(q))
-        print("-"*40)
+        print("-" * 50)

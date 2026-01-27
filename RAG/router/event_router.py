@@ -5,7 +5,7 @@ import json
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "event_chunks.json"
+DATA_PATH = Path(__file__).resolve().parent.parent / "data_chunk" /"event_data_chunk"/ "event_chunks.json"
 
 with open(DATA_PATH, "r", encoding="utf-8") as f:
     DATA = json.load(f)

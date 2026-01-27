@@ -1,11 +1,15 @@
-# RAG/router/admission_router.py
+import json
+import os
 
-import json, os, sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-DATA_PATH = os.path.join(BASE_DIR, "data", "admission_chunks.json")
-
+# Path to club data JSON
+DATA_PATH = os.path.join(
+    PROJECT_ROOT,
+    "data_chunk",
+    "admission_data_chunk",
+    "admission_chunks.json"
+)
 with open(DATA_PATH, "r", encoding="utf-8") as f:
     ADMISSION_DATA = json.load(f)
 
@@ -127,29 +131,39 @@ def group_admission_by_course():
 
     return grouped
 
-def format_standard_admission():
-    grouped = group_admission_by_course()
-    response = []
+def format_all_courses_admission():
+    grouped = {}
 
-    response.append("🎓 Admission Process – NIET\n")
+    for row in ADMISSION_DATA:
+        course = row.get("course", "").strip()
+        answer = normalize_answer(row.get("answer", "")).strip()
+
+        if not course:
+            continue
+
+        if course not in grouped:
+            grouped[course] = []
+
+        grouped[course].append(answer)
+
+    response = []
+    response.append("🎓 Admission Process – NIET (All Courses)\n")
 
     for course, answers in grouped.items():
         response.append(f"📌 {course}")
-
         for ans in answers:
             parts = re.split(r";|\.\s+", ans)
             for p in parts:
-                p = p.strip()
-                if p:
-                    response.append(f"- {p}")
+                if p.strip():
+                    response.append(f"• {p.strip()}")
+        response.append("")
 
-        response.append("")  
+    response.append("🔗 Official Details:")
+    response.append("https://www.niet.co.in/admissions/eligibility-admission-process")
+    response.append("\n🔗 For Registration:")
+    response.append("https://applynow.niet.co.in/")
 
-    response.append("🔗 Official details:")
-    response.append("- https://www.niet.co.in/admissions/eligibility-admission-process")
-    response.append("🔗 For Registration :- ")
-    response.append("- https://applynow.niet.co.in/")
-    return "\n".join(response).strip()
+    return "\n".join(response)
 
 
 
@@ -175,9 +189,9 @@ def admission_router(query: str):
     ]
 
     if any(k in q for k in GENERIC_KEYWORDS):
-        return format_standard_admission()
+        return format_all_courses_admission()
 
-    return format_standard_admission()
+    return group_admission_by_course()
 
 def format_admission(row):
     response = []
@@ -201,9 +215,8 @@ def format_admission(row):
 if __name__ == "__main__":
     print(admission_router("Admission Prcoess At NIET"))
     # print(admission_router("admission process for btech cse aiml"))
-    # print(admission_router("how to take admission in MCA"))
+    print(admission_router("how to take admission in MCA"))
     # print(admission_router("b.tech cse admission process"))
     # print(admission_router("how to take admission in PGDM"))
-
 
 
