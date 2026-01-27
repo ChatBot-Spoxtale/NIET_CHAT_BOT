@@ -1,6 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI # type: ignore
 from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware # type: ignore
 from typing import List, Optional, Union
 
 from constant.is_sensitive import is_sensitive_query
