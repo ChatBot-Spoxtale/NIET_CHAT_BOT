@@ -1,5 +1,10 @@
-sentence-transformers
-faiss-cpu
-fastapi
+# sentence-transformers
+# faiss-cpu
+# fastapi
+# uvicorn
+# numpy
+
+google-genai
+python-dotenv
 uvicorn
-numpy
+fastapi 

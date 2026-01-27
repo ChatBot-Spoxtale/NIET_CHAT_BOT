@@ -1,0 +1,416 @@
+[
+  {
+    "type": "admission",
+    "intent": "counselling",
+    "keywords": [
+      "why niet",
+      "is niet good",
+      "why choose"
+    ],
+    "question": "Why should I take admission in NIET?",
+    "answer": "Noida Institute of Engineering and Technology (NIET) is an autonomous institute located in Greater Noida, Uttar Pradesh. NIET is approved by AICTE and affiliated with Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow. The institute offers undergraduate, postgraduate, and integrated programs in engineering, management, and computer applications. NIET emphasizes industry-oriented education, innovation, and holistic student development."
+  },
+  {
+    "type": "admission",
+    "intent": "facilities",
+    "keywords": [
+      "facilities",
+      "infrastructure",
+      "hostel"
+    ],
+    "question": "Does NIET provide good facilities?",
+    "answer": "We at NIET, believe that the whole process of teaching can be highly enhanced by using the latest technological tools which further helps the students gain a better understanding of tough concepts and gives a boost by providing the ways and means to visualize the concept being put forward by the professors, or let’s say, the education experts. Hence, the classrooms are well-equipped with projectors, computers, high-tech sound systems, OHPs and other kinds of audio-visual tools. NIET believes in acing the practicality along with the theoretical expertise. The laboratories we possess, aren’t just for conducting chemical experiments, but also for brainstorming new ideas as well as learning new things every day. With refined infrastructure and best-in-market equipment to work on, the laboratories aim to fulfil every curiosity that a keen mind has towards learning. Apart from the technical aspects, the labs also help the students learn practical implementation of the theoretical knowledge with the assistance from our team of expert professors and lab assistants."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech in cse"
+    ],
+    "question": "Why choose B Tech In Cse at NIET?",
+    "answer": "Identify, analyze real world problems and design their ethical solutions using artificial intelligence, robotics, virtual/augmented reality, data analytics, block chain technology, and cloud computing. PSO2:Design and develop the hardware sensor devices and related interfacing software systems for solving complex engineering problems. PSO3:Understand inter-disciplinary computing techniques and to apply them in the design of advanced computing."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech in cse regional"
+    ],
+    "question": "Why choose B Tech In Cse Regional at NIET?",
+    "answer": "Identify, analyze real world problems and design their ethical solutions using artificial intelligence, robotics, virtual/augmented reality, data analytics, block chain technology, and cloud computing. PSO2:Design and develop the hardware sensor devices and related interfacing software systems for solving complex engineering problems. PSO3:Understand inter-disciplinary computing techniques and to apply them in the design of advanced computing."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech cs"
+    ],
+    "question": "Why choose Btech Cs at NIET?",
+    "answer": "Apply suitable techniques, modern tools to solve complex engineering problems in the field of computer science. Design and optimize, ethical and innovative solutions for the betterment of the society. Work as an individual or lead in a team with good communication and engage in life-long learning."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech in it"
+    ],
+    "question": "Why choose B Tech In It at NIET?",
+    "answer": " Work as a software engineer in different dimensions of information technology to provide solutions to real-world and industrial problems in an eco-friendly manner. PSO2: Apply knowledge of core subjects with multi-disciplinary and modern computing techniques to solve complex IT problems. PSO3: Establish a successful and innovative career by practicing lifelong learning and communicating in a team or as an individual to manage projects with ethical concerns."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech ece"
+    ],
+    "question": "Why choose Btech Ece at NIET?",
+    "answer": "To Design an implement products using the cutting-edge Software and Hardware tools in electronics and communication engineering to satisfy the customer need. To analyse and developed solution for the real time problem and to apply the knowledge for innovative ideas and solutions in Telecommunications, Wireless Networking, Embedded systems, and VLSI. To demonstrate the technical skills, professional competence entrepreneurial attitude and deliver innovative solution to solve the society."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech in vlsi"
+    ],
+    "question": "Why choose B Tech In Vlsi at NIET?",
+    "answer": "Engineering Knowledge :Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems. Problem Analysis :Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences. Design/Development of Solutions :Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for the public health and safety, and the cultural, societal, and environmental considerations."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech in me"
+    ],
+    "question": "Why choose B Tech In Me at NIET?",
+    "answer": "Apply, analyze, design, and solve the complex problem related to Mechanical Engineering. Implement the use of software, latest equipment, and scientific concepts for the betterment of the society in professional and ethical manner. To present their technical ideas, execute various projects, and learn the upcoming interdisciplinary technology"
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech biotechnology"
+    ],
+    "question": "Why choose Btech Biotechnology at NIET?",
+    "answer": "To apply knowledge of basic sciences and biotechnological techniques to modify living organisms. To design, optimize, analyze & scale up bio-processes to develop useful products with societal consideration. To generate, analyze & interpret biological data using insilico & other relevant approaches."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech in cse data science"
+    ],
+    "question": "Why choose B Tech In Cse Data Science at NIET?",
+    "answer": "Analyse, design and develop solutions by applying fundamental concepts of Data Science. Apply technical knowledge while using modern tools and technologies for solving complex problems. Collaborate different fields of science and technology with right attitude, to work as an individual or as a team, and demonstrating professional ethics for the well-being of the society."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech aiml"
+    ],
+    "question": "Why choose Btech Aiml at NIET?",
+    "answer": "Design innovative intelligent systems for the welfare of the people using machine learning and its applications. Demonstrate ethical, professional and team-oriented skills while providing innovative solutions in Artificial Intelligence and Machine Learning for life-long learning."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech in cse cyber security"
+    ],
+    "question": "Why choose B Tech In Cse Cyber Security at NIET?",
+    "answer": "The ability to create secure applications, systems, and networks PSO2:The ability to master the concepts and theories to navigate policy changes impacting computer security and develop cross-disciplinary strategy to tackle the complex challenges involved in keeping our digital information safe. PSO3:The ability to conduct investigation of complex security problems and tackle the technical, regulatory and business challenges of cyber security ethically."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech in csbs"
+    ],
+    "question": "Why choose B Tech In Csbs at NIET?",
+    "answer": "Apply technical and business knowledge to solve complex problems and face current business challenges. Explore modern tools and technologies and apply the knowledge to design and develop solutions for betterment of the society. Work innovatively and communicate effectively with professionals worldwide and pursue lifelong learning to add value to society and environment."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech iot"
+    ],
+    "question": "Why choose Btech Iot at NIET?",
+    "answer": "Apply concept of IoT to solve real world problems for societal wellbeing by leveraging latest tools. Work as an individual or lead as a team with good communication and engage in life-long learning. Apply ethical principles as a successful professional, entrepreneur, and pursue higher education."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech in cse artificial intelligence"
+    ],
+    "question": "Why choose Btech In Cse Artificial Intelligence at NIET?",
+    "answer": "Apply Artificial Intelligence and its applications to design intelligent systems for the betterment of society. Develop AI-based innovative solutions demonstrating research, entrepreneurship, professional ethics, and communication skills. Demonstrate competency in AI by working in a team and engaging in life-long learning."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mathematics and computing"
+    ],
+    "question": "Why choose Mathematics And Computing at NIET?",
+    "answer": "Engineering Knowledge: Apply knowledge of mathematics, natural science, computing, engineering fundamentals and an engineering specialization as specified in WK1 to WK4 respectively to develop to the solution of complex engineering problems. Problem Analysis: Identify, formulate, review research literature and analyze complex engineering problems reaching substantiated conclusions with consideration for sustainable development. (WK1 to WK4) Design/Development of Solutions: Design creative solutions for complex engineering problems and design/develop systems/components/processes to meet identified needs with consideration for the public health and safety, whole-life cost, net zero carbon, culture, society and environment as required. (WK5)"
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "bca"
+    ],
+    "question": "Why choose Bca at NIET?",
+    "answer": "To develop/apply knowledge of computing fundamentals, computing specialization, mathematics, and domain knowledge for solving real-world problems. Identify formulated review research literature and analyze complex problems reaching substantial conclusions using first fundamental principles of mathematics, computing science, and relevant domain specific. Ability to design and evaluate systems, components, or processes for complex computing problems that meet specified needs with appropriate consideration for public health and safety and cultural societal, and environmental considerations."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "bba"
+    ],
+    "question": "Why choose Bba at NIET?",
+    "answer": "PO1Apply knowledge of management theories and practices to solve business problems. PO2Foster analytical and critical thinking abilities for data-based decision making. PO3Ability to develop value-based leadership ability."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech cse artificial intelligence international twinning"
+    ],
+    "question": "Why choose B Tech Cse Artificial Intelligence International Twinning at NIET?",
+    "answer": "Spend a semester abroad and make your academic journey truly international The credits earned in the semester abroad will be transferred to NIET and counted in the final"
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech cse artificial intelligence and machine learning international twinning"
+    ],
+    "question": "Why choose B Tech Cse Artificial Intelligence And Machine Learning International Twinning at NIET?",
+    "answer": "Design innovative intelligent systems for the welfare of the people using machine learning and its applications. Demonstrate ethical, professional and team-oriented skills while providing innovative solutions in Artificial Intelligence and Machine Learning for life-long learning."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech information technology international twinning program"
+    ],
+    "question": "Why choose B Tech Information Technology International Twinning Program at NIET?",
+    "answer": "Spend a semester abroad and make your academic journey truly international The credits earned in the semester abroad will be transferred to NIET and counted in the final"
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "b tech computer science engineering international twinning program"
+    ],
+    "question": "Why choose B Tech Computer Science Engineering International Twinning Program at NIET?",
+    "answer": "Spend a semester abroad and make your academic journey truly international The credits earned in the semester abroad will be transferred to NIET and counted in the final"
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech mechanical engineering working professionals"
+    ],
+    "question": "Why choose Btech Mechanical Engineering Working Professionals at NIET?",
+    "answer": "Apply, analyze, design, and solve the complex problem related to Mechanical Engineering. Implement the use of software, latest equipment, and scientific concepts for the betterment of the society in professional and ethical manner. To present their technical ideas, execute various projects, and learn the upcoming interdisciplinary technology."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech electronics communication engineering working professionals"
+    ],
+    "question": "Why choose Btech Electronics Communication Engineering Working Professionals at NIET?",
+    "answer": "To Design an implement products using the cutting-edge Software and Hardware tools in electronics and communication engineering to satisfy the customer need. To analyse and developed solution for the real time problem and to apply the knowledge for innovative ideas and solutions in Telecommunications, Wireless Networking, Embedded systems, and VLSI. To demonstrate the technical skills, professional competence entrepreneurial attitude and deliver innovative solution to solve the society."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "m tech in cse"
+    ],
+    "question": "Why choose M Tech In Cse at NIET?",
+    "answer": "PSO:1Apply suitable techniques, and modern tools to solve complex engineering problems in the field of computer science. PSO:2Design and optimize, ethical and innovative solutions for the betterment of society. PSO:3Work as an individual or lead in a team with good communication and engage in life-long learning."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mtech ai"
+    ],
+    "question": "Why choose Mtech Ai at NIET?",
+    "answer": "Apply Artificial Intelligence and its applications to design intelligent systems for the betterment of society. Develop AI-based innovative solutions demonstrating research, entrepreneurship, professional ethics, and communication skills. Demonstrate competency in AI by working in a team and engaging in life-long learning."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mtech in electronics communication engineering vlsi design"
+    ],
+    "question": "Why choose Mtech In Electronics Communication Engineering Vlsi Design at NIET?",
+    "answer": "PO1 : An ability to independently carry out research/investigation and development works to solve practical problems. PO2 : An ability to write and present substantial technical report. PO3 : Student should able to demonstrate a degree of mastery over the area as per the specialization of the program. The mastery should be at a level higher than the requirements in the appropriate bachelor program."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mtech biotechnology"
+    ],
+    "question": "Why choose Mtech Biotechnology at NIET?",
+    "answer": "Apply knowledge of basic sciences and biotechnological techniques. Design, optimize, analyze & scale up bio-processes to develop useful products with societal consideration. To generate, analyze & interpret biological data using insilico & other relevant approaches."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mca"
+    ],
+    "question": "Why choose Mca at NIET?",
+    "answer": "To develop/apply knowledge of computing fundamentals, computing specialization, mathematics, and domain knowledge for solving real-world problems. Identify formulated review research literature and analyze complex problems reaching substantial conclusions using first fundamental principles of mathematics, computing science, and relevant domain specific. Ability to design and evaluate systems, components, or processes for complex computing problems that meet specified needs with appropriate consideration for public health and safety and cultural societal, and environmental considerations."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mba"
+    ],
+    "question": "Why choose Mba at NIET?",
+    "answer": "PO1Apply knowledge of management theories and practices to solve business problems. PO2Foster analytical and critical thinking abilities for data-based decision making. PO3Ability to develop value-based leadership ability."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mba innovation entrepreneurship venture development"
+    ],
+    "question": "Why choose Mba Innovation Entrepreneurship Venture Development at NIET?",
+    "answer": "Funding laboratory Access Discussion Room"
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mtech electronics communication engineering working professionals"
+    ],
+    "question": "Why choose Mtech Electronics Communication Engineering Working Professionals at NIET?",
+    "answer": "PO1 : An ability to independently carry out research/investigation and development works to solve practical problems. PO2 : An ability to write and present substantial technical report. PO3 : Student should able to demonstrate a degree of mastery over the area as per the specialization of the program. The mastery should be at a level higher than the requirements in the appropriate bachelor program."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "mba marketing and finance"
+    ],
+    "question": "Why choose Mba Marketing And Finance at NIET?",
+    "answer": "PO1:Apply knowledge of management theories and practices to solve business problems. PO2:Foster analytical and critical thinking abilities for data-based decision making. PO3:Ability to develop value-based leadership ability."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "bca mca integrated"
+    ],
+    "question": "Why choose Bca Mca Integrated at NIET?",
+    "answer": "To develop/apply knowledge of computing fundamentals, computing specialization, mathematics, and domain knowledge for solving real-world problems. Identify formulated review research literature and analyze complex problems reaching substantial conclusions using first fundamental principles of mathematics, computing science, and relevant domain specific. Ability to design and evaluate systems, components, or processes for complex computing problems that meet specified needs with appropriate consideration for public health and safety and cultural societal, and environmental considerations."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "bba mba integrated"
+    ],
+    "question": "Why choose Bba Mba Integrated at NIET?",
+    "answer": "PO1Apply knowledge of management theories and practices to solve business problems. PO2Foster analytical and critical thinking abilities for data-based decision making. PO3Ability to develop value-based leadership ability."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "btech mtech integrated"
+    ],
+    "question": "Why choose Btech Mtech Integrated at NIET?",
+    "answer": "Plan programming structures, parts, or cycles to resolve perceived issues inside monetary, regular and social necessities. PSO2:Apply numerical establishments and algorithmic standards for demonstrating and recreation of designing issues. PSO3:Use research-based information and devices for the investigation and understanding of information to combine data for getting substantial ends"
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "advance diploma in automotive mechatronics adam"
+    ],
+    "question": "Why choose Advance Diploma In Automotive Mechatronics Adam at NIET?",
+    "answer": "Remove & install components of a car PSO2:Measure mechanical, electrical and electronics parameters for systems and components used in a car. PSO3:Carry out PDI (Pre- Delivery Inspection) and Maintenance of a car."
+  },
+  {
+    "type": "course",
+    "intent": "why_choose",
+    "keywords": [
+      "why choose",
+      "international twinning program"
+    ],
+    "question": "Why choose International Twinning Program at NIET?",
+    "answer": "Spend a semester abroad and make your academic journey truly international The credits earned in the semester abroad will be transferred to NIET and counted in the final"
+  },
+  {
+    "type": "club",
+    "intent": "activities",
+    "keywords": [
+      "clubs",
+      "activities",
+      "societies"
+    ],
+    "question": "What student clubs are available at NIET?",
+    "answer": "NIET offers student clubs such as Student Scoieties & Clubs, Sports Club(outdoor & indoor), Fitness Club,Cultural and Hooby Club, Nritya Bhakti (Traditional Dance Club), Kathputliyaan (The Theatre Club), Hope in Darkness (HID) Club, Spectrum (Cinematography Club), Basketball Club, Cricket Club, Voleyball Club, Sports Club, Football Club."
+  },
+  {
+    "type": "admission",
+    "intent": "eligibility",
+    "keywords": [
+      "admission",
+      "eligibility",
+      "criteria"
+    ],
+    "question": "What is the admission process at NIET?",
+    "answer": "The candidate must have passed the intermediate examination of U.P. Board 10+2 level examination from any recognized board/university Securing minimum 45% (40% for SC/ST) marks in total of required subject combination Candidate must have passed (with/without grace) intermediate examination of U.P. Board 10+2 level examination or its equivalent with Physics and Chemistry"
+  }
+]

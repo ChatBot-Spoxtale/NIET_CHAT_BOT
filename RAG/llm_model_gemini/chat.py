@@ -1,6 +1,6 @@
 # rag/chat.py
 
-from llm_model_gemini.retriever.unified_retriever import retrieve_chunks
+from llm_model_gemini.retreiver.unified_retriever import retrieve_chunks
 from llm_model_gemini.llm.gemini_client import generate_answer
 from llm_model_gemini.memory.chat_memory import add, get
 from llm_model_gemini.context_builder import build_context

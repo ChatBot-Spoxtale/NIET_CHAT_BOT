@@ -1,0 +1,264 @@
+[
+  {
+    "chunk_id": "overview_0",
+    "question": "What is NIET?",
+    "answer": "Noida Institute of Engineering and Technology (NIET) is an autonomous institute located in Greater Noida, Uttar Pradesh. NIET is approved by AICTE and affiliated with Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow. The institute offers undergraduate, postgraduate, and integrated programs in engineering, management, and computer applications. NIET emphasizes industry-oriented education, innovation, and holistic student development.",
+    "keywords": [
+      "aktu",
+      "niet",
+      "a.p.j.",
+      "abdul",
+      "affiliated",
+      "aicte",
+      "applications.",
+      "approved",
+      "autonomous",
+      "computer",
+      "development.",
+      "education",
+      "emphasizes",
+      "engineering",
+      "greater",
+      "holistic",
+      "industry-oriented",
+      "innovation",
+      "institute",
+      "integrated",
+      "kalam",
+      "located",
+      "lucknow.",
+      "management",
+      "niet",
+      "noida",
+      "offers",
+      "postgraduate",
+      "pradesh.",
+      "programs",
+      "student",
+      "technical",
+      "technology",
+      "undergraduate"    ]
+  },
+  {
+    "chunk_id": "overview_1",
+    "question": "What are the rankings of NIET?",
+    "answer": "NIET has been featured in the National Institutional Ranking Framework (NIRF) in the Engineering category in recent years. The institute has received national recognition through accreditation and ranking frameworks.",
+    "keywords": [
+      "nirf",
+      "accreditation",
+      "category",
+      "engineering",
+      "featured",
+      "framework",
+      "institute",
+      "institutional",
+      "national",
+      "ranking",
+      "rankings",
+      "received",
+      "recent",
+      "recognition"
+      
+    ]
+  },
+  {
+    "chunk_id": "overview_2",
+    "question": "What awards and accreditations does NIET have?",
+    "answer": "Several programs at NIET are accredited by the National Board of Accreditation (NBA). NIET has received awards for academic excellence and industry–institute collaboration. The institute is accredited by NAAC with Grade A.",
+    "keywords": [
+      "nba",
+      "academic",
+      "accreditation",
+      "accreditations",
+      "accredited",
+      "awards",
+      "board",
+      "collaboration.",
+      "excellence",
+      "grade",
+      "have?",
+      "industry–institute",
+      "institute",
+      "naac",
+      "national",
+      "received"
+    ]
+  },
+  {
+    "chunk_id": "overview_3",
+    "question": "Does NIET have international collaborations?",
+    "answer": "NIET offers international exposure through academic collaborations and twinning programs with foreign universities.",
+    "keywords": [
+      "academic",
+      "collaborations",
+      "exposure",
+      "foreign",
+      "international",
+      "offers",
+      "programs",
+      "twinning",
+      "universities"
+        ]
+  },
+  {
+    "chunk_id": "research_4",
+    "question": "What is the research overview at NIET?",
+    "answer": "NIET promotes research activities among faculty members and students across engineering, technology, and management disciplines. The institute encourages innovation, publications, patents, and participation in funded research projects.",
+    "keywords": [
+      "across",
+      "activities",
+      "among",
+      "disciplines.",
+      "encourages",
+      "engineering",
+      "faculty",
+      "funded",
+      "innovation",
+      "institute",
+      "management",
+      "members",
+      "niet",
+      "overview",
+      "participation",
+      "patents",
+      "projects.",
+      "promotes",
+      "publications",
+      "research",
+      "technology"
+      
+    ]
+  },
+  {
+    "chunk_id": "research_5",
+    "question": "What are the research areas at NIET?",
+    "answer": "Artificial Intelligence and Machine Learning, Data Science and Analytics, Internet of Things (IoT), Robotics and Automation, VLSI Design and Embedded Systems, Wireless Communication, Biotechnology, Cyber Security",
+    "keywords": [
+      "analytics",
+      "areas",
+      "automation",
+      "research"
+        ]
+  },
+  {
+    "chunk_id": "research_6",
+    "question": "What kind of research publications are done at NIET?",
+    "answer": "Research papers published by faculty and students in national and international journals and conferences. NIET supports publication in peer-reviewed national and international journals.",
+    "keywords": [
+      "conferences.",
+      "international",
+      "journals",
+      "national",
+      "papers",
+      "peer-reviewed",
+      "publication",
+      "publications",
+      "published"
+        ]
+  },
+  {
+    "chunk_id": "research_project_7",
+    "question": "Tell me about NIET research projects",
+    "answer": "Domain: Biotechnology. Faculty: Dr. Arvind Kumar. Funding: Project Grant of Rs.35,06,544 from Ministry of Science and Technology, Department of Science and Technology. Year: 2021.",
+    "keywords": [
+      "faculty:",
+      "project",
+      "technology",
+      "projects"
+        ]
+  },
+  {
+    "chunk_id": "research_project_8",
+    "question": "Tell me about NIET research projects",
+    "answer": "Domain: Biotechnology. Faculty: Dr. Pankaj Kumar Tyagi. Funding: STTC grant of Rs. 380000 from Department of Biotechnology, GOI, New Delhi. Year: 2020.",
+    "keywords": [
+      "department",
+      "faculty",
+      "projects"
+    ]
+  },
+  {
+    "chunk_id": "research_project_9",
+    "question": "Tell me about NIET research projects",
+    "answer": "Domain: Biotechnology. Faculty: Dr. Arvind Kumar. Funding: Project Grant of Rs. 1452000 from CST-UP. Year: 2019.",
+    "keywords": [
+      "faculty:",
+      "project",
+      "projects"
+    ]
+  },
+  {
+    "chunk_id": "research_project_10",
+    "question": "Tell me about NIET research projects",
+    "answer": "Domain: Biotechnology. Faculty: Dr. Rashmi Mishra, Dr Pankaj Kumar Tyagi, Dr Fahad Khan. Funding: Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III). Year: 2019.",
+    "keywords": [
+      "faculty:",
+      "project",
+      "projects"
+      
+    ]
+  },
+  {
+    "chunk_id": "research_project_11",
+    "question": "Tell me about NIET research projects",
+    "answer": "Domain: Biotechnology. Faculty: Dr. Pratibha Pandey, Dr Rashmi Mishra. Funding: Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III). Year: 2019.",
+    "keywords": [
+      "faculty:",
+      "project",
+      "projects"
+    ]
+  },
+  {
+    "chunk_id": "research_project_12",
+    "question": "Tell me about NIET research projects",
+    "answer": "Domain: Management. Faculty: Dr. Veena Grover. Funding: International Conference on Innovative Practices for Sustainable Development Business Management & Analytics EAI SUS-DEV 2023 (Funding Received from EAI of rupees 3 Lakh). Year: 2023.",
+    "keywords": [
+      "faculty:",
+      "project",
+      "projects"
+    ]
+  },
+  {
+    "chunk_id": "research_project_13",
+    "question": "Tell me about NIET research projects",
+    "answer": "Domain: ECE. Faculty: Dr Pawan Shukla & Dr Himanshu Sharma. Funding: International Confernce on Application of AI in 5G and IoT, confernce grant of 2.5 lakhs rupees from Dept of Scientific & Industrial Research (DSIR), Govt. of India.. Year: 2024.",
+    "keywords": [
+      "faculty:",
+      "project",
+      "projects"
+    ]
+  },
+  {
+    "chunk_id": "facility_14",
+    "question": "What facilities are available at NIET?",
+    "answer": "Smart classrooms with modern teaching aids. Well-equipped engineering and computing laboratories. Central library with books, journals, and digital resources. Separate hostels for boys and girls with security and amenities. Indoor and outdoor sports facilities. Medical room with first-aid facilities. Auditorium and seminar halls for events. Cafeteria providing hygienic food options. Transportation facility for students and staff.",
+    "keywords": [
+      "auditorium",
+      "books",
+      "classrooms",
+      "computing",
+      "digital",
+      "facilities",
+      "facility",
+      "first-aid",
+      "food",
+      "halls",
+      "hostels",
+      "hygienic",
+      "indoor",
+      "journals",
+      "laboratories.",
+      "library",
+      "medical",
+      "modern",
+      "outdoor",
+      "providing",
+      "resources.",
+      "security",
+      "seminar",
+      "smart",
+      "sports",
+      "staff"
+    ]
+  }
+]
