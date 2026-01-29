@@ -8,3 +8,4 @@ google-genai
 python-dotenv
 uvicorn
 fastapi 
+openai

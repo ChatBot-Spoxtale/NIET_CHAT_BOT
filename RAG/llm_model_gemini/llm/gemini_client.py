@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv 
 from google import genai
 from openai import OpenAI 
+
 load_dotenv()
 
 TEST_MODE = True        
