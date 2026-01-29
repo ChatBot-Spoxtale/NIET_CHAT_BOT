@@ -1,9 +1,9 @@
 # rag/llm/gemini_client.py
 
 import os
-from dotenv import load_dotenv # type: ignore
+from dotenv import load_dotenv 
 from google import genai
-from openai import OpenAI # type: ignore
+from openai import OpenAI 
 load_dotenv()
 
 TEST_MODE = True        
