@@ -116,3 +116,7 @@ def chat_endpoint(payload: ChatRequest):
                 "https://www.niet.co.in/"
             )
         }
+
+@app.get("/")
+def root():
+    return {"status": "NIET MAIN CHATBOT RAG is running"}
