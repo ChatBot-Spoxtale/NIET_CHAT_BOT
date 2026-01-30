@@ -7,9 +7,6 @@ from openai import OpenAI
 
 load_dotenv()
 
-TEST_MODE = True        
-MAX_TEST_WORDS = 30
-
 #gemini 
 client = genai.Client(
     api_key=os.getenv("GOOGLE_API_KEY")
@@ -151,9 +148,6 @@ def generate_answer(context: str, question: str, history: list):
 
             answer = completion.choices[0].message.content.strip()
 
-            if TEST_MODE:
-                answer = " ".join(answer.split()[:MAX_TEST_WORDS])
-
             return answer
 
         except Exception as openai_error:
@@ -164,3 +158,4 @@ def generate_answer(context: str, question: str, history: list):
                 "Please try again in a few minutes or visit our website: "
                 "https://www.niet.co.in/"
             )
+
