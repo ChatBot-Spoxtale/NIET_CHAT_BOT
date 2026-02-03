@@ -1,11 +1,13 @@
 # rag/llm/gemini_client.py
 
 import os
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
 from google import genai
-from openai import OpenAI 
-
+from openai import OpenAI
 load_dotenv()
+
+TEST_MODE = True        
+MAX_TEST_WORDS = 30
 
 #gemini 
 client = genai.Client(
@@ -71,6 +73,24 @@ BEHAVIOR RULES:
   • Reassure that the degree remains valid and follows regulatory
     and affiliation guidelines,
   • Use ONLY the provided NIET information (do not invent approvals).
+QUESTION TYPE HANDLING (VERY IMPORTANT):
+
+If the user question starts with:
+- "is", "are", "can", "does", "do":
+  → Answer in DIRECT question–answer format.
+  → First word must be Yes or No (if applicable).
+  → Give 1 short supporting sentence.
+  → Do NOT write paragraphs.
+
+If the user question starts with:
+- "why" or "how":
+  → First sentence MUST directly answer the reason.
+  → Then explain briefly in 2–3 sentences.
+  → Do NOT summarize all content.
+  → Do NOT write brochure-style explanations.
+
+Only for "what", "explain", "tell me about":
+→ Use structured paragraph explanation.
 
 If the user asks a comparison question (e.g. "better than", "vs", "instead of", "compare"):
 - Identify all relevant courses mentioned
@@ -127,9 +147,9 @@ def generate_answer(context: str, question: str, history: list):
         )
 
         answer = response.text.strip()
-        
+
         if not detailed:
-            answer = " ".join(answer.split()[:20])
+            answer = " ".join(answer.split()[:50])
         return answer
 
     except Exception as gemini_error:
@@ -148,6 +168,9 @@ def generate_answer(context: str, question: str, history: list):
 
             answer = completion.choices[0].message.content.strip()
 
+            # if TEST_MODE:
+            #     answer = " ".join(answer.split()[:MAX_TEST_WORDS])
+
             return answer
 
         except Exception as openai_error:
@@ -158,4 +181,3 @@ def generate_answer(context: str, question: str, history: list):
                 "Please try again in a few minutes or visit our website: "
                 "https://www.niet.co.in/"
             )
-
