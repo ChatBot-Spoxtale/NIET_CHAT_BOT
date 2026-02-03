@@ -804,6 +804,62 @@ const fetchPlacementRecords = async () => {
       await delay(600)
 
       if (data.images?.length) pushImages(data.images)
+            if (data.type === "positive_sensitive") {
+        if (data.text) {
+          pushBot(data.text)
+        }
+
+        if (Array.isArray(data.details)) {
+          const bulletText = data.details.map(d => `- ${d}`).join("\n")
+          pushBot(bulletText)
+        }
+
+        if (Array.isArray(data.actions)) {
+          data.actions.forEach(action => {
+            if (action.type === "callback") {
+              if (isCallbackLimitReached()) {
+                pushBot(
+                  "You have reached the maximum number of callback requests. "
+                  + "Please wait or contact NIET directly through the official website."
+                )
+              } else {
+                incrementCallbackCount()
+                pushBot("Would you like our counsellor to contact you?")
+                pushOptions(["Request Callback"], false)
+              }
+            }
+
+            if (action.type === "link" && action.url) {
+              pushBot(`LINK::${action.label}||${action.url}`)
+            }
+          })
+        }
+        setTyping(false)
+        setIsSending(false)
+        return
+      }
+
+      if (data.type === "sensitive_redirect") {
+        if (data.text) {
+          pushBot(data.text)
+        }
+
+        if (Array.isArray(data.actions)) {
+          data.actions.forEach(action => {
+            if (action.type === "callback") {
+              pushBot("Would you like our counsellor to contact you?")
+              pushOptions(["Request Callback"], false)
+            }
+
+            if (action.type === "link" && action.url) {
+              pushBot(`LINK::${action.label}||${action.url}`)
+            }
+          })
+        }
+        setTyping(false)
+        setIsSending(false)
+        return
+      }
 if (data.text || data.link) {
   if (data.text) pushBot(data.text)
   if (data.link?.url) {
