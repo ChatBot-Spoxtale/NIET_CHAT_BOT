@@ -68,7 +68,9 @@
             "bca placement",
             "bca placements",
             "bca admission",
-            "bca in niet"
+            "bca in niet",
+              "bachelor of computer applications"
+
         ],
         "overview": "Noida Institute of Engineering & Technology, An Autonomous Institute, coming up with the popular course among students of India - Bachelor of Computer Application 3 years course with high demand all over the IT sector. This program is one of the top choices in BCA colleges in Greater Noida, (Delhi NCR) for students seeking a strong foundation in computer applications. The program is streamlined to meet the challenges in the IT industry.",
         "properties": {
@@ -98,8 +100,8 @@
             "bba  ",
             "bachelor of business administration"
         ],
-        "overview": "VLSI, or Very-Large-Scale Integration, is a branch of electronics engineering that deals with the design, fabrication and manufacturing of chips or integrated circuits (ICs) that contain a very large number of transistors. The field of very-large-scale integration (VLSI) in India is currently experiencing rapid growth and development. There has been a significant increase in the number of companies and research institutions working in this area.",
-        "properties": {
+    "overview": "Noida Institute of Engineering & Technology, An Autonomous Institute, coming up with the popular course among students of India - Bachelor of Computer Application 3 years course with high demand all over the IT sector. This program is one of the top choices in BCA colleges in Greater Noida, (Delhi NCR) for students seeking a strong foundation in computer applications. The program is streamlined to meet the challenges in the IT industry.",
+       "properties": {
             "duration": "3 Years (6 Semesters)",
             "seats": "120 (varies yearly)",
             "eligibility": "10+2 PCM + JEE/UPTAC",
@@ -116,5 +118,110 @@
             "Ability to develop value-based leadership ability.",
             "Ability to understand, analyze and communicate global, economic, legal, and ethical aspects of business."
         ]
-    }
+    },
+ {
+  "course": "MBA - Marketing and Finance",
+  "type": "pg",
+  "branch": "mba",
+  "specialization": "Marketing and Finance",
+  "keywords": [
+    "mba marketing",
+    "mba finance",
+    "mba marketing and finance",
+    "marketing and finance mba",
+    "pg mba marketing finance"
+  ],
+  "overview": "MBA in Marketing and Finance is a dynamic and interdisciplinary program designed to develop expertise in two critical business domains. The program equips students with strategic decision-making skills, financial acumen, and marketing insights, preparing them for leadership roles in global organizations. It is ideal for aspiring professionals seeking versatility and adaptability in today’s competitive business environment.",
+  "properties": {
+    "duration": "2 Years (4 Semesters)",
+    "seats": "300 (varies yearly)",
+    "eligibility": "Graduation in any discipline from a recognized university",
+    "fees": "As per institute admission department"
+  },
+  "placements": {
+    "placements_offered": "180 (approx)",
+    "average": "4.49 LPA (approx)",
+    "highest": "10 LPA",
+    "source_url": "https://niet.co.in/department/master-of-business-administration-mba/placement"
+  },
+  "why_choose": [
+    "Apply knowledge of management theories and practices to solve real-world business problems.",
+    "Develop analytical and critical thinking skills for data-driven decision making.",
+    "Build strong leadership qualities and ethical business practices.",
+    "Gain the ability to analyze and communicate global, economic, legal, and ethical business issues."
+  ],
+  "source_url": "https://niet.co.in/course/mba-marketing-and-finance"
+},
+{
+  "course": "MBA - Innovation, Entrepreneurship & Venture Development",
+  "type": "pg",
+  "branch": "mba",
+  "specialization": "Innovation, Entrepreneurship & Venture Development",
+  "keywords": [
+    "mba innovation",
+    "mba entrepreneurship",
+    "mba venture development",
+    "mba iev",
+    "entrepreneurship mba",
+    "startup mba"
+  ],
+  "overview": "The MBA in Innovation, Entrepreneurship & Venture Development (MBA-IEV) is designed for future leaders and visionaries who aspire to build, scale, and sustain successful businesses. The program equips students with entrepreneurial thinking, innovation frameworks, and practical exposure to convert ideas into scalable ventures. Through a rigorous and application-oriented curriculum, students learn how to create, manage, and lead strong, enduring organizations in a dynamic business environment.",
+  "properties": {
+    "duration": "2 Years (4 Semesters)",
+    "seats": "30",
+    "eligibility": "Graduation in any discipline from a recognized university",
+    "fees": "As per institute admission department"
+  },
+  "placements": {
+    "placements_offered": "180 (approx)",
+    "average": "4.49 LPA (approx)",
+    "highest": "10 LPA",
+    "source_url": "https://niet.co.in/department/master-of-business-administration-mba/placement"
+  },
+  "why_choose": [
+    "Access to startup funding support and incubation ecosystem.",
+    "Hands-on learning through innovation and entrepreneurship laboratories.",
+    "Dedicated discussion rooms for ideation, mentoring, and collaboration.",
+    "Professional board room facilities for strategic planning and presentations."
+  ],
+  "source_url": "https://niet.co.in/course/mba-innovation-entrepreneurship-venture-development"
+},
+{
+  "course": "BBA–MBA Integrated",
+  "type": "ug+pg",
+  "branch": "management",
+  "specialization": "Integrated BBA–MBA",
+  "keywords": [
+    "bba mba integrated",
+    "integrated bba mba",
+    "5 year bba mba",
+    "bba mba in niet",
+    "niet bba mba",
+    "integrated management program",
+    "bba mba admission",
+    "bba mba placements",
+    "bba mba eligibility",
+    "bba mba fees"
+  ],
+  "overview": "NIET offers a five-year Integrated BBA–MBA program approved by AICTE and AKTU, designed with a cutting-edge curriculum aligned to industry demands. The program focuses on developing globally ethical, intelligent, and culturally agile professionals ready to meet 21st-century business challenges. It prepares students to become business-ready managers and entrepreneurs with the ability to respond to complex and dynamic business environments through a unique learning experience and contemporary curriculum.",
+  "properties": {
+    "duration": "5 Years (10 Semesters)",
+    "seats": "60",
+    "eligibility": "10+2 or equivalent from a recognized board",
+    "fees": "As per institute admission department"
+  },
+  "placements": {
+    "placements_offered": "493",
+    "average": "4.09 LPA (approx)",
+    "highest": "10 LPA",
+    "source_url": "https://niet.co.in/department/master-of-business-administration-mba/placement"
+  },
+  "why_choose": [
+    "Apply management theories and practices to solve real-world business problems.",
+    "Develop analytical and critical thinking skills for data-driven decision making.",
+    "Build strong leadership capabilities with ethical and professional values.",
+    "Gain the ability to analyze and communicate global, economic, legal, and ethical business issues."
+  ],
+  "source_url": "https://niet.co.in/course/bba-mba-integrated"
+}
 ]
