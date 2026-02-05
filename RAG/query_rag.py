@@ -12,6 +12,7 @@ from router.ug_pg_router import ug_pg_router
 from router.institute_router import institute_router
 from router.admission_router import admission_router
 from router.research_router import research_router 
+from router.twinning_router import twinning_router
 
 def answer_rag(query: str) -> str:
     q = query.lower().strip()
@@ -92,4 +93,5 @@ def answer_rag(query: str) -> str:
             
 
     
+
 
