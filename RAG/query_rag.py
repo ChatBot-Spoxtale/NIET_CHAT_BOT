@@ -11,20 +11,21 @@ from router.mtech_router import mtech_router
 from router.ug_pg_router import ug_pg_router
 from router.institute_router import institute_router
 from router.admission_router import admission_router
-
+from router.research_router import research_router 
 
 def answer_rag(query: str) -> str:
     q = query.lower().strip()
 
-    res=admission_router(q)
-    if isinstance(res, str) and res.strip():
-        return res
+    if "research" in q:
+        res=research_router(q)
+        if isinstance(res,str) and res.strip():
+            return res
     
     res = facility_router(q)
     if isinstance(res, str) and res.strip():
         return res
 
-    if any(k in q for k in ["club", "clubs", "society", "societies"]):
+    if any(k in q for k in ["list","club", "clubs", "society", "societies"]):
         res = club_router(q)
         if isinstance(res, str) and res.strip():
             return res
@@ -37,7 +38,12 @@ def answer_rag(query: str) -> str:
         res = event_router(q)
         if isinstance(res, str) and res.strip():
             return res
-
+        
+    if "admission" in q:
+        res=admission_router(q)
+        if isinstance(res, str) and res.strip():
+            return res
+    
     res = institute_router(q)
     if isinstance(res, str) and res.strip():
         return res
