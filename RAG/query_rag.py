@@ -13,6 +13,7 @@ from router.institute_router import institute_router
 from router.admission_router import admission_router
 from router.research_router import research_router 
 from router.twinning_router import twinning_router
+from llm_model_gemini.chat import chat
 
 def answer_rag(query: str) -> str:
     q = query.lower().strip()
@@ -45,18 +46,7 @@ def answer_rag(query: str) -> str:
         if isinstance(res, str) and res.strip():
             return res
     
-    res = institute_router(q)
-    if isinstance(res, str) and res.strip():
-        return res
-        
-
-    res = mtech_router(q)
-    if isinstance(res, str) and res.strip():
-        return res
-
-    res = ug_pg_router(q)
-    if isinstance(res, str) and res.strip():
-        return res
+ 
 
     TWINNING_KEYWORDS = [
         "twinning",
@@ -71,6 +61,14 @@ def answer_rag(query: str) -> str:
         if twinning:
             return twinning
 
+
+    res = mtech_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
+
+    res = ug_pg_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
 
     if any(w in q for w in ["syllabus", "pdf", "subject", "subjects", "curriculum"]):
         return (
@@ -90,8 +88,8 @@ def answer_rag(query: str) -> str:
         res = btech_router(q)
         if isinstance(res, str) and res.strip():
             return res
-            
-
+    res = institute_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
     
-
-
+    return chat(q)

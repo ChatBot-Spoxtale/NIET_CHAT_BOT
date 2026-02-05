@@ -1,14 +1,10 @@
 import re
 
-# =====================================================
-# 🔹 ALL TWINNING DATA (INLINE – SINGLE SOURCE OF TRUTH)
-# =====================================================
-
 TWINNING_PROGRAMS = [
     {
-        "course": "B.Tech CSE Artificial Intelligence – International Twinning",
+        "course": "B.Tech CSE (Artificial Intelligence – International Twinning)",
         "branch": "cse",
-        "specialization": "ai",
+        "specialization": "twinning",
         "keywords": [
             "cse ai twinning",
             "artificial intelligence international",
@@ -36,9 +32,9 @@ TWINNING_PROGRAMS = [
     {
         "course": "B.Tech CSE AIML – International Twinning",
         "branch": "cse",
-        "specialization": "aiml",
+        "specialization": "twinning",
         "keywords": [
-            "cse aiml twinning",
+            "aiml ",
             "aiml international",
             "artificial intelligence machine learning twinning"
         ],
@@ -61,7 +57,7 @@ TWINNING_PROGRAMS = [
     {
         "course": "B.Tech Information Technology – International Twinning",
         "branch": "it",
-        "specialization": "",
+        "specialization": "twinning",
         "keywords": [
             "it twinning",
             "information technology international",
@@ -83,11 +79,49 @@ TWINNING_PROGRAMS = [
             "Better placement opportunities abroad"
         ]
     },
+    {
+    "course": "B.Tech Computer Science Engineering – International Twinning",
+    "branch": "cse",
+    "specialization": "twinning",
+    "keywords": [
+        "cse international twinning",
+        "computer science engineering international",
+        "cse international program",
+        "cse twinning",
+        "international cse"
+    ],
+    "overview": (
+        "Make your academic journey truly international. "
+        "NIET offers an AICTE-approved International Twinning program in "
+        "Computer Science Engineering, built on strong institution-to-institution "
+        "partnerships. The program enables students to study part of their degree "
+        "at a foreign partner university, providing global exposure, enhanced "
+        "learning opportunities, and affordable access to international education."
+    ),
+    "properties": {
+        "duration": "4 Years",
+        "seats": "Varies",
+        "mode": "Full Time",
+        "eligibility": "10+2 PCM + JEE/UPTAC + Valid Passport",
+        "fees": "As per NIET & partner university norms"
+    },
+    "why_choose": [
+        "Spend a semester abroad and experience global education",
+        "Credits earned at the foreign university are transferred to NIET",
+        "AICTE-approved international academic structure",
+        "Better global career and higher education opportunities"
+    ],
+    "placements": {
+        "placements_offered": "640",
+        "highest_package": "40 LPA",
+        "average_package": "5.68 LPA",
+        "source_url": "https://niet.co.in/department/computer-science-engineering/placement"
+    },
+    "source_url": "https://niet.co.in/course/b-tech-computer-science-engineering-international-twinning-program"
+}
 ]
 
-# =====================================================
-# 🔹 HELPERS
-# =====================================================
+# HELPERS
 
 def normalize(text: str) -> str:
     if not text:
@@ -107,10 +141,6 @@ def is_twinning_query(query: str) -> bool:
     ])
 
 
-# =====================================================
-# 🔹 FORMATTER
-# =====================================================
-
 def format_twinning(course: dict) -> str:
     p = course.get("properties", {})
 
@@ -129,39 +159,62 @@ def format_twinning(course: dict) -> str:
 ⭐ *Why Choose This Twinning Program?*
 - """ + "\n- ".join(course.get("why_choose", []))
 
-
-# =====================================================
-# 🔹 MAIN ROUTER
-# =====================================================
-
 def twinning_router(query: str):
     if not is_twinning_query(query):
         return None
 
     q = normalize(query)
+
+    specialization_intent = None
+    if "aiml" in q or "machine learning" in q:
+        specialization_intent = "aiml"
+    elif "artificial intelligence" in q or " ai " in f" {q} ":
+        specialization_intent = "ai"
+    elif "information technology" in q or " it " in f" {q} ":
+        specialization_intent = "it"
+
+    branch_intent = None
+    if "cse" in q or "computer science" in q:
+        branch_intent = "cse"
+    elif "information technology" in q or " it " in f" {q} ":
+        branch_intent = "it"
+
+    if specialization_intent and branch_intent:
+        for program in TWINNING_PROGRAMS:
+            text = normalize(
+                program.get("course", "") + " " + " ".join(program.get("keywords", []))
+            )
+
+            if (
+                specialization_intent in text
+                and branch_intent == program.get("branch")
+            ):
+                return format_twinning(program)  
+
+    if branch_intent == "cse" and not specialization_intent:
+        results = [
+            p for p in TWINNING_PROGRAMS
+            if p.get("branch") == "cse"
+        ]
+
+        if results:
+            return "\n\n".join(format_twinning(p) for p in results)
+
+    if branch_intent == "it":
+        for program in TWINNING_PROGRAMS:
+            if program.get("branch") == "it":
+                return format_twinning(program)
+
     results = []
-
     for program in TWINNING_PROGRAMS:
-        text = " ".join([
-            program.get("course", ""),
-            program.get("branch", ""),
-            program.get("specialization", ""),
-            " ".join(program.get("keywords", []))
-        ])
-
-        if any(word in normalize(text) for word in q.split()):
+        keywords = normalize(" ".join(program.get("keywords", [])))
+        if any(k in q for k in keywords.split()):
             results.append(program)
 
-    # fallback → return all twinning programs
-    if not results:
-        results = TWINNING_PROGRAMS
+    if results:
+        return "\n\n".join(format_twinning(p) for p in results)
 
-    return "\n\n".join(format_twinning(p) for p in results)
-
-
-# =====================================================
-# 🔹 LOCAL TEST
-# =====================================================
+    return "\n\n".join(format_twinning(p) for p in TWINNING_PROGRAMS)
 
 if __name__ == "__main__":
     tests = [
