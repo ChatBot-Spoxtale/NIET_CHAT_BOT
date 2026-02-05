@@ -1,123 +1,114 @@
-# btech_router.py
+import json
+import os
+import re
 
-import json, os, re
+# ---------------- LOAD DATA ----------------
 
-BTECH_PATH = os.path.join(os.path.dirname(__file__), "../data_chunk/course_data_chunk/btech_chunks.json")
+BTECH_PATH = os.path.join(
+    os.path.dirname(__file__),
+    "../data_chunk/course_data_chunk/btech_chunks.json"
+)
+
 with open(BTECH_PATH, "r", encoding="utf-8") as f:
-    data = json.load(f)
+    raw_data = json.load(f)
 
-BTECH_DATA = data if isinstance(data, list) else [data]
+BTECH_DATA = raw_data if isinstance(raw_data, list) else [raw_data]
+
+# ---------------- NORMALIZATION ----------------
 
 def normalize(text: str) -> str:
     text = text.lower()
-    text = re.sub(r"\bb\s*\.?\s*tech\b", "btech", text)   
+    text = re.sub(r"\bb\s*\.?\s*tech\b", "btech", text)
     text = re.sub(r"[^\w\s]", " ", text)
     return " ".join(text.split())
 
-def detect_branch(q: str):
-    q = q.lower()
-    for branch, signals in BRANCH_SIGNALS.items():
-        for s in signals:
-            if re.search(rf"\b{s}\b", q):
-                return branch
-    return None
-def normalize_branch(branch: str):
-    for key, aliases in BRANCH_ALIASES.items():
-        for a in aliases:
-            if a in branch:
-                return key
-    return branch
+# ---------------- BRANCH & SPECIALIZATION MAP ----------------
 
-
-def detect_specialization(q: str):
-    for spec, signals in SPECIALIZATION_SIGNALS.items():
-        for s in signals:
-            if s in q:
-                return spec
-    return None
-
-BRANCH_ALIASES = {
+BRANCH_SIGNALS = {
     "cse": [
-        "cse",
+        "computer science engineering",
         "computer science",
-        "computer science engineering"
+        "cse"
     ],
     "ece": [
-        "ece",
-        "electronics",
-        "electronics communication",
         "electronics and communication",
-        "electronics communication engineering",
-        "electronics and communication engineering"
+        "electronics communication",
+        "electronics",
+        "ece"
     ],
     "it": [
-        "it",
         "information technology",
-        "information technology engineering"
+        "it"
     ],
-    "me": [
-        "me",
-        "mechanical",
-        "mechanical engineering"
+    "vlsi": [
+        "vlsi"
     ],
     "bio": [
         "biotech",
-        "biotechnology",
-        "biotechnology engineering"
-    ],
-    "vlsi": [
-        "vlsi",
-        "vlsi design",
-        "vlsi design and technology"
+        "biotechnology"
     ],
     "csbs": [
         "csbs",
-        "computer science and business systems",
-        "business systems"
+        "computer science and business systems"
     ],
-}
-
-SPECIALIZATION_MAP = {
-    "aiml": ["aiml", "artificial intelligence and machine learning"],
-    "ai": ["ai", "artificial intelligence"],
-    "ds": ["data science"],
-    "cy": ["cyber", "cyber security"],
-    "iot": ["iot", "internet of things"]
-}
-
-BRANCH_SIGNALS = {
-    "cse": ["computer science", "cse"],
-    "cs": ["computer science", "cs"],
-    "ece": ["electronics", "electronics and communication", "ece"],
-    "vlsi": ["vlsi", "vlsi design", "vlsi design and technology"],
-    "it": ["information technology", "it"],
-    "me": ["mechanical", "mechanical engineering"],
-    "bio": ["biotechnology"],
-    "bca": ["bca", "bachelor of computer applications"],
-    "csbs": ["computer science and business systems", "csbs"],
-    "mathematics and computing": ["mathematics and computing", "mnc", "math computing"]
+    "mathematics and computing": [
+        "mathematics and computing",
+        "mnc"
+    ]
 }
 
 SPECIALIZATION_SIGNALS = {
     "aiml": ["aiml", "artificial intelligence and machine learning"],
     "ai": ["artificial intelligence"],
     "ds": ["data science"],
-    "cy": ["cyber", "cyber security"],
+    "cyber": ["cyber", "cyber security"],
     "iot": ["iot", "internet of things"],
-    "twinning": ["twinning", "international"],
-    "aiml twinning": ["aiml twinning", "international twinning"]
 }
 
-CSE_SPECIALIZATIONS = {
-    "aiml",
-    "ai",
-    "ds",
-    "cy",
-    "iot"
-}
+# ---------------- DETECTORS ----------------
+
+def detect_branch(q: str):
+    for branch, signals in BRANCH_SIGNALS.items():
+        for s in signals:
+            if re.search(rf"\b{s}\b", q):
+                return branch
+    return None
+
+
+def detect_specializations(q: str):
+    found = set()
+    for spec, signals in SPECIALIZATION_SIGNALS.items():
+        for s in signals:
+            if s in q:
+                found.add(spec)
+    return list(found)
+
+
+def is_twinning(q: str) -> bool:
+    return "twinning" in q or "international" in q
+
+
+def is_working_professional(q: str) -> bool:
+    return "working" in q or "professional" in q
+
+
+# ---------------- COURSE FILTERS ----------------
+
+def is_btech_course(course: dict) -> bool:
+    name = course.get("course", "").lower()
+    return (
+        "b tech" in name
+        and "m tech" not in name
+        and "minor" not in name
+        and "integrated" not in name
+    )
+
+
+# ---------------- FORMATTERS ----------------
+
 def format_full_course(c: dict) -> str:
-    p = c.get("placements", {})
     props = c.get("properties", {})
+    placements = c.get("placements", {})
 
     return f"""
 🎓 *{c.get('course')}*
@@ -132,43 +123,79 @@ def format_full_course(c: dict) -> str:
 • Fees: {props.get('fees', 'NA')}
 
 💼 *Placements*
-• Average Package: {p.get('average', 'NA')}
-• Highest Package: {p.get('highest', 'NA')}
-• Details: {p.get('source_url', 'NA')}
+• Average Package: {placements.get('average', 'NA')}
+• Highest Package: {placements.get('highest', 'NA')}
+• Details: {placements.get('source_url', 'NA')}
 
 ⭐ *Why Choose This Course?*
 - """ + "\n- ".join(c.get("why_choose", []))
 
 
+# ---------------- MAIN ROUTER ----------------
+
 def btech_router(query: str):
     q = normalize(query)
 
+    # 1️⃣ Detect intent
     branch = detect_branch(q)
-    specialization = detect_specialization(q)
+    specializations = detect_specializations(q)
+    twinning = is_twinning(q)
+    working = is_working_professional(q)
 
-    if not branch and specialization in CSE_SPECIALIZATIONS:
-        branch="cse"
-        
     if not branch:
-        return "Please mention the branch like Placement record of btech cse aiml"
+        return (
+            "Please specify the BTech branch clearly.\n"
+            "Example: *BTech CSE AIML placements*"
+        )
 
-    branch_courses = [c for c in BTECH_DATA if c.get("branch") == branch]
-    if not branch_courses:
-        return None
+    
+    courses = [
+        c for c in BTECH_DATA
+        if is_btech_course(c)
+        and c.get("branch") == branch
+    ]
 
-    selected_course = branch_courses[0]
+    if not courses:
+        return "No BTech course found for the specified branch."
 
-    if specialization:
-        for c in branch_courses:
-            if normalize(c.get("specialization", "")) == specialization:
-                selected_course = c
-                break
+    # Apply specialization filter
+    if specializations:
+        filtered = []
+        for c in courses:
+            spec = normalize(c.get("specialization", ""))
+            if any(s in spec for s in specializations):
+                filtered.append(c)
+        if filtered:
+            courses = filtered
 
-    props = selected_course.get("properties", {})
-    placements = selected_course.get("placements", {})
+    # 4️⃣ Apply program-type filters
+    if twinning:
+        courses = [
+            c for c in courses
+            if "twinning" in c.get("course", "").lower()
+        ]
 
-    if "seat" in q or "seats" in q:
-        return f"Seats for {selected_course.get('course')}: {props.get('seats', 'NA')}"
+    if working:
+        courses = [
+            c for c in courses
+            if "working" in c.get("course", "").lower()
+        ]
+
+    if not courses:
+        return (
+            "No exact BTech course matched your query.\n"
+            "Please refine branch or specialization."
+        )
+
+    # 5️⃣ Select BEST match
+    selected = courses[0]
+
+    props = selected.get("properties", {})
+    placements = selected.get("placements", {})
+
+    # 6️⃣ Handle specific questions
+    if "seat" in q:
+        return f"Seats for {selected.get('course')}: {props.get('seats', 'NA')}"
 
     if "duration" in q or "year" in q:
         return f"Duration: {props.get('duration', 'NA')}"
@@ -176,28 +203,35 @@ def btech_router(query: str):
     if "eligibility" in q:
         return f"Eligibility: {props.get('eligibility', 'NA')}"
 
-    if "fee" in q or "fees" in q:
+    if "fee" in q:
         return f"Fees: {props.get('fees', 'Check with admission department')}"
 
     if "placement" in q:
         return (
+            f"📊 Placement Details – {selected.get('course')}\n"
             f"- Average Package: {placements.get('average', 'NA')}\n"
             f"- Highest Package: {placements.get('highest', 'NA')}\n"
-            f"- Visit For More Information: {placements.get('source_url', 'NA')}"
+            f"- More Info: {placements.get('source_url', 'NA')}"
         )
 
-    return format_full_course(selected_course)
+    # 7️⃣ Default: full course info
+    return format_full_course(selected)
 
-# ---------------- TEST ----------------
+
+# ---------------- LOCAL TEST ----------------
+
 if __name__ == "__main__":
     tests = [
-        "fees of btech cse",
-        "placement of btech cse ai",
-        "seats in btech me",
-        "overview of btech cse data science",
+        "btech cse ai",
+        "btech cse ai twinning",
+        "btech it twinning",
+        "btech ece vlsi",
+        "btech mathematics and computing",
+        "btech csbs",
+        "btech cse working professionals",
+        "btech cse placements"
     ]
 
     for t in tests:
         print("\nQ:", t)
         print(btech_router(t))
-
