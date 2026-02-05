@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import baseKnowledge from "../../../../Json_Format_Data/base_knowledge.json"
+import baseKnowledge from "../../../RAG/Json_Format_Data/base_knowledge.json"
 
 
 function now() {
@@ -585,7 +585,7 @@ export default function NIETChatbotMessages({ embed = false }) {
     try {
       pushBot("NIET Placement Records")
 
-      const res = await fetch("http://localhost:8000/placement-records")
+      const res = await fetch("https://niet-chat-bot-rag.onrender.com/placement-records")
       const data = await res.json()
 
       if (data.images?.length) {
@@ -600,7 +600,7 @@ export default function NIETChatbotMessages({ embed = false }) {
 
   const sendCallbackToBackend = async (data) => {
     try {
-      await fetch("http://localhost:8000/api/save-callback", {
+      await fetch("https://niet-chat-bot-rag.onrender.com/api/save-callback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -820,7 +820,7 @@ export default function NIETChatbotMessages({ embed = false }) {
     setIsSending(true)
 
     try {
-      const res = await fetch("http://localhost:8000/chat", {
+      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: text }),
