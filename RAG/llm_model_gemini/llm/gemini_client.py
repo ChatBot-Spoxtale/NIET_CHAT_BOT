@@ -216,7 +216,7 @@ RESPONSE FORMAT:
 Start with the number, followed by a short explanation.
 
 Example style:
-"There are **X** [items], which include …"
+"There are X [items], which include …"
 
 or
 
