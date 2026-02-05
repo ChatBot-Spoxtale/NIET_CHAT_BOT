@@ -2,6 +2,7 @@ import json
 import re
 from pathlib import Path
 from typing import Optional
+from llm_model_gemini.chat import chat
 
 # ---------------- Paths ----------------
 
@@ -63,8 +64,19 @@ def institute_router(query: str) -> Optional[str]:
         return best_match.get("answer")
 
     # Safe fallback
-    return (
-        "For official and up-to-date institute information, "
-        "please visit our website:\n"
-        "https://www.niet.co.in/"
-    )
+
+    try:
+        llm_answer = chat(query)
+        return (
+            f"{llm_answer}\n\n"
+            "🔗 For official and up-to-date institute information, "
+            "please visit our website:\n"
+            "https://www.niet.co.in/"
+        )
+    except Exception as e:
+        print("Institute LLM failed:", e)
+        return (
+            "For official and up-to-date institute information, "
+            "please visit our website:\n"
+            "https://www.niet.co.in/"
+        )
