@@ -1,4 +1,4 @@
-    import json
+import json
 import os
 import re
 
@@ -187,3 +187,4 @@ if __name__ == "__main__":
     for t in tests:
         print("\nQ:", t)
         print(btech_router(t))
+
