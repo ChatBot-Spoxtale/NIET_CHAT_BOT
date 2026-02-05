@@ -74,8 +74,6 @@ def answer_rag(query: str) -> str:
         res = btech_router(q)
         if isinstance(res, str) and res.strip():
             return res
+            
 
-    return (
-        "For official and updated information, please visit:\n"
-        "https://www.niet.co.in/"
-    )
+    
