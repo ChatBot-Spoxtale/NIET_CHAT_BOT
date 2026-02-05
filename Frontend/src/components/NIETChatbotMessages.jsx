@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import baseKnowledge from "../../../RAG/Json_Format_Data/base_knowledge.json"
+import baseKnowledge from "../../../Json_Format_Data/base_knowledge.json"
 
 
 function now() {
@@ -21,19 +21,16 @@ function extractLinkFromText(text) {
   if (!text || typeof text !== 'string') {
     return { cleanText: text, link: null }
   }
-  
+
   // Regular expression to match URLs
   const urlRegex = /(https?:\/\/[^\s]+)/g
   const matches = text.match(urlRegex)
-  
+
   if (matches && matches.length > 0) {
-    // Remove the URL from the text to get clean text
     const cleanText = text.replace(urlRegex, '').trim()
-    // Return the first URL found
     return { cleanText: cleanText || null, link: matches[0] }
   }
-  
-  // If no links found, return original text as cleanText
+
   return { cleanText: text, link: null }
 }
 
@@ -176,12 +173,12 @@ function renderCourseDetails(text) {
   return (
     <div className="space-y-3 w-full">
       {contentGroups.filter(group => {
-    if (!group.title) return false
-    const hasMeaningfulText = group.items.some(
-      item => item.replace(/[^\w\s]/g, "").trim().length > 0
-    )
-    return hasMeaningfulText
-  }).map((group, groupIdx) => {
+        if (!group.title) return false
+        const hasMeaningfulText = group.items.some(
+          item => item.replace(/[^\w\s]/g, "").trim().length > 0
+        )
+        return hasMeaningfulText
+      }).map((group, groupIdx) => {
         const title = group.title?.slice(1, -1)
         const icon = sectionIcons[group.title] || ""
 
@@ -266,42 +263,42 @@ function renderBulletList(text) {
             <div key={idx} className="bullet-list-card">
               <ul className="space-y-3">
                 {elem.items.map((item, itemIdx) => {
-  const { cleanText, link } = extractLinkFromText(item)
+                  const { cleanText, link } = extractLinkFromText(item)
 
-  if (!cleanText && !link) return null
+                  if (!cleanText && !link) return null
 
-  return (
-    <li key={itemIdx} className="flex flex-col gap-1">
-      {/* Bullet text */}
-      {cleanText && (
-        <div className="flex gap-3 items-start">
-          <span className="w-2 h-2 bg-red-500 rounded-full mt-1.5 shrink-0 shadow-sm" />
-          <span className="text-sm text-slate-700 leading-relaxed">
-            {cleanText}
-          </span>
-        </div>
-      )}
+                  return (
+                    <li key={itemIdx} className="flex flex-col gap-1">
+                      {/* Bullet text */}
+                      {cleanText && (
+                        <div className="flex gap-3 items-start">
+                          <span className="w-2 h-2 bg-red-500 rounded-full mt-1.5 shrink-0 shadow-sm" />
+                          <span className="text-sm text-slate-700 leading-relaxed">
+                            {cleanText}
+                          </span>
+                        </div>
+                      )}
 
-      {/* Link outside bullet */}
-      {link && (
-        <button
-          onClick={() => window.open(link, "_blank")}
-          className="ml-5 relative z-[999] pointer-events-auto inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#e2111f] text-white font-semibold text-sm hover:bg-[#b00d18] transition-all shadow-md cursor-pointer"
-        >
-          <span>Visit Official Link</span>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M14 3h7m0 0v7m0-7L10 14"
-            />
-          </svg>
-        </button>
-      )}
-    </li>
-  )
-})}
+                      {/* Link outside bullet */}
+                      {link && (
+                        <button
+                          onClick={() => window.open(link, "_blank")}
+                          className="ml-5 relative z-[999] pointer-events-auto inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#e2111f] text-white font-semibold text-sm hover:bg-[#b00d18] transition-all shadow-md cursor-pointer"
+                        >
+                          <span>Visit Official Link</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M14 3h7m0 0v7m0-7L10 14"
+                            />
+                          </svg>
+                        </button>
+                      )}
+                    </li>
+                  )
+                })}
 
               </ul>
             </div>
@@ -309,8 +306,8 @@ function renderBulletList(text) {
         }
 
         return (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             className="rounded-lg p-3 border-l-4 border-red-500 shadow-sm"
             style={{
               background: 'linear-gradient(to right, #fef2f2, #ffffff)',
@@ -412,32 +409,32 @@ function renderGreeting(text) {
 }
 
 const renderWithLinks = (text) => {
-  
-if (text.startsWith("LINK::")) {
-  const [, payload] = text.split("LINK::")
-  const [label, url] = payload.split("||")
 
-  return (
-    <button
-      type="button"
-      onClick={(e) => {
-        e.stopPropagation()
-        window.open(url, "_blank", "noopener,noreferrer")
-      }}
-      className="relative z-[999] pointer-events-auto inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#e2111f] text-white font-semibold text-sm hover:bg-[#b00d18] transition-all shadow-md cursor-pointer"
-    >
-      <span>{label}</span>
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M14 3h7m0 0v7m0-7L10 14"
-        />
-      </svg>
-    </button>
-  )
-}
+  if (text.startsWith("LINK::")) {
+    const [, payload] = text.split("LINK::")
+    const [label, url] = payload.split("||")
+
+    return (
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation()
+          window.open(url, "_blank", "noopener,noreferrer")
+        }}
+        className="relative z-[999] pointer-events-auto inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#e2111f] text-white font-semibold text-sm hover:bg-[#b00d18] transition-all shadow-md cursor-pointer"
+      >
+        <span>{label}</span>
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M14 3h7m0 0v7m0-7L10 14"
+          />
+        </svg>
+      </button>
+    )
+  }
 
   if (typeof text !== "string") {
     return <span>{""}</span>
@@ -523,13 +520,13 @@ const INITIAL_OPTIONS = [
 
 const getCoursesByLevel = (level) => {
   const courses = Object.values(baseKnowledge.courses || {})
-  if (level === "UG") return courses.filter((c) => c.course_name?.toLowerCase().startsWith("b"))
-  if (level === "PG") return courses.filter((c) => c.course_name?.toLowerCase().startsWith("m"))
+  if (level === "Undergraduate (UG)") return courses.filter((c) => c.course_name?.toLowerCase().startsWith("b"))
+  if (level === "Postgraduate (PG)") return courses.filter((c) => c.course_name?.toLowerCase().startsWith("m"))
   if (level === "TWINNING") return courses.filter((c) => c.course_name?.toLowerCase().includes("twinning"))
   return []
 }
 
-export default function NIETChatbotMessages({embed=false}) {
+export default function NIETChatbotMessages({ embed = false }) {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState("")
   const [typing, setTyping] = useState(false)
@@ -584,26 +581,26 @@ export default function NIETChatbotMessages({embed=false}) {
         selectedValue: null,
       },
     ])
-const fetchPlacementRecords = async () => {
-  try {
-    pushBot("NIET Placement Records")
+  const fetchPlacementRecords = async () => {
+    try {
+      pushBot("NIET Placement Records")
 
-    const res = await fetch("https://niet-chat-bot-rag.onrender.com/placement-records")
-    const data = await res.json()
+      const res = await fetch("http://localhost:8000/placement-records")
+      const data = await res.json()
 
-    if (data.images?.length) {
-      pushImages(data.images)
+      if (data.images?.length) {
+        pushImages(data.images)
+      }
+    } catch (e) {
+      pushBot("Unable to load placement records right now.")
     }
-  } catch (e) {
-    pushBot("Unable to load placement records right now.")
   }
-}
   const pushImages = (images) =>
     setMessages((m) => [...m, { id: crypto.randomUUID(), from: "bot", type: "images", images, time: now() }])
 
   const sendCallbackToBackend = async (data) => {
     try {
-      await fetch("https://niet-chat-bot-rag.onrender.com/api/save-callback", {
+      await fetch("http://localhost:8000/api/save-callback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -640,7 +637,7 @@ const fetchPlacementRecords = async () => {
     }
 
     if (opt === "Clubs") {
-      sendMessage("List of Clubs")
+      sendMessage("List Of Clubs")
       return
     }
 
@@ -675,14 +672,14 @@ const fetchPlacementRecords = async () => {
     }
 
     if (opt === "Courses Offered") {
-      pushOptions(["UG", "PG", "TWINNING PROGRAM"], true)
+      pushOptions(["Undergraduate (UG)", "Postgraduate (PG)", "TWINNING PROGRAM (International) "], true)
       return
     }
 
-    if (["UG", "PG", "TWINNING PROGRAM"].includes(opt)) {
+    if (["Undergraduate (UG)", "Postgraduate (PG)", "TWINNING PROGRAM (International) "].includes(opt)) {
       const level =
-        opt === "UG" ? "UG" :
-          opt === "PG" ? "PG" :
+        opt === "Undergraduate (UG)" ? "Undergraduate (UG)" :
+          opt === "Postgraduate (PG)" ? "Postgraduate (PG)" :
             "TWINNING"
 
       const courses = getCoursesByLevel(level)
@@ -701,8 +698,8 @@ const fetchPlacementRecords = async () => {
     }
 
     const allCourses = [
-      ...getCoursesByLevel("UG"),
-      ...getCoursesByLevel("PG"),
+      ...getCoursesByLevel("Undergraduate (UG)"),
+      ...getCoursesByLevel("Postgraduate (PG)"),
       ...getCoursesByLevel("TWINNING"),
     ]
 
@@ -711,11 +708,12 @@ const fetchPlacementRecords = async () => {
     )
 
     if (selectedCourse) {
-      sendMessage(`Overview Of ${selectedCourse.course_name}`)
+      sendMessage(` ${selectedCourse.course_name}`)
       return
     }
   }
   const CALLBACK_STORAGE_KEY = "niet_user_profile"
+  const CALLBACK_MAX_CLICKS = 5
 
   const CALLBACK_INTENT_KEYWORDS = [
     "fee",
@@ -729,6 +727,24 @@ const fetchPlacementRecords = async () => {
     "amount",
     "cash",
   ]
+
+  const PLACEMENT_KEYWORDS = [
+  "overall "
+]
+
+  const getCallbackCount = () => {
+    return Number(localStorage.getItem(CALLBACK_RATE_LIMIT_KEY) || 0)
+  }
+
+  const incrementCallbackCount = () => {
+    const current = getCallbackCount()
+    localStorage.setItem(CALLBACK_RATE_LIMIT_KEY, current + 1)
+  }
+
+  const isCallbackLimitReached = () => {
+    return getCallbackCount() >= CALLBACK_MAX_CLICKS
+  }
+
   const shouldTriggerCallback = (text) => {
     if (!text) return false
     const lower = text.toLowerCase()
@@ -737,6 +753,16 @@ const fetchPlacementRecords = async () => {
 
   const sendMessage = async (text) => {
     if (!text.trim()) return
+
+    const lower = text.toLowerCase()
+
+  if (PLACEMENT_KEYWORDS.some(k => lower.includes(k))) {
+    pushUser(text)
+    pushBot("Here are NIET placement details ")
+    pushOptions(["Placement Records"], false)
+    setInput("")
+    return
+  }
     if (!callbackStep && shouldTriggerCallback(text)) {
       pushUser(text)
       setCallbackStep("name")
@@ -794,7 +820,7 @@ const fetchPlacementRecords = async () => {
     setIsSending(true)
 
     try {
-      const res = await fetch("https://niet-chat-bot-rag.onrender.com/chat", {
+      const res = await fetch("http://localhost:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: text }),
@@ -804,7 +830,7 @@ const fetchPlacementRecords = async () => {
       await delay(600)
 
       if (data.images?.length) pushImages(data.images)
-            if (data.type === "positive_sensitive") {
+      if (data.type === "positive_sensitive") {
         if (data.text) {
           pushBot(data.text)
         }
@@ -828,6 +854,7 @@ const fetchPlacementRecords = async () => {
                 pushOptions(["Request Callback"], false)
               }
             }
+
 
             if (action.type === "link" && action.url) {
               pushBot(`LINK::${action.label}||${action.url}`)
@@ -860,13 +887,15 @@ const fetchPlacementRecords = async () => {
         setIsSending(false)
         return
       }
-if (data.text || data.link) {
-  if (data.text) pushBot(data.text)
-  if (data.link?.url) {
-    pushBot(`LINK::${data.link.label}||${data.link.url}`)
-  }
-  return
-}
+
+      if (data.text || data.link) {
+        if (data.text) pushBot(data.text)
+        if (data.link?.url) {
+          pushBot(`LINK::${data.link.label}||${data.link.url}`)
+        }
+        return
+      }
+
       if (data.final_answer || data.answer)
         pushBot(data.final_answer || data.answer)
     } catch {
@@ -879,11 +908,10 @@ if (data.text || data.link) {
 
 
   return (
-  <div
-    className={`h-full flex flex-col overflow-hidden relative transform-gpu ${
-      embed ? "" : "bg-white"
-    }`}
-  >
+    <div
+      className={`h-full flex flex-col overflow-hidden relative transform-gpu ${embed ? "" : "bg-white"
+        }`}
+    >
       {!embed && <div className="chat-mesh-bg" />}
 
       <div className="px-5 py-5 bg-gradient-to-br from-[#e2111f] via-[#d00f1c] to-[#9a0b15] flex items-center gap-3 shrink-0 shadow-lg relative z-10 border-b border-white/10 overflow-hidden">
@@ -967,8 +995,8 @@ if (data.text || data.link) {
 
               <div
                 className={`relative z-10 pointer-events-auto leading-relaxed whitespace-pre-line ${m.from === "user"
-                    ? " text-white rounded-full shadow-lg font-medium "
-                    : "bg-white rounded-2xl rounded-tl-none text-slate-700 shadow-sm p-4"
+                  ? " text-white rounded-full shadow-lg font-medium "
+                  : "bg-white rounded-2xl rounded-tl-none text-slate-700 shadow-sm p-4"
                   }`}
               >
                 {m.type === "options" ? (
@@ -977,7 +1005,7 @@ if (data.text || data.link) {
                       Quick Actions
                     </div>
                     {m.options.some(
-                      (opt) => opt.match(/^[BM]\./i) || opt.toLowerCase().includes("twinning program in"),
+                      (opt) => opt.match(/^[BM]\./i) || opt.toLowerCase().includes("TWINNING PROGRAM (International)  in"),
                     ) ? (
                       <div className="relative group">
                         <button
