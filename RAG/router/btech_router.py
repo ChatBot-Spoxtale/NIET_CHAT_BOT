@@ -1,184 +1,140 @@
-import json
+    import json
 import os
 import re
 
 # ---------------- LOAD DATA ----------------
 
-BTECH_PATH = os.path.join(
+DATA_PATH = os.path.join(
     os.path.dirname(__file__),
     "../data_chunk/course_data_chunk/btech_chunks.json"
 )
 
-with open(BTECH_PATH, "r", encoding="utf-8") as f:
-    raw_data = json.load(f)
+with open(DATA_PATH, "r", encoding="utf-8") as f:
+    DATA = json.load(f)
 
-BTECH_DATA = raw_data if isinstance(raw_data, list) else [raw_data]
+COURSES = DATA if isinstance(DATA, list) else list(DATA.values())
+
 
 # ---------------- NORMALIZATION ----------------
 
 def normalize(text: str) -> str:
+    if not text:
+        return ""
     text = text.lower()
     text = re.sub(r"\bb\s*\.?\s*tech\b", "btech", text)
     text = re.sub(r"[^\w\s]", " ", text)
     return " ".join(text.split())
 
-# ---------------- BRANCH & SPECIALIZATION MAP ----------------
 
-BRANCH_SIGNALS = {
-    "cse": [
-        "computer science engineering",
-        "computer science",
-        "cse"
-    ],
-    "ece": [
-        "electronics and communication",
-        "electronics communication",
-        "electronics",
-        "ece"
-    ],
-    "it": [
-        "information technology",
-        "it"
-    ],
-    "vlsi": [
-        "vlsi"
-    ],
-    "bio": [
-        "biotech",
-        "biotechnology"
-    ],
-    "csbs": [
-        "csbs",
-        "computer science and business systems"
-    ],
-    "mathematics and computing": [
-        "mathematics and computing",
-        "mnc"
-    ]
-}
+# ---------------- DETECT QUERY INTENT ----------------
 
-SPECIALIZATION_SIGNALS = {
-    "aiml": ["aiml", "artificial intelligence and machine learning"],
-    "ai": ["artificial intelligence"],
-    "ds": ["data science"],
-    "cyber": ["cyber", "cyber security"],
-    "iot": ["iot", "internet of things"],
-}
+def extract_from_query(query: str):
+    q = normalize(query)
 
-# ---------------- DETECTORS ----------------
+    branch = None
+    specialization = None
+    is_twinning = "twinning" in q or "international" in q
+    is_working = "working" in q or "professional" in q
 
-def detect_branch(q: str):
-    for branch, signals in BRANCH_SIGNALS.items():
-        for s in signals:
-            if re.search(rf"\b{s}\b", q):
-                return branch
-    return None
+    # branch detection
+    for b in ["cse", "ece", "it", "vlsi", "bio", "csbs", "mathematics"]:
+        if b in q:
+            branch = "mathematics and computing" if b == "mathematics" else b
+            break
+
+    # specialization detection
+    for s in ["aiml", "ai", "ds", "cyber", "iot"]:
+        if s in q:
+            specialization = s
+            break
+
+    return {
+        "query": q,
+        "branch": branch,
+        "specialization": specialization,
+        "twinning": is_twinning,
+        "working": is_working,
+    }
 
 
-def detect_specializations(q: str):
-    found = set()
-    for spec, signals in SPECIALIZATION_SIGNALS.items():
-        for s in signals:
-            if s in q:
-                found.add(spec)
-    return list(found)
+# ---------------- COURSE FILTER ----------------
 
-
-def is_twinning(q: str) -> bool:
-    return "twinning" in q or "international" in q
-
-
-def is_working_professional(q: str) -> bool:
-    return "working" in q or "professional" in q
-
-
-# ---------------- COURSE FILTERS ----------------
-
-def is_btech_course(course: dict) -> bool:
-    name = course.get("course", "").lower()
-    return (
-        "b tech" in name
-        and "m tech" not in name
-        and "minor" not in name
-        and "integrated" not in name
-    )
+def is_valid_btech(course: dict) -> bool:
+    return course.get("type") == "btech"
 
 
 # ---------------- FORMATTERS ----------------
 
-def format_full_course(c: dict) -> str:
-    props = c.get("properties", {})
-    placements = c.get("placements", {})
+def format_course(course: dict) -> str:
+    p = course.get("properties", {})
+    pl = course.get("placements", {})
 
     return f"""
-🎓 *{c.get('course')}*
+🎓 *{course.get('course')}*
 
 📘 *Overview*
-{c.get('overview', 'NA')}
+{course.get('overview', 'NA')}
 
 📌 *Course Details*
-• Duration: {props.get('duration', 'NA')}
-• Seats: {props.get('seats', 'NA')}
-• Eligibility: {props.get('eligibility', 'NA')}
-• Fees: {props.get('fees', 'NA')}
+• Duration: {p.get('duration', 'NA')}
+• Seats: {p.get('seats', 'NA')}
+• Eligibility: {p.get('eligibility', 'NA')}
+• Fees: {p.get('fees', 'NA')}
 
 💼 *Placements*
-• Average Package: {placements.get('average', 'NA')}
-• Highest Package: {placements.get('highest', 'NA')}
-• Details: {placements.get('source_url', 'NA')}
+• Average Package: {pl.get('average', 'NA')}
+• Highest Package: {pl.get('highest', 'NA')}
+• Details: {pl.get('source_url', 'NA')}
 
 ⭐ *Why Choose This Course?*
-- """ + "\n- ".join(c.get("why_choose", []))
+- """ + "\n- ".join(course.get("why_choose", []))
 
 
 # ---------------- MAIN ROUTER ----------------
 
 def btech_router(query: str):
-    q = normalize(query)
+    intent = extract_from_query(query)
+    q = intent["query"]
 
-    # 1️⃣ Detect intent
-    branch = detect_branch(q)
-    specializations = detect_specializations(q)
-    twinning = is_twinning(q)
-    working = is_working_professional(q)
+    # 1️⃣ Only BTech
+    courses = [c for c in COURSES if is_valid_btech(c)]
 
-    if not branch:
-        return (
-            "Please specify the BTech branch clearly.\n"
-            "Example: *BTech CSE AIML placements*"
-        )
+    if not courses:
+        return None
 
-    
-    courses = [
-        c for c in BTECH_DATA
-        if is_btech_course(c)
-        and c.get("branch") == branch
-    ]
+    # 2️⃣ Branch filter
+    if intent["branch"]:
+        courses = [
+            c for c in courses
+            if normalize(c.get("branch")) == intent["branch"]
+        ]
 
     if not courses:
         return "No BTech course found for the specified branch."
 
-    # Apply specialization filter
-    if specializations:
-        filtered = []
+    # 3️⃣ Specialization filter (IMPORTANT)
+    if intent["specialization"]:
+        spec_courses = []
         for c in courses:
-            spec = normalize(c.get("specialization", ""))
-            if any(s in spec for s in specializations):
-                filtered.append(c)
-        if filtered:
-            courses = filtered
+            spec = normalize(c.get("specialization"))
+            if spec == intent["specialization"]:
+                spec_courses.append(c)
 
-    # 4️⃣ Apply program-type filters
-    if twinning:
+        if spec_courses:
+            courses = spec_courses
+
+    # 4️⃣ Twinning filter
+    if intent["twinning"]:
         courses = [
             c for c in courses
-            if "twinning" in c.get("course", "").lower()
+            if "twinning" in normalize(c.get("course"))
         ]
 
-    if working:
+    # 5️⃣ Working professional filter
+    if intent["working"]:
         courses = [
             c for c in courses
-            if "working" in c.get("course", "").lower()
+            if "working" in normalize(c.get("course"))
         ]
 
     if not courses:
@@ -187,13 +143,11 @@ def btech_router(query: str):
             "Please refine branch or specialization."
         )
 
-    # 5️⃣ Select BEST match
     selected = courses[0]
-
     props = selected.get("properties", {})
     placements = selected.get("placements", {})
 
-    # 6️⃣ Handle specific questions
+    # 6️⃣ Intent-based answers
     if "seat" in q:
         return f"Seats for {selected.get('course')}: {props.get('seats', 'NA')}"
 
@@ -208,28 +162,26 @@ def btech_router(query: str):
 
     if "placement" in q:
         return (
-            f"📊 Placement Details – {selected.get('course')}\n"
-            f"- Average Package: {placements.get('average', 'NA')}\n"
-            f"- Highest Package: {placements.get('highest', 'NA')}\n"
+            f"📊 Placement – {selected.get('course')}\n"
+            f"- Average: {placements.get('average', 'NA')}\n"
+            f"- Highest: {placements.get('highest', 'NA')}\n"
             f"- More Info: {placements.get('source_url', 'NA')}"
         )
 
-    # 7️⃣ Default: full course info
-    return format_full_course(selected)
+    # 7️⃣ Default full response
+    return format_course(selected)
 
 
 # ---------------- LOCAL TEST ----------------
 
 if __name__ == "__main__":
     tests = [
-        "btech cse ai",
-        "btech cse ai twinning",
-        "btech it twinning",
-        "btech ece vlsi",
-        "btech mathematics and computing",
-        "btech csbs",
-        "btech cse working professionals",
-        "btech cse placements"
+        "btech cse",
+        "btech cse aiml",
+        "btech cse placements",
+        "btech cse aiml placements",
+        "btech it fees",
+        "btech ece",
     ]
 
     for t in tests:
