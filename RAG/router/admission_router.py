@@ -1,21 +1,22 @@
 import json
 import os
+import re
 
+# ---------- Load Data ----------
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-
-# Path to club data JSON
 DATA_PATH = os.path.join(
     PROJECT_ROOT,
     "data_chunk",
     "admission_data_chunk",
     "admission_chunks.json"
 )
+
 with open(DATA_PATH, "r", encoding="utf-8") as f:
     ADMISSION_DATA = json.load(f)
 
 
-def clean_text(text: str):
-    """Normalize input for better matching"""
+# ---------- Helpers ----------
+def clean_text(text: str) -> str:
     replace_map = {
         "-": " ",
         ".": " ",
@@ -30,132 +31,52 @@ def clean_text(text: str):
     return " ".join(text.split())
 
 
-PRIORITY_MAP = [
-    ("btech it", "btech it"),
-    ("b tech it", "btech it"),
-    ("information technology", "btech it"),
-
-    ("btech cse", "btech cse"),
-    ("computer science engineering", "btech cse"),
-
-    ("btech", "first year  btech"),   
-
-    ("mca", "first year  mca"),
-    ("master of computer applications", "first year  mca"),
-
-    ("mba", "first year  mba"),
-    ("business administration", "first year  mba"),
-
-    ("lateral entry btech", "lateral entry btech"),
-    ("lateral entry", "lateral entry btech"),
-
-    ("b.pharm", "first year  b.pharm"),
-    ("pharmacy", "first year  b.pharm"),
-
-    ("pgdm", "for admission to pgdm course"),
-    ("m.tech", "for admission to m.tech course"),
-    ("mtech", "for admission to m.tech course"),
-
-    ("twinning", "twinning_program"),
-]
-import re
-
-def remove_urls(text: str):
-    return re.sub(r'https?://\S+|www\.\S+', '', text)
+def remove_urls(text: str) -> str:
+    return re.sub(r"https?://\S+|www\.\S+", "", text)
 
 
-def normalize_answer(text: str):
-    text = remove_urls(text)         
+def normalize_answer(text: str) -> str:
+    text = remove_urls(text or "")
     text = text.replace("•", "")
-    text = text.replace("  ", " ")
-    return text.strip()
+    return " ".join(text.split()).strip()
 
 
-def collect_admission_data():
-    sections = {
-        "process": [],
-        "eligibility": [],
-        "registration": [],
-        "other": []
-    }
+# ---------- Format Single Admission ----------
+def format_admission(row: dict) -> str:
+    response = []
 
-    for row in ADMISSION_DATA:
-        raw_answer = row.get("answer", "")
+    # ✅ Use QUESTION (not course – course does not exist in JSON)
+    title = row.get("question", "Admission Details")
+    response.append(f"🎓 {title}")
 
-        answer = normalize_answer(raw_answer)
-        answer = clean_text(answer)
+    answer = normalize_answer(row.get("answer", ""))
+    parts = re.split(r";|\.\s+", answer)
 
-        course = clean_text(row.get("course", ""))
-        answer_lower = answer.lower()
+    for p in parts:
+        if p.strip():
+            response.append(f"- {p.strip()}")
 
-        if "admission process" in answer_lower or "allotment" in answer_lower:
-            sections["process"].append(answer)
+    response.append("\n🔗 Official details:")
+    response.append("- https://www.niet.co.in/admissions/eligibility-admission-process")
 
-        elif "documents required" in answer_lower or "mark sheet" in answer_lower:
-            sections["eligibility"].append(answer)
+    return "\n".join(response)
 
-        elif "registration" in answer_lower or "apply" in answer_lower:
-            sections["registration"].append(answer)
 
-        elif "first year" in course or "lateral" in course:
-            sections["eligibility"].append(answer)
-
-        else:
-            sections["other"].append(answer)
-
-    return sections
-
-def get_unique_courses():
-    courses = set()
-
-    for row in ADMISSION_DATA:
-        course = row.get("course", "").strip()
-        if course and course.lower() not in ["admission", "direct", "jee_main"]:
-            courses.add(course)
-
-    return sorted(courses)
-def group_admission_by_course():
-    grouped = {}
-
-    for row in ADMISSION_DATA:
-        course = row.get("course", "").strip()
-        answer = normalize_answer(row.get("answer", "")).strip()
-
-        if not course or course.lower() in ["admission", "direct", "jee_main"]:
-            continue
-
-        if course not in grouped:
-            grouped[course] = []
-
-        grouped[course].append(answer)
-
-    return grouped
-
-def format_all_courses_admission():
-    grouped = {}
-
-    for row in ADMISSION_DATA:
-        course = row.get("course", "").strip()
-        answer = normalize_answer(row.get("answer", "")).strip()
-
-        if not course:
-            continue
-
-        if course not in grouped:
-            grouped[course] = []
-
-        grouped[course].append(answer)
-
+# ---------- Format Full Admission ----------
+def format_all_courses_admission() -> str:
     response = []
     response.append("🎓 Admission Process – NIET (All Courses)\n")
 
-    for course, answers in grouped.items():
-        response.append(f"📌 {course}")
-        for ans in answers:
-            parts = re.split(r";|\.\s+", ans)
-            for p in parts:
-                if p.strip():
-                    response.append(f"• {p.strip()}")
+    for row in ADMISSION_DATA:
+        title = row.get("question", "Admission Details")
+        response.append(f"📌 {title}")
+
+        answer = normalize_answer(row.get("answer", ""))
+        parts = re.split(r";|\.\s+", answer)
+        for p in parts:
+            if p.strip():
+                response.append(f"• {p.strip()}")
+
         response.append("")
 
     response.append("🔗 Official Details:")
@@ -166,57 +87,47 @@ def format_all_courses_admission():
     return "\n".join(response)
 
 
+# ---------- Keyword Matching ----------
+def keyword_match(query: str, keywords: list) -> bool:
+    """Return True if at least 2 keywords match"""
+    score = 0
+    for kw in keywords:
+        if kw.lower() in query:
+            score += 1
+    return score >= 2
 
-def admission_router(query: str):
+
+def admission_router(query: str) -> str:
     q = clean_text(query)
 
-    for key, tag in PRIORITY_MAP:
-        if key in q:
-            for row in ADMISSION_DATA:
-                course_clean = clean_text(row.get("course", ""))
-                if tag in course_clean:
-                    return format_admission(row)
-
-    if "btech" in q or "b tech" in q:
-        for row in ADMISSION_DATA:
-            course_clean = clean_text(row.get("course", ""))
-            if "first year btech" in course_clean:
-                return format_admission(row)
-
-    GENERIC_KEYWORDS = [
-        "admission", "apply", "documents",
-        "fees", "counselling", "eligibility", "registration"
-    ]
-
-    if any(k in q for k in GENERIC_KEYWORDS):
+    if any(k in q for k in [
+        "admission process",
+        "how to take admission",
+        "admission details",
+        "admission at niet"
+    ]):
         return format_all_courses_admission()
 
-    return group_admission_by_course()
+    matched = []
+    for row in ADMISSION_DATA:
+        if keyword_match(q, row.get("keywords", [])):
+            matched.append(row)
 
-def format_admission(row):
-    response = []
-    response.append(f"🎓 Admission Process – {row['course']}")
+    if matched:
+        return "\n\n".join(format_admission(r) for r in matched)
 
-    answer = normalize_answer(row["answer"])
-    parts = re.split(r";|\.\s+", answer)
+    if any(k in q for k in [
+        "admission", "apply", "documents",
+        "fees", "counselling", "eligibility", "registration"
+    ]):
+        return format_all_courses_admission()
 
-    for p in parts:
-        p = p.strip()
-        if p:
-            response.append(f"- {p}")
-
-    response.append("\n🔗 Official details:")
-    response.append("- https://www.niet.co.in/admissions/eligibility-admission-process")
-
-    return "\n".join(response)
-
+    return format_all_courses_admission()
 
 
 if __name__ == "__main__":
-    print(admission_router("Admission Prcoess At NIET"))
-    # print(admission_router("admission process for btech cse aiml"))
-    print(admission_router("how to take admission in MCA"))
-    # print(admission_router("b.tech cse admission process"))
-    # print(admission_router("how to take admission in PGDM"))
-
-
+    print(admission_router("Admission Process At NIET"))
+    print("\n" + "="*60 + "\n")
+    print(admission_router("eligibility for first year btech"))
+    print("\n" + "="*60 + "\n")
+    print(admission_router("mca admission eligibility"))

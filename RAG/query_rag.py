@@ -1,44 +1,75 @@
-import os,sys
+import re
+import os, sys
 
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))  
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from router.btech_router import btech_router
 from router.event_router import event_router
 from router.club_router import club_router
 from router.facilities_router import facility_router
-def answer_rag (query:str):
+from router.mtech_router import mtech_router
+from router.ug_pg_router import ug_pg_router
+from router.institute_router import institute_router
+from router.admission_router import admission_router
+
+
+def answer_rag(query: str) -> str:
     q = query.lower().strip()
-    answer = facility_router(q)
-    if answer:
-        return answer
 
-    BTECH_SPECIALIZATIONS = [
-    "aiml", "ai", "artificial intelligence",
-    "data science", "ds",
-    "cyber", "cyber security","cy",
-    "iot", "internet of things","me","ece","bio","it"
-]
+    res=admission_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
+    
+    res = facility_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
 
-    is_btech = (
-    "btech" in q
-    or "b.tech" in q
-    or any(s in q for s in BTECH_SPECIALIZATIONS)
-)
-
-    if is_btech:
-        res = btech_router(q)
-        if res:
+    if any(k in q for k in ["club", "clubs", "society", "societies"]):
+        res = club_router(q)
+        if isinstance(res, str) and res.strip():
             return res
-        
+        return (
+            "Please visit the official NIET Clubs & Societies page:\n"
+            "https://niet.co.in/students-life/student-clubs-societies"
+        )
+
     if any(w in q for w in ["event", "events", "hackathon", "conference"]):
         res = event_router(q)
-        if res:
+        if isinstance(res, str) and res.strip():
             return res
-    
-    if "club" in q or "clubs" in q:
-        res = club_router(q)
-        if res:
-            return res
-        return "Visit:\nhttps://niet.co.in/students-life/student-clubs-societies"
 
-   
+    res = institute_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
+
+    res = mtech_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
+
+    res = ug_pg_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
+
+    if any(w in q for w in ["syllabus", "pdf", "subject", "subjects", "curriculum"]):
+        return (
+            "To access the complete and officially updated course syllabus, "
+            "please visit:\nhttps://www.niet.co.in/academics/syllabus"
+        )
+
+    BTECH_KEYWORDS = {
+        "btech", "b.tech",
+        "cse", "aiml", "ai",
+        "data science", "cyber security",
+        "iot", "ece", "me", "bio"
+    }
+
+    words = set(re.findall(r"[a-z]+", q))
+    if words.intersection(BTECH_KEYWORDS):
+        res = btech_router(q)
+        if isinstance(res, str) and res.strip():
+            return res
+
+    return (
+        "For official and updated information, please visit:\n"
+        "https://www.niet.co.in/"
+    )

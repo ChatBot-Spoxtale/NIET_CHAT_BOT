@@ -1,15 +1,5 @@
 {
   "courses": {
-    "bachelor_of_computer_applications": {
-      "type": "course",
-      "course_name": "Bachelor of Computer Applications",
-      "duration": "3 year",
-      "mode": "Full Time",
-      "seats": "120",
-      "why_choose": "",
-      "source_url": "https://www.niet.co.in/course/bca"
-      
-    },
     "mba-(innovation,_entrepreneurship_&_venture_development)": {
       "type": "course",
       "course_name": "MBA-(Innovation, Entrepreneurship & Venture Development)",
