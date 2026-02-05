@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import baseKnowledge from "../../../Json_Format_Data/base_knowledge.json"
+import baseKnowledge from "../../../../Json_Format_Data/base_knowledge.json"
 
 
 function now() {
