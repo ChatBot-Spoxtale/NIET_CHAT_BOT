@@ -58,7 +58,10 @@ def research_router(query: str):
         "research at niet",
         "full research",
         "research summary",
-        "research details"
+        "research details",
+        "research information",
+        "research overview",
+        "research",
     ]):
         blocks = []
 
