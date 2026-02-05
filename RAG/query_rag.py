@@ -47,6 +47,7 @@ def answer_rag(query: str) -> str:
     res = institute_router(q)
     if isinstance(res, str) and res.strip():
         return res
+        
 
     res = mtech_router(q)
     if isinstance(res, str) and res.strip():
@@ -55,6 +56,20 @@ def answer_rag(query: str) -> str:
     res = ug_pg_router(q)
     if isinstance(res, str) and res.strip():
         return res
+
+    TWINNING_KEYWORDS = [
+        "twinning",
+        "international",
+        "abroad",
+        "foreign",
+        "semester abroad"
+    ]
+
+    if any(k in q for k in TWINNING_KEYWORDS):
+        twinning = twinning_router(q)
+        if twinning:
+            return twinning
+
 
     if any(w in q for w in ["syllabus", "pdf", "subject", "subjects", "curriculum"]):
         return (
@@ -77,3 +92,4 @@ def answer_rag(query: str) -> str:
             
 
     
+
