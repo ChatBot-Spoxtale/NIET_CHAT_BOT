@@ -36,20 +36,30 @@ def save_to_csv(name: str, phone: str):
         ])
 
 
-@router.post("/save-callback")
-def save_callback(data: CallbackRequest):
-    if not data.name.strip() or not data.phone.strip():
-        raise HTTPException(status_code=400, detail="Invalid data")
-
-    save_to_csv(data.name, data.phone)
-    return {"message": "Callback request saved successfully"}
-
-@router.get("/admin/download-csv")
-def download_csv():
+@router.get("/admin/callbacks")
+def get_callbacks():
     if not os.path.exists(CSV_FILE_PATH):
-        raise HTTPException(status_code=404, detail="CSV file not found")
+        return {
+            "count": 0,
+            "data": []
+        }
+
+    callbacks = []
+
+    with open(CSV_FILE_PATH, mode="r", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            if not row or not row.get("Name"):
+                continue
+
+            callbacks.append({
+                "name": row["Name"].strip(),
+                "phone": row["Phone"].strip(),
+                "timestamp": row["Timestamp"].strip()
+            })
 
     return {
-        "file_path": CSV_FILE_PATH,
-        "message": "CSV file is available on the server"
+        "count": len(callbacks),
+        "data": callbacks
     }
