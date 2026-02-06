@@ -63,20 +63,3 @@ def institute_router(query: str) -> Optional[str]:
     if best_match:
         return best_match.get("answer")
 
-    # Safe fallback
-
-    try:
-        llm_answer = chat(query)
-        return (
-            f"{llm_answer}\n\n"
-            "🔗 For official and up-to-date institute information, "
-            "please visit our website:\n"
-            "https://www.niet.co.in/"
-        )
-    except Exception as e:
-        print("Institute LLM failed:", e)
-        return (
-            "For official and up-to-date institute information, "
-            "please visit our website:\n"
-            "https://www.niet.co.in/"
-        )

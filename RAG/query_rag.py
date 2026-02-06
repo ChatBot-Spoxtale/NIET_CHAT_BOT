@@ -94,3 +94,4 @@ def answer_rag(query: str) -> str:
     if isinstance(res, str) and res.strip():
         return res
     
+    return chat(q)
