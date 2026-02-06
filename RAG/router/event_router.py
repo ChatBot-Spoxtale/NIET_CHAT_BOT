@@ -46,7 +46,6 @@ def event_router(query: str):
             "action": "EVENTS_PAGE"
         }
 
-    return None
 
 
 

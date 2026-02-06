@@ -240,16 +240,6 @@ def club_router(query: str):
         if name == q or q in name or name in q:
             return answer
 
-    # CASE 4: Keyword-based fallback
-    for item in CLUB_DATA:
-        for kw in item.get("keywords", []):
-            if kw.lower() in q:
-                return item.get("answer")
-
-    # CASE 5: Final safe fallback
-    club_names = [item["club_name"] for item in CLUB_DATA]
-    return format_list("Available Clubs at NIET", club_names)
-
 
 # LOCAL TESTING
 if __name__ == "__main__":

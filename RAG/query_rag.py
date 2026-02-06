@@ -18,15 +18,6 @@ from llm_model_gemini.chat import chat
 def answer_rag(query: str) -> str:
     q = query.lower().strip()
 
-    if "research" in q:
-        res=research_router(q)
-        if isinstance(res,str) and res.strip():
-            return res
-    
-    res = facility_router(q)
-    if isinstance(res, str) and res.strip():
-        return res
-
     if any(k in q for k in ["list","club", "clubs", "society", "societies"]):
         res = club_router(q)
         if isinstance(res, str) and res.strip():
@@ -84,12 +75,22 @@ def answer_rag(query: str) -> str:
     }
 
     words = set(re.findall(r"[a-z]+", q))
+
     if words.intersection(BTECH_KEYWORDS):
         res = btech_router(q)
         if isinstance(res, str) and res.strip():
             return res
+        
+    res = facility_router(q)
+    if isinstance(res, str) and res.strip():
+        return res
+    
+    if "research" in q or "project" in q or "projects" in q:
+        res=research_router(q)
+        if isinstance(res,str) and res.strip():
+            return res
+    
     res = institute_router(q)
     if isinstance(res, str) and res.strip():
         return res
     
-    return chat(q)

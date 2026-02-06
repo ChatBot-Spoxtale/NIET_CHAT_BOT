@@ -39,15 +39,6 @@ def format_ugpg_course(course: dict) -> str:
 def ug_pg_router(query: str):
     q = normalize(query)
 
-    # 🚫 Ask for clarification if field asked without course
-    if any(w in q for w in EMPTY_FIELD_WORDS) and not any(c in q for c in COURSE_HINTS):
-        return (
-            "Please type full course name.\n"
-            "Example:\n"
-            "MBA duration\n"
-            "BCA seats\n"
-            "MCA placement"
-        )
 
     best_course = None
     best_score = 0
@@ -57,15 +48,12 @@ def ug_pg_router(query: str):
         score = 0
 
         for k in keywords:
-            # ✅ exact match
             if q == k:
                 score += 100
 
-            # ✅ whole-word match (safe)
             elif re.search(rf"\b{k}\b", q):
                 score += 50
 
-            # ⚠️ loose match (low weight)
             elif k in q:
                 score += 10
 
@@ -73,13 +61,11 @@ def ug_pg_router(query: str):
             best_score = score
             best_course = data
 
-    # 🚫 Reject weak matches
     if not best_course or best_score < 30:
         return None
 
     c = best_course
 
-    # ------------------ FIELD-SPECIFIC RESPONSES ------------------
 
     if any(w in q for w in ["placement", "package", "salary", "highest", "average"]):
         plc = c.get("placements", {})

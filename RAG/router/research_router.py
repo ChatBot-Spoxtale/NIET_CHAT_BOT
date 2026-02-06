@@ -134,4 +134,3 @@ def research_router(query: str):
             + f"\n\n🔗 Official Research Page:\n{OFFICIAL_RESEARCH_URL}"
         )
 
-    return None

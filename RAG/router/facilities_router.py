@@ -94,7 +94,6 @@ def facility_router(query: str):
             + (f"\n\n🔗 {hostel_url}" if hostel_url else "")
         )
 
-    return None
 
 # ---- Local test ----
 if __name__ == "__main__":

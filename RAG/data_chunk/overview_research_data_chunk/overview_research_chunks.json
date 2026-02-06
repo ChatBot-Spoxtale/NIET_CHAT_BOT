@@ -24,13 +24,11 @@
       "innovation",
       "institute",
       "integrated",
-      "kalam",
       "located",
       "lucknow.",
       "management",
       "niet",
       "noida",
-      "offers",
       "postgraduate",
       "pradesh.",
       "programs",
@@ -76,7 +74,6 @@
       "collaboration.",
       "excellence",
       "grade",
-      "have?",
       "industry–institute",
       "institute",
       "naac",
@@ -121,7 +118,6 @@
       "overview",
       "participation",
       "patents",
-      "projects.",
       "promotes",
       "publications",
       "research",
@@ -159,7 +155,7 @@
   {
     "chunk_id": "research_project_7",
     "question": "Tell me about NIET research projects",
-    "answer": "Domain: Biotechnology. Faculty: Dr. Arvind Kumar. Funding: Project Grant of Rs.35,06,544 from Ministry of Science and Technology, Department of Science and Technology. Year: 2021.",
+    "answer": "Domain: Biotechnology. Faculty: Dr Arvind Kumar. Funding: Project Grant of Rs 35,06,544 from Ministry of Science and Technology, Department of Science and Technology. Year 2021.",
     "keywords": [
       "faculty:",
       "project",
@@ -170,7 +166,7 @@
   {
     "chunk_id": "research_project_8",
     "question": "Tell me about NIET research projects",
-    "answer": "Domain: Biotechnology. Faculty: Dr. Pankaj Kumar Tyagi. Funding: STTC grant of Rs. 380000 from Department of Biotechnology, GOI, New Delhi. Year: 2020.",
+    "answer": "Domain: Biotechnology. Faculty  Dr Pankaj Kumar Tyagi. Funding: STTC grant of Rs. 380000 from Department of Biotechnology, GOI, New Delhi. Year 2020.",
     "keywords": [
       "department",
       "faculty",
@@ -180,7 +176,7 @@
   {
     "chunk_id": "research_project_9",
     "question": "Tell me about NIET research projects",
-    "answer": "Domain: Biotechnology. Faculty: Dr. Arvind Kumar. Funding: Project Grant of Rs. 1452000 from CST-UP. Year: 2019.",
+    "answer": "Domain Biotechnology. Faculty Dr Arvind Kumar. Funding: Project Grant of Rs 1452000 from CST-UP. Year 2019.",
     "keywords": [
       "faculty:",
       "project",
@@ -190,7 +186,7 @@
   {
     "chunk_id": "research_project_10",
     "question": "Tell me about NIET research projects",
-    "answer": "Domain: Biotechnology. Faculty: Dr. Rashmi Mishra, Dr Pankaj Kumar Tyagi, Dr Fahad Khan. Funding: Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III). Year: 2019.",
+    "answer": "Domain Biotechnology. Faculty: Dr Rashmi Mishra  Dr Pankaj Kumar Tyagi Dr Fahad Khan. Funding: Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III). Year 2019.",
     "keywords": [
       "faculty:",
       "project",
@@ -201,7 +197,7 @@
   {
     "chunk_id": "research_project_11",
     "question": "Tell me about NIET research projects",
-    "answer": "Domain: Biotechnology. Faculty: Dr. Pratibha Pandey, Dr Rashmi Mishra. Funding: Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III). Year: 2019.",
+    "answer": "Domain: Biotechnology. Faculty: Dr Pratibha Pandey, Dr Rashmi Mishra. Funding: Collaborative Research and Innovation Program Grant of Rs 3,00,000 fromAbdul Kalam Technical University, Lucknow (TEQIP III). Year 2019.",
     "keywords": [
       "faculty:",
       "project",
@@ -211,7 +207,7 @@
   {
     "chunk_id": "research_project_12",
     "question": "Tell me about NIET research projects",
-    "answer": "Domain: Management. Faculty: Dr. Veena Grover. Funding: International Conference on Innovative Practices for Sustainable Development Business Management & Analytics EAI SUS-DEV 2023 (Funding Received from EAI of rupees 3 Lakh). Year: 2023.",
+    "answer": "Domain: Management. Faculty: Dr Veena Grover. Funding: International Conference on Innovative Practices for Sustainable Development Business Management & Analytics EAI SUS-DEV 2023 (Funding Received from EAI of rupees 3 Lakh). Year 2023.",
     "keywords": [
       "faculty:",
       "project",
