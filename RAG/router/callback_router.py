@@ -35,6 +35,14 @@ def save_to_csv(name: str, phone: str):
             datetime.utcnow().isoformat()
         ])
 
+@router.post("/save-callback")
+def save_callback(data: CallbackRequest):
+    if not data.name.strip() or not data.phone.strip():
+        raise HTTPException(status_code=400, detail="Invalid data")
+
+    save_to_csv(data.name, data.phone)
+    return {"message": "Callback request saved successfully"}
+
 
 @router.get("/admin/callbacks")
 def get_callbacks():
