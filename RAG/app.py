@@ -1,20 +1,24 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware 
+from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional, Union
+import re
 
-from constant.is_sensitive import is_sensitive_query
-from constant.sensitive_redirect import SENSITIVE_REDIRECT_RESPONSE
-from constant.is_sensitive import is_safety_confirmation_query
-from constant.sensitive_redirect import POSITIVE_SENSITIVE_RESPONSE
+from constant.is_sensitive import is_sensitive_query, is_safety_confirmation_query
+from constant.sensitive_redirect import (
+    SENSITIVE_REDIRECT_RESPONSE,
+    POSITIVE_SENSITIVE_RESPONSE
+)
 from constant.llm_keywords import should_go_to_llm
 
 from llm_model_gemini.chat import chat
+from query_rag import answer_rag
 
 from router.placement_router import router as placement_router
 from router.callback_router import router as callback_router
 
-from query_rag import answer_rag
+
+# ---------------- APP ----------------
 
 app = FastAPI(title="NIET Course RAG Bot API")
 
@@ -25,9 +29,12 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ---------------- MODELS ----------------
 
 class ChatRequest(BaseModel):
     question: str
@@ -51,88 +58,31 @@ class PositiveSensitiveResponse(BaseModel):
     text: str
     details: List[str]
     actions: List[Action]
+
+
+# ---------------- HELPERS ----------------
+
+DECISION_PATTERNS = [
+    "should i",
+    "is it good",
+    "is it safe",
+    "worth it",
+    "why should",
+    "why choose",
+    "can i",
+    "will i",
+]
+
+def is_decision_query(q: str) -> bool:
+    q = q.lower()
+    return any(p in q for p in DECISION_PATTERNS)
+
 def is_comparison_query(q: str) -> bool:
-    q = q.lower()
-    return any(kw in q for kw in [
-        "better than",
-        "vs",
-        "versus",
-        "instead of",
-        "compare",
-        "difference between",
-        "which is better"
+    return any(k in q for k in [
+        "vs", "versus", "compare", "better than", "difference between"
     ])
-import re
 
-def is_short_llm_question(q: str) -> bool:
-    q = q.lower().strip()
 
-    q = re.sub(r"\s+", " ", q)
-
-    if re.search(r"\b(how many|number of|total|count)\b", q):
-        return True
-
-    if any(k in q for k in [
-        "list",
-        "details",
-        "full",
-        "complete",
-        "overview",
-        "explain in detail"
-    ]):
-        return True
-
-    COMPARISON_KEYWORDS = [
-        "vs",
-        "versus",
-        "compare",
-        "better than",
-        "difference between",
-        "which is better"
-    ]
-
-    if any(k in q for k in COMPARISON_KEYWORDS):
-        return len(q.split()) <= 16
-
-    SHORT_STARTERS = (
-        "is ",
-        "are ",
-        "can ",
-        "does ",
-        "do ",
-        "why ",
-        "how ",
-        "should ",
-        "will ",
-        "safe",
-        "which",
-        "what"
-    )
-
-    if q.startswith(SHORT_STARTERS):
-        return len(q.split()) <= 14
-
-    return False
-
-def is_advisory_query(q: str) -> bool:
-    q = q.lower()
-    advisory_patterns = [
-        "if i",
-        "will i",
-        "can i",
-        "should i",
-        "do i",
-        "is it",
-        "is there",
-        "will there be",
-        "what happens if",
-    ]
-    return any(p in q for p in advisory_patterns)
-
-def is_single_word(query: str) -> bool:
-    if not query:
-        return False
-    return len(query.strip().split()) == 1
 
 @app.post(
     "/chat",
@@ -144,7 +94,7 @@ def is_single_word(query: str) -> bool:
 )
 def chat_endpoint(payload: ChatRequest):
 
-    question = payload.question.lower()
+    question = payload.question.strip().lower()
 
     try:
         if is_sensitive_query(payload.question):
@@ -152,38 +102,33 @@ def chat_endpoint(payload: ChatRequest):
                 return POSITIVE_SENSITIVE_RESPONSE
             return SENSITIVE_REDIRECT_RESPONSE
 
-        if is_short_llm_question(question):
-            answer = chat(question)
-            return {
-        "type": "normal",
-        "answer": answer
-    }
-        if is_advisory_query(question):
-            answer=chat(question)
-            return {
-                "type":"normal",
-                "answer":answer
-            }
-        if is_single_word (question):
-            answer=answer_rag(question)
-            return {
-                "type":"normal",
-                "answer":answer
-            }
-        if not is_comparison_query(question):
-            rag_answer = answer_rag(question)
-            if rag_answer:
-                return {
-                    "type": "normal",
-                    "answer": rag_answer
-                }
 
-        if should_go_to_llm(question):
+        if is_decision_query(question):
+            answer = chat(
+                question,
+                mode="decision"   
+            )
+            return {
+                "type": "normal",
+                "answer": answer
+            }
+
+
+        if is_comparison_query(question):
             answer = chat(question)
             return {
                 "type": "normal",
                 "answer": answer
             }
+
+
+        rag_answer = answer_rag(question)
+        if isinstance(rag_answer, str) and rag_answer.strip():
+            return {
+                "type": "normal",
+                "answer": rag_answer
+            }
+
 
         answer = chat(question)
         return {
@@ -201,6 +146,7 @@ def chat_endpoint(payload: ChatRequest):
                 "https://www.niet.co.in/"
             )
         }
+
 
 @app.get("/")
 def root():

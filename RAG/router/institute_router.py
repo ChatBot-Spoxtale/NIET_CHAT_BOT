@@ -22,7 +22,6 @@ def normalize(text: str) -> str:
 
 
 INSTITUTE_KEYWORDS = [
-    "niet",
     "college",
     "about",
     "overview",
