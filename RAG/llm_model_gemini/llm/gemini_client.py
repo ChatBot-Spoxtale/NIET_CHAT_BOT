@@ -159,7 +159,7 @@ COURSE HANDLING RULES
       is not currently available in the academic database.
 
    c) Provide ONLY ONE official academic course link using this format:
-      LINK: View all academic programs at NIET|| https://www.niet.co.in/
+      LINK: View all academic programs at NIET|| https://www.niet.co.in/courses/
 
 ==============================
 STYLE & TONE
@@ -259,7 +259,7 @@ BEHAVIOR RULES:
 QUESTION TYPE HANDLING (VERY IMPORTANT):
 
 If the user question starts with:
-- "is", "are", "can", "does", "do":
+- "is", "are", "can", "does", "do","should","can":
   → Answer in DIRECT question–answer format.
   → First word must be Yes or No (if applicable).
   → Give 1 short supporting sentence.
@@ -377,6 +377,7 @@ def generate_answer(context: str, question: str, history: list):
         return answer
 
     except Exception as gemini_error:
+        # error_text = str(gemini_error).lower()
         print("Gemini failed:", gemini_error)
 
         try:
@@ -391,6 +392,8 @@ def generate_answer(context: str, question: str, history: list):
 
             answer = completion.choices[0].message.content.strip()
 
+            # if TEST_MODE:
+            #     answer = " ".join(answer.split()[:MAX_TEST_WORDS])
 
             return answer
 
