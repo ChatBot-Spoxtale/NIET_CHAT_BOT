@@ -9,3 +9,4 @@ python-dotenv
 uvicorn
 fastapi 
 openai
+pymongo
