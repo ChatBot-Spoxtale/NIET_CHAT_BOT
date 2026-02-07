@@ -114,7 +114,7 @@ def chat_endpoint(payload: ChatRequest):
     question = payload.question.strip().lower()
 
     try:
-        if is_sensitive_query(payload.question) and not is_admission_decision_query(payload.question.question):
+        if is_sensitive_query(payload.question) and not is_admission_decision_query(payload.question):
             if is_safety_confirmation_query(payload.question):
                 return POSITIVE_SENSITIVE_RESPONSE
             return SENSITIVE_REDIRECT_RESPONSE
