@@ -18,7 +18,7 @@ from llm_model_gemini.chat import chat
 def answer_rag(query: str) -> str:
     q = query.lower().strip()
 
-    if q.startswith(("why", "which", "how")):
+    if q.startswith(("why", "which", "how","is","should","what")):
         return None
     
     if any(k in q for k in ["list","club", "clubs", "society", "societies"]):
