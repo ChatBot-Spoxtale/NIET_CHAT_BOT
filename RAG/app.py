@@ -78,12 +78,29 @@ def is_decision_query(q: str) -> bool:
     return any(p in q for p in DECISION_PATTERNS)
 
 def is_comparison_query(q: str) -> bool:
-    return any(k in q for k in [
-        "vs", "versus", "compare", "better than", "difference between"
+    q = q.lower()
+    return any(kw in q for kw in [
+        "which",
+        "why",
+        "better",
+        "better than",
+        "vs",
+        "versus",
+        "compare",
+        "difference between"
     ])
 
 
-
+def is_admission_decision_query(q: str) -> bool:
+    q = q.lower().strip()
+    return any(p in q for p in [
+        "should i take admission",
+        "should i join",
+        "should i choose",
+        "is it worth joining",
+        "is it good to join",
+        "join niet"
+    ]) 
 @app.post(
     "/chat",
     response_model=Union[
@@ -102,7 +119,13 @@ def chat_endpoint(payload: ChatRequest):
                 return POSITIVE_SENSITIVE_RESPONSE
             return SENSITIVE_REDIRECT_RESPONSE
 
-
+        if is_admission_decision_query (payload.question):
+            answer=chat(question)
+            return {
+                "type":"normal",
+                "answer":answer
+            }
+        
         if is_decision_query(question):
             answer = chat(
                 question,

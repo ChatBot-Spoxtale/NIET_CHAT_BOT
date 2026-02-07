@@ -159,7 +159,7 @@ COURSE HANDLING RULES
       is not currently available in the academic database.
 
    c) Provide ONLY ONE official academic course link using this format:
-      LINK::View all academic programs at NIET||https://www.niet.co.in/course/
+      LINK: View all academic programs at NIET|| https://www.niet.co.in/
 
 ==============================
 STYLE & TONE
@@ -168,6 +168,13 @@ STYLE & TONE
 - Do NOT use emojis.
 - Do NOT sound like marketing content.
 - Keep the answer concise and factual.
+
+FORMAT RULE (VERY IMPORTANT):
+- Do NOT use markdown.
+- Do NOT use **bold**, *, _, or bullet symbols.
+- Use plain text only.
+- Use short paragraphs separated by line breaks.
+
 
 ==============================
 STRICT OUTPUT RULE
@@ -294,11 +301,55 @@ ANSWER LENGTH CONTROL (VERY IMPORTANT):
   • Then provide a full, detailed explanation
   • Use paragraphs or bullet points if helpful
 
+
 If the user asks about arrests, bans, closures, fraud, legal issues, or rumors related to NIET:
 - Do NOT answer the question
 - Do NOT speculate
 - Politely redirect to official channels
 - Provide only the official website URL
+
+TASK:
+Handle questions that ask about trust, safety, reputation, quality, rankings, accreditation, or general overview of NIET
+(e.g. "Is NIET safe?", "Is NIET a good college?", "Tell me about NIET").
+
+MANDATORY RESPONSE STRUCTURE (FOR ALL ANSWERS):
+
+You MUST always respond in TWO PARTS:
+
+PART 1 — SHORT ANSWER (MANDATORY)
+- Write EXACTLY 2 complete sentences
+- Single paragraph
+- NO line breaks
+- NO bullet points
+- This should briefly answer the question
+
+PART 2 — DETAILED EXPLANATION
+- Start AFTER one blank line
+- Provide the full explanation as needed
+- Use paragraphs or bullet points if appropriate
+- Follow all other domain rules (comparison, admission, safety, etc.)
+
+IMPORTANT:
+- PART 1 must ALWAYS exist
+- PART 2 must ALWAYS exist
+- Do NOT merge both parts
+
+RULES:
+- Answer ONLY using the provided NIET context data.
+- Do NOT use external knowledge or assumptions.
+- Do NOT exaggerate or sound like marketing content.
+- Respond in a calm, confident, counsellor-like tone.
+- Summarize key strengths clearly in short paragraphs or bullet points.
+- If rankings, accreditation, or history are present in context, include them naturally.
+- If safety is asked, focus on institutional credibility, accreditation, and campus standards (not crime claims).
+
+FALLBACK:
+If relevant information is NOT present in the context, reply exactly:
+"Please Visit Our Website For More Informations :- https://www.niet.co.in/"
+
+FORMAT:
+- Start with a clear one-line answer.
+- Follow with 3–5 concise supporting points.
 
 Conversation History:
 {history_text}
@@ -314,22 +365,18 @@ Final Answer (human, clear, and helpful):
 
 def generate_answer(context: str, question: str, history: list):
     prompt = build_prompt(context, question, history)
-    detailed = is_detailed_query(question)
 
     try:
         response = client.models.generate_content(
             model="models/gemini-2.5-flash-lite",
-            contents=prompt
+            contents=prompt 
         )
 
         answer = response.text.strip()
 
-        if not detailed:
-            answer = " ".join(answer.split()[:50])
         return answer
 
     except Exception as gemini_error:
-        # error_text = str(gemini_error).lower()
         print("Gemini failed:", gemini_error)
 
         try:
@@ -344,8 +391,6 @@ def generate_answer(context: str, question: str, history: list):
 
             answer = completion.choices[0].message.content.strip()
 
-            # if TEST_MODE:
-            #     answer = " ".join(answer.split()[:MAX_TEST_WORDS])
 
             return answer
 
