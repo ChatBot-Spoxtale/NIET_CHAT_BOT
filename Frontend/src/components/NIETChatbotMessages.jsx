@@ -719,11 +719,8 @@ export default function NIETChatbotMessages({ embed = false }) {
     "fee",
     "fees",
     "apply",
-    "application",
     "enquiry",
     "inquiry",
-    "registration",
-    "join",
     "amount",
     "cash",
   ]
