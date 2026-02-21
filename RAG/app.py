@@ -127,14 +127,25 @@ def chat_endpoint(payload: ChatRequest):
             }
         
         if is_decision_query(question):
-            answer = chat(
-                question,
-                mode="decision"   
-            )
+            modified_prompt = (
+        "Answer the following question in a helpful and encouraging tone "
+        "for a student considering admission at NIET:\n\n"
+        + question
+    )
+
+    answer = chat(modified_prompt)
+
+            if not isinstance(answer, str) or not answer.strip():
+                answer = (
+            "Choosing NIET is a great decision as it offers strong academics, "
+            "experienced faculty, and excellent placement support. "
+            "For detailed guidance, you can contact our admission team."
+        )
+
             return {
                 "type": "normal",
                 "answer": answer
-            }
+    }
 
 
         if is_comparison_query(question):
@@ -173,4 +184,5 @@ def chat_endpoint(payload: ChatRequest):
 
 @app.get("/")
 def root():
+
     return {"status": "NIET MAIN CHATBOT RAG is running"}
