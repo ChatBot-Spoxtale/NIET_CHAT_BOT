@@ -133,7 +133,7 @@ def chat_endpoint(payload: ChatRequest):
         + question
     )
 
-    answer = chat(modified_prompt)
+            answer = chat(modified_prompt)
 
             if not isinstance(answer, str) or not answer.strip():
                 answer = (
@@ -186,3 +186,4 @@ def chat_endpoint(payload: ChatRequest):
 def root():
 
     return {"status": "NIET MAIN CHATBOT RAG is running"}
+
