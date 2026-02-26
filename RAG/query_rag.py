@@ -21,7 +21,7 @@ def answer_rag(query: str) -> str:
     if q.startswith(("why", "which", "how","is","should","what","more","details")):
         return None
     
-    if any(k in q for k in ["list","club", "clubs", "society", "societies"]):
+    if any(k in q for k in ["club", "clubs", "society", "societies"]):
         res = club_router(q)
         if isinstance(res, str) and res.strip():
             return res
