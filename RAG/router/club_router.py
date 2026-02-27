@@ -231,14 +231,6 @@ def club_router(query: str):
     if "cultural" in q or "hobby" in q or "activities" in q:
         return format_list("Cultural & Hobby Clubs", CULTURAL_CLUBS)
 
-    # CASE 3: Exact club detail lookup
-    for item in CLUB_DATA:
-        name = item.get("club_name", "").lower()
-        answer = item.get("answer", "")
-
-        # Match full name or partial name safely
-        if name == q or q in name or name in q:
-            return answer
 
 
 # LOCAL TESTING
@@ -256,3 +248,4 @@ if __name__ == "__main__":
         print("Q:", q)
         print(club_router(q))
         print("-" * 50)
+
