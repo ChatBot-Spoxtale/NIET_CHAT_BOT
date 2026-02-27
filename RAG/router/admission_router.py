@@ -45,7 +45,7 @@ def normalize_answer(text: str) -> str:
 def format_admission(row: dict) -> str:
     response = []
 
-    # ✅ Use QUESTION (not course – course does not exist in JSON)
+    #  Use QUESTION (not course – course does not exist in JSON)
     title = row.get("question", "Admission Details")
     response.append(f"🎓 {title}")
 

@@ -287,7 +287,7 @@ If the user asks a comparison question (e.g. "better than", "vs", "instead of", 
 - Do NOT use external knowledge or assumptions.
 - If the required NIET information is NOT present in the context,
   reply exactly with:
-  "Please Visit Our Website For More Informations :- https://www.niet.co.in/"
+  "Please Visit Our Website For College Informations :- https://www.niet.co.in/"
 ANSWER LENGTH CONTROL (VERY IMPORTANT):
 
 
@@ -347,7 +347,7 @@ RULES:
 
 FALLBACK:
 If relevant information is NOT present in the context, reply exactly:
-"Please Visit Our Website For More Informations :- https://www.niet.co.in/"
+"Please Visit Our Website For College Informations :- https://www.niet.co.in/"
 
 FORMAT:
 - Start with a clear one-line answer.
