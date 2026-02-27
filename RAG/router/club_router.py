@@ -202,7 +202,7 @@ def format_club_list() -> str:
         output.append(f"{category}:")
         for club in clubs:
             output.append(f"• {club}")
-        output.append("")  # empty line
+        output.append("")  
 
     output.append("🔗 https://niet.co.in/students-life/student-clubs-societies")
     return "\n".join(output)
