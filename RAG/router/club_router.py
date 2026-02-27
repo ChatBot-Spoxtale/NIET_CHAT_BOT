@@ -218,7 +218,7 @@ def club_router(query: str):
     q = club_normalize(query)
 
     # CASE 1: User asks for list of clubs
-    if "list" in q and "club" in q:
+    if "list" in q :
         return format_club_list()
     
     # CASE 2: Category-based queries
