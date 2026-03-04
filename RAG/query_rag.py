@@ -55,7 +55,6 @@ def answer_rag(query: str) -> str:
         if twinning:
             return twinning
 
-
     res = mtech_router(q)
     if isinstance(res, str) and res.strip():
         return res

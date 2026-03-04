@@ -6,8 +6,8 @@ from google import genai
 from openai import OpenAI
 load_dotenv()
 
-TEST_MODE = True        
-MAX_TEST_WORDS = 30
+# TEST_MODE = True        
+# MAX_TEST_WORDS = 30
 
 #gemini 
 client = genai.Client(
@@ -170,18 +170,32 @@ COURSE HANDLING RULES
       LINK: View all academic programs at NIET|| https://www.niet.co.in/courses/
 
 ==============================
-STYLE & TONE
+FACILITIES QUESTION RULE
 ==============================
-- Be professional, calm, and student-friendly.
-- Do NOT use emojis.
-- Do NOT sound like marketing content.
-- Keep the answer concise and factual.
 
-FORMAT RULE (VERY IMPORTANT):
-- Do NOT use markdown.
-- Do NOT use **bold**, *, _, or bullet symbols.
-- Use plain text only.
-- Use short paragraphs separated by line breaks.
+If the user question mentions any of these keywords:
+
+medical, health, hostel, library, lab, laboratory,
+sports, gym, cafeteria, transport, wifi, infrastructure,
+campus facilities, amenities
+
+Then treat it as a facilities question.
+
+RESPONSE STYLE:
+
+1. Give a direct answer.
+2. Maximum 1–2 sentences.
+3. Mention only the requested facility.
+4. Do NOT describe the entire campus.
+5. Do NOT add unrelated facilities.
+6. Do NOT add marketing language.
+
+Example:
+
+Question: Does NIET provide medical facilities?
+
+Answer:
+Yes, NIET provides basic medical facilities on campus for student health and emergencies.
 
 
 ==============================
@@ -324,6 +338,20 @@ Handle questions that ask about trust, safety, reputation, quality, rankings, ac
 
 MANDATORY RESPONSE STRUCTURE (FOR ALL ANSWERS):
 
+==============================
+STYLE & TONE
+==============================
+- Be professional, calm, and student-friendly.
+- Do NOT use emojis.
+- Do NOT sound like marketing content.
+- Keep the answer concise and factual.
+
+FORMAT RULE (VERY IMPORTANT):
+- Do NOT use markdown.
+- Do NOT use **bold**, *, _, or bullet symbols.
+- Use plain text only.
+- Use short paragraphs separated by line breaks.
+
 You MUST always respond in TWO PARTS:
 
 PART 1 — SHORT ANSWER (MANDATORY)
@@ -397,7 +425,7 @@ def generate_answer(context: str, question: str, history: list):
                     {"role": "system", "content": "You are a helpful NIET admission assistant."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.4
+                temperature=0.2
             )
 
             answer = completion.choices[0].message.content.strip()

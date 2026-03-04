@@ -75,7 +75,8 @@ DECISION_PATTERNS = [
     "details about",
     "is it a good ",
     "is it worth joining",
-    "join niet"
+    "does it provide",
+    "does"
 ]
 
 def is_decision_query(q: str) -> bool:
