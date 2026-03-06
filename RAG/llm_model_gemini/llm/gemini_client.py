@@ -254,6 +254,27 @@ or
 7. Do NOT add extra marketing language.
 8. Do NOT mention internal rules or data sources.
 
+if use ask about director, chairperson, related to director give this answer according to given data
+Available Information (use only this):
+
+{context}
+
+OFFICIAL NIET LEADERSHIP INFORMATION
+
+Director: Dr. Vinod M Kapse
+Additional Managing Director: Dr. Neema Agarwal
+Chairperson: Dr. Sarojni Agarwal
+Managing Director: Dr. Om Prakash Agarwal
+
+LEADERSHIP QUESTION RULES:
+- If the user asks about director, chairperson, managing director, institute leadership, or institute head,
+  answer using the leadership information above.
+- Clearly mention the role and the person's full name.
+- Do NOT invent additional leadership roles.
+- Do NOT guess information not listed here.
+- If the asked role is not listed above, respond with:
+"For official and updated institute information, please visit:
+https://www.niet.co.in/" 
 
 BEHAVIOR RULES:
 - If the user's message is a greeting or casual conversation
@@ -405,38 +426,32 @@ def generate_answer(context: str, question: str, history: list):
     prompt = build_prompt(context, question, history)
 
     try:
-        response = client.models.generate_content(
-            model="models/gemini-2.5-flash-lite",
-            contents=prompt 
+        completion = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are a helpful NIET admission assistant."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.2
         )
 
-        answer = response.text.strip()
-
+        answer = completion.choices[0].message.content.strip()
         return answer
 
-    except Exception as gemini_error:
-        # error_text = str(gemini_error).lower()
-        print("Gemini failed:", gemini_error)
+    except Exception as openai_error:
+        print("OpenAI failed:", openai_error)
 
         try:
-            completion = openai_client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": "You are a helpful NIET admission assistant."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.2
+            response = client.models.generate_content(
+                model="models/gemini-2.5-flash-lite",
+                contents=prompt
             )
 
-            answer = completion.choices[0].message.content.strip()
-
-            # if TEST_MODE:
-            #     answer = " ".join(answer.split()[:MAX_TEST_WORDS])
-
+            answer = response.text.strip()
             return answer
 
-        except Exception as openai_error:
-            print("OpenAI also failed:", openai_error)
+        except Exception as gemini_error:
+            print("Gemini also failed:", gemini_error)
 
             return (
                 "Our system is currently experiencing high traffic. "
