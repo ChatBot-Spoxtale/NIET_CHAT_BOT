@@ -94,6 +94,12 @@ SENSITIVE_KEYWORDS = [
     "exposed",
     "truth",
     "reality",
+
+    "stupid",
+    "useless",
+    "fuck off",
+    "fuck",
+    
 ]
 
 SAFETY_POSITIVE_KEYWORDS = [
