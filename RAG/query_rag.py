@@ -15,12 +15,39 @@ from router.research_router import research_router
 from router.twinning_router import twinning_router
 from llm_model_gemini.chat import chat
 
+VULGAR_KEYWORDS = {
+    "sex",
+    "porn",
+    "xxx",
+    "nude",
+    "adult",
+    "girlfriend",
+    "boyfriend",
+    "hookup",
+    "fuck",
+    "fucking",
+    "bitch",
+    "shit",
+    "hostel sex",
+    "allow sex",
+    "hostel allow sex",
+    "useless college",
+    "worst college"
+}
+
+
+def is_vulgar(q: str) -> bool:
+    return any(word in q for word in VULGAR_KEYWORDS)
+
 def answer_rag(query: str) -> str:
     q = query.lower().strip()
 
-    if q.startswith(("why", "which", "how","is","should","what","more","number","sex","girlfriend","boyfriend","allow")):
+    if q.startswith(("why", "which", "how","is","should","what","more","number","sex")):
         return None
     
+    if is_vulgar(q):
+        return chat(q)
+
     if any(k in q for k in ["club", "clubs", "society", "societies"]):
         res = club_router(q)
         if isinstance(res, str) and res.strip():
