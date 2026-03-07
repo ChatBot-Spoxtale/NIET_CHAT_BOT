@@ -231,17 +231,22 @@ def club_router(query: str):
     if "cultural" in q or "hobby" in q or "activities" in q:
         return format_list("Cultural & Hobby Clubs", CULTURAL_CLUBS)
 
+    for club in CLUB_DATA:
+        for k in club.get("keywords", []):
+            if k in q:
+                return club["answer"]
 
 
 # LOCAL TESTING
 if __name__ == "__main__":
     test_queries = [
-        "list of clubs",
+        # "list of clubs",
         # "indoor clubs",
         # "outdoor sports club",
-        # "table tennis club",
-        # "dance club",
-        # "music club",
+        "table tennis club",
+        "dance club",
+        "music club",
+        "chess club"
     ]
 
     for q in test_queries:
