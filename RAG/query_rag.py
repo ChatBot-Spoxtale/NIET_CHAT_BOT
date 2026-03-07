@@ -67,8 +67,6 @@ def answer_rag(query: str) -> str:
     if isinstance(res, str) and res.strip():
         return res
 
-   
-
     BTECH_KEYWORDS = {
         "btech", "b.tech",
         "cse", "aiml", "ai",
