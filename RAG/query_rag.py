@@ -18,7 +18,7 @@ from llm_model_gemini.chat import chat
 def answer_rag(query: str) -> str:
     q = query.lower().strip()
 
-    if q.startswith(("why", "which", "how","is","should","what","more")):
+    if q.startswith(("why", "which", "how","is","should","what","more","number")):
         return None
     
     if any(k in q for k in ["club", "clubs", "society", "societies"]):
@@ -40,7 +40,11 @@ def answer_rag(query: str) -> str:
         if isinstance(res, str) and res.strip():
             return res
     
- 
+    if any(w in q for w in ["syllabus", "pdf", "subject", "subjects", "curriculum"]):
+        return (
+            "To access the complete and officially updated course syllabus, "
+            "please visit:\nhttps://www.niet.co.in/academics/syllabus"
+        )
 
     TWINNING_KEYWORDS = [
         "twinning",
@@ -63,11 +67,7 @@ def answer_rag(query: str) -> str:
     if isinstance(res, str) and res.strip():
         return res
 
-    if any(w in q for w in ["syllabus", "pdf", "subject", "subjects", "curriculum"]):
-        return (
-            "To access the complete and officially updated course syllabus, "
-            "please visit:\nhttps://www.niet.co.in/academics/syllabus"
-        )
+   
 
     BTECH_KEYWORDS = {
         "btech", "b.tech",
